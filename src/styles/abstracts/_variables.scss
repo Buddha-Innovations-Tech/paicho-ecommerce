@@ -24,7 +24,7 @@ $h4: 20px;
 // $h5: $medium;
 // $h6: $base;
 
-$radius-buttons: 4px;
+$radius-buttons: 3px;
 $radius: 8px;
 $shadow: 2px 2px 6px #bce4ff79;
 $shadow-hover: 2px 2px 10px #93d3fd;
@@ -34,17 +34,17 @@ $border: 1px solid rgb(230, 230, 230);
 // color variable map
 $colors: (
   // non-nested values
-  text-dark: #323232,
+  text-dark: #2F2E41,
   text-light: #556672,
   // nested map inception
   primary:
     (
-      base: #1f7dc2,
+      base: #8DC73D,
       hover: #4190d7,
       clicked: #085488,
     ),
   secondary: (
-    base: #f7941d,
+    base: #004F9A,
     light: #f7c485,
     hover: #ffae4e,
     clicked: #e78a34,
