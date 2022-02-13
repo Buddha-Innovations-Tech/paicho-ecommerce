@@ -1,7 +1,12 @@
 import React from "react";
+import Footer from "../../components/Footer";
 
 const index = () => {
-  return <div>Lets start coding ..........</div>;
+  return (
+    <>
+      <Footer />
+    </>
+  );
 };
 
 export default index;
