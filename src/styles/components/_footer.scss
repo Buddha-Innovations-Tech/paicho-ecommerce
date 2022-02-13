@@ -2,22 +2,21 @@
   background-color: color(secondary, base);
   color: color(text-white);
 
-  .blocks.col-md-3 {
+  &__blocks {
     padding: 58px 0px 38px 0;
 
-    h5.footer-header {
+    &--header {
       font-weight: 600;
       font-size: 18px;
       line-height: 22px;
       color: color(text-white);
     }
 
-    .footer-content {
+    &--content {
       font-weight: normal;
       font-size: 16px;
       line-height: 24px;
     }
-
     ul {
       margin: 0;
       padding: 0;
@@ -34,33 +33,33 @@
         }
       }
     }
-  }
 
-  .quick-links {
-    padding-left: 108px !important;
-  }
+    &--quick-links {
+      padding-left: 97px !important;
+    }
 
-  .contact {
-    padding-left: 80px !important;
-    .icon {
-      font-size: 18px;
+    &--contact {
+      padding-left: 70px !important;
+      .icon {
+        font-size: 18px;
+      }
+    }
+
+    &--social-media {
+      padding-left: 90px !important;
+      .icon {
+        font-size: 24px;
+      }
     }
   }
 
-  .social-media {
-    padding-left: 90px !important;
-    .icon {
-      font-size: 24px;
+  &__bottom {
+    border-top: 2px solid color(text-white);
+    padding: 16px 0;
+
+    &--center {
+      text-align: center;
     }
-  }
-}
-
-.bottom-footer {
-  border-top: 2px solid color(text-white);
-  padding: 16px 0;
-
-  .center {
-    text-align: center;
   }
 }
 
