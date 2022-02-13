@@ -1,0 +1,77 @@
+.text-bold {
+  font-weight: bold;
+}
+
+.h1 {
+  font-size: $h1;
+}
+.h2 {
+  font-size: $h2;
+}
+.h3 {
+  font-size: $h3;
+  font-weight: $font-semi-bold;
+}
+.h4 {
+  font-size: $h4;
+}
+
+.color {
+  &-primary {
+    color: color(primary, base);
+  }
+  &-gray {
+    &1 {
+      color: color(gray, one);
+    }
+    &2 {
+      color: color(gray, two);
+    }
+    &3 {
+      color: color(gray, three);
+    }
+    &4 {
+      color: color(gray, four);
+    }
+    &5 {
+      color: color(gray, five);
+    }
+  }
+}
+
+.strongUp {
+  text-transform: uppercase;
+  color: color(secondary, base);
+}
+.strongDown {
+  font-weight: $font-regular;
+}
+
+.cpm {
+  color: color(primary, base);
+}
+.csc {
+  color: color(secondary, base);
+}
+
+.iconLarge {
+  font-size: 1.3rem;
+}
+.iconLargeXL {
+  font-size: 2rem;
+}
+
+.blockSpace {
+  margin-top: 6rem;
+  margin-bottom: 2rem;
+  padding-top: 3rem;
+  padding-bottom: 1rem;
+  @include responsive-for(lg) {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+  }
+  @include responsive-for(sm) {
+    margin-top: 0;
+  }
+}

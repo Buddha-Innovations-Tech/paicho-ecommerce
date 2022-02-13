@@ -1,0 +1,76 @@
+/* 2.3 Font weight*/
+$font-extrathin: 100;
+$font-thin: 200;
+$font-light: 300;
+$font-regular: 400;
+$font-medium: 500;
+$font-semi-bold: 600;
+$font-bold: 700;
+$font-extra-bold: 800;
+$font-black: 900;
+
+/* 2.1 Font Size*/
+$text-lg: 20px !default;
+$text-md: 16px !default;
+$text-sm: 14px !default;
+$text-xs: 12px;
+
+/* 3.0 Heading Size*/
+$h1: 22px !default;
+$h2: 31px !default;
+$h3: 25px !default;
+$h4: 20px;
+// $h4: $large;
+// $h5: $medium;
+// $h6: $base;
+
+$radius-buttons: 4px;
+$radius: 8px;
+$shadow: 2px 2px 6px #bce4ff79;
+$shadow-hover: 2px 2px 10px #93d3fd;
+
+$border: 1px solid rgb(230, 230, 230);
+
+// color variable map
+$colors: (
+  // non-nested values
+  text-dark: #323232,
+  text-light: #556672,
+  // nested map inception
+  primary:
+    (
+      base: #1f7dc2,
+      hover: #4190d7,
+      clicked: #085488,
+    ),
+  secondary: (
+    base: #f7941d,
+    light: #f7c485,
+    hover: #ffae4e,
+    clicked: #e78a34,
+  ),
+  success: (
+    base: #46d5b2,
+  ),
+  danger: (
+    base: #eb5757,
+  ),
+  gray: (
+    one: #0f284d,
+    two: #40516b,
+    three: #6b7d99,
+    four: #aeb6c2,
+    five: #e0e0e0,
+  )
+);
+
+// retrieve color from $colors map ie. `color(base, primary)`
+@function color($color-name, $color-variant: null) {
+  // color variant is optional
+  @if ($color-variant != null) {
+    // map inception
+    @return map-get(map-get($colors, $color-name), $color-variant);
+  } @else {
+    @return map-get($colors, $color-name);
+  }
+}

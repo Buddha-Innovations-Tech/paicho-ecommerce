@@ -1,0 +1,94 @@
+.btn {
+  font-weight: $font-medium;
+  border-radius: 0;
+  font-family: 'Open Sans', sans-serif;
+  cursor: pointer;
+  border-width: 1px;
+  border-style: solid;
+
+  &--md {
+    padding-left: 37px;
+    padding-right: 37px;
+    line-height: 33px;
+    // font-size: $medium;
+    transition: all 0.2s ease-in;
+  }
+  &--lg {
+    height: 35px;
+    padding: 8px 16px;
+    font-size: $text-md;
+    font-weight: 600;
+  }
+  &--full {
+    line-height: 48px;
+    width: 100%;
+    // font-size: $medium;
+  }
+  &--half {
+    line-height: 28px;
+    width: 47%;
+    // font-size: $medium;
+  }
+  &--primary {
+    border-radius: 8px;
+    border-color: color(secondary, base);
+    color: white;
+    background-color: color(secondary, base);
+    &:hover {
+      background-color: color(secondary, hover);
+      border-color: color(secondary, hover);
+      color: white;
+    }
+    &:active {
+      border-color: color(secondary, clicked);
+    }
+  }
+  &--secondary {
+    border-color: white;
+    color: white;
+    background-color: transparent;
+    &:hover {
+      background: white;
+      color: color(secondary, base);
+    }
+    &:active {
+      border-color: color(secondary, active);
+      color: color(secondary, active);
+    }
+  }
+
+  // &--google {
+  //   border-color: color(google-red);
+  //   background: color(google-red);
+  //   color: white;
+  //   &:hover {
+  //     border-color: darken(color(google-red), 8%);
+  //     background-color: darken(color(google-red), 8%);
+  //   }
+  //   &:active {
+  //     border-color: darken(color(google-red), 16%) !important;
+  //     background-color: darken(color(google-red), 16%) !important;
+  //   }
+  // }
+  // &--fb {
+  //   border-color: color(fb);
+  //   background: color(fb);
+  //   color: white;
+  //   &:hover {
+  //     border-color: darken(color(fb), 8%);
+  //     background-color: darken(color(fb), 8%);
+  //   }
+  //   &:active {
+  //     border-color: darken(color(fb), 16%) !important;
+  //     background-color: darken(color(fb), 16%) !important;
+  //   }
+  // }
+}
+
+//titlebox
+
+.titleBox {
+  h1 {
+    font-size: 24px;
+  }
+}
