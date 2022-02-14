@@ -63,6 +63,29 @@
   }
 }
 
+@media only screen and (max-width: 768px) {
+  .footer {
+    &__blocks {
+      padding: 20px;
+
+      &--about {
+        padding-left: 20px !important;
+      }
+      &--quick-links {
+        padding-left: 20px !important;
+      }
+
+      &--contact {
+        padding-left: 20px !important;
+      }
+
+      &--social-media {
+        padding-left: 20px !important;
+      }
+    }
+  }
+}
+
 .mb-10 {
   margin-bottom: 10px;
 }
