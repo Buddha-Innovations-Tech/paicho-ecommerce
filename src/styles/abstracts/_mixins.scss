@@ -16,6 +16,18 @@
   padding: 10px 24px;
   border-radius: 3px;
   border: none;
+  color: #fff;
+}
+
+@mixin beforee($width){
+  content: "";
+        position: absolute;
+        top: 42px;
+        left: 2px;
+        background-color: #8dc73d;
+        width: $width;
+        height: 2px;
+    
 }
 @mixin truncate {
   display: block;
