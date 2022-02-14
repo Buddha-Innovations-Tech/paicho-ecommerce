@@ -9,6 +9,7 @@ import { MdCall } from "react-icons/md";
 import { MdOutlineDashboard } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { Dropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <>
@@ -63,22 +64,22 @@ const NavBar = () => {
               <Dropdown.Menu>
                 <Dropdown.Item href="#paicho-pickle">Paicho Pickle <MdKeyboardArrowRight className="dropdown-item-icon"/>
                 <ul className="dropdown-submenu">
-                    <li>Mango Pickle </li>
-                    <li>Gooseberry Pickle</li>
-                    <li>Lemon Pickle</li>
-                    <li>Chilly Pickle</li>
-                    <li>Paicho Bhutuk achar</li>
+                    <li><Link to="">Mango Pickle</Link> </li>
+                    <li><Link to="">Gooseberry Pickle</Link></li>
+                    <li><Link to="">Lemon Pickle</Link></li>
+                    <li><Link to="">Chilly Pickle</Link></li>
+                    <li><Link to="">Paicho Bhutuk achar</Link></li>
                 </ul>
                 </Dropdown.Item>
                 <Dropdown.Item href="#/processing-item">Processing Item <MdKeyboardArrowRight className="dropdown-item-icon"/>
                 <ul className="dropdown-submenu">
-                    <li>Paicho Mix Jam  </li>
-                    <li>Paicho Chuck </li>
-                    <li>Khudo </li>
-                    <li>Guava juice</li>
-                    <li>Mixed Fruit Juice</li>
-                    <li>Paicho sweetcorn </li>
-                    <li>Paicho sweetcorn </li>
+                    <li><Link to="">Paicho Mix Jam </Link> </li>
+                    <li><Link to="">Paicho Chuck</Link></li>
+                    <li><Link to="">Khudo </Link></li>
+                    <li><Link to="">Guava juice</Link></li>
+                    <li><Link to="">Mixed Fruit Juice</Link></li>
+                    <li><Link to="">Paicho sweetcorn</Link></li>
+                    <li><Link to="">Paicho sweetcorn</Link></li>
                 </ul>
                 </Dropdown.Item>
 
