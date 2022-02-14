@@ -32,7 +32,26 @@
 
   .product {
     background-color: #f8f8f8;
-    padding: 20px 0;
+    padding: 33px 0 61px 0;
+
+    &__category {
+      position: relative;
+      color: #2f2e41;
+      font-weight: 600;
+      font-size: 20px;
+      margin-left: 15px;
+
+      &::before {
+        @include beforee(64px);
+        top: 33px;
+        left: 0px;
+      }
+    }
+
+    &__row {
+      padding-top: 35px;
+      padding-bottom: 44px;
+    }
 
     .slick-prev:before,
     .slick-next:before {

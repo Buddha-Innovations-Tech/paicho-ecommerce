@@ -19,15 +19,14 @@
   color: #fff;
 }
 
-@mixin beforee($width){
+@mixin beforee($width) {
   content: "";
-        position: absolute;
-        top: 42px;
-        left: 2px;
-        background-color: #8dc73d;
-        width: $width;
-        height: 2px;
-    
+  position: absolute;
+  top: 42px;
+  left: 2px;
+  background-color: #8dc73d;
+  width: $width;
+  height: 2px;
 }
 @mixin truncate {
   display: block;
