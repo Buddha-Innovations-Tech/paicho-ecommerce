@@ -14,6 +14,10 @@
       line-height: 19px;
       color: #666666;
     }
+
+    .btn__buy {
+      @include btn(#8dc73d);
+    }
   }
 
   &__banner {

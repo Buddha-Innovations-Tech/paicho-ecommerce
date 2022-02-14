@@ -21,7 +21,7 @@ const Home = () => {
                   Organic Food, Good Health , Good Mood{" "}
                 </p>{" "}
                 <br />
-                <Button>Buy Now</Button>
+                <Button className="btn__buy">Buy Now</Button>
               </div>
             </Col>
             <Col lg={6}>

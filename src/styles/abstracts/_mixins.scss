@@ -10,12 +10,12 @@
   left: 50%;
   transform: translate(-50%, 50%);
 }
-@mixin btn($background){
-  background-color:$background ;
+@mixin btn($background) {
+  background-color: $background;
   font-size: 16px;
-  padding: 13px 16px;
+  padding: 10px 24px;
   border-radius: 3px;
-
+  border: none;
 }
 @mixin truncate {
   display: block;
