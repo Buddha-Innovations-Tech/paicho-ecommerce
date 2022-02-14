@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import Logo from "../../assets/Images/paichologo.png";
+import Logo from "../../assets/images/paichologo.png";
 import { FiSearch } from "react-icons/fi";
 import { FaUserAlt } from "react-icons/fa";
 import { BiChevronDown } from "react-icons/bi";
