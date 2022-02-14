@@ -56,45 +56,88 @@ const NavBar = () => {
         <Container>
           <div className="categories">
             <Dropdown>
-              <Dropdown.Toggle  id="dropdown-basic" className="toggle-button">
-              <MdOutlineDashboard className="dashboard-icon"/>
-              All Categories
+              <Dropdown.Toggle id="dropdown-basic" className="toggle-button">
+                <MdOutlineDashboard className="dashboard-icon" />
+                All Categories
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item href="#paicho-pickle">Paicho Pickle <MdKeyboardArrowRight className="dropdown-item-icon"/>
-                <ul className="dropdown-submenu">
-                    <li><Link to="">Mango Pickle</Link> </li>
-                    <li><Link to="">Gooseberry Pickle</Link></li>
-                    <li><Link to="">Lemon Pickle</Link></li>
-                    <li><Link to="">Chilly Pickle</Link></li>
-                    <li><Link to="">Paicho Bhutuk achar</Link></li>
-                </ul>
+                <Dropdown.Item href="#paicho-pickle">
+                  Paicho Pickle{" "}
+                  <MdKeyboardArrowRight className="dropdown-item-icon" />
+                  <ul className="dropdown-submenu">
+                    <li>
+                      <Link to="">Mango Pickle</Link>{" "}
+                    </li>
+                    <li>
+                      <Link to="">Gooseberry Pickle</Link>
+                    </li>
+                    <li>
+                      <Link to="">Lemon Pickle</Link>
+                    </li>
+                    <li>
+                      <Link to="">Chilly Pickle</Link>
+                    </li>
+                    <li>
+                      <Link to="">Paicho Bhutuk achar</Link>
+                    </li>
+                  </ul>
                 </Dropdown.Item>
-                <Dropdown.Item href="#/processing-item">Processing Item <MdKeyboardArrowRight className="dropdown-item-icon"/>
-                <ul className="dropdown-submenu">
-                    <li><Link to="">Paicho Mix Jam </Link> </li>
-                    <li><Link to="">Paicho Chuck</Link></li>
-                    <li><Link to="">Khudo </Link></li>
-                    <li><Link to="">Guava juice</Link></li>
-                    <li><Link to="">Mixed Fruit Juice</Link></li>
-                    <li><Link to="">Paicho sweetcorn</Link></li>
-                    <li><Link to="">Paicho sweetcorn</Link></li>
-                </ul>
+                <Dropdown.Item href="#/processing-item">
+                  Processing Item{" "}
+                  <MdKeyboardArrowRight className="dropdown-item-icon" />
+                  <ul className="dropdown-submenu">
+                    <li>
+                      <Link to="">Paicho Mix Jam </Link>{" "}
+                    </li>
+                    <li>
+                      <Link to="">Paicho Chuck</Link>
+                    </li>
+                    <li>
+                      <Link to="">Khudo </Link>
+                    </li>
+                    <li>
+                      <Link to="">Guava juice</Link>
+                    </li>
+                    <li>
+                      <Link to="">Mixed Fruit Juice</Link>
+                    </li>
+                    <li>
+                      <Link to="">Paicho sweetcorn</Link>
+                    </li>
+                    <li>
+                      <Link to="">Paicho sweetcorn</Link>
+                    </li>
+                  </ul>
                 </Dropdown.Item>
 
-                <Dropdown.Item href="#/grainsandpulses">Grains & Pulses <MdKeyboardArrowRight className="dropdown-item-icon"/></Dropdown.Item>
-                <Dropdown.Item href="#/indenginousproducts">Indeginous Product <MdKeyboardArrowRight className="dropdown-item-icon"/></Dropdown.Item>
-                <Dropdown.Item href="#/dryfood">Dry Food <MdKeyboardArrowRight className="dropdown-item-icon"/></Dropdown.Item>
-                <Dropdown.Item href="#/ketchupandsauces">Ketchup & Sauces <MdKeyboardArrowRight className="dropdown-item-icon"/></Dropdown.Item>
-                <Dropdown.Item href="#/organicvegatble">Organic Vegatable <MdKeyboardArrowRight className="dropdown-item-icon"/></Dropdown.Item>
+                <Dropdown.Item href="#/grainsandpulses">
+                  Grains & Pulses{" "}
+                  <MdKeyboardArrowRight className="dropdown-item-icon" />
+                </Dropdown.Item>
+                <Dropdown.Item href="#/indenginousproducts">
+                  Indeginous Product{" "}
+                  <MdKeyboardArrowRight className="dropdown-item-icon" />
+                </Dropdown.Item>
+                <Dropdown.Item href="#/dryfood">
+                  Dry Food{" "}
+                  <MdKeyboardArrowRight className="dropdown-item-icon" />
+                </Dropdown.Item>
+                <Dropdown.Item href="#/ketchupandsauces">
+                  Ketchup & Sauces{" "}
+                  <MdKeyboardArrowRight className="dropdown-item-icon" />
+                </Dropdown.Item>
+                <Dropdown.Item href="#/organicvegatble">
+                  Organic Vegatable{" "}
+                  <MdKeyboardArrowRight className="dropdown-item-icon" />
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-          
-          <div className="delivery-num">
-            <MdCall className="call-icon"/>
-            <p>For Delivery : 071-540545, 986745345</p>
-          </div>
+
+            <div className="delivery-num">
+              <MdCall className="call-icon" />
+              <p>For Delivery : 071-540545, 986745345</p>
+            </div>
           </div>
         </Container>
       </div>
