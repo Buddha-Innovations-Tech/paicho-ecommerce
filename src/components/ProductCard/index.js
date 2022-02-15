@@ -1,14 +1,13 @@
 import Card from "react-bootstrap/Card";
-import product__image from "../../assets/images/ProductImage.png";
 import { FiHeart } from "react-icons/fi";
 
-const ProductCard = ({ name, price, stock }) => {
+const ProductCard = ({ name, price, stock, imageSource }) => {
   return (
     <>
       <Card className="product__card">
         <Card.Img
           variant="top"
-          src={product__image}
+          src={imageSource}
           className="img-fluid product__card--image"
           alt="product"
         />
