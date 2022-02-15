@@ -31,7 +31,7 @@ const NavBar = () => {
             </div>
           </Col>
           <Col md={4}>
-            <div className="d-flex justify-content-between align-items-center">
+            <div className="dropdown-num d-block d-lg-flex justify-content-between align-items-center">
               <div className="navbarright-wrapper">
                 <span>
                   <FaUserAlt className="navbar-right-icon" />
