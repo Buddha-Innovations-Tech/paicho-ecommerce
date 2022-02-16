@@ -1,0 +1,49 @@
+.shoppingcart-btn{
+  .carttable__maintable--deleteicon{
+    color: red;
+  }
+
+}
+
+.shopcartrightbox {
+  margin-top: 60px;
+  border: 1px solid #d4d7d9;
+  border-radius: 3px;
+  table{
+      margin-bottom: 0;
+  }
+  &__heading {
+    font-size: 14px;
+    font-weight: 700;
+    color: #3f2803;
+    padding: 16px 24px !important;
+  }
+  &__content {
+    padding: 16px 24px !important;
+    &:nth-child(2) {
+      border-bottom: 1px solid #d4d7d9;
+    }
+    p {
+      font-size: 14px;
+      font-weight: 500;
+      color: #3f2803;
+      margin-bottom: 0;
+    }
+  }
+  &__total {
+    padding: 16px 24px !important;
+    p {
+      font-size: 14px;
+      font-weight: 700;
+      color: #3f2803;
+      margin-bottom: 0;
+    }
+  }
+  &__divbtn{
+      padding: 16px 24px !important;
+      display: grid;
+      &--buttonn{
+        @include btn(#8DC73D);
+      }
+  }
+}

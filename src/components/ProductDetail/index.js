@@ -4,18 +4,47 @@ import { Link } from "react-router-dom";
 import ProductPhoto from "../../assets/images/productdetail.png";
 import Slider from "react-slick";
 import Mangopickle from "../../assets/images/mango-pickle.png";
+import Productphoto from "../../assets/images/ProductImage.png";
 import ProductCard from "../ProductCard";
+import IncrementDecrement from "../IncrementDecrement";
 
 const ProductDetailComp = () => {
 
-  const[count,setCount]=useState(0)
+  
   
   const settings = {
     dots: false,
     infinite: true,
-    speed: 500,
+    autoplay:true,
+    speed: 200,
     slidesToShow: 4,
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
   return (
     <>
@@ -59,8 +88,8 @@ const ProductDetailComp = () => {
               </div>
 
               <div className="product__inc-dec d-flex">
-                <p className="product__inc-dec--quantity">Quantity</p>
-                <div className="ms-5 product__inc-dec--button">
+                <p className="product__inc-dec--quantity ">Quantity</p>
+                {/* <div className="ms-5 product__inc-dec--button">
                   <table>
                     <tr>
                       <td className="product__inc-dec--button--dec" onClick={()=>{if(count>0){setCount(count-1)}}}>-</td>
@@ -68,7 +97,8 @@ const ProductDetailComp = () => {
                       <td className="product__inc-dec--button--dec" onClick={()=>setCount(count+1)}>+</td>
                     </tr>
                   </table>
-                </div>
+                </div> */}
+                <IncrementDecrement/>
               </div>
               <div className="product__btns">
                 <Link to="" className="product__btns--addtocart">
@@ -120,6 +150,7 @@ const ProductDetailComp = () => {
             <Slider {...settings}>
               <div>
                 <ProductCard
+                  imageSource={Productphoto}
                   name="Paicho Mixed Jam"
                   price="120"
                   stock="in stock"
@@ -127,6 +158,7 @@ const ProductDetailComp = () => {
               </div>
               <div>
                 <ProductCard
+                imageSource={Productphoto}
                   name="Paicho Pineapple jam"
                   price="150"
                   stock="in stock"
@@ -134,6 +166,7 @@ const ProductDetailComp = () => {
               </div>
               <div>
                 <ProductCard
+                imageSource={Productphoto}
                   name="Orange Marmalate"
                   price="120"
                   stock="in stock"
@@ -141,12 +174,14 @@ const ProductDetailComp = () => {
               </div>
               <div>
                 <ProductCard 
+                imageSource={Productphoto}
                  name="Chilly Pickle"
                  price="180"
                  stock="in stock"/>
               </div>
               <div>
                 <ProductCard
+                imageSource={Productphoto}
                  name="Chilly Pickle"
                     price="120"
                     stock="in stock" />
