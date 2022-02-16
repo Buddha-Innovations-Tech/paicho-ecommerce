@@ -1,0 +1,189 @@
+.checkout {
+  &__box {
+    background-color: #f8f8f8;
+    padding: 50px 0 98px 0;
+
+    &--heading {
+      margin-bottom: 23px;
+      &-title {
+        font-weight: 600;
+        font-size: 22px;
+        letter-spacing: 0.02em;
+        color: #231f1e;
+        margin-bottom: 7px;
+      }
+
+      &-para {
+        font-weight: normal;
+        font-size: 14px;
+        color: #4f4c4b;
+      }
+      .input-group-text {
+        background-color: transparent;
+        border: none;
+
+        .form-check-input:checked {
+          background-color: #8dc73d;
+          border-radius: 2px;
+          border-color: #8dc73d;
+        }
+      }
+    }
+
+    &--form {
+      padding: 17px 20px 60px 20px;
+      background: #ffffff;
+      border-radius: 5px;
+
+      .asterik {
+        color: red;
+        font-size: 16px;
+        font-weight: 500;
+        left: 3px;
+        top: -0.3rem;
+      }
+
+      .form-label {
+        font-weight: normal;
+        font-size: 16px;
+        color: #231f1e;
+        margin-bottom: 7px;
+      }
+
+      .form-control {
+        border: 1px solid rgba(69, 76, 75, 0.2);
+        border-radius: 3px;
+        margin-bottom: 20px;
+      }
+
+      .payment {
+        // padding-left: 3px;
+
+        .title.form-check-label {
+          font-weight: 600;
+          font-size: 16px;
+          color: #231f1e;
+          margin-bottom: 12px;
+        }
+
+        .form-check {
+          padding-left: 0px;
+        }
+
+        .form-check-input:checked {
+          background-color: #8dc73d;
+          border-color: #8dc73d;
+        }
+        .form-check .form-check-input {
+          margin-left: 0px;
+        }
+
+        .ml-16 {
+          margin-left: 16px;
+        }
+      }
+    }
+
+    &--button {
+      padding-top: 35px;
+
+      .btn__cancel {
+        @include btn(#ffffff);
+        color: #e84b23;
+        border: 1px solid #e84b23;
+        border-radius: 5px;
+      }
+
+      .btn__cancel:hover {
+        @include hoverr(#e84b23);
+        color: #fff;
+        border: 1px solid #e84b23;
+        border-radius: 5px;
+      }
+
+      .btn__confirm {
+        @include btn(#8dc73d);
+      }
+
+      .btn__confirm:hover {
+        @include hoverr(#8dc73d);
+      }
+    }
+
+    .billing {
+      margin-top: 88px;
+      background: #ffffff;
+      border-radius: 5px;
+      padding: 20px 28px 28px 28px;
+
+      &__heading {
+        color: #231f1e;
+        padding-bottom: 20px;
+        .title {
+          font-weight: 500;
+          font-size: 16px;
+        }
+        .date {
+          font-weight: 400;
+          font-size: 12px;
+        }
+      }
+
+      &__table {
+        .table,
+        td {
+          border-color: #d4d7d9;
+        }
+
+        table.second__table {
+          tr.bt {
+            border-top: 1px solid #d4d7d9;
+            border-bottom: 1px solid #d4d7d9;
+          }
+
+          tr.bb {
+            border-bottom: 1px solid #d4d7d9;
+          }
+
+          tr.no {
+            border: none;
+          }
+        }
+        .table > :not(caption) > * > * {
+          padding: 8px 16px;
+        }
+
+        .second__table.table-bordered > :not(caption) > * {
+          border-width: 0;
+        }
+
+        &--border {
+          border: 1px solid #d4d7d9;
+          border-top: none;
+
+          .d-flex.justify-content-between.align-items-center {
+            padding: 8px 25px 8px 16px;
+          }
+        }
+        .mt-16 {
+          margin-top: -16px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .checkout__box .billing {
+    padding: 0;
+  }
+
+  .checkout__box--button {
+    display: block !important;
+
+    .btn__cancel,
+    .btn__confirm {
+      margin: 10px 0 !important;
+    }
+  }
+}

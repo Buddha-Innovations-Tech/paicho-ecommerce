@@ -16,9 +16,11 @@ const NavBar = () => {
       <Container>
         <Row className="d-flex align-items-center">
           <Col md={2}>
-            <figure className="logo">
-              <img src={Logo} alt="" />
-            </figure>
+            <Link to="/">
+              <figure className="logo">
+                <img src={Logo} alt="" />
+              </figure>
+            </Link>
           </Col>
           <Col md={6}>
             <div className="imput-wrapper">

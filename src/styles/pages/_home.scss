@@ -39,7 +39,7 @@
       color: #2f2e41;
       font-weight: 600;
       font-size: 20px;
-      margin-left: 15px;
+      margin-left: 0px;
 
       &::before {
         @include beforee(64px);
@@ -59,6 +59,12 @@
       opacity: 1;
       font-size: 24px;
     }
+  }
+}
+
+@media (max-width: 425px) {
+  .slick-next {
+    right: 7px !important;
   }
 }
 

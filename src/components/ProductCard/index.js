@@ -1,16 +1,19 @@
 import Card from "react-bootstrap/Card";
 import { FiHeart } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ name, price, stock, imageSource }) => {
   return (
     <>
       <Card className="product__card">
-        <Card.Img
-          variant="top"
-          src={imageSource}
-          className="img-fluid product__card--image"
-          alt="product"
-        />
+        <Link to="/productdetail">
+          <Card.Img
+            variant="top"
+            src={imageSource}
+            className="img-fluid product__card--image"
+            alt="product"
+          />
+        </Link>
 
         <Card.Body className="product__card--body">
           <Card.Title className="product__card--body--title">
