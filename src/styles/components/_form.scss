@@ -1,0 +1,45 @@
+.form {
+  padding: 17px 20px 26px 20px;
+  background: #ffffff;
+  border-radius: 5px;
+
+  .mb-27 {
+    margin-bottom: 27px;
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 16px;
+    color: #231f1e;
+  }
+
+  &__edit {
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration-line: underline;
+
+    color: #004f9a;
+  }
+
+  .form-label {
+    font-weight: normal;
+    font-size: 16px;
+    color: #231f1e;
+    margin-bottom: 7px;
+  }
+
+  .form-control {
+    border: 1px solid rgba(69, 76, 75, 0.2);
+    border-radius: 3px;
+    margin-bottom: 18px;
+  }
+
+  .btn__confirm {
+    @include btn(#8dc73d);
+    margin-top: 5px;
+  }
+
+  .btn__confirm:hover {
+    @include hoverr(#8dc73d);
+  }
+}

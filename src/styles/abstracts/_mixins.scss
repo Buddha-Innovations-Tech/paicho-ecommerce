@@ -19,6 +19,24 @@
   color: #fff;
 }
 
+@mixin btn($background) {
+  background-color: $background;
+  font-size: 16px;
+  padding: 10px 24px;
+  border-radius: 3px;
+  border: none;
+  color: #fff;
+}
+
+@mixin hoverr($background) {
+  background-color: $background;
+  font-size: 16px;
+  padding: 10px 24px;
+  border-radius: 3px;
+  border: none;
+  color: #fff;
+}
+
 @mixin beforee($width) {
   content: "";
   position: absolute;
