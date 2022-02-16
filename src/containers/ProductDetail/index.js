@@ -7,7 +7,7 @@ const ProductDetail = () => {
   return (
     <>
     <NavBar/>
-   <ProductDetailComp/>
+   <ProductDetailComp stock="In Stock"/>
    <Footer/>
     </>
   )

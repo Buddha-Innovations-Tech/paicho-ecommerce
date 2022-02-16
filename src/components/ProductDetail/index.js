@@ -8,7 +8,7 @@ import Productphoto from "../../assets/images/ProductImage.png";
 import ProductCard from "../ProductCard";
 import IncrementDecrement from "../IncrementDecrement";
 
-const ProductDetailComp = () => {
+const ProductDetailComp = ({stock}) => {
 
   
   
@@ -84,7 +84,7 @@ const ProductDetailComp = () => {
               </div>
               <div className="product__price">
                 <span className="product__price--totalprice">Price:Rs180</span>
-                <p className="product__price--stock">IN STOCK</p>
+                <p className="product__price--stock">{stock}</p>
               </div>
 
               <div className="product__inc-dec d-flex">

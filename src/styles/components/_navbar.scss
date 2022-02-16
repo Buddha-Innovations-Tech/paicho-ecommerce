@@ -144,6 +144,42 @@
     }
   }
 }
+// .dropdown-num{
+  .modal-dialog{
+    max-width: 200px !important;
+    position: absolute;
+    left: 22%;
+    top: 20%;
+    border-radius: 7px;
+  }
+  .account-btn{
+    padding-left: 0;
+    margin-bottom: 0;
+  .account-signin{
+    @include btn(#8dc73d);
+    font-size: 16px;
+    padding: 6px 56px;
+    margin-top: 2px;
+    display: block;
+    
+   }
+   .account-create{
+     font-size: 16px;
+     padding: 6px 25px;
+     color: color(primary,base);
+     border: 1px solid #8dc73d;
+     margin: 20px 0;
+     display: block;
+     border-radius: 3px;
+   }
+   .account-accdetails{
+     border-top: 1px solid rgba(35, 31, 30, 0.4);
+     text-align: center;
+     display: block;
+     padding-top: 10px;
+     text-decoration: underline !important;
+   }
+  }
 
 // Responsive
 

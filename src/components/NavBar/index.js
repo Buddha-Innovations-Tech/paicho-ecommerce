@@ -1,5 +1,5 @@
-import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Col, Container, Row, Modal, Button } from "react-bootstrap";
 import Logo from "../../assets/images/paichologo.png";
 import { FiSearch } from "react-icons/fi";
 import { FaUserAlt } from "react-icons/fa";
@@ -11,6 +11,10 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 const NavBar = () => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <>
       <Container>
@@ -38,7 +42,21 @@ const NavBar = () => {
                 <span>
                   <FaUserAlt className="navbar-right-icon" />
                   <span> My Account</span>
-                  <BiChevronDown className="navbar-right-icon2" />
+                  <BiChevronDown
+                    className="navbar-right-icon2"
+                    onClick={handleShow}
+                  />
+                  <Modal show={show} onHide={handleClose}>
+                    <Modal.Body >
+                        <ul className="account-btn">
+                          <li><Link to="" className="account-signin">Sign In</Link></li>
+                          <li><Link to="" className="account-create">Create Account</Link></li>
+                          <li><Link to="" className="account-accdetails">My Account Details</Link></li>
+                        </ul>
+                      
+                    </Modal.Body>
+                    
+                  </Modal>
                 </span>
               </div>
 
@@ -138,6 +156,7 @@ const NavBar = () => {
 
             <div className="delivery-num">
               <MdCall className="call-icon" />
+
               <p>For Delivery : 071-540545, 986745345</p>
             </div>
           </div>
