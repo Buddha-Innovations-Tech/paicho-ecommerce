@@ -1,20 +1,20 @@
 .whishlist-btn {
   .carttable__maintable--crossicon {
-    background-color: color(primary,base);
+    background-color: color(primary, base);
     color: #fff;
     font-size: 10px;
     border: none;
     padding: 4px 9px;
     border-radius: 3px;
   }
-  .carttable__maintable--deleteicon{
-    color: color(primary,base);
+  .carttable__maintable--deleteicon {
+    color: color(primary, base);
   }
 }
-.wishlist{
-  background-color: #E5E5E5;
-&__leftside {
-  margin-top: 62px;
-}
-}
+.wishlist {
+  background-color: #f8f8f8;
 
+  &__leftside {
+    margin-top: 62px;
+  }
+}

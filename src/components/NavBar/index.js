@@ -10,6 +10,7 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
 const NavBar = () => {
   return (
     <>
@@ -36,17 +37,23 @@ const NavBar = () => {
             <div className="dropdown-num d-block d-lg-flex justify-content-between align-items-center">
               <div className="navbarright-wrapper">
                 <span>
-                  <FaUserAlt className="navbar-right-icon" />
-                  <span> My Account</span>
+                  <Link to="/account">
+                    <FaUserAlt className="navbar-right-icon" />
+                    <span> My Account</span>
+                  </Link>
                   <BiChevronDown className="navbar-right-icon2" />
                 </span>
               </div>
 
               <div className="navbarright-wrapper">
                 <span>
-                  <BsFillCartFill className="navbar-right-icon" />
-                  <span>My Cart</span>
-                  <BsFillHeartFill className="navbar-right-icon" />
+                  <Link to="/shoppingcart">
+                    <BsFillCartFill className="navbar-right-icon" />
+                    <span>My Cart</span>
+                  </Link>
+                  <Link to="/wishlist">
+                    <BsFillHeartFill className="navbar-right-icon" />
+                  </Link>
                 </span>
               </div>
             </div>
@@ -64,7 +71,7 @@ const NavBar = () => {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item href="#paicho-pickle">
+                <Dropdown.Item href="/paichopickle">
                   Paicho Pickle{" "}
                   <MdKeyboardArrowRight className="dropdown-item-icon" />
                   <ul className="dropdown-submenu">
@@ -85,7 +92,7 @@ const NavBar = () => {
                     </li>
                   </ul>
                 </Dropdown.Item>
-                <Dropdown.Item href="#/processing-item">
+                <Dropdown.Item href="/processingproduct">
                   Processing Item{" "}
                   <MdKeyboardArrowRight className="dropdown-item-icon" />
                   <ul className="dropdown-submenu">
@@ -113,23 +120,23 @@ const NavBar = () => {
                   </ul>
                 </Dropdown.Item>
 
-                <Dropdown.Item href="#/grainsandpulses">
+                <Dropdown.Item href="/grainsandpulses">
                   Grains & Pulses{" "}
                   <MdKeyboardArrowRight className="dropdown-item-icon" />
                 </Dropdown.Item>
-                <Dropdown.Item href="#/indenginousproducts">
+                <Dropdown.Item href="/indenginousproducts">
                   Indeginous Product{" "}
                   <MdKeyboardArrowRight className="dropdown-item-icon" />
                 </Dropdown.Item>
-                <Dropdown.Item href="#/dryfood">
+                <Dropdown.Item href="/paichodryfoods">
                   Dry Food{" "}
                   <MdKeyboardArrowRight className="dropdown-item-icon" />
                 </Dropdown.Item>
-                <Dropdown.Item href="#/ketchupandsauces">
+                <Dropdown.Item href="/ketchupandsauces">
                   Ketchup & Sauces{" "}
                   <MdKeyboardArrowRight className="dropdown-item-icon" />
                 </Dropdown.Item>
-                <Dropdown.Item href="#/organicvegatble">
+                <Dropdown.Item href="/organicvegetables">
                   Organic Vegatable{" "}
                   <MdKeyboardArrowRight className="dropdown-item-icon" />
                 </Dropdown.Item>

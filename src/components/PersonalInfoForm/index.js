@@ -23,14 +23,14 @@ const PersonalInfoForm = ({ title }) => {
             label="Phone No"
             type="number"
             name="phone"
-            placeholder="Enter Your Mobile Number"
+            placeholder="Enter your Mobile Number"
           />
 
           <InputForm
             label="Email address"
             type="text"
             name="email"
-            placeholder="Enter Your Email Address"
+            placeholder="Enter your Email Address"
           />
 
           <Button className="btn__confirm" type="submit">

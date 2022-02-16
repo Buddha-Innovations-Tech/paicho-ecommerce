@@ -83,7 +83,7 @@ const Home = () => {
                   <ProductCard
                     name="Chilly Pickle"
                     price="120"
-                    stock="in stock"
+                    stock="out of stock"
                     imageSource={product__image}
                   />
                 </Col>
@@ -95,11 +95,11 @@ const Home = () => {
                     imageSource={product__image}
                   />
                 </Col>
-                <Col md={3}>
+                <Col md={3} className="red">
                   <ProductCard
                     name="Chilly Pickle"
                     price="120"
-                    stock="in stock"
+                    stock="out of stock"
                     imageSource={product__image}
                   />
                 </Col>
