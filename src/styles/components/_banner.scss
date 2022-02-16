@@ -1,0 +1,24 @@
+.hero {
+  &__content {
+    padding: 117px 0 0 0;
+    &--heading {
+      font-weight: 700;
+      font-size: 36px;
+      letter-spacing: 0.02em;
+      color: #231f1e;
+    }
+    &--para {
+      font-weight: 400;
+      font-size: 16px;
+      color: #666666;
+    }
+  }
+
+  &__banner {
+    padding: 52px 0;
+    &--img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}

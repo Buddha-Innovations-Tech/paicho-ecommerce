@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ProductPhoto from "../../assets/images/productdetail.png";
@@ -12,10 +12,11 @@ const ProductDetailComp = ({stock}) => {
 
   
   
+const ProductDetailComp = () => {
   const settings = {
     dots: false,
     infinite: true,
-    autoplay:true,
+    autoplay: true,
     speed: 200,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -98,7 +99,7 @@ const ProductDetailComp = ({stock}) => {
                     </tr>
                   </table>
                 </div> */}
-                <IncrementDecrement/>
+                <IncrementDecrement />
               </div>
               <div className="product__btns">
                 <Link to="" className="product__btns--addtocart">
@@ -144,9 +145,9 @@ const ProductDetailComp = ({stock}) => {
         </div>
         <div className="product__similaritems">
           <Container>
-          <p className="product__similaritems--heading">
-                 Similar Items You Might Like
-                </p>
+            <p className="product__similaritems--heading">
+              Similar Items You Might Like
+            </p>
             <Slider {...settings}>
               <div>
                 <ProductCard
@@ -158,7 +159,7 @@ const ProductDetailComp = ({stock}) => {
               </div>
               <div>
                 <ProductCard
-                imageSource={Productphoto}
+                  imageSource={Productphoto}
                   name="Paicho Pineapple jam"
                   price="150"
                   stock="in stock"
@@ -166,25 +167,27 @@ const ProductDetailComp = ({stock}) => {
               </div>
               <div>
                 <ProductCard
-                imageSource={Productphoto}
+                  imageSource={Productphoto}
                   name="Orange Marmalate"
                   price="120"
                   stock="in stock"
                 />
               </div>
               <div>
-                <ProductCard 
-                imageSource={Productphoto}
-                 name="Chilly Pickle"
-                 price="180"
-                 stock="in stock"/>
+                <ProductCard
+                  imageSource={Productphoto}
+                  name="Chilly Pickle"
+                  price="180"
+                  stock="in stock"
+                />
               </div>
               <div>
                 <ProductCard
-                imageSource={Productphoto}
-                 name="Chilly Pickle"
-                    price="120"
-                    stock="in stock" />
+                  imageSource={Productphoto}
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                />
               </div>
             </Slider>
           </Container>

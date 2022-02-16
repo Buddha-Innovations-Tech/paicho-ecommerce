@@ -3,7 +3,8 @@ import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import CartTable from "../../components/CartTable.js";
 import { Container, Row, Col, Table } from "react-bootstrap";
-import {ImCross} from "react-icons/im"
+import { ImCross } from "react-icons/im";
+import { Link } from "react-router-dom";
 
 const ShoppingCart = () => {
   return (
@@ -12,8 +13,7 @@ const ShoppingCart = () => {
       <Container>
         <Row>
           <Col md={8} sm={12} className="shoppingcart-btn">
-            <CartTable icon={<ImCross/>} tableheading="Sub Total"/>
-
+            <CartTable icon={<ImCross />} tableheading="Sub Total" />
           </Col>
           <Col md={4} sm={12}>
             <div className="shopcartrightbox">
@@ -39,7 +39,11 @@ const ShoppingCart = () => {
                       <p>Rs.12200</p>
                     </div>
                     <div className="shopcartrightbox__divbtn">
-                    <button className="shopcartrightbox__divbtn--buttonn">Checkout</button>
+                      <Link to="/checkout">
+                        <button className="shopcartrightbox__divbtn--buttonn">
+                          Checkout
+                        </button>
+                      </Link>
                     </div>
                   </tr>
                 </tbody>

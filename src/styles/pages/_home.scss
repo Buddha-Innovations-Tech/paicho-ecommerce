@@ -34,6 +34,12 @@
     background-color: #f8f8f8;
     padding: 33px 0 61px 0;
 
+    .red {
+      .product__card--body--price-inout {
+        background-color: #e84b23;
+      }
+    }
+
     &__category {
       position: relative;
       color: #2f2e41;

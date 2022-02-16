@@ -3,6 +3,7 @@ import BillingAddressForm from "../../components/BillingAdrressForm";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import PersonalInfoForm from "../../components/PersonalInfoForm";
+import AccountSideNav from "../../components/AccoountSideNav";
 
 const AccountDetail = () => {
   return (
@@ -11,7 +12,9 @@ const AccountDetail = () => {
       <section className="account__details">
         <Container>
           <Row>
-            <Col md={2}> sano sidenav</Col>
+            <Col md={2}>
+              <AccountSideNav />
+            </Col>
             <Col md={4}>
               <PersonalInfoForm title="Personal Information" />
             </Col>
