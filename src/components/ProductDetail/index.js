@@ -1,5 +1,5 @@
-import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import React,{useState} from "react";
+import { Col, Container, Row,Toast } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ProductPhoto from "../../assets/images/productdetail.png";
 import Slider from "react-slick";
@@ -7,8 +7,12 @@ import Mangopickle from "../../assets/images/mango-pickle.png";
 import Productphoto from "../../assets/images/ProductImage.png";
 import ProductCard from "../ProductCard";
 import IncrementDecrement from "../IncrementDecrement";
+import {BsCheck} from "react-icons/bs";
+
 
 const ProductDetailComp = ({ stock }) => {
+  const [showA, setShowA] = useState(false);
+  const toggleShowA = () => setShowA(!showA);
   const settings = {
     dots: false,
     infinite: true,
@@ -86,19 +90,15 @@ const ProductDetailComp = ({ stock }) => {
 
               <div className="product__inc-dec d-flex">
                 <p className="product__inc-dec--quantity ">Quantity</p>
-                {/* <div className="ms-5 product__inc-dec--button">
-                  <table>
-                    <tr>
-                      <td className="product__inc-dec--button--dec" onClick={()=>{if(count>0){setCount(count-1)}}}>-</td>
-                      <td className="product__inc-dec--button--num">{count}</td>
-                      <td className="product__inc-dec--button--dec" onClick={()=>setCount(count+1)}>+</td>
-                    </tr>
-                  </table>
-                </div> */}
+              
                 <IncrementDecrement />
               </div>
               <div className="product__btns">
-                <Link to="" className="product__btns--addtocart">
+                <Link to="" className="product__btns--addtocart" onClick={toggleShowA} >
+                <Toast show={showA} onClose={toggleShowA}>
+      
+          <Toast.Body>This item is added to your cart successfully ! <BsCheck className="checkicon"/> </Toast.Body>
+        </Toast>
                   Add To Cart
                 </Link>
                 <Link to="" className="product__btns--buynow">

@@ -94,7 +94,7 @@
       }
     }
     .dropdown-menu {
-      padding-top: 0;
+      padding-top: 6px;
       border-radius: 0;
       background: transparent;
       border: none;
@@ -141,14 +141,7 @@
     }
   }
 }
-// .dropdown-num{
-// .modal-dialog{
-//   max-width: 200px !important;
-//   position: absolute;
-//   left: 22%;
-//   top: 123%;
-//   border-radius: 7px;
-// }
+
 .account-btn {
   position: absolute;
   top: 16.4%;
@@ -212,22 +205,7 @@
 }
 .modal-body{
   padding: 0;
-  // .asterik{
-  //   position: absolute;
-  //   top: 10%;
-  //   left: 30%;
-  //   font-size: 18px;
-  //   color: red;
-  //   font-weight: 600;
-  // }
-  // .asterikpass{
-  //   position: absolute;
-  //   top: 10%;
-  //   left: 18%;
-  //   font-size: 18px;
-  //   color: red;
-  //   font-weight: 600;
-  // }
+
   .sign-in-btn{
     @include btn(#8DC73D);
     margin-top: 25px;
@@ -326,5 +304,21 @@
   }
   .dropdown-num {
     margin: 15px 0;
+  }
+  .modal-content{
+    width: 100% !important;
+  }
+  .modal-content .modal-body .or::before ,.modal-content .modal-body .or::after{
+    display: none;
+  } 
+}
+@media(max-width:425px){
+  .modal-content{
+    width: 92%;
+  }
+}
+@media(max-width:325px){
+  .modal-content .modal-body .sign-in-btn {
+    padding: 11px 45px;
   }
 }
