@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Container, Row, Modal, Button } from "react-bootstrap";
+import { Col, Container, Row, Modal } from "react-bootstrap";
 import Logo from "../../assets/images/paichologo.png";
 import { FiSearch } from "react-icons/fi";
 import { FaUserAlt } from "react-icons/fa";
@@ -41,28 +41,35 @@ const NavBar = () => {
             <div className="dropdown-num d-block d-lg-flex justify-content-between align-items-center">
               <div className="navbarright-wrapper">
                 <span>
-                  <FaUserAlt className="navbar-right-icon" />
-                  <span> My Account</span>
+                  <Link to="/account">
+                    <FaUserAlt className="navbar-right-icon" />
+                    <span> My Account</span>
+                  </Link>
                   <BiChevronDown
                     className="navbar-right-icon2"
                     onClick={handleShow}
                   />
                   <Modal show={show} onHide={handleClose}>
-                    <Modal.Body >
-                        <ul className="account-btn">
-                          <li><Link to="" className="account-signin">Sign In</Link></li>
-                          <li><Link to="" className="account-create">Create Account</Link></li>
-                          <li><Link to="" className="account-accdetails">My Account Details</Link></li>
-                        </ul>
-                      
+                    <Modal.Body>
+                      <ul className="account-btn">
+                        <li>
+                          <Link to="" className="account-signin">
+                            Sign In
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="" className="account-create">
+                            Create Account
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="" className="account-accdetails">
+                            My Account Details
+                          </Link>
+                        </li>
+                      </ul>
                     </Modal.Body>
-                    
                   </Modal>
-                  <Link to="/account">
-                    <FaUserAlt className="navbar-right-icon" />
-                    <span> My Account</span>
-                  </Link>
-                  <BiChevronDown className="navbar-right-icon2" />
                 </span>
               </div>
 

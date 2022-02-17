@@ -1,0 +1,59 @@
+.order__confirm {
+  margin-top: 102px;
+  margin-bottom: 109px;
+
+  &--left {
+    padding-left: 173px;
+    text-align: center;
+
+    &-text {
+      color: #231f1e;
+      margin-bottom: 66px;
+
+      span.greeting {
+        font-size: 20px;
+        font-weight: 400;
+      }
+
+      p.my-14 {
+        font-size: 28px;
+        font-weight: 600;
+        margin: 14px 0;
+      }
+
+      span.content {
+        font-size: 14px;
+        color: #666666;
+        font-weight: 400;
+      }
+    }
+
+    &-shopmore {
+      span {
+        color: #231f1e;
+        font-weight: 500;
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  &--right {
+    padding-left: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .order__confirm {
+    &--left {
+      padding-left: 0px;
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    &--right {
+      padding-left: 0px;
+      text-align: center;
+    }
+  }
+}

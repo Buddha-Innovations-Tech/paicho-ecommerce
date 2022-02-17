@@ -1,51 +1,46 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "../../containers/Home/index";
-import AccountDetail from "../AccountDetail";
-import Checkout from "../Checkout";
-<<<<<<< HEAD
-import OutOfStock from "../OutOfStocK";
-=======
-import GrainsPulses from "../GrainsPulses";
+
 import IndeginousProduct from "../IndeginousProduct";
-import KetchupSauce from "../KetchupSauce";
-import PaichoDryFoods from "../PaichoDryFoods";
-import PaichoPickle from "../PaichoPickle";
 import ProcessingProduct from "../ProcessingProduct";
->>>>>>> 11f833ab3a34d99bcc61bd677e058b131005d16f
-import ProductDetail from "../ProductDetail";
-import ShoppingCart from "../ShoppingCart";
-import WhishList from "../WhishList";
 import OrganicVegetables from "../OrganicVegetables";
+import OrderConfirmation from "../OrderConfirmation";
+import PaichoDryFoods from "../PaichoDryFoods";
+import AccountDetail from "../AccountDetail";
+import ProductDetail from "../ProductDetail";
+import KetchupSauce from "../KetchupSauce";
+import PaichoPickle from "../PaichoPickle";
+import ShoppingCart from "../ShoppingCart";
+import GrainsPulses from "../GrainsPulses";
+import OutOfStock from "../OutOfStocK";
+import WhishList from "../WhishList";
+import Checkout from "../Checkout";
+import Home from "../Home";
 
 const App = () => {
   return (
     <div>
       <main>
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route exact path="/orderconfirm" element={<OrderConfirmation />} />
           <Route exact path="/productdetail" element={<ProductDetail />} />
           <Route exact path="/shoppingcart" element={<ShoppingCart />} />
-<<<<<<< HEAD
-          <Route exact path="/whishlist" element={<WhishList />} />
-          <Route exact path="/checkout" element={<Checkout />} />
           <Route exact path="/account" element={<AccountDetail />} />
           <Route exact path="/outofstock" element={<OutOfStock />} />
-=======
-          <Route exact path="/account" element={<AccountDetail />} />
           <Route exact path="/wishlist" element={<WhishList />} />
           <Route exact path="/checkout" element={<Checkout />} />
+          <Route exact path="/" element={<Home />} />
 
           {/* Categories */}
-          <Route exact path="/paichopickle" element={<PaichoPickle />} />
+          <Route exact path="/ketchupandsauces" element={<KetchupSauce />} />
+          <Route exact path="/paichodryfoods" element={<PaichoDryFoods />} />
           <Route exact path="/grainsandpulses" element={<GrainsPulses />} />
+          <Route exact path="/paichopickle" element={<PaichoPickle />} />
           <Route
             exact
             path="/indenginousproducts"
             element={<IndeginousProduct />}
           />
-          <Route exact path="/ketchupandsauces" element={<KetchupSauce />} />
-          <Route exact path="/paichodryfoods" element={<PaichoDryFoods />} />
           <Route
             exact
             path="/processingproduct"
@@ -56,7 +51,6 @@ const App = () => {
             path="/organicvegetables"
             element={<OrganicVegetables />}
           />
->>>>>>> 11f833ab3a34d99bcc61bd677e058b131005d16f
         </Routes>
       </main>
     </div>

@@ -8,11 +8,7 @@ import Productphoto from "../../assets/images/ProductImage.png";
 import ProductCard from "../ProductCard";
 import IncrementDecrement from "../IncrementDecrement";
 
-const ProductDetailComp = ({stock}) => {
-
-  
-  
-const ProductDetailComp = () => {
+const ProductDetailComp = ({ stock }) => {
   const settings = {
     dots: false,
     infinite: true,
