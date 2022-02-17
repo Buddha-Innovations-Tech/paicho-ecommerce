@@ -27,12 +27,9 @@ const App = () => {
           <Route exact path="/orderconfirm" element={<OrderConfirmation />} />
           <Route exact path="/productdetail" element={<ProductDetail />} />
           <Route exact path="/shoppingcart" element={<ShoppingCart />} />
-<<<<<<< HEAD
           <Route exact path="/orderhistory" element={<OrderHistory />} />
-=======
           <Route exact path="/wishlist" element={<WhishList />} />
           <Route exact path="/checkout" element={<Checkout />} />
->>>>>>> cb927f52df66c3d237333d35f981f40d65c45e00
           <Route exact path="/account" element={<AccountDetail />} />
           <Route exact path="/outofstock" element={<OutOfStock />} />
           <Route exact path="/clearcart" element={<ClearCart />} />

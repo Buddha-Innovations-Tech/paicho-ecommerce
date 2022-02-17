@@ -162,8 +162,6 @@
     padding: 6px 56px;
     margin-top: 2px;
     display: block;
-
-    
   }
   .account-create {
     font-size: 16px;
@@ -181,118 +179,117 @@
     padding-top: 10px;
     text-decoration: underline !important;
     font-size: 14px;
-    color: #004F9A;
+    color: #004f9a;
   }
 }
-.modal-content{
+.modal-content {
   padding: 40px 50px;
   width: 120% !important;
-  .modal-header{
+  .modal-header {
     padding: 0;
     border-bottom: none;
-    .btn-close{
+    .btn-close {
       padding: 0.5rem 0.5rem;
       margin: -4.5rem -2rem -0.5rem auto;
     }
   }
-.modal-title{
-  p{
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: -15px;
-  }
-  span{
-    color: #666666;
-    font-size: 12px;
-    font-weight: 400;
-  }
-}
-.modal-dialog{
-  width: 600px  !important; 
-}
-.modal-body{
-  padding: 0;
-  // .asterik{
-  //   position: absolute;
-  //   top: 10%;
-  //   left: 30%;
-  //   font-size: 18px;
-  //   color: red;
-  //   font-weight: 600;
-  // }
-  // .asterikpass{
-  //   position: absolute;
-  //   top: 10%;
-  //   left: 18%;
-  //   font-size: 18px;
-  //   color: red;
-  //   font-weight: 600;
-  // }
-  .sign-in-btn{
-    @include btn(#8DC73D);
-    margin-top: 25px;
-    padding: 11px 47px;
-  }
-  .forget-password{
-    display: block;
-    margin-top: 20px;
-    font-size: 12px;
-  }
-  .or{
-    position: relative;
-    text-align: center;
-    margin-top: 15px;
-    margin-bottom: 0;
-    font-size: 14px;
-    color: #666666;
-    &::before{
-      content: "";
-      position: absolute;
-      top: 14px;
-      left: 2px;
-      background-color: #BABFC3;
-      width: 230px;
-      height: 1px;
+  .modal-title {
+    p {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: -15px;
     }
-    &::after{
-      content: "";
-      position: absolute;
-      top: 14px;
-      left: 264px;
-      background-color: #BABFC3;
-      width: 235px;
-      height: 1px;
-  }
-    
-  }
-  .signin-socialmediaicon{
-    text-align: center;
-    margin-top: 20px;
-    img{
-    &:nth-child(1){
-      margin-right: 15px;
+    span {
+      color: #666666;
+      font-size: 12px;
+      font-weight: 400;
     }
   }
+  .modal-dialog {
+    width: 600px !important;
   }
-  .dont-haveacc{
-    margin-top: 20px;
-    font-size: 12px;
-    text-align: center;
-    margin-bottom: 0;
-    color: #666666;
+  .modal-body {
+    padding: 0;
+    // .asterik{
+    //   position: absolute;
+    //   top: 10%;
+    //   left: 30%;
+    //   font-size: 18px;
+    //   color: red;
+    //   font-weight: 600;
+    // }
+    // .asterikpass{
+    //   position: absolute;
+    //   top: 10%;
+    //   left: 18%;
+    //   font-size: 18px;
+    //   color: red;
+    //   font-weight: 600;
+    // }
+    .sign-in-btn {
+      @include btn(#8dc73d);
+      margin-top: 25px;
+      padding: 11px 47px;
+    }
+    .forget-password {
+      display: block;
+      margin-top: 20px;
+      font-size: 12px;
+    }
+    .or {
+      position: relative;
+      text-align: center;
+      margin-top: 15px;
+      margin-bottom: 0;
+      font-size: 14px;
+      color: #666666;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 14px;
+        left: 2px;
+        background-color: #babfc3;
+        width: 230px;
+        height: 1px;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        top: 14px;
+        left: 264px;
+        background-color: #babfc3;
+        width: 235px;
+        height: 1px;
+      }
+    }
+    .signin-socialmediaicon {
+      text-align: center;
+      margin-top: 20px;
+      img {
+        &:nth-child(1) {
+          margin-right: 15px;
+        }
+      }
+    }
+    .dont-haveacc {
+      margin-top: 20px;
+      font-size: 12px;
+      text-align: center;
+      margin-bottom: 0;
+      color: #666666;
+    }
   }
 }
-}
-.createaccount{
+.createaccount {
   display: flex;
   align-items: center;
   margin-top: 25px;
-  p{
+  p {
     font-size: 12px;
     color: #666666;
     margin-bottom: 0;
   }
-  .input-group-text{
+  .input-group-text {
     background-color: transparent;
     border: none;
     padding-left: 0;
@@ -301,9 +298,8 @@
     background-color: #8dc73d;
     border: none;
   }
-  
 }
-.already-have-acc{
+.already-have-acc {
   margin-top: 20px;
   font-size: 12px;
   margin-bottom: 0;
