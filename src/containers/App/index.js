@@ -13,6 +13,7 @@ import PaichoPickle from "../PaichoPickle";
 import ShoppingCart from "../ShoppingCart";
 import GrainsPulses from "../GrainsPulses";
 import OutOfStock from "../OutOfStocK";
+import ClearCart from "../ClearCart";
 import WhishList from "../WhishList";
 import Checkout from "../Checkout";
 import Home from "../Home";
@@ -27,6 +28,7 @@ const App = () => {
           <Route exact path="/shoppingcart" element={<ShoppingCart />} />
           <Route exact path="/account" element={<AccountDetail />} />
           <Route exact path="/outofstock" element={<OutOfStock />} />
+          <Route exact path="/clearcart" element={<ClearCart />} />
           <Route exact path="/wishlist" element={<WhishList />} />
           <Route exact path="/checkout" element={<Checkout />} />
           <Route exact path="/" element={<Home />} />
