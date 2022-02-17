@@ -83,6 +83,7 @@ const ProcessingProduct = () => {
                   price="120"
                   stock="out of stock"
                   imageSource={sweet__corn}
+                  path="/productdetail"
                 />
               </Col>
               <Col md={3}>
@@ -91,6 +92,7 @@ const ProcessingProduct = () => {
                   price="120"
                   stock="in stock"
                   imageSource={guava__juice}
+                  path="/productdetail"
                 />
               </Col>
               <Col md={3} className="red">
@@ -99,6 +101,7 @@ const ProcessingProduct = () => {
                   price="120"
                   stock="out of stock"
                   imageSource={mixed__juice}
+                  path="/outofstock"
                 />
               </Col>
               <Col md={3}>
@@ -107,6 +110,7 @@ const ProcessingProduct = () => {
                   price="120"
                   stock="in stock"
                   imageSource={pineapple__juice}
+                  path="/productdetail"
                 />
               </Col>
               <Col md={3}>
@@ -115,6 +119,7 @@ const ProcessingProduct = () => {
                   price="120"
                   stock="in stock"
                   imageSource={product__image}
+                  path="/productdetail"
                 />
               </Col>
             </Slider>
@@ -124,26 +129,38 @@ const ProcessingProduct = () => {
             <Slider {...settings}>
               <Col md={3}>
                 <ProductCard
-                  name="Chilly Pickle"
+                  name="Whole Sweet Corn "
                   price="120"
                   stock="out of stock"
-                  imageSource={product__image}
+                  imageSource={sweet__corn}
+                  path="/productdetail"
                 />
               </Col>
               <Col md={3}>
                 <ProductCard
-                  name="Chilly Pickle"
+                  name="Guava Juice"
                   price="120"
                   stock="in stock"
-                  imageSource={product__image}
+                  imageSource={guava__juice}
+                  path="/productdetail"
                 />
               </Col>
               <Col md={3} className="red">
                 <ProductCard
-                  name="Chilly Pickle"
+                  name="Mixed Fruit Juice "
                   price="120"
                   stock="out of stock"
-                  imageSource={product__image}
+                  imageSource={mixed__juice}
+                  path="/outofstock"
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Pineapple Juice"
+                  price="120"
+                  stock="in stock"
+                  imageSource={pineapple__juice}
+                  path="/productdetail"
                 />
               </Col>
               <Col md={3}>
@@ -152,14 +169,7 @@ const ProcessingProduct = () => {
                   price="120"
                   stock="in stock"
                   imageSource={product__image}
-                />
-              </Col>
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
+                  path="/productdetail"
                 />
               </Col>
             </Slider>
@@ -169,26 +179,38 @@ const ProcessingProduct = () => {
             <Slider {...settings}>
               <Col md={3}>
                 <ProductCard
-                  name="Chilly Pickle"
+                  name="Whole Sweet Corn "
                   price="120"
                   stock="out of stock"
-                  imageSource={product__image}
+                  imageSource={sweet__corn}
+                  path="/productdetail"
                 />
               </Col>
               <Col md={3}>
                 <ProductCard
-                  name="Chilly Pickle"
+                  name="Guava Juice"
                   price="120"
                   stock="in stock"
-                  imageSource={product__image}
+                  imageSource={guava__juice}
+                  path="/productdetail"
                 />
               </Col>
               <Col md={3} className="red">
                 <ProductCard
-                  name="Chilly Pickle"
+                  name="Mixed Fruit Juice "
                   price="120"
                   stock="out of stock"
-                  imageSource={product__image}
+                  imageSource={mixed__juice}
+                  path="/outofstock"
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Pineapple Juice"
+                  price="120"
+                  stock="in stock"
+                  imageSource={pineapple__juice}
+                  path="/productdetail"
                 />
               </Col>
               <Col md={3}>
@@ -197,14 +219,7 @@ const ProcessingProduct = () => {
                   price="120"
                   stock="in stock"
                   imageSource={product__image}
-                />
-              </Col>
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
+                  path="/productdetail"
                 />
               </Col>
             </Slider>
@@ -214,26 +229,38 @@ const ProcessingProduct = () => {
             <Slider {...settings}>
               <Col md={3}>
                 <ProductCard
-                  name="Chilly Pickle"
+                  name="Whole Sweet Corn "
                   price="120"
                   stock="out of stock"
-                  imageSource={product__image}
+                  imageSource={sweet__corn}
+                  path="/productdetail"
                 />
               </Col>
               <Col md={3}>
                 <ProductCard
-                  name="Chilly Pickle"
+                  name="Guava Juice"
                   price="120"
                   stock="in stock"
-                  imageSource={product__image}
+                  imageSource={guava__juice}
+                  path="/productdetail"
                 />
               </Col>
               <Col md={3} className="red">
                 <ProductCard
-                  name="Chilly Pickle"
+                  name="Mixed Fruit Juice "
                   price="120"
                   stock="out of stock"
-                  imageSource={product__image}
+                  imageSource={mixed__juice}
+                  path="/outofstock"
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Pineapple Juice"
+                  price="120"
+                  stock="in stock"
+                  imageSource={pineapple__juice}
+                  path="/productdetail"
                 />
               </Col>
               <Col md={3}>
@@ -242,14 +269,7 @@ const ProcessingProduct = () => {
                   price="120"
                   stock="in stock"
                   imageSource={product__image}
-                />
-              </Col>
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
+                  path="/productdetail"
                 />
               </Col>
             </Slider>
@@ -259,26 +279,38 @@ const ProcessingProduct = () => {
             <Slider {...settings}>
               <Col md={3}>
                 <ProductCard
-                  name="Chilly Pickle"
+                  name="Whole Sweet Corn "
                   price="120"
                   stock="out of stock"
-                  imageSource={product__image}
+                  imageSource={sweet__corn}
+                  path="/productdetail"
                 />
               </Col>
               <Col md={3}>
                 <ProductCard
-                  name="Chilly Pickle"
+                  name="Guava Juice"
                   price="120"
                   stock="in stock"
-                  imageSource={product__image}
+                  imageSource={guava__juice}
+                  path="/productdetail"
                 />
               </Col>
               <Col md={3} className="red">
                 <ProductCard
-                  name="Chilly Pickle"
+                  name="Mixed Fruit Juice "
                   price="120"
                   stock="out of stock"
-                  imageSource={product__image}
+                  imageSource={mixed__juice}
+                  path="/outofstock"
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Pineapple Juice"
+                  price="120"
+                  stock="in stock"
+                  imageSource={pineapple__juice}
+                  path="/productdetail"
                 />
               </Col>
               <Col md={3}>
@@ -287,14 +319,7 @@ const ProcessingProduct = () => {
                   price="120"
                   stock="in stock"
                   imageSource={product__image}
-                />
-              </Col>
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
+                  path="/productdetail"
                 />
               </Col>
             </Slider>

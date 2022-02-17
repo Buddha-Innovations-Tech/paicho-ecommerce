@@ -126,8 +126,9 @@ const Home = () => {
                   <ProductCard
                     name="Chilly Pickle"
                     price="120"
-                    stock="out of stock"
+                    stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -136,6 +137,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3} className="red">
@@ -144,6 +146,7 @@ const Home = () => {
                     price="120"
                     stock="out of stock"
                     imageSource={product__image}
+                    path="/outofstock"
                   />
                 </Col>
                 <Col md={3}>
@@ -152,6 +155,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -160,6 +164,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
               </Slider>
@@ -175,6 +180,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -183,6 +189,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -191,6 +198,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -199,6 +207,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -207,6 +216,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
               </Slider>
@@ -222,6 +232,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -230,6 +241,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -238,6 +250,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -246,6 +259,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -254,6 +268,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
               </Slider>
@@ -269,6 +284,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -277,6 +293,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -285,6 +302,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -293,6 +311,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -316,6 +335,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -324,6 +344,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -332,6 +353,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -340,6 +362,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -348,6 +371,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
               </Slider>
@@ -363,6 +387,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -371,6 +396,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -379,6 +405,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -387,6 +414,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -395,6 +423,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
               </Slider>
@@ -410,6 +439,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -418,6 +448,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -426,6 +457,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -434,6 +466,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
                 <Col md={3}>
@@ -442,6 +475,7 @@ const Home = () => {
                     price="120"
                     stock="in stock"
                     imageSource={product__image}
+                    path="/productdetail"
                   />
                 </Col>
               </Slider>
