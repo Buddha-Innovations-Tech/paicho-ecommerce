@@ -14,7 +14,7 @@ const AccountSideNav = () => {
               <Link to="/wishlist">Wishlist</Link>
             </li>
             <li>
-              <Link to="">My Order History</Link>
+              <Link to="/orderhistory">My Order History</Link>
             </li>
           </ul>
         </div>

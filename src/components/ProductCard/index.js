@@ -2,11 +2,11 @@ import Card from "react-bootstrap/Card";
 import { FiHeart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
-const ProductCard = ({ name, price, stock, imageSource }) => {
+const ProductCard = ({ name, price, stock, imageSource, path }) => {
   return (
     <>
       <Card className="product__card">
-        <Link to="/productdetail">
+        <Link to={`${path}`}>
           <Card.Img
             variant="top"
             src={imageSource}

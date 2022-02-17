@@ -17,6 +17,7 @@ import ClearCart from "../ClearCart";
 import WhishList from "../WhishList";
 import Checkout from "../Checkout";
 import Home from "../Home";
+import OrderHistory from "../OrderHistory";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
           <Route exact path="/orderconfirm" element={<OrderConfirmation />} />
           <Route exact path="/productdetail" element={<ProductDetail />} />
           <Route exact path="/shoppingcart" element={<ShoppingCart />} />
+          <Route exact path="/orderhistory" element={<OrderHistory />} />
           <Route exact path="/account" element={<AccountDetail />} />
           <Route exact path="/outofstock" element={<OutOfStock />} />
           <Route exact path="/clearcart" element={<ClearCart />} />
