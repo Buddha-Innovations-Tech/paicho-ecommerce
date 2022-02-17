@@ -18,3 +18,8 @@
     }
   }
 }
+.active-link.active{
+  color: color(primary,base) !important;
+  font-weight: 500;
+  border-bottom: 1px solid color(primary,base);
+}

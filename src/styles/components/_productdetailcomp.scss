@@ -159,3 +159,23 @@
  }
 
 }
+.toast{
+  position: absolute;
+  top: 0%;
+  left: 71%;
+  width: 400px !important;
+  .toast-body{
+    background-color: #004F9A !important;
+    border-radius: 4px;
+    padding: 15px 20px;
+    font-size: 16px;
+  }
+  .checkicon{
+    font-size: 26px;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 3px;
+    color: #004F9A;
+    margin-left: 10px;
+  }
+}

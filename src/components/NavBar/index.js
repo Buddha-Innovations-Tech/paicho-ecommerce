@@ -260,7 +260,7 @@ const NavBar = () => {
             <Dropdown>
               <Dropdown.Toggle id="dropdown-basic" className="toggle-button">
                 <MdOutlineDashboard className="dashboard-icon" />
-                All Categories
+                <span>All Categories</span>
               </Dropdown.Toggle>
 
               <Dropdown.Menu>

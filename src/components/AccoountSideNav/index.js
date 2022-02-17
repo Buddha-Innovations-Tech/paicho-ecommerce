@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const AccountSideNav = () => {
   return (
@@ -8,13 +8,13 @@ const AccountSideNav = () => {
         <div className="accountsidenav__wrapper">
           <ul>
             <li>
-              <Link to="/account">My Account Details</Link>
+              <NavLink to="/account" className="active-link">My Account Details</NavLink>
             </li>
             <li>
-              <Link to="/wishlist">Wishlist</Link>
+              <NavLink to="/wishlist" className="active-link">Wishlist</NavLink>
             </li>
             <li>
-              <Link to="/orderhistory">My Order History</Link>
+              <NavLink to="/orderhistory" className="active-link">My Order History</NavLink>
             </li>
           </ul>
         </div>

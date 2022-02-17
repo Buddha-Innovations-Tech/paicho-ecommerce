@@ -94,7 +94,7 @@
       }
     }
     .dropdown-menu {
-      padding-top: 0;
+      padding-top: 6px;
       border-radius: 0;
       background: transparent;
       border: none;
@@ -141,14 +141,7 @@
     }
   }
 }
-// .dropdown-num{
-// .modal-dialog{
-//   max-width: 200px !important;
-//   position: absolute;
-//   left: 22%;
-//   top: 123%;
-//   border-radius: 7px;
-// }
+
 .account-btn {
   position: absolute;
   top: 16.4%;
@@ -193,11 +186,49 @@
       margin: -4.5rem -2rem -0.5rem auto;
     }
   }
-  .modal-title {
-    p {
-      font-size: 18px;
-      font-weight: 500;
-      margin-bottom: -15px;
+.modal-title{
+  p{
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: -15px;
+  }
+  span{
+    color: #666666;
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+.modal-dialog{
+  width: 600px  !important; 
+}
+.modal-body{
+  padding: 0;
+
+  .sign-in-btn{
+    @include btn(#8DC73D);
+    margin-top: 25px;
+    padding: 11px 47px;
+  }
+  .forget-password{
+    display: block;
+    margin-top: 20px;
+    font-size: 12px;
+  }
+  .or{
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 0;
+    font-size: 14px;
+    color: #666666;
+    &::before{
+      content: "";
+      position: absolute;
+      top: 14px;
+      left: 2px;
+      background-color: #BABFC3;
+      width: 230px;
+      height: 1px;
     }
     span {
       color: #666666;
@@ -322,5 +353,21 @@
   }
   .dropdown-num {
     margin: 15px 0;
+  }
+  .modal-content{
+    width: 100% !important;
+  }
+  .modal-content .modal-body .or::before ,.modal-content .modal-body .or::after{
+    display: none;
+  } 
+}
+@media(max-width:425px){
+  .modal-content{
+    width: 92%;
+  }
+}
+@media(max-width:325px){
+  .modal-content .modal-body .sign-in-btn {
+    padding: 11px 45px;
   }
 }

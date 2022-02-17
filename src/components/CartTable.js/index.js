@@ -110,7 +110,7 @@ const CartTable = ({ icon, tableheading, btnnn }) => {
                     {window.location.href.includes("shoppingcart") && (
                       <td>Rs 500</td>
                     )}
-                    {window.location.href.includes("whishlist") && (
+                    {window.location.href.includes("wishlist") && (
                       <td>
                         {" "}
                         <button className="carttable__maintable--crossicon">
@@ -118,7 +118,7 @@ const CartTable = ({ icon, tableheading, btnnn }) => {
                         </button>{" "}
                       </td>
                     )}
-                    {/* <td > <button className="carttable__maintable--crossicon">{icon}</button> </td> */}
+                    
                     <td className="carttable__maintable--deleteicon">
                       {icon}{" "}
                     </td>
