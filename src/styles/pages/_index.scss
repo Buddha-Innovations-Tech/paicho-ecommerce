@@ -1,14 +1,10 @@
-@import 'home';
-@import 'productdetail';
-@import 'shoppingcart';
-@import 'whishlist';
-@import "home";
 @import "productdetail";
+@import "orderconfirm";
 @import "shoppingcart";
-@import "whishlist";
-
-@import "home";
-@import "productdetail";
-@import "checkout";
-@import "account";
 @import "outofstock";
+@import "clearCart";
+@import "checkout";
+@import "whishlist";
+@import "account";
+@import "pickle";
+@import "home";

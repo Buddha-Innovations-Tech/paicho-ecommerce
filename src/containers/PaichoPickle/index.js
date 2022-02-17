@@ -1,11 +1,13 @@
+import ProductCard from "../../components/ProductCard";
 import { Col, Container, Row } from "react-bootstrap";
+import Slider from "react-slick";
+
 import Banner from "../../components/Banner";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
-import banner__img from "../../assets/images/banner__img.png";
-import ProductCard from "../../components/ProductCard";
-import Slider from "react-slick";
+
 import product__image from "../../assets/images/ProductImage.png";
+import banner__img from "../../assets/images/banner__img.png";
 
 const PaichoPickle = () => {
   var settings = {
@@ -68,15 +70,194 @@ const PaichoPickle = () => {
       {/* products */}
       <section className="product">
         <Container>
-          {/* Paicho Pickle */}
-          <p className="product__category">Paicho Pickle </p>
+          <p className="product__category new__items">New Items </p>
           <Row className="product__row">
             <Slider {...settings}>
               <Col md={3}>
                 <ProductCard
                   name="Chilly Pickle"
                   price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                />
+              </Col>
+              <Col md={3} className="red">
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
                   stock="out of stock"
+                  imageSource={product__image}
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                />
+              </Col>
+            </Slider>
+          </Row>
+
+          <Row className="product__row">
+            <Slider {...settings}>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                />
+              </Col>
+              <Col md={3} className="red">
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="out of stock"
+                  imageSource={product__image}
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                />
+              </Col>
+            </Slider>
+          </Row>
+
+          <Row className="product__row">
+            <Slider {...settings}>
+              <Col md={3} className="red">
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                />
+              </Col>
+              <Col md={3} className="red">
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="out of stock"
+                  imageSource={product__image}
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                />
+              </Col>
+            </Slider>
+          </Row>
+
+          <Row className="product__row">
+            <Slider {...settings}>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                />
+              </Col>
+              <Col md={3} className="red">
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="out of stock"
+                  imageSource={product__image}
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                />
+              </Col>
+            </Slider>
+          </Row>
+
+          <Row className="product__row">
+            <Slider {...settings}>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
                   imageSource={product__image}
                 />
               </Col>

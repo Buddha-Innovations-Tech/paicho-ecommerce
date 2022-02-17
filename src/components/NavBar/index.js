@@ -162,7 +162,7 @@ const NavBar = () => {
                       </Modal>
                       </div>
                       <li>
-                        <Link to="" className="account-accdetails">
+                        <Link to="/account" className="account-accdetails">
                           My Account Details
                         </Link>
                       </li>
@@ -170,6 +170,8 @@ const NavBar = () => {
                   ) : (
                     ""
                   )}
+                  
+                
                 </span>
               </div>
 
@@ -204,19 +206,19 @@ const NavBar = () => {
                   <MdKeyboardArrowRight className="dropdown-item-icon" />
                   <ul className="dropdown-submenu">
                     <li>
-                      <Link to="">Mango Pickle</Link>{" "}
+                      <Link to="/productdetail">Mango Pickle</Link>{" "}
                     </li>
                     <li>
-                      <Link to="">Gooseberry Pickle</Link>
+                      <Link to="/productdetail">Gooseberry Pickle</Link>
                     </li>
                     <li>
-                      <Link to="">Lemon Pickle</Link>
+                      <Link to="/productdetail">Lemon Pickle</Link>
                     </li>
                     <li>
-                      <Link to="">Chilly Pickle</Link>
+                      <Link to="/productdetail">Chilly Pickle</Link>
                     </li>
                     <li>
-                      <Link to="">Paicho Bhutuk achar</Link>
+                      <Link to="/productdetail">Paicho Bhutuk achar</Link>
                     </li>
                   </ul>
                 </Dropdown.Item>
@@ -225,25 +227,25 @@ const NavBar = () => {
                   <MdKeyboardArrowRight className="dropdown-item-icon" />
                   <ul className="dropdown-submenu">
                     <li>
-                      <Link to="">Paicho Mix Jam </Link>{" "}
+                      <Link to="/productdetail">Paicho Mix Jam </Link>{" "}
                     </li>
                     <li>
-                      <Link to="">Paicho Chuck</Link>
+                      <Link to="/productdetail">Paicho Chuck</Link>
                     </li>
                     <li>
-                      <Link to="">Khudo </Link>
+                      <Link to="/productdetail">Khudo </Link>
                     </li>
                     <li>
-                      <Link to="">Guava juice</Link>
+                      <Link to="/productdetail">Guava juice</Link>
                     </li>
                     <li>
-                      <Link to="">Mixed Fruit Juice</Link>
+                      <Link to="/productdetail">Mixed Fruit Juice</Link>
                     </li>
                     <li>
-                      <Link to="">Paicho sweetcorn</Link>
+                      <Link to="/productdetail">Paicho sweetcorn</Link>
                     </li>
                     <li>
-                      <Link to="">Paicho sweetcorn</Link>
+                      <Link to="/productdetail">Paicho sweetcorn</Link>
                     </li>
                   </ul>
                 </Dropdown.Item>
