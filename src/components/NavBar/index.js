@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Container, Row, Modal } from "react-bootstrap";
+import { Col, Container, Row,Modal,InputGroup } from "react-bootstrap";
 import Logo from "../../assets/images/paichologo.png";
 import { FiSearch } from "react-icons/fi";
 import { FaUserAlt } from "react-icons/fa";
@@ -10,12 +10,19 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import InputForm from "../InputForm";
+import GoogleIcon from "../../assets/images/googleicon.png";
+import Facebookicon from "../../assets/images/facebookicon.png";
 
 const NavBar = () => {
+  const [account, setAccount] = useState(false);
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [show1, setShow1] = useState(false);
+  const handleClose1 = () => setShow1(false);
+  const handleShow1 = () => setShow1(true);
+
   return (
     <>
       <Container>
@@ -47,29 +54,124 @@ const NavBar = () => {
                   </Link>
                   <BiChevronDown
                     className="navbar-right-icon2"
-                    onClick={handleShow}
+                    onClick={() => setAccount(!account)}
                   />
-                  <Modal show={show} onHide={handleClose}>
-                    <Modal.Body>
-                      <ul className="account-btn">
-                        <li>
-                          <Link to="" className="account-signin">
-                            Sign In
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="" className="account-create">
-                            Create Account
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="" className="account-accdetails">
-                            My Account Details
-                          </Link>
-                        </li>
-                      </ul>
-                    </Modal.Body>
-                  </Modal>
+                  {account ? (
+                    <ul className="account-btn">
+                      <li>
+                        <Link
+                          to=""
+                          className="account-signin"
+                          onClick={handleShow}
+                        >
+                          Sign In
+                        </Link>
+                      </li>
+                      <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                          <Modal.Title>
+                            <p>Sign In to your Paicho Account</p>
+                            <span>Please fill in the form correctly to sign in your paicho account</span>
+                          </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                         <div className="mt-4 position-relative">
+                           <InputForm label="Mobile Number" type="num" placeholder="Enter Your Mobile Number" name="mobilenumber" asteric="*"/>
+                           
+                         </div>
+                         <div className="mt-4 position-relative">
+                           <InputForm label="Password" type="num" placeholder="Enter Your Password" name="password" asteric="*"/>
+                           
+                         </div>
+
+                         <button className=" sign-in-btn">Sign In</button>
+
+                         <Link to="" className="forget-password"><u>Forget Password?</u></Link>
+
+                         <p className="or">or</p>
+
+                         <div className="signin-socialmediaicon">
+                              <img src={Facebookicon} alt="" />
+                              <img src={GoogleIcon} alt="" />
+                         </div>
+                        
+                        <p className="dont-haveacc">Don't have an account?<Link to=""> Sign Up </Link></p>
+                        </Modal.Body>
+                      
+                      </Modal>
+                      <li>
+                        <Link to="" className="account-create"  onClick={handleShow1}>
+                          Create Account
+                        </Link>
+                      </li>
+                      <div className="accoount-create-modal">
+                      <Modal show={show1} onHide={handleClose1}>
+                        <Modal.Header closeButton>
+                          <Modal.Title>
+                            <p>Create Your Paicho Account</p>
+                            <span>Please fill in the form correctly to sign up your paicho account</span>
+                          </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                          <Row>
+                            <Col md={6}>
+                         <div className="mt-4">
+                           <InputForm label="First Name" type="text" placeholder="Enter Your First Name" name="firstname" asteric="*"  />
+                         </div>
+                            </Col>
+                            <Col md={6}>
+                         <div className="mt-4">
+                           <InputForm label="Last Name" type="text" placeholder="Enter Your Last Name" name="lastname" asteric="*"/>
+                         </div>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col md={6}>
+                         <div className="mt-4">
+                           <InputForm label="Email Address" type="email" placeholder="Enter Your Email Address" name="mobilenum"  asteric="*"/>
+                         </div>
+                            </Col>
+                            <Col md={6}>
+                            <div className="mt-4">
+                           <InputForm label="Mobile Number" type="num" placeholder="Enter Your Mobile Number" name="mobilenumber"  />
+                         </div>
+                        
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col md={6}>
+                            <div className="mt-4">
+                           <InputForm label="Password" type="password" placeholder="Enter Your Password" name="password" asteric="*"/>
+                         </div>
+                            </Col>
+                            <Col md={6}>
+                         <div className="mt-4">
+                           <InputForm label=" Confirm Password" type="password" placeholder="Confirm Your Password" name="confirmpassword" asteric="*"/>
+                         </div>
+                            </Col>
+                          </Row>
+                          <div className="createaccount">
+                          <InputGroup.Checkbox />
+                          <p>Creating an account means you’re okay with our <Link to="">Terms of Service</Link>  and <Link to="">Privacy Policy</Link> </p>
+                          </div>
+                         <button className=" sign-in-btn ">Create Account</button>
+                        
+                        <p className="already-have-acc">Already have an account?<Link to=""> Sign In </Link></p>
+                        </Modal.Body>
+                      
+                      </Modal>
+                      </div>
+                      <li>
+                        <Link to="/account" className="account-accdetails">
+                          My Account Details
+                        </Link>
+                      </li>
+                    </ul>
+                  ) : (
+                    ""
+                  )}
+                  
+                
                 </span>
               </div>
 
