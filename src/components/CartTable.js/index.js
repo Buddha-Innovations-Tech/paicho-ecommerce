@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React from "react";
 import { InputGroup, Table, Row, Col } from "react-bootstrap";
+=======
+import React, { useState } from "react";
+import { InputGroup, Table, Modal } from "react-bootstrap";
+>>>>>>> a4b05eedc107da95dfe6eba6b25f8b4be19f935a
 import { RiDeleteBinLine } from "react-icons/ri";
 import Productimage from "../../assets/images/ProductImage.png";
 import IncrementDecrement from "../IncrementDecrement";
@@ -58,6 +63,10 @@ const CartTable = ({ icon, tableheading, btnnn }) => {
       unitcost: "Rs.150",
     },
   ];
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <>
       <div className="carttable">
@@ -70,9 +79,30 @@ const CartTable = ({ icon, tableheading, btnnn }) => {
           </div>
           <div className="carttable__heading d-flex align-items-center">
             <RiDeleteBinLine className="carttable__heading--deleteicon" />
-            <span className="carttable__heading--selectitem">
+            <span
+              className="carttable__heading--selectitem"
+              onClick={handleShow}
+            >
               <u>Clear Cart</u>
             </span>
+            <Modal show={show} onHide={handleClose}>
+              {/* <Modal.Header closeButton>
+                <Modal.Title></Modal.Title>
+              </Modal.Header> */}
+              <Modal.Body>
+                <div className="arrow-left"></div>
+
+                <div className="cart__modal">
+                  <p className="cart__modal--ask">
+                    Are you sure you want to clear your cart?
+                  </p>
+                  <button className="yes-btn">Yes</button> <br />
+                  <button className="no-btn">No</button>
+                </div>
+
+                <div className="arrow-right"></div>
+              </Modal.Body>
+            </Modal>
           </div>
         </div>
         <div className="carttable__maintable">
@@ -122,11 +152,19 @@ const CartTable = ({ icon, tableheading, btnnn }) => {
                         </button>
                       </Col>
                     )}
+<<<<<<< HEAD
                     <Col md={1} className="carttable__maintable--deleteicon">
                       {icon}
                     </Col>
                   </Row>
                   
+=======
+
+                    <td className="carttable__maintable--deleteicon">
+                      {icon}{" "}
+                    </td>
+                  </tr>
+>>>>>>> a4b05eedc107da95dfe6eba6b25f8b4be19f935a
                 );
               })}
            

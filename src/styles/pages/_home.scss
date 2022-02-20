@@ -19,6 +19,7 @@
 
       .btn__buy {
         @include btn(#8dc73d);
+        padding: 10px 24px;
       }
     }
 
@@ -64,6 +65,11 @@
     &__row {
       padding-top: 35px;
       padding-bottom: 44px;
+
+      .col-md-3 {
+        padding-left: 0;
+        padding-right: 0;
+      }
     }
 
     .slick-prev:before,
@@ -87,4 +93,23 @@
 
 .mb-32 {
   margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .home .product__row.row {
+    .col-md-3 {
+      margin: 10px 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  p.product__card--body--price.card-text {
+    display: grid;
+  }
+  // .product__card--body--price-inout {
+  //   padding: 0;
+  // }
 }
