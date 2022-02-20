@@ -12,10 +12,10 @@ const OrderHistory = () => {
       <section className="order__history">
         <Container>
           <Row>
-            <Col lg={2}>
+            <Col md={2} sm={12}>
               <AccountSideNav />
             </Col>
-            <Col lg={10}>
+            <Col md={10} sm={12}>
               <div className="order__history--title">
                 <div className="box">
                   <span className="heading">My Order History </span>

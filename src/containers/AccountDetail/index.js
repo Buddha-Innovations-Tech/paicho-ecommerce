@@ -12,16 +12,16 @@ const AccountDetail = () => {
       <section className="account__details">
         <Container>
           <Row>
-            <Col md={2}>
+            <Col md={2} sm={12}>
               <AccountSideNav />
             </Col>
-            <Col md={4}>
+            <Col md={4} sm={12}>
               <PersonalInfoForm title="Personal Information" />
             </Col>
-            <Col md={4}>
+            <Col md={4} sm={12}>
               <BillingAddressForm title="Billing Address" />
             </Col>
-            <Col md={2}></Col>
+            <Col md={2} sm={12}></Col>
           </Row>
         </Container>
       </section>

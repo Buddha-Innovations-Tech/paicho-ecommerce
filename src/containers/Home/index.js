@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import hero__img from "../../assets/images/hero__img.png";
-import { Button, Col, Container, Row, Modal } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import ProductCard from "../../components/ProductCard";
 import product__image from "../../assets/images/ProductImage.png";
-import InputForm from "../../components/InputForm";
 import { Link } from "react-router-dom";
-import GoogleIcon from "../../assets/images/googleicon.png";
-import Facebookicon from "../../assets/images/facebookicon.png";
+// import InputForm from "../../components/InputForm";
+// import GoogleIcon from "../../assets/images/googleicon.png";
+// import Facebookicon from "../../assets/images/facebookicon.png";
 
 const Home = () => {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // const [show, setShow] = useState(false);
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
   return (
     <>
       <section className="home">
@@ -32,10 +32,13 @@ const Home = () => {
                     Organic Food, Good Health , Good Mood{" "}
                   </p>{" "}
                   <br />
-                  <Button className="btn__buy" onClick={handleShow}>
+                  <Link to="/paichopickle" className="btn__buy">
                     Buy Now
-                  </Button>
-                  <Modal show={show} onHide={handleClose}>
+                  </Link>
+                  {/* <Button className="btn__buy" onClick={handleShow}>
+                    Buy Now
+                  </Button> */}
+                  {/* <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
                       <Modal.Title>
                         <p>Sign In to your Paicho Account</p>
@@ -82,7 +85,7 @@ const Home = () => {
                         Don't have an account?<Link to=""> Sign Up </Link>
                       </p>
                     </Modal.Body>
-                  </Modal>
+                  </Modal> */}
                 </div>
               </Col>
               <Col lg={6}>
@@ -102,7 +105,7 @@ const Home = () => {
         <section className="product">
           <Container>
             {/* Paicho Pickle */}
-            <div className="d-flex justify-content-between">
+            <div className="d-sm-flex justify-content-between">
               <p className="product__category">Paicho Pickle </p>
               <Link to="/paichopickle">
                 <span className="see__more">See More</span>
@@ -148,7 +151,7 @@ const Home = () => {
             </Row>
 
             {/* Paicho Processing Products  */}
-            <div className="d-flex justify-content-between">
+            <div className="d-sm-flex justify-content-between">
               <p className="product__category">Paicho Processing Products </p>
               <Link to="/processingproduct">
                 <span className="see__more">See More</span>
@@ -194,7 +197,7 @@ const Home = () => {
             </Row>
 
             {/* Grains & Pulses  */}
-            <div className="d-flex justify-content-between">
+            <div className="d-sm-flex justify-content-between">
               <p className="product__category">Grains & Pulses </p>
               <Link to="/grainsandpulses">
                 <span className="see__more">See More</span>
@@ -240,7 +243,7 @@ const Home = () => {
             </Row>
 
             {/* Indeginous Product */}
-            <div className="d-flex justify-content-between">
+            <div className="d-sm-flex justify-content-between">
               <p className="product__category">Indeginous Product </p>
               <Link to="/indenginousproducts">
                 <span className="see__more">See More</span>
@@ -286,7 +289,7 @@ const Home = () => {
             </Row>
 
             {/* Dry  Foods */}
-            <div className="d-flex justify-content-between">
+            <div className="d-sm-flex justify-content-between">
               <p className="product__category">Dry Foods </p>
               <Link to="/paichodryfoods">
                 <span className="see__more">See More</span>
@@ -332,7 +335,7 @@ const Home = () => {
             </Row>
 
             {/* Ketchup & Sauces */}
-            <div className="d-flex justify-content-between">
+            <div className="d-sm-flex justify-content-between">
               <p className="product__category">Ketchup & Sauces </p>
               <Link to="/ketchupandsauces">
                 <span className="see__more">See More</span>
@@ -378,7 +381,7 @@ const Home = () => {
             </Row>
 
             {/* Organic Vegetables  */}
-            <div className="d-flex justify-content-between">
+            <div className="d-sm-flex justify-content-between">
               <p className="product__category">Organic Vegetables </p>
               <Link to="/organicvegetables">
                 <span className="see__more">See More</span>

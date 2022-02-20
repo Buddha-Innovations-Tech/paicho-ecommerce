@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Col, Container, Row, Modal, Toast } from "react-bootstrap";
+import { Col, Container, Row, Modal, Toast } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ProductPhoto from "../../assets/images/productdetail.png";
 import Slider from "react-slick";
@@ -98,7 +98,6 @@ const ProductDetailComp = ({ stock }) => {
 
               <div className="product__inc-dec d-flex">
                 <p className="product__inc-dec--quantity ">Quantity</p>
-
                 <IncrementDecrement />
               </div>
               <div className="product__btns">
@@ -115,60 +114,13 @@ const ProductDetailComp = ({ stock }) => {
                   </Toast>
                   Add To Cart
                 </Link>
-                {/* <Link className="product__btns--buynow" onClick={handleShow}>
+                <Link
+                  to=""
+                  className="product__btns--buynow"
+                  onClick={handleShow}
+                >
                   Buy Now
                 </Link>
-                <Modal show={show} onHide={handleClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>
-                      <p>Sign In to your Paicho Account</p>
-                      <span>
-                        Please fill in the form correctly to sign in your paicho
-                        account
-                      </span>
-                    </Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <div className="mt-4 position-relative">
-                      <InputForm
-                        label="Mobile Number"
-                        type="num"
-                        placeholder="Enter Your Mobile Number"
-                        name="mobilenumber"
-                        asteric="*"
-                      />
-                    </div>
-                    <div className="mt-4 position-relative">
-                      <InputForm
-                        label="Password"
-                        type="num"
-                        placeholder="Enter Your Password"
-                        name="password"
-                        asteric="*"
-                      />
-                    </div>
-
-                    <button className=" sign-in-btn">Sign In</button>
-
-                    <Link to="" className="forget-password">
-                      <u>Forget Password?</u>
-                    </Link>
-
-                    <p className="or">or</p>
-
-                    <div className="signin-socialmediaicon">
-                      <img src={Facebookicon} alt="" />
-                      <img src={GoogleIcon} alt="" />
-                    </div>
-
-                    <p className="dont-haveacc">
-                      Don't have an account?<Link to=""> Sign Up </Link>
-                    </p>
-                  </Modal.Body>
-                </Modal> */}
-                <Button className="btn__buy" onClick={handleShow}>
-                  Buy Now
-                </Button>
                 <Modal show={show} onHide={handleClose}>
                   <Modal.Header closeButton>
                     <Modal.Title>

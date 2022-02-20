@@ -59,28 +59,9 @@
       margin-right: 50px;
     }
   }
-  //   &--button {
-  //     tr {
-  //       border: 1px solid color(primary, base);
-  //       border-radius: 3px;
-  //     }
-  //     &--dec {
-  //       background-color: color(primary, base);
-  //       color: #fff;
-  //       width: 20px;
-  //       height: 18px;
-  //       text-align: center;
-  //       cursor: pointer;
-  //     }
-  //     &--num {
-  //       width: 20px;
-  //       text-align: center;
-  //     }
-  //   }
-  // }
   &__btns {
     margin-top: 40px;
-    border-bottom: 1px solid #d4d7d9;
+    // border-bottom: 1px solid #d4d7d9;
     padding-bottom: 30px;
 
     &--addtocart {
@@ -92,7 +73,7 @@
     }
     &--buynow {
       @include btn(#004f9a);
-      padding: 13px 25px;
+      padding: 13px 16px;
       margin-left: 27px;
       &:hover {
         color: #fff;

@@ -203,11 +203,55 @@
   }
   .modal-body {
     padding: 0;
+    position: relative;
 
     .sign-in-btn {
       @include btn(#8dc73d);
       margin-top: 25px;
       padding: 11px 47px;
+    }
+
+    .arrow-left {
+      width: 0;
+      height: 0;
+      border-top: 60px solid transparent;
+      border-bottom: 60px solid transparent;
+      border-left: 60px solid #8dc73d;
+      transform: rotate(-44deg);
+      right: -60px;
+      top: -79px;
+      position: absolute;
+    }
+
+    .arrow-right {
+      width: 0;
+      height: 0;
+      border-top: 60px solid transparent;
+      border-bottom: 60px solid transparent;
+      border-left: 60px solid #015aaa;
+      transform: rotate(-224deg);
+      position: absolute;
+      left: -60px;
+      top: 256px;
+    }
+
+    .cart__modal {
+      text-align: center;
+      margin: 60px 0;
+
+      &--ask {
+        margin-bottom: 44px;
+      }
+
+      .yes-btn {
+        @include btn(#e84b23);
+        padding: 8px 47px;
+      }
+      .no-btn {
+        @include btn(#8dc73d);
+        padding: 8px 47px;
+        margin-top: 22px;
+      }
     }
 
     .forget-password {
@@ -268,77 +312,6 @@
     }
     .modal-dialog {
       width: 600px !important;
-    }
-    .modal-body {
-      padding: 0;
-      // .asterik{
-      //   position: absolute;
-      //   top: 10%;
-      //   left: 30%;
-      //   font-size: 18px;
-      //   color: red;
-      //   font-weight: 600;
-      // }
-      // .asterikpass{
-      //   position: absolute;
-      //   top: 10%;
-      //   left: 18%;
-      //   font-size: 18px;
-      //   color: red;
-      //   font-weight: 600;
-      // }
-      .sign-in-btn {
-        @include btn(#8dc73d);
-        margin-top: 25px;
-        padding: 11px 47px;
-      }
-      .forget-password {
-        display: block;
-        margin-top: 20px;
-        font-size: 12px;
-      }
-      p.or {
-        position: relative;
-        text-align: center;
-        margin-top: 15px;
-        margin-bottom: 0;
-        font-size: 14px;
-        color: #666666;
-        &::before {
-          content: "";
-          position: absolute;
-          top: 14px;
-          left: 2px;
-          background-color: #babfc3;
-          width: 230px;
-          height: 1px;
-        }
-        &::after {
-          content: "";
-          position: absolute;
-          top: 14px;
-          left: 264px;
-          background-color: #babfc3;
-          width: 235px;
-          height: 1px;
-        }
-      }
-      .signin-socialmediaicon {
-        text-align: center;
-        margin-top: 20px;
-        img {
-          &:nth-child(1) {
-            margin-right: 15px;
-          }
-        }
-      }
-      .dont-haveacc {
-        margin-top: 20px;
-        font-size: 12px;
-        text-align: center;
-        margin-bottom: 0;
-        color: #666666;
-      }
     }
   }
   .createaccount {
