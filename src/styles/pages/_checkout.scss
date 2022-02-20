@@ -151,6 +151,10 @@
         }
         .table > :not(caption) > * > * {
           padding: 8px 16px;
+
+          // tbody:nth-child(2) {
+          text-align: center;
+          // }
         }
 
         .second__table.table-bordered > :not(caption) > * {

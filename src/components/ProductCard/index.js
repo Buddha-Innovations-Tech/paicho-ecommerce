@@ -21,7 +21,7 @@ const ProductCard = ({ name, price, stock, imageSource, path }) => {
             <FiHeart className="product__card--body--title--icon" />
           </Card.Title>
           <Card.Text className="product__card--body--price">
-            <span>Rs {price}</span>
+            <span className="price">Rs {price}</span>
             <span className="product__card--body--price-inout"> {stock}</span>
           </Card.Text>
         </Card.Body>

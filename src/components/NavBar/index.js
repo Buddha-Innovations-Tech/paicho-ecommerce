@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Col, Container, Row, Modal, InputGroup } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  Row,
+  Modal,
+  InputGroup,
+  Button,
+  Form,
+} from "react-bootstrap";
 import Logo from "../../assets/images/paichologo.png";
 import { FiSearch } from "react-icons/fi";
 import { FaUserAlt } from "react-icons/fa";
@@ -78,27 +86,32 @@ const NavBar = () => {
                           </Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                          <div className="mt-4 position-relative">
-                            <InputForm
-                              label="Mobile Number"
-                              type="num"
-                              placeholder="Enter Your Mobile Number"
-                              name="mobilenumber"
-                              asteric="*"
-                            />
-                          </div>
-                          <div className="mt-4 position-relative">
-                            <InputForm
-                              label="Password"
-                              type="num"
-                              placeholder="Enter Your Password"
-                              name="password"
-                              asteric="*"
-                            />
-                          </div>
+                          <Form>
+                            <div className="mt-4 position-relative">
+                              <InputForm
+                                label="Mobile Number"
+                                type="number"
+                                placeholder="Enter Your Mobile Number"
+                                name="mobilenumber"
+                                asteric="*"
+                                required
+                              />
+                            </div>
+                            <div className="mt-4 position-relative">
+                              <InputForm
+                                label="Password"
+                                type="password"
+                                placeholder="Enter Your Password"
+                                name="password"
+                                asteric="*"
+                                required
+                              />
+                            </div>
 
-                          <button className=" sign-in-btn">Sign In</button>
-
+                            <Button className="sign-in-btn" type="submit">
+                              Sign In
+                            </Button>
+                          </Form>
                           <Link to="" className="forget-password">
                             <u>Forget Password?</u>
                           </Link>

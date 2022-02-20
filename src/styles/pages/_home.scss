@@ -54,6 +54,12 @@
       }
     }
 
+    .see__more {
+      @include btn(#8dc73d);
+      border: 1px solid #8dc73d;
+      color: #8dc73d;
+      background-color: transparent;
+    }
     &__row {
       padding-top: 35px;
       padding-bottom: 44px;

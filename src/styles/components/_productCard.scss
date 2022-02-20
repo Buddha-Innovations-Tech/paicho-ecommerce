@@ -32,13 +32,18 @@
       justify-content: space-between;
       margin-top: 30px;
 
+      span.price {
+        font-size: 16px;
+        color: #2f2e41;
+        font-weight: 600;
+      }
+
       &-inout {
         background-color: #004f9a;
-        padding: 3px 6px;
-
+        padding: 4px 8px;
+        font-size: 14px;
         text-transform: uppercase;
         color: #ffffff;
-        font-size: 15px;
       }
     }
   }

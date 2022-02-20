@@ -51,6 +51,10 @@
           td.reorder {
             color: #004f9a;
           }
+
+          td.deliver {
+            color: color(primary, base);
+          }
         }
       }
     }

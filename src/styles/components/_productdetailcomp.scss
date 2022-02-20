@@ -15,8 +15,9 @@
     img {
       margin-left: 25px;
     }
-    .slick-next:before,.slick-prev:before{
-      color: color(primary,base) !important;
+    .slick-next:before,
+    .slick-prev:before {
+      color: color(primary, base) !important;
     }
   }
   &__heading {
@@ -37,8 +38,8 @@
   &__price {
     padding-top: 10px;
     &--totalprice {
-      font-size: 22px;
-      font-weight: 600;
+      font-size: 16px;
+      font-weight: 700;
       color: #231f1e;
     }
     &--stock {
@@ -81,7 +82,7 @@
     margin-top: 40px;
     border-bottom: 1px solid #d4d7d9;
     padding-bottom: 30px;
-   
+
     &--addtocart {
       @include btn(#8dc73d);
       padding: 13px 16px;
@@ -146,36 +147,36 @@
   }
 }
 
-@media(max-width:768px){
- .product__sliders{ img{
-   margin: 0 auto;
- }
- .slick-next{
-   right: 0;
- }
- .slick-prev{
-   left: -4px;
- }
- }
-
+@media (max-width: 768px) {
+  .product__sliders {
+    img {
+      margin: 0 auto;
+    }
+    .slick-next {
+      right: 0;
+    }
+    .slick-prev {
+      left: -4px;
+    }
+  }
 }
-.toast{
+.toast {
   position: absolute;
   top: 0%;
   left: 71%;
   width: 400px !important;
-  .toast-body{
-    background-color: #004F9A !important;
+  .toast-body {
+    background-color: #004f9a !important;
     border-radius: 4px;
     padding: 15px 20px;
     font-size: 16px;
   }
-  .checkicon{
+  .checkicon {
     font-size: 26px;
     background-color: #fff;
     border-radius: 50%;
     padding: 3px;
-    color: #004F9A;
+    color: #004f9a;
     margin-left: 10px;
   }
 }
