@@ -42,6 +42,9 @@
   &__divbtn{
       padding: 16px 24px !important;
       display: grid;
+      a{
+        display: contents;
+      }
       &--buttonn{
         @include btn(#8DC73D);
       }

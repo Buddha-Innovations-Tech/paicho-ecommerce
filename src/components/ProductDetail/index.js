@@ -1,5 +1,5 @@
-import React,{useState} from "react";
-import { Col, Container, Row,Toast } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Col, Container, Row, Modal, Toast } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ProductPhoto from "../../assets/images/productdetail.png";
 import Slider from "react-slick";
@@ -7,12 +7,18 @@ import Mangopickle from "../../assets/images/mango-pickle.png";
 import Productphoto from "../../assets/images/ProductImage.png";
 import ProductCard from "../ProductCard";
 import IncrementDecrement from "../IncrementDecrement";
-import {BsCheck} from "react-icons/bs";
-
+import { BsCheck } from "react-icons/bs";
+import InputForm from "../../components/InputForm";
+import GoogleIcon from "../../assets/images/googleicon.png";
+import Facebookicon from "../../assets/images/facebookicon.png";
 
 const ProductDetailComp = ({ stock }) => {
   const [showA, setShowA] = useState(false);
   const toggleShowA = () => setShowA(!showA);
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const settings = {
     dots: false,
     infinite: true,
@@ -84,26 +90,133 @@ const ProductDetailComp = ({ stock }) => {
                 </span>
               </div>
               <div className="product__price">
-                <span className="product__price--totalprice">Price:Rs180</span>
+                <span className="product__price--totalprice">
+                  Price : Rs 180
+                </span>
                 <p className="product__price--stock">{stock}</p>
               </div>
 
               <div className="product__inc-dec d-flex">
                 <p className="product__inc-dec--quantity ">Quantity</p>
-              
+
                 <IncrementDecrement />
               </div>
               <div className="product__btns">
-                <Link to="" className="product__btns--addtocart" onClick={toggleShowA} >
-                <Toast show={showA} onClose={toggleShowA}>
-      
-          <Toast.Body>This item is added to your cart successfully ! <BsCheck className="checkicon"/> </Toast.Body>
-        </Toast>
+                <Link
+                  to=""
+                  className="product__btns--addtocart"
+                  onClick={toggleShowA}
+                >
+                  <Toast show={showA} onClose={toggleShowA}>
+                    <Toast.Body>
+                      This item is added to your cart successfully !{" "}
+                      <BsCheck className="checkicon" />{" "}
+                    </Toast.Body>
+                  </Toast>
                   Add To Cart
                 </Link>
-                <Link to="" className="product__btns--buynow">
+                {/* <Link className="product__btns--buynow" onClick={handleShow}>
                   Buy Now
                 </Link>
+                <Modal show={show} onHide={handleClose}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>
+                      <p>Sign In to your Paicho Account</p>
+                      <span>
+                        Please fill in the form correctly to sign in your paicho
+                        account
+                      </span>
+                    </Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <div className="mt-4 position-relative">
+                      <InputForm
+                        label="Mobile Number"
+                        type="num"
+                        placeholder="Enter Your Mobile Number"
+                        name="mobilenumber"
+                        asteric="*"
+                      />
+                    </div>
+                    <div className="mt-4 position-relative">
+                      <InputForm
+                        label="Password"
+                        type="num"
+                        placeholder="Enter Your Password"
+                        name="password"
+                        asteric="*"
+                      />
+                    </div>
+
+                    <button className=" sign-in-btn">Sign In</button>
+
+                    <Link to="" className="forget-password">
+                      <u>Forget Password?</u>
+                    </Link>
+
+                    <p className="or">or</p>
+
+                    <div className="signin-socialmediaicon">
+                      <img src={Facebookicon} alt="" />
+                      <img src={GoogleIcon} alt="" />
+                    </div>
+
+                    <p className="dont-haveacc">
+                      Don't have an account?<Link to=""> Sign Up </Link>
+                    </p>
+                  </Modal.Body>
+                </Modal> */}
+                <Button className="btn__buy" onClick={handleShow}>
+                  Buy Now
+                </Button>
+                <Modal show={show} onHide={handleClose}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>
+                      <p>Sign In to your Paicho Account</p>
+                      <span>
+                        Please fill in the form correctly to sign in your paicho
+                        account
+                      </span>
+                    </Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <div className="mt-4 position-relative">
+                      <InputForm
+                        label="Mobile Number"
+                        type="num"
+                        placeholder="Enter Your Mobile Number"
+                        name="mobilenumber"
+                        asteric="*"
+                      />
+                    </div>
+                    <div className="mt-4 position-relative">
+                      <InputForm
+                        label="Password"
+                        type="num"
+                        placeholder="Enter Your Password"
+                        name="password"
+                        asteric="*"
+                      />
+                    </div>
+
+                    <button className=" sign-in-btn">Sign In</button>
+
+                    <Link to="" className="forget-password">
+                      <u>Forget Password?</u>
+                    </Link>
+
+                    <p className="or">or</p>
+
+                    <div className="signin-socialmediaicon">
+                      <img src={Facebookicon} alt="" />
+                      <img src={GoogleIcon} alt="" />
+                    </div>
+
+                    <p className="dont-haveacc">
+                      Don't have an account?<Link to=""> Sign Up </Link>
+                    </p>
+                  </Modal.Body>
+                </Modal>
               </div>
 
               <div className="product__lists">

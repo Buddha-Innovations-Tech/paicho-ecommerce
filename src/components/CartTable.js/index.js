@@ -1,5 +1,5 @@
 import React from "react";
-import { InputGroup, Table } from "react-bootstrap";
+import { InputGroup, Table, Row, Col } from "react-bootstrap";
 import { RiDeleteBinLine } from "react-icons/ri";
 import Productimage from "../../assets/images/ProductImage.png";
 import IncrementDecrement from "../IncrementDecrement";
@@ -76,20 +76,25 @@ const CartTable = ({ icon, tableheading, btnnn }) => {
           </div>
         </div>
         <div className="carttable__maintable">
-          <Table>
-            <tbody>
-              <tr>
-                <td style={{ paddingLeft: "60px" }}>Item List</td>
-                <td>Unit</td>
-                <td>Quantity</td>
-                <td>Unit Cost</td>
-                <td>{tableheading}</td>
-                <td></td>
-              </tr>
+          <Row className="carttable__maintable--firstrow">
+            <Col md={4} style={{ paddingLeft: "60px" }}>
+              Item List
+            </Col>
+            <Col md={1}>Unit</Col>
+            <Col md={2}>Quantity</Col>
+            <Col md={2}>Unit Cost</Col>
+            <Col md={2}>Action</Col>
+            <Col md={1}></Col>
+          </Row>
+
+          
               {mainTableData.map((data, index) => {
                 return (
-                  <tr>
-                    <td className="carttable__maintable--firstdata">
+                  <Row className="mt-3 mb-3 mapping-row">
+                    <Col
+                      md={4}
+                      className="carttable__maintable--firstdata"
+                    >
                       <div
                         className="d-flex align-items-center"
                         style={{ width: "225px" }}
@@ -101,32 +106,30 @@ const CartTable = ({ icon, tableheading, btnnn }) => {
                           <span>Category:{data.category}</span>
                         </div>
                       </div>
-                    </td>
-                    <td>{data.unit}</td>
-                    <td>
+                    </Col>
+                    <Col md={1}>{data.unit}</Col>
+                    <Col md={2}>
                       <IncrementDecrement />
-                    </td>
-                    <td>{data.unitcost}</td>
+                    </Col>
+                    <Col md={2}>{data.unitcost}</Col>
                     {window.location.href.includes("shoppingcart") && (
-                      <td>Rs 500</td>
+                      <Col md={2}>Rs 500</Col>
                     )}
                     {window.location.href.includes("wishlist") && (
-                      <td>
-                        {" "}
+                      <Col md={2}>
                         <button className="carttable__maintable--crossicon">
                           Add to Cart
-                        </button>{" "}
-                      </td>
+                        </button>
+                      </Col>
                     )}
-                    
-                    <td className="carttable__maintable--deleteicon">
-                      {icon}{" "}
-                    </td>
-                  </tr>
+                    <Col md={1} className="carttable__maintable--deleteicon">
+                      {icon}
+                    </Col>
+                  </Row>
+                  
                 );
               })}
-            </tbody>
-          </Table>
+           
         </div>
         <div className="carttable__pagination">
           <Link to="/">

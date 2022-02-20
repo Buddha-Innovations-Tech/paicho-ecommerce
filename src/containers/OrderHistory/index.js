@@ -47,7 +47,7 @@ const OrderHistory = () => {
                         </td>
                         <td>2022-01-24 </td>
                         <td>Esta Kunwar </td>
-                        <td>Delivered</td>
+                        <td className="deliver">Delivered</td>
                         <td>Rs. 1500</td>
                         <td className="cancel">Cancel Order</td>
                       </tr>
@@ -67,7 +67,7 @@ const OrderHistory = () => {
                         </td>
                         <td>2022-01-24 </td>
                         <td>Esta Kunwar </td>
-                        <td>Cancelled</td>
+                        <td className="cancel">Cancelled</td>
                         <td>Rs. 1500</td>
                         <td className="reorder">Re Order</td>
                       </tr>

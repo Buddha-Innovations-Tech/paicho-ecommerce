@@ -1,47 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import hero__img from "../../assets/images/hero__img.png";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row, Modal } from "react-bootstrap";
 import ProductCard from "../../components/ProductCard";
-import Slider from "react-slick";
 import product__image from "../../assets/images/ProductImage.png";
+import { Link } from "react-router-dom";
+import InputForm from "../../components/InputForm";
+import Facebookicon from "../../assets/images/facebookicon.png"
+import GoogleIcon from "../../assets/images/googleicon.png"
 
 const Home = () => {
-  var settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <>
       <section className="home">
@@ -60,7 +32,57 @@ const Home = () => {
                     Organic Food, Good Health , Good Mood{" "}
                   </p>{" "}
                   <br />
-                  <Button className="btn__buy">Buy Now</Button>
+                  <Button className="btn__buy" onClick={handleShow}>
+                    Buy Now
+                  </Button>
+                  <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                      <Modal.Title>
+                        <p>Sign In to your Paicho Account</p>
+                        <span>
+                          Please fill in the form correctly to sign in your
+                          paicho account
+                        </span>
+                      </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <div className="mt-4 position-relative">
+                        <InputForm
+                          label="Mobile Number"
+                          type="num"
+                          placeholder="Enter Your Mobile Number"
+                          name="mobilenumber"
+                          asteric="*"
+                        />
+                      </div>
+                      <div className="mt-4 position-relative">
+                        <InputForm
+                          label="Password"
+                          type="num"
+                          placeholder="Enter Your Password"
+                          name="password"
+                          asteric="*"
+                        />
+                      </div>
+
+                      <button className=" sign-in-btn">Sign In</button>
+
+                      <Link to="" className="forget-password">
+                        <u>Forget Password?</u>
+                      </Link>
+
+                      <p className="or">or</p>
+
+                      <div className="signin-socialmediaicon">
+                        <img src={Facebookicon} alt="" />
+                        <img src={GoogleIcon} alt="" />
+                      </div>
+
+                      <p className="dont-haveacc">
+                        Don't have an account?<Link to=""> Sign Up </Link>
+                      </p>
+                    </Modal.Body>
+                  </Modal>
                 </div>
               </Col>
               <Col lg={6}>
@@ -76,332 +98,325 @@ const Home = () => {
         <section className="product">
           <Container>
             {/* Paicho Pickle */}
-            <p className="product__category">Paicho Pickle </p>
+            <div className="d-flex justify-content-between">
+              <p className="product__category">Paicho Pickle </p>
+              <Link to="/paichopickle">
+                <span className="see__more">See More</span>
+              </Link>
+            </div>
             <Row className="product__row">
-              <Slider {...settings}>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="out of stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3} className="red">
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="out of stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-              </Slider>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
+              <Col md={3} className="red">
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="out of stock"
+                  imageSource={product__image}
+                  path="/outofstock"
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
             </Row>
 
             {/* Paicho Processing Products  */}
-            <p className="product__category">Paicho Processing Products </p>
+            <div className="d-flex justify-content-between">
+              <p className="product__category">Paicho Processing Products </p>
+              <Link to="/processingproduct">
+                <span className="see__more">See More</span>
+              </Link>
+            </div>
             <Row className="product__row">
-              <Slider {...settings}>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-              </Slider>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
+              <Col md={3} className="red">
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="out of stock"
+                  imageSource={product__image}
+                  path="/outofstock"
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
             </Row>
 
             {/* Grains & Pulses  */}
-            <p className="product__category">Grains & Pulses </p>
+            <div className="d-flex justify-content-between">
+              <p className="product__category">Grains & Pulses </p>
+              <Link to="/grainsandpulses">
+                <span className="see__more">See More</span>
+              </Link>
+            </div>
             <Row className="product__row">
-              <Slider {...settings}>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-              </Slider>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
+              <Col md={3} className="red">
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="out of stock"
+                  imageSource={product__image}
+                  path="/outofstock"
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
             </Row>
 
             {/* Indeginous Product */}
-            <p className="product__category">Indeginous Product </p>
+            <div className="d-flex justify-content-between">
+              <p className="product__category">Indeginous Product </p>
+              <Link to="/indenginousproducts">
+                <span className="see__more">See More</span>
+              </Link>
+            </div>
             <Row className="product__row">
-              <Slider {...settings}>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-              </Slider>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
+              <Col md={3} className="red">
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="out of stock"
+                  imageSource={product__image}
+                  path="/outofstock"
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
             </Row>
 
             {/* Dry  Foods */}
-            <p className="product__category">Dry Foods </p>
+            <div className="d-flex justify-content-between">
+              <p className="product__category">Dry Foods </p>
+              <Link to="/paichodryfoods">
+                <span className="see__more">See More</span>
+              </Link>
+            </div>
             <Row className="product__row">
-              <Slider {...settings}>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-              </Slider>
-            </Row>
-
-            {/* Paicho Jam  */}
-            <p className="product__category">Paicho Jam </p>
-            <Row className="product__row">
-              <Slider {...settings}>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-              </Slider>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
+              <Col md={3} className="red">
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="out of stock"
+                  imageSource={product__image}
+                  path="/outofstock"
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
             </Row>
 
             {/* Ketchup & Sauces */}
-            <p className="product__category"> Ketchup & Sauces </p>
+            <div className="d-flex justify-content-between">
+              <p className="product__category">Ketchup & Sauces </p>
+              <Link to="/ketchupandsauces">
+                <span className="see__more">See More</span>
+              </Link>
+            </div>
             <Row className="product__row">
-              <Slider {...settings}>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-                <Col md={3}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                  />
-                </Col>
-              </Slider>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
+              <Col md={3} className="red">
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="out of stock"
+                  imageSource={product__image}
+                  path="/outofstock"
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
+            </Row>
+
+            {/* Organic Vegetables  */}
+            <div className="d-flex justify-content-between">
+              <p className="product__category">Organic Vegetables </p>
+              <Link to="/organicvegetables">
+                <span className="see__more">See More</span>
+              </Link>
+            </div>
+            <Row className="product__row">
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
+              <Col md={3} className="red">
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="out of stock"
+                  imageSource={product__image}
+                  path="/outofstock"
+                />
+              </Col>
+              <Col md={3}>
+                <ProductCard
+                  name="Chilly Pickle"
+                  price="120"
+                  stock="in stock"
+                  imageSource={product__image}
+                  path="/productdetail"
+                />
+              </Col>
             </Row>
           </Container>
         </section>

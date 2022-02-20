@@ -4,7 +4,7 @@ import NavBar from "../../components/NavBar";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
-
+import { Link } from "react-router-dom";
 const Checkout = () => {
   return (
     <>
@@ -135,12 +135,12 @@ const Checkout = () => {
                     </Form.Group>
 
                     <div className="checkout__box--button d-flex justify-content-end">
-                      <Button className="btn__cancel me-3" type="submit">
-                        Buy Now
-                      </Button>
-                      <Button className="btn__confirm" type="submit">
-                        Confirm Purchase{" "}
-                      </Button>
+                      <Button className="btn__cancel me-3">Cancel</Button>
+                      <Link to="/orderconfirm">
+                        <Button className="btn__confirm" type="submit">
+                          Confirm Purchase{" "}
+                        </Button>
+                      </Link>
                     </div>
                   </Form>
                 </div>
