@@ -5,12 +5,32 @@ import ProductPhoto from "../../assets/images/productdetail.png";
 import Slider from "react-slick";
 import Mangopickle from "../../assets/images/mango-pickle.png";
 import Productphoto from "../../assets/images/ProductImage.png";
+import Productphoto2 from "../../assets/images/pineapple-juice.png";
+import Productphoto3 from "../../assets/images/mixed-fruit-juice.png";
 import ProductCard from "../ProductCard";
 import IncrementDecrement from "../IncrementDecrement";
 import { BsCheck } from "react-icons/bs";
 import InputForm from "../../components/InputForm";
 import GoogleIcon from "../../assets/images/googleicon.png";
 import Facebookicon from "../../assets/images/facebookicon.png";
+
+const sliderImg = [
+  {
+    photo: Productphoto,
+  },
+  {
+    photo: Mangopickle,
+  },
+  {
+    photo: ProductPhoto,
+  },
+  {
+    photo: Productphoto2,
+  },
+  {
+    photo: Productphoto3,
+  },
+];
 
 const ProductDetailComp = ({ stock }) => {
   const [showA, setShowA] = useState(false);
@@ -19,10 +39,11 @@ const ProductDetailComp = ({ stock }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [image, setImage] = useState(sliderImg[0].photo);
   const settings = {
     dots: false,
     infinite: true,
-    autoplay: true,
+    autoplay: false,
     speed: 200,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -47,8 +68,8 @@ const ProductDetailComp = ({ stock }) => {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: 2,
+          slidesToScroll: 2,
         },
       },
     ],
@@ -60,25 +81,23 @@ const ProductDetailComp = ({ stock }) => {
           <Row className="product__rows">
             <Col md={5}>
               <div className="product__image">
-                <img src={ProductPhoto} alt="" className="img-fluid" />
+                <img src={image} alt="" className="img-fluid selected" />
               </div>
               <div className="product__sliders">
-                <Slider {...settings}>
-                  <div>
-                    <img src={Mangopickle} alt="" />
-                  </div>
-                  <div>
-                    <img src={Mangopickle} alt="" />
-                  </div>
-                  <div>
-                    <img src={Mangopickle} alt="" />
-                  </div>
-                  <div>
-                    <img src={Mangopickle} alt="" />
-                  </div>
-                  <div>
-                    <img src={Mangopickle} alt="" />
-                  </div>
+                <Slider {...settings} >
+                  {sliderImg.map((data, index) => (
+                    <>
+                    <div style={{height:'100px', width:"100px" , border:data.photo===image && "1px solid green"}}>
+                    <img
+                    className="product__sliders--image"
+                      key={index}
+                      src={data.photo}
+                      alt=""
+                      onClick={() => setImage(data.photo)}
+                    />
+                    </div>
+                    </>
+                  ))}
                 </Slider>
               </div>
             </Col>

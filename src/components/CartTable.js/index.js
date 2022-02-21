@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import React from "react";
-import { InputGroup, Table, Row, Col } from "react-bootstrap";
-=======
 import React, { useState } from "react";
-import { InputGroup, Table, Modal } from "react-bootstrap";
->>>>>>> a4b05eedc107da95dfe6eba6b25f8b4be19f935a
+import { InputGroup,Row, Col, Modal } from "react-bootstrap";
 import { RiDeleteBinLine } from "react-icons/ri";
 import Productimage from "../../assets/images/ProductImage.png";
 import IncrementDecrement from "../IncrementDecrement";
@@ -152,19 +147,11 @@ const CartTable = ({ icon, tableheading, btnnn }) => {
                         </button>
                       </Col>
                     )}
-<<<<<<< HEAD
                     <Col md={1} className="carttable__maintable--deleteicon">
                       {icon}
                     </Col>
                   </Row>
                   
-=======
-
-                    <td className="carttable__maintable--deleteicon">
-                      {icon}{" "}
-                    </td>
-                  </tr>
->>>>>>> a4b05eedc107da95dfe6eba6b25f8b4be19f935a
                 );
               })}
            

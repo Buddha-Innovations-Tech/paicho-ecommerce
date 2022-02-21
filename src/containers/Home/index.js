@@ -6,17 +6,11 @@ import { Col, Container, Row } from "react-bootstrap";
 import ProductCard from "../../components/ProductCard";
 import product__image from "../../assets/images/ProductImage.png";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
-import InputForm from "../../components/InputForm";
-import Facebookicon from "../../assets/images/facebookicon.png"
-import GoogleIcon from "../../assets/images/googleicon.png"
-=======
 // import InputForm from "../../components/InputForm";
-// import GoogleIcon from "../../assets/images/googleicon.png";
-// import Facebookicon from "../../assets/images/facebookicon.png";
->>>>>>> a4b05eedc107da95dfe6eba6b25f8b4be19f935a
+// import Facebookicon from "../../assets/images/facebookicon.png"
+// import GoogleIcon from "../../assets/images/googleicon.png"
 
-const Home = () => {
+const Home = ({searchitem}) => {
   // const [show, setShow] = useState(false);
   // const handleClose = () => setShow(false);
   // const handleShow = () => setShow(true);
@@ -41,57 +35,6 @@ const Home = () => {
                   <Link to="/paichopickle" className="btn__buy">
                     Buy Now
                   </Link>
-                  {/* <Button className="btn__buy" onClick={handleShow}>
-                    Buy Now
-                  </Button> */}
-                  {/* <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>
-                        <p>Sign In to your Paicho Account</p>
-                        <span>
-                          Please fill in the form correctly to sign in your
-                          paicho account
-                        </span>
-                      </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      <div className="mt-4 position-relative">
-                        <InputForm
-                          label="Mobile Number"
-                          type="num"
-                          placeholder="Enter Your Mobile Number"
-                          name="mobilenumber"
-                          asteric="*"
-                        />
-                      </div>
-                      <div className="mt-4 position-relative">
-                        <InputForm
-                          label="Password"
-                          type="num"
-                          placeholder="Enter Your Password"
-                          name="password"
-                          asteric="*"
-                        />
-                      </div>
-
-                      <button className=" sign-in-btn">Sign In</button>
-
-                      <Link to="" className="forget-password">
-                        <u>Forget Password?</u>
-                      </Link>
-
-                      <p className="or">or</p>
-
-                      <div className="signin-socialmediaicon">
-                        <img src={Facebookicon} alt="" />
-                        <img src={GoogleIcon} alt="" />
-                      </div>
-
-                      <p className="dont-haveacc">
-                        Don't have an account?<Link to=""> Sign Up </Link>
-                      </p>
-                    </Modal.Body>
-                  </Modal> */}
                 </div>
               </Col>
               <Col lg={6}>
@@ -116,7 +59,7 @@ const Home = () => {
             <Row className="product__row">
               <Col md={3}>
                 <ProductCard
-                  name="Chilly Pickle"
+                  name="Chilly Pickle"  
                   price="120"
                   stock="in stock"
                   imageSource={product__image}

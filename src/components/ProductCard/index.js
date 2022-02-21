@@ -12,6 +12,7 @@ const ProductCard = ({ name, price, stock, imageSource, path }) => {
             src={imageSource}
             className="img-fluid product__card--image"
             alt="product"
+            
           />
         </Link>
 

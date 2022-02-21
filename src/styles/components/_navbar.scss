@@ -417,15 +417,27 @@
     margin-bottom: 0;
     color: #666666;
   }
-
+}
   // Responsive
-
+  @media(max-width:1024px){
+    .second-nav-wrapper .categories .about-paicho{
+      margin-right: 190px;
+    }
+    .navbarright-wrapper span span {
+      margin: 0 5px;
+  }
+  .navbarright-wrapper:nth-child(1) {
+    padding-right: 10px;
+    border-right: 2px solid #8dc73d;
+}
+  }
   @media (max-width: 992px) {
     .navbarright-wrapper:nth-child(1) {
       border-right: none;
     }
     .second-nav-wrapper .categories .about-paicho{
-      margin-right: 0px !important;
+      margin: 5px 0;
+      display: block;
     }
   }
 
@@ -459,4 +471,4 @@
       padding: 11px 45px;
     }
   }
-}
+

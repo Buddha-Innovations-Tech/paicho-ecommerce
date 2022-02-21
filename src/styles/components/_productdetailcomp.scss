@@ -6,18 +6,22 @@
   }
   &__image {
     width: 100%;
+    height: 300px;
     border-radius: 3;
-    margin-bottom: 44px;
+    margin-bottom: 80px;
   }
   &__sliders {
     background-color: #fff;
     padding: 10px;
-    img {
-      margin-left: 25px;
-    }
     .slick-next:before,
     .slick-prev:before {
       color: color(primary, base) !important;
+    }
+    &--image{
+      height: 90px;
+      width: 90px;
+      padding: 8px 0 0 3px;
+      object-fit: cover;
     }
   }
   &__heading {
@@ -142,10 +146,13 @@
   }
 }
 .toast {
-  position: absolute;
-  top: 0%;
+  position: fixed;
+  top: 85%;
   left: 71%;
   width: 400px !important;
+  z-index: 99;
+  border-radius: 10px;
+  border: none;
   .toast-body {
     background-color: #004f9a !important;
     border-radius: 4px;

@@ -16,20 +16,24 @@
         height: 18px;
         text-align: center;
         cursor: pointer;
-        // border-radius: 2px;
       }
       .minus {
         border-radius: 2px 0px 0px 2px;
+        width: 30px;
+        height: 30px;
       }
       .plus {
         border-radius: 0px 2px 2px 0px;
+        width: 30px;
+        height: 30px;
       }
       &--num {
-        width: 21px;
         text-align: center;
         span{
           background-color: #fff;
-          padding: 1px 5px;
+          padding: 3px 10px;
+          width: 30px;
+          height: 30px;
         }
       }
     }
