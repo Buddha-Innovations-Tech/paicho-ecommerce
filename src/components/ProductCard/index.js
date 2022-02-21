@@ -1,5 +1,5 @@
-import Card from "react-bootstrap/Card";
 import { FiHeart } from "react-icons/fi";
+import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ name, price, stock, imageSource, path }) => {

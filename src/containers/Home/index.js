@@ -1,25 +1,15 @@
+import { Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import React from "react";
+
+import product__image from "../../assets/images/ProductImage.png";
+import hero__img from "../../assets/images/hero__img.png";
+
+import ProductCard from "../../components/ProductCard";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
-import hero__img from "../../assets/images/hero__img.png";
-import { Col, Container, Row } from "react-bootstrap";
-import ProductCard from "../../components/ProductCard";
-import product__image from "../../assets/images/ProductImage.png";
-import { Link } from "react-router-dom";
-<<<<<<< HEAD
-import InputForm from "../../components/InputForm";
-import Facebookicon from "../../assets/images/facebookicon.png"
-import GoogleIcon from "../../assets/images/googleicon.png"
-=======
-// import InputForm from "../../components/InputForm";
-// import GoogleIcon from "../../assets/images/googleicon.png";
-// import Facebookicon from "../../assets/images/facebookicon.png";
->>>>>>> a4b05eedc107da95dfe6eba6b25f8b4be19f935a
 
 const Home = () => {
-  // const [show, setShow] = useState(false);
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
   return (
     <>
       <section className="home">
@@ -41,59 +31,9 @@ const Home = () => {
                   <Link to="/paichopickle" className="btn__buy">
                     Buy Now
                   </Link>
-                  {/* <Button className="btn__buy" onClick={handleShow}>
-                    Buy Now
-                  </Button> */}
-                  {/* <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>
-                        <p>Sign In to your Paicho Account</p>
-                        <span>
-                          Please fill in the form correctly to sign in your
-                          paicho account
-                        </span>
-                      </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      <div className="mt-4 position-relative">
-                        <InputForm
-                          label="Mobile Number"
-                          type="num"
-                          placeholder="Enter Your Mobile Number"
-                          name="mobilenumber"
-                          asteric="*"
-                        />
-                      </div>
-                      <div className="mt-4 position-relative">
-                        <InputForm
-                          label="Password"
-                          type="num"
-                          placeholder="Enter Your Password"
-                          name="password"
-                          asteric="*"
-                        />
-                      </div>
-
-                      <button className=" sign-in-btn">Sign In</button>
-
-                      <Link to="" className="forget-password">
-                        <u>Forget Password?</u>
-                      </Link>
-
-                      <p className="or">or</p>
-
-                      <div className="signin-socialmediaicon">
-                        <img src={Facebookicon} alt="" />
-                        <img src={GoogleIcon} alt="" />
-                      </div>
-
-                      <p className="dont-haveacc">
-                        Don't have an account?<Link to=""> Sign Up </Link>
-                      </p>
-                    </Modal.Body>
-                  </Modal> */}
                 </div>
               </Col>
+
               <Col lg={6}>
                 <div className="hero__banner">
                   <img src={hero__img} className="hero__banner--img" alt="" />

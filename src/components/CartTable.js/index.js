@@ -1,15 +1,11 @@
-<<<<<<< HEAD
-import React from "react";
-import { InputGroup, Table, Row, Col } from "react-bootstrap";
-=======
-import React, { useState } from "react";
-import { InputGroup, Table, Modal } from "react-bootstrap";
->>>>>>> a4b05eedc107da95dfe6eba6b25f8b4be19f935a
+import { InputGroup, Row, Col, Modal } from "react-bootstrap";
+import { CgChevronDoubleLeft } from "react-icons/cg";
 import { RiDeleteBinLine } from "react-icons/ri";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import Productimage from "../../assets/images/ProductImage.png";
 import IncrementDecrement from "../IncrementDecrement";
-import { CgChevronDoubleLeft } from "react-icons/cg";
-import { Link } from "react-router-dom";
 
 const CartTable = ({ icon, tableheading, btnnn }) => {
   const mainTableData = [
@@ -117,57 +113,43 @@ const CartTable = ({ icon, tableheading, btnnn }) => {
             <Col md={1}></Col>
           </Row>
 
-          
-              {mainTableData.map((data, index) => {
-                return (
-                  <Row className="mt-3 mb-3 mapping-row">
-                    <Col
-                      md={4}
-                      className="carttable__maintable--firstdata"
-                    >
-                      <div
-                        className="d-flex align-items-center"
-                        style={{ width: "225px" }}
-                      >
-                        <InputGroup.Checkbox />
-                        <img src={data.img} alt="" />
-                        <div>
-                          <p>{data.productname}</p>
-                          <span>Category:{data.category}</span>
-                        </div>
-                      </div>
-                    </Col>
-                    <Col md={1}>{data.unit}</Col>
-                    <Col md={2}>
-                      <IncrementDecrement />
-                    </Col>
-                    <Col md={2}>{data.unitcost}</Col>
-                    {window.location.href.includes("shoppingcart") && (
-                      <Col md={2}>Rs 500</Col>
-                    )}
-                    {window.location.href.includes("wishlist") && (
-                      <Col md={2}>
-                        <button className="carttable__maintable--crossicon">
-                          Add to Cart
-                        </button>
-                      </Col>
-                    )}
-<<<<<<< HEAD
-                    <Col md={1} className="carttable__maintable--deleteicon">
-                      {icon}
-                    </Col>
-                  </Row>
-                  
-=======
-
-                    <td className="carttable__maintable--deleteicon">
-                      {icon}{" "}
-                    </td>
-                  </tr>
->>>>>>> a4b05eedc107da95dfe6eba6b25f8b4be19f935a
-                );
-              })}
-           
+          {mainTableData.map((data, index) => {
+            return (
+              <Row className="mt-3 mb-3 mapping-row">
+                <Col md={4} className="carttable__maintable--firstdata">
+                  <div
+                    className="d-flex align-items-center"
+                    style={{ width: "225px" }}
+                  >
+                    <InputGroup.Checkbox />
+                    <img src={data.img} alt="" />
+                    <div>
+                      <p>{data.productname}</p>
+                      <span>Category:{data.category}</span>
+                    </div>
+                  </div>
+                </Col>
+                <Col md={1}>{data.unit}</Col>
+                <Col md={2}>
+                  <IncrementDecrement />
+                </Col>
+                <Col md={2}>{data.unitcost}</Col>
+                {window.location.href.includes("shoppingcart") && (
+                  <Col md={2}>Rs 500</Col>
+                )}
+                {window.location.href.includes("wishlist") && (
+                  <Col md={2}>
+                    <button className="carttable__maintable--crossicon">
+                      Add to Cart
+                    </button>
+                  </Col>
+                )}
+                <Col md={1} className="carttable__maintable--deleteicon">
+                  {icon}
+                </Col>
+              </Row>
+            );
+          })}
         </div>
         <div className="carttable__pagination">
           <Link to="/">

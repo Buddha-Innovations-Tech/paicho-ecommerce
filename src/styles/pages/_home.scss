@@ -1,5 +1,5 @@
 .home {
-  overflow:hidden;
+  overflow: hidden;
   .hero {
     &__content {
       padding: 103px 0 0 0;
@@ -48,6 +48,7 @@
       font-weight: 600;
       font-size: 20px;
       margin-left: 0px;
+      margin-bottom: 40px;
 
       &::before {
         @include beforee(64px);
@@ -58,10 +59,18 @@
 
     .see__more {
       @include btn(#8dc73d);
-      border: 1px solid #8dc73d;
       color: #8dc73d;
+      border: 1px solid #8dc73d;
       background-color: transparent;
+      transition: 0.3s;
     }
+
+    .see__more:hover {
+      @include btn(#fff);
+      color: #fff;
+      background-color: color(primary, base);
+    }
+
     &__row {
       padding-top: 35px;
       padding-bottom: 44px;

@@ -1,15 +1,18 @@
-import React from "react";
-import NavBar from "../../components/NavBar";
-import Footer from "../../components/Footer";
-import CartTable from "../../components/CartTable.js";
 import { Container, Row, Col, Table } from "react-bootstrap";
 import { ImCross } from "react-icons/im";
 import { Link } from "react-router-dom";
+import React from "react";
+
+import CartTable from "../../components/CartTable.js";
+import NavBar from "../../components/NavBar";
+import Footer from "../../components/Footer";
 
 const ShoppingCart = () => {
   return (
     <>
       <NavBar />
+
+      {/* shopping-cart */}
       <Container>
         <Row>
           <Col md={8} sm={12} className="shoppingcart-btn">
@@ -22,7 +25,6 @@ const ShoppingCart = () => {
                   <tr>
                     <td className="shopcartrightbox__heading">Order Summary</td>
                   </tr>
-
                   <tr>
                     <div className="d-flex justify-content-between align-items-center shopcartrightbox__content">
                       <p>Total M.R.P</p>

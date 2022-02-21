@@ -1,10 +1,10 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
+import React from "react";
 
 const AccountSideNav = () => {
   return (
     <>
-      <div className="accountsidenav" style={{ width: "170px" }}>
+      <div className="accountsidenav" style={{ width: "200px" }}>
         <div className="accountsidenav__wrapper">
           <ul>
             <li>

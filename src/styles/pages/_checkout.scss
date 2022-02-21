@@ -134,6 +134,12 @@
         td {
           border-color: #d4d7d9;
         }
+        .center {
+          td:nth-last-child(2),
+          :nth-last-child(1) {
+            text-align: center;
+          }
+        }
 
         table.second__table {
           tr.bt {
@@ -151,10 +157,6 @@
         }
         .table > :not(caption) > * > * {
           padding: 8px 16px;
-
-          // tbody:nth-child(2) {
-          text-align: center;
-          // }
         }
 
         .second__table.table-bordered > :not(caption) > * {
