@@ -1,8 +1,9 @@
 import { Container, Row, Col } from "react-bootstrap";
+
 import AccountSideNav from "../../components/AccoountSideNav";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
-import { Table } from "react-bootstrap";
+
 import Productimage from "../../assets/images/ProductImage.png";
 
 const OrderHistory = () => {
@@ -12,67 +13,71 @@ const OrderHistory = () => {
       <section className="order__history">
         <Container>
           <Row>
-            <Col md={2} sm={12}>
+            <Col lg={3} sm={12}>
               <AccountSideNav />
             </Col>
-            <Col md={10} sm={12}>
+            <Col lg={9} sm={12}>
               <div className="order__history--title">
                 <div className="box">
                   <span className="heading">My Order History </span>
                 </div>
                 <div className="order__history--table">
-                  <Table>
-                    <tbody>
-                      <tr>
-                        <td style={{ paddingLeft: "60px" }}>Item Name</td>
-                        <td>Date</td>
-                        <td>Ship to </td>
-                        <td>Status</td>
-                        <td>Total Price</td>
-                        <td>Action</td>
-                      </tr>
-
-                      <tr>
-                        <td className="order__history--table-data">
-                          <div
-                            className="d-flex align-items-center"
-                            style={{ width: "225px" }}
-                          >
-                            <img src={Productimage} alt="" />
-                            <div>
-                              <p>Mango Pickle</p>
-                              <span>Category: Paicho Pickle</span>
-                            </div>
-                          </div>
-                        </td>
-                        <td>2022-01-24 </td>
-                        <td>Esta Kunwar </td>
-                        <td className="deliver">Delivered</td>
-                        <td>Rs. 1500</td>
-                        <td className="cancel">Cancel Order</td>
-                      </tr>
-
-                      <tr>
-                        <td className="order__history--table-data">
-                          <div
-                            className="d-flex align-items-center"
-                            style={{ width: "225px" }}
-                          >
-                            <img src={Productimage} alt="" />
-                            <div>
-                              <p>Mango Pickle</p>
-                              <span>Category: Paicho Pickle</span>
-                            </div>
-                          </div>
-                        </td>
-                        <td>2022-01-24 </td>
-                        <td>Esta Kunwar </td>
-                        <td className="cancel">Cancelled</td>
-                        <td>Rs. 1500</td>
-                        <td className="reorder">Re Order</td>
-                      </tr>
-                    </tbody>
-                  </Table>
+                  <Row className="hide">
+                    <Col lg={3} style={{ paddingLeft: "60px" }}>
+                      Item Name
+                    </Col>
+                    <Col lg={2}>Date</Col>
+                    <Col lg={2}>Ship to </Col>
+                    <Col lg={1}>Status</Col>
+                    <Col lg={2}>Total Price</Col>
+                    <Col lg={2}>Action</Col>
+                  </Row>
+                  <Row className="mx-30">
+                    <Col lg={3} className="order__history--table-data">
+                      <div
+                        className="d-flex align-items-center"
+                        style={{ width: "225px" }}
+                      >
+                        <img src={Productimage} alt="" />
+                        <div>
+                          <p>Mango Pickle</p>
+                          <span>Category: Paicho Pickle</span>
+                        </div>
+                      </div>
+                    </Col>
+                    <Col lg={2}>2022-01-24 </Col>
+                    <Col lg={2}>Esta Kunwar </Col>
+                    <Col lg={1} className="deliver">
+                      Delivered
+                    </Col>
+                    <Col lg={2}>Rs. 1500</Col>
+                    <Col lg={2} className="cancel">
+                      Cancel Order
+                    </Col>
+                  </Row>
+                  <Row className="mx-30">
+                    <Col lg={3} className="order__history--table-data">
+                      <div
+                        className="d-flex align-items-center"
+                        style={{ width: "225px" }}
+                      >
+                        <img src={Productimage} alt="" />
+                        <div>
+                          <p>Mango Pickle</p>
+                          <span>Category: Paicho Pickle</span>
+                        </div>
+                      </div>
+                    </Col>
+                    <Col lg={2}>2022-01-24 </Col>
+                    <Col lg={2}>Esta Kunwar </Col>
+                    <Col lg={1} className="cancel">
+                      Cancelled
+                    </Col>
+                    <Col lg={2}>Rs. 1500</Col>
+                    <Col lg={2} className="reorder">
+                      Re Order
+                    </Col>
+                  </Row>
                 </div>
               </div>
             </Col>

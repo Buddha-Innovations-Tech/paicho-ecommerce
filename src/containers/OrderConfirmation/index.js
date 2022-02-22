@@ -2,9 +2,10 @@ import { Col, Container, Row } from "react-bootstrap";
 import { CgChevronDoubleRight } from "react-icons/cg";
 import { Link } from "react-router-dom";
 
+import Order from "../../assets/images/order__confirm.png";
+
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
-import Order from "../../assets/images/order__confirm.png";
 
 const OrderConfirmation = () => {
   return (

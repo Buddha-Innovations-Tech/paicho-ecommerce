@@ -1,23 +1,24 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
+import React from "react";
 
-import IndeginousProduct from "../IndeginousProduct";
-import ProcessingProduct from "../ProcessingProduct";
-import OrganicVegetables from "../OrganicVegetables";
 import OrderConfirmation from "../OrderConfirmation";
-import PaichoDryFoods from "../PaichoDryFoods";
 import AccountDetail from "../AccountDetail";
 import ProductDetail from "../ProductDetail";
-import KetchupSauce from "../KetchupSauce";
-import PaichoPickle from "../PaichoPickle";
+import OrderHistory from "../OrderHistory";
 import ShoppingCart from "../ShoppingCart";
-import GrainsPulses from "../GrainsPulses";
 import OutOfStock from "../OutOfStocK";
 import ClearCart from "../ClearCart";
 import WhishList from "../WhishList";
 import Checkout from "../Checkout";
 import Home from "../Home";
-import OrderHistory from "../OrderHistory";
+
+import IndeginousProduct from "../IndeginousProduct";
+import ProcessingProduct from "../ProcessingProduct";
+import OrganicVegetables from "../OrganicVegetables";
+import PaichoDryFoods from "../PaichoDryFoods";
+import KetchupSauce from "../KetchupSauce";
+import PaichoPickle from "../PaichoPickle";
+import GrainsPulses from "../GrainsPulses";
 
 const App = () => {
   return (

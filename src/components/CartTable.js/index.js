@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { InputGroup,Row, Col, Modal } from "react-bootstrap";
+import { InputGroup, Row, Col, Modal } from "react-bootstrap";
+import { CgChevronDoubleLeft } from "react-icons/cg";
 import { RiDeleteBinLine } from "react-icons/ri";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import Productimage from "../../assets/images/ProductImage.png";
 import IncrementDecrement from "../IncrementDecrement";
-import { CgChevronDoubleLeft } from "react-icons/cg";
-import { Link } from "react-router-dom";
 
 const CartTable = ({ icon, tableheading, btnnn }) => {
   const mainTableData = [

@@ -1,16 +1,16 @@
-.shoppingcart-btn{
-  .carttable__maintable--deleteicon{
+.shoppingcart-btn {
+  .carttable__maintable--deleteicon {
     color: red;
+    font-size: 10px;
   }
-
 }
 
 .shopcartrightbox {
   margin-top: 60px;
   border: 1px solid #d4d7d9;
   border-radius: 3px;
-  table{
-      margin-bottom: 0;
+  table {
+    margin-bottom: 0;
   }
   &__heading {
     font-size: 14px;
@@ -39,14 +39,14 @@
       margin-bottom: 0;
     }
   }
-  &__divbtn{
-      padding: 16px 24px !important;
-      display: grid;
-      a{
-        display: contents;
-      }
-      &--buttonn{
-        @include btn(#8DC73D);
-      }
+  &__divbtn {
+    padding: 16px 24px !important;
+    display: grid;
+    a {
+      display: contents;
+    }
+    &--buttonn {
+      @include btn(#8dc73d);
+    }
   }
 }

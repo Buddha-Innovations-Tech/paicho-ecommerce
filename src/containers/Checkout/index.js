@@ -1,10 +1,12 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
+import InputGroup from "react-bootstrap/InputGroup";
+import Table from "react-bootstrap/Table";
+import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
+
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
-import InputGroup from "react-bootstrap/InputGroup";
-import Form from "react-bootstrap/Form";
-import Table from "react-bootstrap/Table";
-import { Link } from "react-router-dom";
+
 const Checkout = () => {
   return (
     <>
@@ -135,7 +137,9 @@ const Checkout = () => {
                     </Form.Group>
 
                     <div className="checkout__box--button d-flex justify-content-end">
-                      <Button className="btn__cancel me-3">Cancel</Button>
+                      <Link to="/shoppingcart">
+                        <Button className="btn__cancel me-3">Cancel</Button>
+                      </Link>
                       <Link to="/orderconfirm">
                         <Button className="btn__confirm" type="submit">
                           Confirm Purchase{" "}
@@ -155,22 +159,22 @@ const Checkout = () => {
                   <div className="billing__table">
                     <Table bordered className="second__table">
                       <tbody>
-                        <tr className="bt">
+                        <tr className="bt center">
                           <td>Item</td>
                           <td>Quantity</td>
                           <td>Price</td>
                         </tr>
-                        <tr>
+                        <tr className="center">
                           <td>Mango Pickle </td>
                           <td>1</td>
                           <td>Rs. 150</td>
                         </tr>
-                        <tr>
+                        <tr className="center">
                           <td>Paicho Ketchup hot & Sweet </td>
                           <td>2</td>
                           <td>Rs. 500</td>
                         </tr>
-                        <tr>
+                        <tr className="center">
                           <td>Mango Pickle </td>
                           <td>1</td>
                           <td>Rs. 150</td>

@@ -1,19 +1,19 @@
+import { Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import React from "react";
+
+import product__image from "../../assets/images/ProductImage.png";
+import hero__img from "../../assets/images/hero__img.png";
+
+import ProductCard from "../../components/ProductCard";
+// import product__image from "../../assets/images/ProductImage.png";
+// import { Link } from "react-router-dom";
+
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
-import hero__img from "../../assets/images/hero__img.png";
-import { Col, Container, Row } from "react-bootstrap";
-import ProductCard from "../../components/ProductCard";
-import product__image from "../../assets/images/ProductImage.png";
-import { Link } from "react-router-dom";
-// import InputForm from "../../components/InputForm";
-// import Facebookicon from "../../assets/images/facebookicon.png"
-// import GoogleIcon from "../../assets/images/googleicon.png"
 
-const Home = ({searchitem}) => {
-  // const [show, setShow] = useState(false);
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
+
+const Home = () => {
   return (
     <>
       <section className="home">
@@ -37,6 +37,7 @@ const Home = ({searchitem}) => {
                   </Link>
                 </div>
               </Col>
+
               <Col lg={6}>
                 <div className="hero__banner">
                   <img src={hero__img} className="hero__banner--img" alt="" />
