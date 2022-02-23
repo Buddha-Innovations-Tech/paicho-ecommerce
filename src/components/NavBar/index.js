@@ -38,16 +38,15 @@ const NavBar = () => {
     setSignin(true);
   };
   const signUpHandler = () => {
-    setSignin(false)
-  }
+    setSignin(false);
+  };
   const signInHandlerAccount = () => {
-    handleShow1(true)
-    setSignup(true)
-  }
+    handleShow1(true);
+    setSignup(true);
+  };
   const signUpHandlerAccount = () => {
-    setSignup(false)
-  }
-
+    setSignup(false);
+  };
 
   //   setSignin(false);
   // };
@@ -65,25 +64,25 @@ const NavBar = () => {
           </Col>
           <Col md={6}>
             <div className="imput-wrapper">
-             <form action="">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Search Products"
-                // onChange={SearchHandler}
-                // value={search}
-              />
+              <form action="">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search Products"
+                  // onChange={SearchHandler}
+                  // value={search}
+                />
               </form>
               <FiSearch className="search-icon" />
             </div>
           </Col>
           <Col md={4}>
-            <div className="dropdown-num d-block d-lg-flex justify-content-between align-items-center">
+            <div className="dropdown-num d-block d-lg-flex justify-content-evenly align-items-center">
               <div className="navbarright-wrapper">
                 <span>
                   <Link to="/account">
                     <FaUserAlt className="navbar-right-icon" />
-                    <span> My Account</span>
+                    <span> My account</span>
                   </Link>
                   <BiChevronDown
                     className="navbar-right-icon2"
@@ -124,125 +123,126 @@ const NavBar = () => {
                           </Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                          {signIn ? <>
-                            <Form>
-                              <div className="mt-4 position-relative">
-                                <InputForm
-                                  label="Mobile Number"
-                                  type="number"
-                                  placeholder="Enter Your Mobile Number"
-                                  name="mobilenumber"
-                                  asteric="*"
-                                  required
-                                />
-                              </div>
-                              <div className="mt-4 position-relative">
-                                <InputForm
-                                  label="Password"
-                                  type="password"
-                                  placeholder="Enter Your Password"
-                                  name="password"
-                                  asteric="*"
-                                  required
-                                />
-                              </div>
-
-                            <Button className="sign-in-btn" type="submit">
-                              Sign In
-                            </Button>
-                            <Link to="" className="forget-password">
-                            <u>Forget Password?</u>
-                          </Link>
-                          </Form>
-                          </>
-                          :
-                          <>
-                          <Form action="">
-                            <Row>
-                              <Col md={6}>
-                                <div className="mt-4">
-                                  <InputForm
-                                    label="First Name"
-                                    type="text"
-                                    placeholder="Enter Your First Name"
-                                    name="firstname"
-                                    asteric="*"
-                                  />
-                                </div>
-                              </Col>
-                              <Col md={6}>
-                                <div className="mt-4">
-                                  <InputForm
-                                    label="Last Name"
-                                    type="text"
-                                    placeholder="Enter Your Last Name"
-                                    name="lastname"
-                                    asteric="*"
-                                  />
-                                </div>
-                              </Col>
-                            </Row>
-                            <Row>
-                              <Col md={6}>
-                                <div className="mt-4">
-                                  <InputForm
-                                    label="Email Address"
-                                    type="email"
-                                    placeholder="Enter Your Email Address"
-                                    name="mobilenum"
-                                    asteric="*"
-                                  />
-                                </div>
-                              </Col>
-                              <Col md={6}>
-                                <div className="mt-4">
+                          {signIn ? (
+                            <>
+                              <Form>
+                                <div className="mt-4 position-relative">
                                   <InputForm
                                     label="Mobile Number"
-                                    type="num"
+                                    type="number"
                                     placeholder="Enter Your Mobile Number"
                                     name="mobilenumber"
+                                    asteric="*"
+                                    required
                                   />
                                 </div>
-                              </Col>
-                            </Row>
-                            <Row>
-                              <Col md={6}>
-                                <div className="mt-4">
+                                <div className="mt-4 position-relative">
                                   <InputForm
                                     label="Password"
                                     type="password"
                                     placeholder="Enter Your Password"
                                     name="password"
                                     asteric="*"
+                                    required
                                   />
                                 </div>
-                              </Col>
-                              <Col md={6}>
-                                <div className="mt-4">
-                                  <InputForm
-                                    label=" Confirm Password"
-                                    type="password"
-                                    placeholder="Confirm Your Password"
-                                    name="confirmpassword"
-                                    asteric="*"
-                                  />
-                                </div>
-                              </Col>
-                            </Row>
-                            </Form>
-                            <div className="createaccount">
-                              <InputGroup.Checkbox />
-                              <p>
-                                Creating an account means you’re okay with our
-                                <Link to="">Terms of Service</Link> and
-                                <Link to="">Privacy Policy</Link>
-                              </p>
-                            </div>
-                            <button className=" sign-in-btn ">
-                              Create Account
-                            </button>
-                          </>}
-                         
+
+                                <Button className="sign-in-btn" type="submit">
+                                  Sign In
+                                </Button>
+                                <Link to="" className="forget-password">
+                                  <u>Forget Password?</u>
+                                </Link>
+                              </Form>
+                            </>
+                          ) : (
+                            <>
+                              <Form action="">
+                                <Row>
+                                  <Col md={6}>
+                                    <div className="mt-4">
+                                      <InputForm
+                                        label="First Name"
+                                        type="text"
+                                        placeholder="Enter Your First Name"
+                                        name="firstname"
+                                        asteric="*"
+                                      />
+                                    </div>
+                                  </Col>
+                                  <Col md={6}>
+                                    <div className="mt-4">
+                                      <InputForm
+                                        label="Last Name"
+                                        type="text"
+                                        placeholder="Enter Your Last Name"
+                                        name="lastname"
+                                        asteric="*"
+                                      />
+                                    </div>
+                                  </Col>
+                                </Row>
+                                <Row>
+                                  <Col md={6}>
+                                    <div className="mt-4">
+                                      <InputForm
+                                        label="Email Address"
+                                        type="email"
+                                        placeholder="Enter Your Email Address"
+                                        name="mobilenum"
+                                        asteric="*"
+                                      />
+                                    </div>
+                                  </Col>
+                                  <Col md={6}>
+                                    <div className="mt-4">
+                                      <InputForm
+                                        label="Mobile Number"
+                                        type="num"
+                                        placeholder="Enter Your Mobile Number"
+                                        name="mobilenumber"
+                                      />
+                                    </div>
+                                  </Col>
+                                </Row>
+                                <Row>
+                                  <Col md={6}>
+                                    <div className="mt-4">
+                                      <InputForm
+                                        label="Password"
+                                        type="password"
+                                        placeholder="Enter Your Password"
+                                        name="password"
+                                        asteric="*"
+                                      />
+                                    </div>
+                                  </Col>
+                                  <Col md={6}>
+                                    <div className="mt-4">
+                                      <InputForm
+                                        label=" Confirm Password"
+                                        type="password"
+                                        placeholder="Confirm Your Password"
+                                        name="confirmpassword"
+                                        asteric="*"
+                                      />
+                                    </div>
+                                  </Col>
+                                </Row>
+                              </Form>
+                              <div className="createaccount">
+                                <InputGroup.Checkbox />
+                                <p>
+                                  Creating an account means you’re okay with our
+                                  <Link to="">Terms of Service</Link> and
+                                  <Link to="">Privacy Policy</Link>
+                                </p>
+                              </div>
+                              <button className=" sign-in-btn ">
+                                Create Account
+                              </button>
+                            </>
+                          )}
 
                           <p className="or">or</p>
 
@@ -276,212 +276,220 @@ const NavBar = () => {
                         <Modal show={show1} onHide={handleClose1}>
                           <Modal.Header closeButton>
                             <Modal.Title>
-                            {signUp ?<>
-                              <p>Create Your Paicho Account</p>
-                              <span>
-                                Please fill in the form correctly to sign up
-                                your paicho account
-                              </span>
-                             
-                            </>: <>
-                            <p>Sign In to your Paicho Account</p>
-                            <span>
-                              Please fill in the form correctly to sign in your
-                              paicho account
-                            </span> 
-                            </> }
+                              {signUp ? (
+                                <>
+                                  <p>Create Your Paicho Account</p>
+                                  <span>
+                                    Please fill in the form correctly to sign up
+                                    your paicho account
+                                  </span>
+                                </>
+                              ) : (
+                                <>
+                                  <p>Sign In to your Paicho Account</p>
+                                  <span>
+                                    Please fill in the form correctly to sign in
+                                    your paicho account
+                                  </span>
+                                </>
+                              )}
                             </Modal.Title>
                           </Modal.Header>
                           <Modal.Body>
-                            {signUp?
-                            <><Form action="">
-                            <Row>
-                              <Col md={6}>
-                                <div className="mt-4">
-                                  <InputForm
-                                    label="First Name"
-                                    type="text"
-                                    placeholder="Enter Your First Name"
-                                    name="firstname"
-                                    asteric="*"
-                                  />
-                                </div>
-                              </Col>
-                              <Col md={6}>
-                                <div className="mt-4">
-                                  <InputForm
-                                    label="Last Name"
-                                    type="text"
-                                    placeholder="Enter Your Last Name"
-                                    name="lastname"
-                                    asteric="*"
-                                  />
-                                </div>
-                              </Col>
-                            </Row>
-                            <Row>
-                              <Col md={6}>
-                                <div className="mt-4">
-                                  <InputForm
-                                    label="Email Address"
-                                    type="email"
-                                    placeholder="Enter Your Email Address"
-                                    name="mobilenum"
-                                    asteric="*"
-                                  />
-                                </div>
-                              </Col>
-                              <Col md={6}>
-                                <div className="mt-4">
-                                  <InputForm
-                                    label="Mobile Number"
-                                    type="num"
-                                    placeholder="Enter Your Mobile Number"
-                                    name="mobilenumber"
-                                  />
-                                </div>
-                              </Col>
-                            </Row>
-                            <Row>
-                              <Col md={6}>
-                                <div className="mt-4">
-                                  <InputForm
-                                    label="Password"
-                                    type="password"
-                                    placeholder="Enter Your Password"
-                                    name="password"
-                                    asteric="*"
-                                  />
-                                </div>
-                              </Col>
-                              <Col md={6}>
-                                <div className="mt-4">
-                                  <InputForm
-                                    label=" Confirm Password"
-                                    type="password"
-                                    placeholder="Confirm Your Password"
-                                    name="confirmpassword"
-                                    asteric="*"
-                                  />
-                                </div>
-                              </Col>
-                            </Row>
-                            <form action="">
-                              <Row>
-                                <Col md={6}>
-                                  <div className="mt-4">
-                                    <InputForm
-                                      label="First Name"
-                                      type="text"
-                                      placeholder="Enter Your First Name"
-                                      name="firstname"
-                                      asteric="*"
-                                    />
+                            {signUp ? (
+                              <>
+                                <Form action="">
+                                  <Row>
+                                    <Col md={6}>
+                                      <div className="mt-4">
+                                        <InputForm
+                                          label="First Name"
+                                          type="text"
+                                          placeholder="Enter Your First Name"
+                                          name="firstname"
+                                          asteric="*"
+                                        />
+                                      </div>
+                                    </Col>
+                                    <Col md={6}>
+                                      <div className="mt-4">
+                                        <InputForm
+                                          label="Last Name"
+                                          type="text"
+                                          placeholder="Enter Your Last Name"
+                                          name="lastname"
+                                          asteric="*"
+                                        />
+                                      </div>
+                                    </Col>
+                                  </Row>
+                                  <Row>
+                                    <Col md={6}>
+                                      <div className="mt-4">
+                                        <InputForm
+                                          label="Email Address"
+                                          type="email"
+                                          placeholder="Enter Your Email Address"
+                                          name="mobilenum"
+                                          asteric="*"
+                                        />
+                                      </div>
+                                    </Col>
+                                    <Col md={6}>
+                                      <div className="mt-4">
+                                        <InputForm
+                                          label="Mobile Number"
+                                          type="num"
+                                          placeholder="Enter Your Mobile Number"
+                                          name="mobilenumber"
+                                        />
+                                      </div>
+                                    </Col>
+                                  </Row>
+                                  <Row>
+                                    <Col md={6}>
+                                      <div className="mt-4">
+                                        <InputForm
+                                          label="Password"
+                                          type="password"
+                                          placeholder="Enter Your Password"
+                                          name="password"
+                                          asteric="*"
+                                        />
+                                      </div>
+                                    </Col>
+                                    <Col md={6}>
+                                      <div className="mt-4">
+                                        <InputForm
+                                          label=" Confirm Password"
+                                          type="password"
+                                          placeholder="Confirm Your Password"
+                                          name="confirmpassword"
+                                          asteric="*"
+                                        />
+                                      </div>
+                                    </Col>
+                                  </Row>
+                                  <form action="">
+                                    <Row>
+                                      <Col md={6}>
+                                        <div className="mt-4">
+                                          <InputForm
+                                            label="First Name"
+                                            type="text"
+                                            placeholder="Enter Your First Name"
+                                            name="firstname"
+                                            asteric="*"
+                                          />
+                                        </div>
+                                      </Col>
+                                      <Col md={6}>
+                                        <div className="mt-4">
+                                          <InputForm
+                                            label="Last Name"
+                                            type="text"
+                                            placeholder="Enter Your Last Name"
+                                            name="lastname"
+                                            asteric="*"
+                                          />
+                                        </div>
+                                      </Col>
+                                    </Row>
+                                    <Row>
+                                      <Col md={6}>
+                                        <div className="mt-4">
+                                          <InputForm
+                                            label="Email Address"
+                                            type="email"
+                                            placeholder="Enter Your Email Address"
+                                            name="mobilenum"
+                                            asteric="*"
+                                          />
+                                        </div>
+                                      </Col>
+                                      <Col md={6}>
+                                        <div className="mt-4">
+                                          <InputForm
+                                            label="Mobile Number"
+                                            type="num"
+                                            placeholder="Enter Your Mobile Number"
+                                            name="mobilenumber"
+                                          />
+                                        </div>
+                                      </Col>
+                                    </Row>
+                                    <Row>
+                                      <Col md={6}>
+                                        <div className="mt-4">
+                                          <InputForm
+                                            label="Password"
+                                            type="password"
+                                            placeholder="Enter Your Password"
+                                            name="password"
+                                            asteric="*"
+                                          />
+                                        </div>
+                                      </Col>
+                                      <Col md={6}>
+                                        <div className="mt-4">
+                                          <InputForm
+                                            label=" Confirm Password"
+                                            type="password"
+                                            placeholder="Confirm Your Password"
+                                            name="confirmpassword"
+                                            asteric="*"
+                                          />
+                                        </div>
+                                      </Col>
+                                    </Row>
+                                  </form>
+                                  <div className="createaccount">
+                                    <InputGroup.Checkbox />
+                                    <p>
+                                      Creating an account means you’re okay with
+                                      our
+                                      <Link to="">Terms of Service</Link> and
+                                      <Link to="">Privacy Policy</Link>
+                                    </p>
                                   </div>
-                                </Col>
-                                <Col md={6}>
-                                  <div className="mt-4">
-                                    <InputForm
-                                      label="Last Name"
-                                      type="text"
-                                      placeholder="Enter Your Last Name"
-                                      name="lastname"
-                                      asteric="*"
-                                    />
-                                  </div>
-                                </Col>
-                              </Row>
-                              <Row>
-                                <Col md={6}>
-                                  <div className="mt-4">
-                                    <InputForm
-                                      label="Email Address"
-                                      type="email"
-                                      placeholder="Enter Your Email Address"
-                                      name="mobilenum"
-                                      asteric="*"
-                                    />
-                                  </div>
-                                </Col>
-                                <Col md={6}>
-                                  <div className="mt-4">
+                                  <button className=" sign-in-btn ">
+                                    Create Account
+                                  </button>
+                                </Form>
+                              </>
+                            ) : (
+                              <>
+                                <Form>
+                                  <div className="mt-4 position-relative">
                                     <InputForm
                                       label="Mobile Number"
-                                      type="num"
+                                      type="number"
                                       placeholder="Enter Your Mobile Number"
                                       name="mobilenumber"
+                                      asteric="*"
+                                      required
                                     />
                                   </div>
-                                </Col>
-                              </Row>
-                              <Row>
-                                <Col md={6}>
-                                  <div className="mt-4">
+                                  <div className="mt-4 position-relative">
                                     <InputForm
                                       label="Password"
                                       type="password"
                                       placeholder="Enter Your Password"
                                       name="password"
                                       asteric="*"
+                                      required
                                     />
                                   </div>
-                                </Col>
-                                <Col md={6}>
-                                  <div className="mt-4">
-                                    <InputForm
-                                      label=" Confirm Password"
-                                      type="password"
-                                      placeholder="Confirm Your Password"
-                                      name="confirmpassword"
-                                      asteric="*"
-                                    />
-                                  </div>
-                                </Col>
-                              </Row>
-                            </form>
-                            <div className="createaccount">
-                              <InputGroup.Checkbox />
-                              <p>
-                                Creating an account means you’re okay with our
-                                <Link to="">Terms of Service</Link> and
-                                <Link to="">Privacy Policy</Link>
-                              </p>
-                            </div>
-                            <button className=" sign-in-btn ">
-                              Create Account
-                            </button>
-                            </Form></>:
-                            <>
-                            <Form>
-                            <div className="mt-4 position-relative">
-                              <InputForm
-                                label="Mobile Number"
-                                type="number"
-                                placeholder="Enter Your Mobile Number"
-                                name="mobilenumber"
-                                asteric="*"
-                                required
-                              />
-                            </div>
-                            <div className="mt-4 position-relative">
-                              <InputForm
-                                label="Password"
-                                type="password"
-                                placeholder="Enter Your Password"
-                                name="password"
-                                asteric="*"
-                                required
-                              />
-                            </div>
 
-                            <Button className="sign-in-btn" type="submit">
-                              Sign In
-                            </Button>
-                            <Link to="" className="forget-password">
-                            <u>Forget Password?</u>
-                          </Link>
-                          </Form>
-                            </>}
+                                  <Button className="sign-in-btn" type="submit">
+                                    Sign In
+                                  </Button>
+                                  <Link to="" className="forget-password">
+                                    <u>Forget Password?</u>
+                                  </Link>
+                                </Form>
+                              </>
+                            )}
                             {/* <form action="">
                             <Row>
                               <Col md={6}>
@@ -555,11 +563,23 @@ const NavBar = () => {
                               </Col>
                             </Row>
                             </form> */}
-                           
 
                             <p className="already-have-acc">
                               Already have an account?
-                              <Link to=""> {signUp?<span onClick={signUpHandlerAccount}> Sign In </span> :<span onClick={()=> setSignup(true)}> Sign Up </span>}</Link>
+                              <Link to="">
+                                {" "}
+                                {signUp ? (
+                                  <span onClick={signUpHandlerAccount}>
+                                    {" "}
+                                    Sign In{" "}
+                                  </span>
+                                ) : (
+                                  <span onClick={() => setSignup(true)}>
+                                    {" "}
+                                    Sign Up{" "}
+                                  </span>
+                                )}
+                              </Link>
                             </p>
                           </Modal.Body>
                         </Modal>
@@ -583,7 +603,7 @@ const NavBar = () => {
                     <span>My Cart</span>
                   </Link>
                   <Link to="/wishlist">
-                    <BsFillHeartFill className="navbar-right-icon" />
+                    <BsFillHeartFill className="navbar-right-icon icon-wish" />
                   </Link>
                 </span>
               </div>
@@ -597,13 +617,13 @@ const NavBar = () => {
           <div className="categories  d-block d-lg-flex justify-content-between align-items-center">
             <div
               className="navbar-left"
-              onClick={() => setNavbarShow(!navbarshow)}>
-            
+              onClick={() => setNavbarShow(!navbarshow)}
+            >
               <MdOutlineDashboard className="dashboard-icon" />
               <span>All Categories</span>
               <BiChevronDown className="downarrow-icon" />
 
-              {navbarshow ? 
+              {navbarshow ? (
                 <div className="navbar-dropdown">
                   <ul className="navar-dropdown-ul">
                     <li className="navar-dropdown-li">
@@ -691,9 +711,9 @@ const NavBar = () => {
                     </li>
                   </ul>
                 </div>
-               : 
+              ) : (
                 ""
-              }
+              )}
             </div>
 
             <Link to="" className="about-paicho">

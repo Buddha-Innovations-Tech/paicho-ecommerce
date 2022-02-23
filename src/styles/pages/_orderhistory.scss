@@ -1,11 +1,15 @@
 .order__history {
-  padding-top: 43px;
   padding-bottom: 260px;
   background-color: #f8f8f8;
 
+  .sidenav {
+    margin-top: 70px;
+  }
+
   &--title {
     div.box {
-      margin-bottom: 27px;
+      margin-top: 25px;
+      margin-bottom: 20px;
     }
     span.heading {
       position: relative;
@@ -26,15 +30,18 @@
     border-color: transparent;
     font-size: 14px;
     font-weight: 600;
+    border: 1px solid #d4d7d9;
 
     .hide {
-      height: 47px;
-      align-items: center;
+      margin-left: 0;
+      margin-right: 0;
+      padding: 10px;
+      border-bottom: 1px solid #d4d7d9;
     }
 
     .mx-30 {
       font-weight: 400;
-      align-items: center;
+      margin: 10px 0;
     }
 
     .cancel {
@@ -87,13 +94,27 @@
 
 @media only screen and (max-width: 992px) {
   .order__history {
+    .col-lg-3.col-sm-12 {
+      margin: 0 0 43px 0;
+    }
+
+    .mx-30 {
+      margin: 30px 30px;
+      border-bottom: 1px solid #e6e6e6;
+      padding-bottom: 30px;
+
+      .date,
+      .shipto,
+      .status,
+      .price,
+      .action {
+        margin-left: 4rem;
+      }
+    }
+
     &--table {
       .hide {
         display: none;
-      }
-      .mx-30 {
-        padding: 30px;
-        // margin: 30px;
       }
     }
   }
