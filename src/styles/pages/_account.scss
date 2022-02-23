@@ -2,12 +2,16 @@
   padding-top: 36px;
   padding-bottom: 156px;
   background-color: #f8f8f8;
+}
 
-  .col-md-3.col-sm-12 {
-    margin-bottom: 10px;
-  }
+@media only screen and (max-width: 992px) {
+  .account__details {
+    .col-lg-3.col-sm-12 {
+      margin: 0 0 36px 0;
+    }
 
-  .col-md-4.col-sm-12 {
-    margin-bottom: 20px;
+    .col-lg-4.col-sm-12 {
+      margin-bottom: 50px;
+    }
   }
 }

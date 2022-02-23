@@ -26,7 +26,6 @@ import SubNav from "../SubNav";
 
 const navItem = [
   {
-    
     title: "Paicho Pickle",
     items: [
       { title: "Mango Pickle " },
@@ -104,7 +103,6 @@ const navItem = [
       { title: "def" },
     ],
   },
-  
 ];
 
 const NavBar = () => {
@@ -148,27 +146,20 @@ const NavBar = () => {
             />
             {hideSmallNavbar ? (
               <>
-                
-
                 <div className="navbar-dropdown">
-                <ul className="navar-dropdown-ul">
-                  
-                        {navItem.map((datas,index)=>{
-                          return(
-                
-                      <>
-                    
-                        <SubNav 
-                        title={datas.title}
-                        items={datas.items}
-                        key={index}
-                        />
-</>
-                          )
-                        })}
-                        </ul>
-                        
-                 
+                  <ul className="navar-dropdown-ul">
+                    {navItem.map((datas, index) => {
+                      return (
+                        <>
+                          <SubNav
+                            title={datas.title}
+                            items={datas.items}
+                            key={index}
+                          />
+                        </>
+                      );
+                    })}
+                  </ul>
                 </div>
               </>
             ) : (

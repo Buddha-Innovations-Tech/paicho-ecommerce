@@ -16,12 +16,12 @@ const WhishList = () => {
       <div className="wishlist">
         <Container>
           <Row>
-            <Col md={3} sm={12}>
+            <Col lg={3} sm={12}>
               <div className="wishlist__leftside">
                 <AccountSideNav />
               </div>
             </Col>
-            <Col md={9} sm={12} className="whishlist-btn">
+            <Col lg={9} sm={12} className="whishlist-btn">
               <CartTable tableheading="Action" icon={<RiDeleteBinLine />} />
             </Col>
           </Row>

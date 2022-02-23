@@ -35,8 +35,8 @@
 }
 .navbarright-wrapper {
   span {
+    font-weight: 600;
     font-size: 18px;
-    font-weight: 500;
     color: #231f1e;
     margin-bottom: 0;
     .navbar-right-icon {
@@ -53,12 +53,17 @@
       color: color(primary, base);
       font-size: 30px;
     }
+    .icon-wish {
+      margin-left: 10px;
+    }
     span {
-      margin: 0 11px;
+      margin: 0 15px;
     }
   }
   &:nth-child(1) {
     padding-right: 25px;
+    // padding-right: 15px;
+    // border-right: 1px solid color(primary, base);
   }
 }
 .second-nav-wrapper {
@@ -167,7 +172,8 @@
 
 .account-btn {
   position: absolute;
-  top: 13%;
+  top: 20%;
+  // top: 50%;
   background: #ffffff;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   border-radius: 7px;
@@ -496,32 +502,19 @@
     margin-left: 20px;
   }
   
-  // .navbar-brand{
-  //   color: #fff !important;
-  // }
-  // .navbar-light .navbar-toggler{
-  //   border: 2px solid #fff;
-  // }
-  // .navbar-nav{
-  //   padding: 0px 10px 0 20px;
-  //   border: 1px solid #fff;
-  //   margin-top: 10px;
-  //   .nav-link{
-  //     color: #fff !important;
-  //     font-size: 18px;
-  //   }
-  //   .dropdown-menu{
-  //     padding: 0;
-  //   .dropdown-item{
-  //     border-bottom: 1px solid #8dc73d;
-  //     &:nth-last-child(1){
-  //       border-bottom: none;
-  //     }
-  //   }
-  // }
-  // }
+  
 }
+
 // Responsive
+@media (max-width: 1200px) and (min-width: 1024px) {
+  .navbarright-wrapper span span {
+    margin: 0 5px;
+  }
+  .navbarright-wrapper:nth-child(1) {
+    padding-right: 0px;
+  }
+}
+
 @media only screen and (max-width: 992px) {
   .navbarright-wrapper:nth-child(1) {
     border-right: none;
@@ -534,7 +527,19 @@
   // }
 }
 
+@media (min-width: 768px) and (max-width: 992px) {
+  .btn__buy {
+    margin: 10px 0;
+  }
+  // .account-btn {
+  //   top: 20%;
+  // }
+}
+
 @media only screen and (max-width: 768px) {
+  .account-btn {
+    top: 23%;
+  }
   .second-nav-wrapper .categories {
     display: none !important;
   }
@@ -570,9 +575,22 @@
     display: none;
   }
 }
+
+@media (max-width: 767px) and (min-width: 576px) {
+  .account-btn {
+    top: 53%;
+  }
+}
+
 @media only screen and (max-width: 576px) {
   .account-btn {
-    top: 59%;
+    top: 53%;
+  }
+}
+
+@media only screen and (max-width: 441px) {
+  .modal-content .modal-body .arrow-right {
+    top: 286px;
   }
 }
 

@@ -13,49 +13,49 @@ const CartTable = ({ icon, tableheading, btnnn }) => {
       img: Productimage,
       productname: "Mango Pickle",
       category: "Paicho pickle",
-      unit: 1,
+      unit: "1 kg",
       unitcost: "Rs.150",
     },
     {
       img: Productimage,
       productname: "Mango Pickle",
       category: "Paicho pickle",
-      unit: 1,
+      unit: "1 kg",
       unitcost: "Rs.150",
     },
     {
       img: Productimage,
       productname: "Mango Pickle",
       category: "Paicho pickle",
-      unit: 1,
+      unit: "1 kg",
       unitcost: "Rs.150",
     },
     {
       img: Productimage,
       productname: "Mango Pickle",
       category: "Paicho pickle",
-      unit: 1,
+      unit: "1 kg",
       unitcost: "Rs.150",
     },
     {
       img: Productimage,
       productname: "Mango Pickle",
       category: "Paicho pickle",
-      unit: 1,
+      unit: "1 kg",
       unitcost: "Rs.150",
     },
     {
       img: Productimage,
       productname: "Mango Pickle",
       category: "Paicho pickle",
-      unit: 1,
+      unit: "1 kg",
       unitcost: "Rs.150",
     },
     {
       img: Productimage,
       productname: "Mango Pickle",
       category: "Paicho pickle",
-      unit: 1,
+      unit: "1 kg",
       unitcost: "Rs.150",
     },
   ];
@@ -103,59 +103,61 @@ const CartTable = ({ icon, tableheading, btnnn }) => {
         </div>
         <div className="carttable__maintable">
           <Row className="carttable__maintable--firstrow">
-            <Col md={4} style={{ paddingLeft: "60px" }}>
+            <Col lg={4} style={{ paddingLeft: "60px" }} className="title">
               Item List
             </Col>
-            <Col md={1}>Unit</Col>
-            <Col md={2}>Quantity</Col>
-            <Col md={2}>Unit Cost</Col>
-            <Col md={2}>Action</Col>
-            <Col md={1}></Col>
+            <Col lg={1}>Unit</Col>
+            <Col lg={2}>Quantity</Col>
+            <Col lg={2}>Unit Cost</Col>
+            <Col lg={2}>Subtotal</Col>
+            <Col lg={1}>Action</Col>
           </Row>
 
-          
-              {mainTableData.map((data, index) => {
-                return (
-                  <Row className="mt-3 mb-3 mapping-row">
-                    <Col
-                      md={4}
-                      className="carttable__maintable--firstdata"
-                    >
-                      <div
-                        className="d-flex align-items-center"
-                        style={{ width: "225px" }}
-                      >
-                        <InputGroup.Checkbox />
-                        <img src={data.img} alt="" />
-                        <div>
-                          <p>{data.productname}</p>
-                          <span>Category:{data.category}</span>
-                        </div>
-                      </div>
-                    </Col>
-                    <Col md={1}>{data.unit}</Col>
-                    <Col md={2}>
-                      <IncrementDecrement />
-                    </Col>
-                    <Col md={2}>{data.unitcost}</Col>
-                    {window.location.href.includes("shoppingcart") && (
-                      <Col md={2}>Rs 500</Col>
-                    )}
-                    {window.location.href.includes("wishlist") && (
-                      <Col md={2}>
-                        <button className="carttable__maintable--crossicon">
-                          Add to Cart
-                        </button>
-                      </Col>
-                    )}
-                    <Col md={1} className="carttable__maintable--deleteicon">
-                      {icon}
-                    </Col>
-                  </Row>
-                  
-                );
-              })}
-           
+          {mainTableData.map((data, index) => {
+            return (
+              <Row className="mt-3 mb-3 mapping-row">
+                <Col lg={4} className="carttable__maintable--firstdata">
+                  <div
+                    className="d-flex align-items-center"
+                    style={{ width: "225px" }}
+                  >
+                    <InputGroup.Checkbox className="checkbox" />
+                    <img src={data.img} alt="" />
+                    <div>
+                      <p>{data.productname}</p>
+                      <span>Category:{data.category}</span>
+                    </div>
+                  </div>
+                </Col>
+                <Col lg={1}>
+                  <div className="unit">{data.unit}</div>
+                </Col>
+                <Col lg={2}>
+                  <div className="inc__dec">
+                    <IncrementDecrement />
+                  </div>
+                </Col>
+                <Col lg={2}>
+                  <div className="unit">{data.unitcost}</div>
+                </Col>
+                {window.location.href.includes("shoppingcart") && (
+                  <Col lg={2}>
+                    <div className="total">Rs 500</div>
+                  </Col>
+                )}
+                {window.location.href.includes("wishlist") && (
+                  <Col lg={2}>
+                    <button className="carttable__maintable--crossicon">
+                      Add to Cart
+                    </button>
+                  </Col>
+                )}
+                <Col lg={1} className="carttable__maintable--deleteicon icon">
+                  {icon}
+                </Col>
+              </Row>
+            );
+          })}
         </div>
         <div className="carttable__pagination">
           <Link to="/">
