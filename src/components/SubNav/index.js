@@ -19,7 +19,7 @@ const SubNav = ({ title, items }) => {
           return (
             <ul className="subdropdown">
             <li className="navar-dropdown-li" key={index}>
-              <Link to="/paichopickle">{data.title}</Link>
+              <Link to="/productdetail">{data.title}</Link>
             </li>
             </ul>
           );

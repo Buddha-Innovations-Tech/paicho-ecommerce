@@ -167,12 +167,13 @@
 
 .account-btn {
   position: absolute;
-  top: 13%;
+  top: 15%;
   background: #ffffff;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   border-radius: 7px;
   padding: 16px 19px;
-  z-index: 9999;
+  z-index: 99;
+  right: 5%;
   .account-signin {
     @include btn(#8dc73d);
     font-size: 16px;
@@ -495,33 +496,16 @@
   .navar-subdropdown{
     margin-left: 20px;
   }
-  
-  // .navbar-brand{
-  //   color: #fff !important;
-  // }
-  // .navbar-light .navbar-toggler{
-  //   border: 2px solid #fff;
-  // }
-  // .navbar-nav{
-  //   padding: 0px 10px 0 20px;
-  //   border: 1px solid #fff;
-  //   margin-top: 10px;
-  //   .nav-link{
-  //     color: #fff !important;
-  //     font-size: 18px;
-  //   }
-  //   .dropdown-menu{
-  //     padding: 0;
-  //   .dropdown-item{
-  //     border-bottom: 1px solid #8dc73d;
-  //     &:nth-last-child(1){
-  //       border-bottom: none;
-  //     }
-  //   }
-  // }
-  // }
+
 }
 // Responsive
+@media (max-width:1024px){
+  .account-btn{
+    right: 3%;
+    // top: 20%;
+    top: 15%;
+  }
+}
 @media only screen and (max-width: 992px) {
   .navbarright-wrapper:nth-child(1) {
     border-right: none;
@@ -535,6 +519,10 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .account-btn {
+    right: 3%;
+    top: 32%;
+}
   .second-nav-wrapper .categories {
     display: none !important;
   }
@@ -545,8 +533,7 @@
     margin-left: -10px;
   }
   .dropdown-num {
-    margin: 15px 0;
-  //  margin-left: 0 !important;
+    margin-top: 30px;
   }
   .modal-content {
     width: 100% !important;
@@ -570,9 +557,19 @@
     display: none;
   }
 }
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .account-btn {
+    // top: 80%;
+    top: 46%;
+  }
+}
+
 @media only screen and (max-width: 576px) {
   .account-btn {
-    top: 59%;
+    // top: 80%;
+    // top: 46%;
+    top: 40%;
   }
 }
 
@@ -580,6 +577,9 @@
   .modal-content {
     width: 92%;
   }
+//   .account-btn {
+//     top: 47%;
+// }
 }
 
 @media only screen and (max-width: 325px) {
