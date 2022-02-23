@@ -1,5 +1,7 @@
 import { Container, Row, Col, Table } from "react-bootstrap";
-import { ImCross } from "react-icons/im";
+// import { ImCross } from "react-icons/im";
+import { RiDeleteBinLine } from "react-icons/ri";
+
 import { Link } from "react-router-dom";
 import React from "react";
 
@@ -16,7 +18,7 @@ const ShoppingCart = () => {
       <Container>
         <Row>
           <Col md={8} sm={12} className="shoppingcart-btn">
-            <CartTable icon={<ImCross />} tableheading="Sub Total" />
+            <CartTable icon={<RiDeleteBinLine />} tableheading="Sub Total" />
           </Col>
           <Col md={4} sm={12}>
             <div className="shopcartrightbox">

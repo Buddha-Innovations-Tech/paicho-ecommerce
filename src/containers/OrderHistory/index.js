@@ -14,7 +14,9 @@ const OrderHistory = () => {
         <Container>
           <Row>
             <Col lg={3} sm={12}>
-              <AccountSideNav />
+              <div className="sidenav">
+                <AccountSideNav />
+              </div>
             </Col>
             <Col lg={9} sm={12}>
               <div className="order__history--title">
@@ -45,14 +47,20 @@ const OrderHistory = () => {
                         </div>
                       </div>
                     </Col>
-                    <Col lg={2}>2022-01-24 </Col>
-                    <Col lg={2}>Esta Kunwar </Col>
-                    <Col lg={1} className="deliver">
-                      Delivered
+                    <Col lg={2}>
+                      <div className="date">2022-01-24</div>
                     </Col>
-                    <Col lg={2}>Rs. 1500</Col>
+                    <Col lg={2}>
+                      <div className="shipto">Esta Kunwar</div>
+                    </Col>
+                    <Col lg={1} className="deliver">
+                      <div className="status">Delivered</div>
+                    </Col>
+                    <Col lg={2}>
+                      <div className="price">Rs. 1500</div>
+                    </Col>
                     <Col lg={2} className="cancel">
-                      Cancel Order
+                      <div className="action">Cancel Order</div>
                     </Col>
                   </Row>
                   <Row className="mx-30">
@@ -68,14 +76,20 @@ const OrderHistory = () => {
                         </div>
                       </div>
                     </Col>
-                    <Col lg={2}>2022-01-24 </Col>
-                    <Col lg={2}>Esta Kunwar </Col>
-                    <Col lg={1} className="cancel">
-                      Cancelled
+                    <Col lg={2}>
+                      <div className="date">2022-01-24</div>
                     </Col>
-                    <Col lg={2}>Rs. 1500</Col>
+                    <Col lg={2}>
+                      <div className="shipto">Esta Kunwar</div>
+                    </Col>
+                    <Col lg={1} className="cancel">
+                      <div className="status">Cancelled</div>
+                    </Col>
+                    <Col lg={2}>
+                      <div className="price">Rs. 1500</div>
+                    </Col>
                     <Col lg={2} className="reorder">
-                      Re Order
+                      <div className="action">Re Order</div>
                     </Col>
                   </Row>
                 </div>
