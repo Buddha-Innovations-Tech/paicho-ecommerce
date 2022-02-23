@@ -87,7 +87,7 @@ const ProductDetailComp = ({ stock }) => {
                 <Slider {...settings} >
                   {sliderImg.map((data, index) => (
                     <>
-                    <div style={{height:'100px', width:"100px" , border:data.photo===image && "1px solid green"}}>
+                    <div style={{height:'100px', width:"100px" , border:data.photo===image && "1px solid green"}} key={index}>
                     <img
                     className="product__sliders--image"
                       key={index}
