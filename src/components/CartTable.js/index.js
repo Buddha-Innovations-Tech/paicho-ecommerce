@@ -115,7 +115,7 @@ const CartTable = ({ icon, tableheading, btnnn }) => {
 
           {mainTableData.map((data, index) => {
             return (
-              <Row className="mt-3 mb-3 mapping-row">
+              <Row className="mt-3 mb-3 mapping-row" key={index}>
                 <Col lg={4} className="carttable__maintable--firstdata">
                   <div
                     className="d-flex align-items-center"

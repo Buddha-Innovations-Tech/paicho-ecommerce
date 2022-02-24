@@ -1,12 +1,13 @@
 .shoppingcart-btn {
   .carttable__maintable--deleteicon {
-    color: red;
+    color: #f88181;
+    cursor: pointer;
     // font-size: 10px;
   }
 }
 
 .shopcartrightbox {
-  margin-top: 60px;
+  margin-top: 69px;
   border: 1px solid #d4d7d9;
   border-radius: 3px;
   table {

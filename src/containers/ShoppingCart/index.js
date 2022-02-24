@@ -28,6 +28,7 @@ const ShoppingCart = () => {
                     <td className="shopcartrightbox__heading">Order Summary</td>
                   </tr>
                   <tr>
+                    <td>
                     <div className="d-flex justify-content-between align-items-center shopcartrightbox__content">
                       <p>Total M.R.P</p>
                       <p>Rs.12000</p>
@@ -36,8 +37,10 @@ const ShoppingCart = () => {
                       <p>Shipping</p>
                       <p>Rs.200</p>
                     </div>
+                    </td>
                   </tr>
                   <tr>
+                    <td>
                     <div className="d-flex justify-content-between align-items-center shopcartrightbox__total">
                       <p>Grand Total</p>
                       <p>Rs.12200</p>
@@ -49,6 +52,7 @@ const ShoppingCart = () => {
                         </button>
                       </Link>
                     </div>
+                    </td>
                   </tr>
                 </tbody>
               </Table>

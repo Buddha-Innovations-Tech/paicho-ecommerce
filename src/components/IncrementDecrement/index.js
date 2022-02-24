@@ -6,6 +6,7 @@ const IncrementDecrement = () => {
     <>
       <div className="incredecre__inc-dec--button">
         <table>
+          <tbody>
           <tr>
             <td
               className="incredecre__inc-dec--button--dec minus"
@@ -25,6 +26,7 @@ const IncrementDecrement = () => {
               +
             </td>
           </tr>
+          </tbody>
         </table>
       </div>
     </>

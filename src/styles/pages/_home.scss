@@ -74,6 +74,7 @@
     &__row {
       padding-top: 35px;
       padding-bottom: 44px;
+      
 
       .col-md-3 {
         padding-left: 0;
@@ -131,8 +132,14 @@
   p.product__category {
     margin-bottom: 40px !important;
   }
-}
 
+}
+@media(max-width:576px){
+  .home .product .see__more{
+    display: inline-block;
+    margin-top: 30px;
+  }
+}
 @media (min-width: 768px) and (max-width: 992px) {
   p.product__card--body--price.card-text {
     display: grid;

@@ -78,7 +78,7 @@ const ProductDetailComp = ({ stock }) => {
     <>
       <div className="product">
         <Container>
-          <Row className="product__rows">
+          <Row className="product__rows gx-5">
             <Col md={5}>
               <div className="product__image">
                 <img src={image} alt="" className="img-fluid selected" />
@@ -87,7 +87,7 @@ const ProductDetailComp = ({ stock }) => {
                 <Slider {...settings} >
                   {sliderImg.map((data, index) => (
                     <>
-                    <div style={{height:'100px', width:"100px" , border:data.photo===image && "1px solid green"}} key={index}>
+                    <div style={{height:'100px', width:"100px", margin:"5px", boxShadow:data.photo===image && "0px 0px 4px rgb(0 0 0 / 25%)",borderRadius:data.photo===image && "5px"}} key={index}>
                     <img
                     className="product__sliders--image"
                       key={index}
@@ -191,7 +191,7 @@ const ProductDetailComp = ({ stock }) => {
               </div>
 
               <div className="product__lists">
-                <p>About this Item </p>
+                <p>Ingredients</p>
                 <ul>
                   <li> Fresh organic mangoes </li>
                   <li> Fresh organic mangoes </li>

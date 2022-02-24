@@ -51,56 +51,60 @@ const navItem = [
   {
     title: "Grains & Pulses",
     items: [
-      { title: "abc" },
-      { title: "def" },
-      { title: "abc" },
-      { title: "def" },
-      { title: "abc" },
-      { title: "def" },
+      { title: "Paicho Chamal " },
+      { title: "Paicho Daal " },
+      { title: "Phapar dana" },
+      { title: "deKodoko Pithof" },
+      { title: "Paicho Sweet Backwheat Pitho" },
+      { title: "Paicho Gahat dana" },
+      
     ],
   },
   {
     title: "Indeginous Product",
     items: [
-      { title: "abc" },
-      { title: "def" },
-      { title: "abc" },
-      { title: "def" },
-      { title: "abc" },
-      { title: "def" },
+      { title: "Paicho Sinki" },
+      { title: "Paicho Masyaura" },
+      { title: "Kabuno" },
+      { title: "Nettle Powder" }, 
     ],
   },
   {
     title: "Dry Food",
     items: [
-      { title: "abc" },
-      { title: "def" },
-      { title: "abc" },
-      { title: "def" },
-      { title: "abc" },
-      { title: "def" },
+      { title: "Paicho Alaichi " },
+      { title: "Paicho Aaapko Chana" },
+      { title: "Paicho Bakulla dana " },
+      { title: "Paicho Barro " },
+      { title: "Paicho Besaar  " },
+      { title: "Paicho Bhango   " },
+      { title: "Paicho Sukeko Dalle  " },
+      { title: "Paicho Dry Apple" },
+      { title: "Paicho Sukeko Karela" },
     ],
   },
   {
     title: "Ketchup & Sauces",
     items: [
-      { title: "abc" },
-      { title: "def" },
-      { title: "abc" },
-      { title: "def" },
-      { title: "abc" },
-      { title: "def" },
+      { title: "Paicho Chilly Sauce" },
+      { title: "Paicho Tomato Ketchup" },
+      { title: "PaichoTomato Puree" },
+      { title: "Paicho Vinegar " },
+      { title: "Paicho Hot & Sweet  " },
+      { title: "Paicho Mexican Sauce   " },
+      { title: "Paicho Soya Sauce" },
     ],
   },
   {
     title: "Organic Vegetable",
     items: [
-      { title: "abc" },
-      { title: "def" },
-      { title: "abc" },
-      { title: "def" },
-      { title: "abc" },
-      { title: "def" },
+      { title: "Fresh Tomatoes" },
+      { title: "Cauliflower " },
+      { title: "Chillies" },
+      { title: "Dalle Khursani " },
+      { title: "Cabbage" },
+      { title: "Potatoes" },
+      { title: "Fresh Spring Onion" },
     ],
   },
 ];
@@ -137,9 +141,12 @@ const NavBar = () => {
       <Container>
         <div className="mobile-navbar">
           <div className="mobile-navbar-toggle">
+            <Link to="/">
             <div>
               <img src={Logo} alt="" />
             </div>
+
+            </Link>
             <GiHamburgerMenu
               className="hambergur-menu"
               onClick={() => setHideSmallNavbar(!hideSmallNavbar)}
@@ -152,9 +159,10 @@ const NavBar = () => {
                       return (
                         <>
                           <SubNav
+                            key={index}
                             title={datas.title}
                             items={datas.items}
-                            key={index}
+                          
                           />
                         </>
                       );
@@ -483,79 +491,6 @@ const NavBar = () => {
                                         </div>
                                       </Col>
                                     </Row>
-                                    <form action="">
-                                      <Row>
-                                        <Col md={6}>
-                                          <div className="mt-4">
-                                            <InputForm
-                                              label="First Name"
-                                              type="text"
-                                              placeholder="Enter Your First Name"
-                                              name="firstname"
-                                              asteric="*"
-                                            />
-                                          </div>
-                                        </Col>
-                                        <Col md={6}>
-                                          <div className="mt-4">
-                                            <InputForm
-                                              label="Last Name"
-                                              type="text"
-                                              placeholder="Enter Your Last Name"
-                                              name="lastname"
-                                              asteric="*"
-                                            />
-                                          </div>
-                                        </Col>
-                                      </Row>
-                                      <Row>
-                                        <Col md={6}>
-                                          <div className="mt-4">
-                                            <InputForm
-                                              label="Email Address"
-                                              type="email"
-                                              placeholder="Enter Your Email Address"
-                                              name="mobilenum"
-                                              asteric="*"
-                                            />
-                                          </div>
-                                        </Col>
-                                        <Col md={6}>
-                                          <div className="mt-4">
-                                            <InputForm
-                                              label="Mobile Number"
-                                              type="num"
-                                              placeholder="Enter Your Mobile Number"
-                                              name="mobilenumber"
-                                            />
-                                          </div>
-                                        </Col>
-                                      </Row>
-                                      <Row>
-                                        <Col md={6}>
-                                          <div className="mt-4">
-                                            <InputForm
-                                              label="Password"
-                                              type="password"
-                                              placeholder="Enter Your Password"
-                                              name="password"
-                                              asteric="*"
-                                            />
-                                          </div>
-                                        </Col>
-                                        <Col md={6}>
-                                          <div className="mt-4">
-                                            <InputForm
-                                              label=" Confirm Password"
-                                              type="password"
-                                              placeholder="Confirm Your Password"
-                                              name="confirmpassword"
-                                              asteric="*"
-                                            />
-                                          </div>
-                                        </Col>
-                                      </Row>
-                                    </form>
                                     <div className="createaccount">
                                       <InputGroup.Checkbox />
                                       <p>
@@ -631,6 +566,11 @@ const NavBar = () => {
                             My Account
                           </Link>
                         </li>
+                        <li>
+                          <Link to="/wishlist" className="account-wishlistdetails">
+                            Wishlist
+                          </Link>
+                        </li>
                       </ul>
                     ) : (
                       ""
@@ -666,10 +606,12 @@ const NavBar = () => {
                 <div className="navbar-dropdown">
                   <ul className="navar-dropdown-ul">
                     <li className="navar-dropdown-li">
+                      <div className="navbardropdown-flex">
                       <Link to="/paichopickle">
                         Paicho Pickle
-                        <MdKeyboardArrowRight className="dropdown-item-icon" />
                       </Link>
+                      <MdKeyboardArrowRight className="dropdown-item-icon" />
+                      </div>
                       <ul className="dropdown-submenu">
                         <li>
                           <Link to="/productdetail">Mango Pickle</Link>
@@ -689,13 +631,15 @@ const NavBar = () => {
                       </ul>
                     </li>
                     <li className="navar-dropdown-li">
-                      <Link to="/processingproduct">
+                    <div className="navbardropdown-flex">
+                      <Link to="/paichopickle">
                         Processing Item
-                        <MdKeyboardArrowRight className="dropdown-item-icon" />
                       </Link>
+                      <MdKeyboardArrowRight className="dropdown-item-icon" />
+                      </div>
                       <ul className="dropdown-submenu">
                         <li>
-                          <Link to="/productdetail">Paicho Mix Jam </Link>{" "}
+                          <Link to="/productdetail">Paicho Mix Jam </Link>
                         </li>
                         <li>
                           <Link to="/productdetail">Paicho Chuck</Link>
@@ -718,35 +662,108 @@ const NavBar = () => {
                       </ul>
                     </li>
                     <li className="navar-dropdown-li">
-                      <Link to="/grainsandpulses">
-                        Grains & Pulses{" "}
-                        <MdKeyboardArrowRight className="dropdown-item-icon" />
+                    <div className="navbardropdown-flex">
+                      <Link to="/paichopickle">
+                       Grains & Pulses
                       </Link>
+                      <MdKeyboardArrowRight className="dropdown-item-icon" />
+                      </div>
+                      <ul className="dropdown-submenu">
+                        <li>
+                          <Link to="/productdetail">Paicho Chamal </Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Paicho Daal </Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Phapar dana</Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Kodoko Pitho</Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Paicho Sweet Backwheat Pitho</Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Paicho Sweet Backwheat Pitho</Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Paicho Gahat dana</Link>
+                        </li>
+                      </ul>
                     </li>
                     <li className="navar-dropdown-li">
-                      <Link to="/indenginousproducts">
-                        Indeginous Product{" "}
-                        <MdKeyboardArrowRight className="dropdown-item-icon" />
+                    <div className="navbardropdown-flex">
+                      <Link to="/paichopickle">
+                       Indengious Products
                       </Link>
+                      <MdKeyboardArrowRight className="dropdown-item-icon" />
+                      </div>
+                      <ul className="dropdown-submenu">
+                        <li>
+                          <Link to="/productdetail">Paicho Sinki</Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Paicho Masyaura</Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Kabuno </Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Nettle Powder</Link>
+                        </li>
+                       
+                      </ul>
                     </li>
                     <li className="navar-dropdown-li">
-                      <Link to="/paichodryfoods">
-                        {" "}
-                        Dry Food
-                        <MdKeyboardArrowRight className="dropdown-item-icon" />
+                    <div className="navbardropdown-flex">
+                      <Link to="/paichopickle">
+                        Dry Foods
                       </Link>
+                      <MdKeyboardArrowRight className="dropdown-item-icon" />
+                      </div>
+                      <ul className="dropdown-submenu">
+                        <li>
+                          <Link to="/productdetail">Paicho Alaichi  </Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Paicho Aaapko Chana </Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Paicho Bakulla dana </Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Paicho Barro </Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Paicho Besaar</Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Paicho Sukeko Dalle  </Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Paicho Dry Apple</Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Paicho Sukeko Karela</Link>
+                        </li>
+                      </ul>
                     </li>
                     <li className="navar-dropdown-li">
-                      <Link to="/ketchupandsauces">
-                        Ketchup & Sauces{" "}
-                        <MdKeyboardArrowRight className="dropdown-item-icon" />
+                    <div className="navbardropdown-flex">
+                      <Link to="/paichopickle">
+                       Ketchup & sauces
                       </Link>
+                      <MdKeyboardArrowRight className="dropdown-item-icon" />
+                      </div>
                     </li>
                     <li className="navar-dropdown-li">
-                      <Link to="/organicvegetables">
-                        Organic Vegatable{" "}
-                        <MdKeyboardArrowRight className="dropdown-item-icon" />
+                    <div className="navbardropdown-flex">
+                      <Link to="/paichopickle">
+                       Organic Vegetables
                       </Link>
+                      <MdKeyboardArrowRight className="dropdown-item-icon" />
+                      </div>
                     </li>
                   </ul>
                 </div>

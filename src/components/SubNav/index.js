@@ -17,8 +17,8 @@ const SubNav = ({ title, items }) => {
       
         items.map((data, index) => {
           return (
-            <ul className="subdropdown">
-            <li className="navar-dropdown-li" key={index}>
+            <ul className="subdropdown" key={index}>
+            <li className="navar-dropdown-li">
               <Link to="/productdetail">{data.title}</Link>
             </li>
             </ul>
