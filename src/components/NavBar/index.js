@@ -787,7 +787,6 @@ const NavBar = () => {
                       </Link>
                       <MdKeyboardArrowRight className="dropdown-item-icon" />
                       </div>
-                    </li>
                     <ul className="dropdown-submenu">
                         <li>
                           <Link to="/productdetail">Fresh Tomatoes</Link>
@@ -811,6 +810,7 @@ const NavBar = () => {
                           <Link to="/productdetail">Fresh Spring Onion </Link>
                         </li>
                       </ul>
+                    </li>
                   </ul>
                 </div>
               ) : (
