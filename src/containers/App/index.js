@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import React from "react";
+import React,{useRef,useEffect } from "react";
 
 import OrderConfirmation from "../OrderConfirmation";
 import AccountDetail from "../AccountDetail";
@@ -19,6 +19,9 @@ import PaichoDryFoods from "../PaichoDryFoods";
 import KetchupSauce from "../KetchupSauce";
 import PaichoPickle from "../PaichoPickle";
 import GrainsPulses from "../GrainsPulses";
+
+// import ScrollToTop from "../../components/ScrollToTop";
+
 
 const App = () => {
   return (

@@ -79,7 +79,7 @@ const Footer = () => {
             <Col lg={12}>
               <div className="footer__bottom">
                 <div className="footer__bottom--center">
-                  <span>Copyright © Paicho Pasal 2022| All Right Reserved</span>
+                  <span>Copyright © Paicho Pasal 2022  |  All Right Reserved</span>
                 </div>
               </div>
             </Col>

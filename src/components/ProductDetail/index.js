@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Col, Container, Row, Modal, Toast } from "react-bootstrap";
+import React, { useState} from "react";
+import { Col, Container, Row, Modal, Toast,Form,Button,InputGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ProductPhoto from "../../assets/images/productdetail.png";
 import Slider from "react-slick";
@@ -35,11 +35,18 @@ const sliderImg = [
 const ProductDetailComp = ({ stock }) => {
   const [showA, setShowA] = useState(false);
   const toggleShowA = () => setShowA(!showA);
-
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [image, setImage] = useState(sliderImg[0].photo);
+  const [signIn, setSignin] = useState(true);
+  const signInHandler = () => {
+    handleShow(true);
+    setSignin(true);
+  };
+  const signUpHandler = () => {
+    setSignin(false);
+  };
   const settings = {
     dots: false,
     infinite: true,
@@ -136,60 +143,177 @@ const ProductDetailComp = ({ stock }) => {
                 <Link
                   to=""
                   className="product__btns--buynow"
-                  onClick={handleShow}
+                  onClick={signInHandler}
                 >
                   Buy Now
                 </Link>
-                <Modal show={show} onHide={handleClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>
-                      <p>Sign In to your Paicho Account</p>
-                      <span>
-                        Please fill in the form correctly to sign in your paicho
-                        account
-                      </span>
-                    </Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <div className="mt-4 position-relative">
-                      <InputForm
-                        label="Mobile Number"
-                        type="num"
-                        placeholder="Enter Your Mobile Number"
-                        name="mobilenumber"
-                        asteric="*"
-                      />
-                    </div>
-                    <div className="mt-4 position-relative">
-                      <InputForm
-                        label="Password"
-                        type="num"
-                        placeholder="Enter Your Password"
-                        name="password"
-                        asteric="*"
-                      />
-                    </div>
-
-                    <button className=" sign-in-btn">Sign In</button>
-
-                    <Link to="" className="forget-password">
-                      <u>Forget Password?</u>
-                    </Link>
-
-                    <p className="or">or</p>
-
-                    <div className="signin-socialmediaicon">
-                      <img src={Facebookicon} alt="" />
-                      <img src={GoogleIcon} alt="" />
-                    </div>
-
-                    <p className="dont-haveacc">
-                      Don't have an account?<Link to=""> Sign Up </Link>
-                    </p>
-                  </Modal.Body>
-                </Modal>
+             
               </div>
+              <Modal show={show} onHide={handleClose}>
+                          <Modal.Header closeButton>
+                            <Modal.Title>
+                              {signIn ? (
+                                <>
+                                  <p>Sign In to your Paicho Account</p>
+                                  <span>
+                                    Please fill in the form correctly to sign in
+                                    your paicho account
+                                  </span>
+                                </>
+                              ) : (
+                                <>
+                                  <p>Create Your Paicho Account</p>
+                                  <span>
+                                    Please fill in the form correctly to sign up
+                                    your paicho account
+                                  </span>
+                                </>
+                              )}
+                            </Modal.Title>
+                          </Modal.Header>
+                          <Modal.Body>
+                            {signIn ? (
+                              <>
+                                <Form>
+                                  <div className="mt-4 position-relative">
+                                    <InputForm
+                                      label="Mobile Number"
+                                      type="number"
+                                      placeholder="Enter Your Mobile Number"
+                                      name="mobilenumber"
+                                      asteric="*"
+                                      required
+                                    />
+                                  </div>
+                                  <div className="mt-4 position-relative">
+                                    <InputForm
+                                      label="Password"
+                                      type="password"
+                                      placeholder="Enter Your Password"
+                                      name="password"
+                                      asteric="*"
+                                      required
+                                    />
+                                  </div>
 
+                                  <Button className="sign-in-btn" type="submit">
+                                    Sign In
+                                  </Button>
+                                  <Link to="" className="forget-password">
+                                    <u>Forget Password?</u>
+                                  </Link>
+                                </Form>
+                              </>
+                            ) : (
+                              <>
+                                <Form action="">
+                                  <Row>
+                                    <Col md={6}>
+                                      <div className="mt-4">
+                                        <InputForm
+                                          label="First Name"
+                                          type="text"
+                                          placeholder="Enter Your First Name"
+                                          name="firstname"
+                                          asteric="*"
+                                        />
+                                      </div>
+                                    </Col>
+                                    <Col md={6}>
+                                      <div className="mt-4">
+                                        <InputForm
+                                          label="Last Name"
+                                          type="text"
+                                          placeholder="Enter Your Last Name"
+                                          name="lastname"
+                                          asteric="*"
+                                        />
+                                      </div>
+                                    </Col>
+                                  </Row>
+                                  <Row>
+                                    <Col md={6}>
+                                      <div className="mt-4">
+                                        <InputForm
+                                          label="Email Address"
+                                          type="email"
+                                          placeholder="Enter Your Email Address"
+                                          name="mobilenum"
+                                          asteric="*"
+                                        />
+                                      </div>
+                                    </Col>
+                                    <Col md={6}>
+                                      <div className="mt-4">
+                                        <InputForm
+                                          label="Mobile Number"
+                                          type="num"
+                                          placeholder="Enter Your Mobile Number"
+                                          name="mobilenumber"
+                                          asteric="*"
+                                        />
+                                      </div>
+                                    </Col>
+                                  </Row>
+                                  <Row>
+                                    <Col md={6}>
+                                      <div className="mt-4">
+                                        <InputForm
+                                          label="Password"
+                                          type="password"
+                                          placeholder="Enter Your Password"
+                                          name="password"
+                                          asteric="*"
+                                        />
+                                      </div>
+                                    </Col>
+                                    <Col md={6}>
+                                      <div className="mt-4">
+                                        <InputForm
+                                          label=" Confirm Password"
+                                          type="password"
+                                          placeholder="Confirm Your Password"
+                                          name="confirmpassword"
+                                          asteric="*"
+                                        />
+                                      </div>
+                                    </Col>
+                                  </Row>
+                                </Form>
+                                <div className="createaccount">
+                                  <InputGroup.Checkbox />
+                                  <p>
+                                    Creating an account means you’re okay with
+                                    our
+                                    <Link to="">Terms of Service</Link> and
+                                    <Link to="">Privacy Policy</Link>
+                                  </p>
+                                </div>
+                                <button className=" sign-in-btn ">
+                                  Create Account
+                                </button>
+                              </>
+                            )}
+
+                            <p className="or">or</p>
+
+                            <div className="signin-socialmediaicon">
+                              <img src={Facebookicon} alt="" />
+                              <img src={GoogleIcon} alt="" />
+                            </div>
+                            <p className="dont-haveacc">
+                              Don't have an account?
+                              {signIn ? (
+                                <span onClick={signUpHandler}> Sign Up </span>
+                              ) : (
+                                <span onClick={() => setSignin(true)}>
+                                  {" "}
+                                  Sign In{" "}
+                                </span>
+                              )}
+                            </p>
+                          </Modal.Body>
+                        </Modal>
               <div className="product__lists">
                 <p>Ingredients</p>
                 <ul>

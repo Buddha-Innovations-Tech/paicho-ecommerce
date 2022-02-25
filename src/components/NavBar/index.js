@@ -321,6 +321,7 @@ const NavBar = () => {
                                           type="num"
                                           placeholder="Enter Your Mobile Number"
                                           name="mobilenumber"
+                                          asteric="*"
                                         />
                                       </div>
                                     </Col>
@@ -451,7 +452,7 @@ const NavBar = () => {
                                             label="Email Address"
                                             type="email"
                                             placeholder="Enter Your Email Address"
-                                            name="mobilenum"
+                                            name="email"
                                             asteric="*"
                                           />
                                         </div>
@@ -463,6 +464,7 @@ const NavBar = () => {
                                             type="num"
                                             placeholder="Enter Your Mobile Number"
                                             name="mobilenumber"
+                                            asteric="*"
                                           />
                                         </div>
                                       </Col>
@@ -582,6 +584,7 @@ const NavBar = () => {
                   <span>
                     <Link to="/shoppingcart">
                       <BsFillCartFill className="navbar-right-icon" />
+                      <sup className="navbar-shopping-card-sup">0</sup>
                     </Link>
                   </span>
                 </div>
