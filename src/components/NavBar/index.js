@@ -756,6 +756,26 @@ const NavBar = () => {
                       </Link>
                       <MdKeyboardArrowRight className="dropdown-item-icon" />
                       </div>
+                      <ul className="dropdown-submenu">
+                        <li>
+                          <Link to="/productdetail">Paicho Chilly Sauce  </Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Paicho Tomato Ketchup </Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Paicho Tomato Puree </Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Paicho Vinegar  </Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Paicho Hot & Sweet  </Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Paicho Soya Sauce  </Link>
+                        </li>
+                      </ul>
                     </li>
                     <li className="navar-dropdown-li">
                     <div className="navbardropdown-flex">
@@ -765,6 +785,29 @@ const NavBar = () => {
                       <MdKeyboardArrowRight className="dropdown-item-icon" />
                       </div>
                     </li>
+                    <ul className="dropdown-submenu">
+                        <li>
+                          <Link to="/productdetail">Fresh Tomatoes</Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Cauliflower </Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Chillies </Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Dalle Khursani </Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Cabbage </Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Potatoes </Link>
+                        </li>
+                        <li>
+                          <Link to="/productdetail">Fresh Spring Onion </Link>
+                        </li>
+                      </ul>
                   </ul>
                 </div>
               ) : (
