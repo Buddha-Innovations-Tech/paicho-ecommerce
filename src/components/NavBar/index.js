@@ -582,6 +582,7 @@ const NavBar = () => {
                   <span>
                     <Link to="/shoppingcart">
                       <BsFillCartFill className="navbar-right-icon" />
+                      <sup className="navbar-shopping-card-sup">0</sup>
                     </Link>
                   </span>
                 </div>
@@ -784,7 +785,6 @@ const NavBar = () => {
                       </Link>
                       <MdKeyboardArrowRight className="dropdown-item-icon" />
                       </div>
-                    </li>
                     <ul className="dropdown-submenu">
                         <li>
                           <Link to="/productdetail">Fresh Tomatoes</Link>
@@ -808,6 +808,7 @@ const NavBar = () => {
                           <Link to="/productdetail">Fresh Spring Onion </Link>
                         </li>
                       </ul>
+                    </li>
                   </ul>
                 </div>
               ) : (
