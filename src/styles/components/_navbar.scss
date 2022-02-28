@@ -7,7 +7,6 @@
 }
 .imput-wrapper {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   border: 1px solid color(primary, base);
   border-radius: $radius-buttons;
@@ -113,6 +112,7 @@
       top: 33px;
       left: -30px;
       position: absolute;
+      z-index: 9999;
     }
     .navar-dropdown-ul {
       padding-top: 6px;
@@ -272,7 +272,7 @@
       border-top: 60px solid transparent;
       border-bottom: 60px solid transparent;
       border-left: 60px solid #8dc73d;
-      transform: rotate(-44deg);
+      transform: rotate(-44.8deg);
       right: -60px;
       top: -79px;
       position: absolute;

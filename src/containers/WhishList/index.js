@@ -22,7 +22,7 @@ const WhishList = () => {
               </div>
             </Col>
             <Col lg={9} sm={12} className="whishlist-btn">
-              <CartTable tableheading="Action" icon={<RiDeleteBinLine />} />
+              <CartTable action="Action" icon={<RiDeleteBinLine />} />
             </Col>
           </Row>
         </Container>

@@ -186,7 +186,7 @@ const NavBar = () => {
             </Col>
             <Col md={7} sm={12}>
               <div className="imput-wrapper">
-                <form action="">
+                <form action="" style={{width:"100%"}}>
                   <input
                     type="text"
                     className="form-control"
@@ -378,7 +378,7 @@ const NavBar = () => {
                                 <span onClick={signUpHandler}> Sign Up </span>
                               ) : (
                                 <span onClick={() => setSignin(true)}>
-                                  {" "}
+                                
                                   Sign In{" "}
                                 </span>
                               )}
@@ -547,10 +547,10 @@ const NavBar = () => {
                               <p className="already-have-acc">
                                 Already have an account?
                                 <Link to="">
-                                  {" "}
+                                
                                   {signUp ? (
                                     <span onClick={signUpHandlerAccount}>
-                                      {" "}
+                                    
                                       Sign In
                                     </span>
                                   ) : (
@@ -635,7 +635,7 @@ const NavBar = () => {
                     </li>
                     <li className="navar-dropdown-li">
                     <div className="navbardropdown-flex">
-                      <Link to="/paichopickle">
+                      <Link to="/processingproduct">
                         Processing Item
                       </Link>
                       <MdKeyboardArrowRight className="dropdown-item-icon" />
@@ -666,8 +666,8 @@ const NavBar = () => {
                     </li>
                     <li className="navar-dropdown-li">
                     <div className="navbardropdown-flex">
-                      <Link to="/paichopickle">
-                       Grains & Pulses
+                      <Link to="/grainsandpulses">
+                      Grains & Pulses
                       </Link>
                       <MdKeyboardArrowRight className="dropdown-item-icon" />
                       </div>
@@ -697,7 +697,7 @@ const NavBar = () => {
                     </li>
                     <li className="navar-dropdown-li">
                     <div className="navbardropdown-flex">
-                      <Link to="/paichopickle">
+                      <Link to="/indenginousproducts">
                        Indengious Products
                       </Link>
                       <MdKeyboardArrowRight className="dropdown-item-icon" />
@@ -720,7 +720,7 @@ const NavBar = () => {
                     </li>
                     <li className="navar-dropdown-li">
                     <div className="navbardropdown-flex">
-                      <Link to="/paichopickle">
+                      <Link to="/paichodryfoods">
                         Dry Foods
                       </Link>
                       <MdKeyboardArrowRight className="dropdown-item-icon" />
@@ -754,7 +754,7 @@ const NavBar = () => {
                     </li>
                     <li className="navar-dropdown-li">
                     <div className="navbardropdown-flex">
-                      <Link to="/paichopickle">
+                      <Link to="/ketchupandsauces">
                        Ketchup & sauces
                       </Link>
                       <MdKeyboardArrowRight className="dropdown-item-icon" />
@@ -782,7 +782,7 @@ const NavBar = () => {
                     </li>
                     <li className="navar-dropdown-li">
                     <div className="navbardropdown-flex">
-                      <Link to="/paichopickle">
+                      <Link to="/organicvegetables">
                        Organic Vegetables
                       </Link>
                       <MdKeyboardArrowRight className="dropdown-item-icon" />

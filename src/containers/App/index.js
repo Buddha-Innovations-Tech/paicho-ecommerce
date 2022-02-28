@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import React,{useRef,useEffect } from "react";
+import React from "react";
 
 import OrderConfirmation from "../OrderConfirmation";
 import AccountDetail from "../AccountDetail";

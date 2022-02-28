@@ -1,13 +1,12 @@
+import React, { useState } from "react";
 import { InputGroup, Row, Col, Modal } from "react-bootstrap";
 import { CgChevronDoubleLeft } from "react-icons/cg";
 import { RiDeleteBinLine } from "react-icons/ri";
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
 import Productimage from "../../assets/images/ProductImage.png";
 import IncrementDecrement from "../IncrementDecrement";
 
-const CartTable = ({ icon, tableheading, btnnn }) => {
+const CartTable = ({ icon, tableheading, btnnn, action }) => {
   const mainTableData = [
     {
       img: Productimage,
@@ -63,6 +62,9 @@ const CartTable = ({ icon, tableheading, btnnn }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const goToShoppingcartPage = () => {
+    window.location.href.includes("/clearcart");
+  };
   return (
     <>
       <div className="carttable">
@@ -82,9 +84,6 @@ const CartTable = ({ icon, tableheading, btnnn }) => {
               <u>Clear Cart</u>
             </span>
             <Modal show={show} onHide={handleClose}>
-              {/* <Modal.Header closeButton>
-                <Modal.Title></Modal.Title>
-              </Modal.Header> */}
               <Modal.Body>
                 <div className="arrow-left"></div>
 
@@ -92,8 +91,17 @@ const CartTable = ({ icon, tableheading, btnnn }) => {
                   <p className="cart__modal--ask">
                     Are you sure you want to clear your cart?
                   </p>
-                  <button className="yes-btn">Yes</button> <br />
-                  <button className="no-btn">No</button>
+                  <Link
+                    to="/clearcart"
+                    className="yes-btn"
+                    onClick={goToShoppingcartPage}
+                  >
+                    Yes
+                  </Link>
+                  <br />
+                  <button className="no-btn" onClick={handleClose}>
+                    No
+                  </button>
                 </div>
 
                 <div className="arrow-right"></div>
@@ -110,7 +118,7 @@ const CartTable = ({ icon, tableheading, btnnn }) => {
             <Col lg={2}>Quantity</Col>
             <Col lg={2}>Unit Cost</Col>
             <Col lg={2}>Subtotal</Col>
-            <Col lg={1}>Action</Col>
+            <Col lg={1}>{action}</Col>
           </Row>
 
           {mainTableData.map((data, index) => {

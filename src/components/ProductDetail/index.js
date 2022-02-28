@@ -34,7 +34,7 @@ const sliderImg = [
 
 const ProductDetailComp = ({ stock }) => {
   const [showA, setShowA] = useState(false);
-  const toggleShowA = () => setShowA(!showA);
+  // const toggleShowA = () => setShowA(!showA);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -87,6 +87,8 @@ const ProductDetailComp = ({ stock }) => {
         <Container>
           <Row className="product__rows gx-5">
             <Col md={5}>
+              {sliderImg.length>1 ?
+              <>
               <div className="product__image">
                 <img src={image} alt="" className="img-fluid selected" />
               </div>
@@ -94,7 +96,7 @@ const ProductDetailComp = ({ stock }) => {
                 <Slider {...settings} >
                   {sliderImg.map((data, index) => (
                     <>
-                    <div style={{height:'100px', width:"100px", margin:"5px", boxShadow:data.photo===image && "0px 0px 4px rgb(0 0 0 / 25%)",borderRadius:data.photo===image && "5px"}} key={index}>
+                    <div style={{height:'100px', width:"100px", margin:"1px", boxShadow:data.photo===image && "0px 0px 4px rgb(0 0 0 / 25%)",borderRadius:data.photo===image && "5px"}} key={index}>
                     <img
                     className="product__sliders--image"
                       key={index}
@@ -107,6 +109,10 @@ const ProductDetailComp = ({ stock }) => {
                   ))}
                 </Slider>
               </div>
+              </>:
+              <div className="product__image">
+                <img src={image} alt="" className="img-fluid selected" />
+              </div>}
             </Col>
             <Col md={7}>
               <div className="product__heading">
@@ -130,12 +136,12 @@ const ProductDetailComp = ({ stock }) => {
                 <Link
                   to=""
                   className="product__btns--addtocart"
-                  onClick={toggleShowA}
+                  onClick={() => setShowA(true)}
                 >
-                  <Toast show={showA} onClose={toggleShowA}>
+                  <Toast onClose={() => setShowA(false)} show={showA} delay={2000} autohide>
                     <Toast.Body>
                       This item is added to your cart successfully !{" "}
-                      <BsCheck className="checkicon" />{" "}
+                      <BsCheck className="checkicon" />
                     </Toast.Body>
                   </Toast>
                   Add To Cart

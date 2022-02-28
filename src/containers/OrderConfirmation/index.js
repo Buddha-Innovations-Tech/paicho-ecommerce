@@ -1,15 +1,17 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { CgChevronDoubleRight } from "react-icons/cg";
 import { Link } from "react-router-dom";
-
+import React from "react";
 import Order from "../../assets/images/order__confirm.png";
 
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
+import ScrollToTop from "../../components/ScrollToTop";
 
 const OrderConfirmation = () => {
   return (
     <>
+      <ScrollToTop/>
       <NavBar />
       <section className="order__confirm">
         <Container>
