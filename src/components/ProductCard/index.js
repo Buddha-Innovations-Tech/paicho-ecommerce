@@ -1,29 +1,63 @@
 import { FiHeart } from "react-icons/fi";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
+import { addToWishlist } from "../../actions/wishListAction";
+import { useDispatch } from "react-redux";
 
-const ProductCard = ({ name, price, stock, imageSource, path }) => {
+const ProductCard = ({
+  _id,
+  name,
+  price,
+  countInStock,
+  image,
+  path,
+  previous,
+  discount,
+}) => {
+  // const {}
+  const dispatch = useDispatch();
+  var discountData = price - (discount / 100) * price;
+  const wishlistCreate = (id) => {
+    dispatch(addToWishlist(id));
+  };
   return (
     <>
       <Card className="product__card">
-        <Link to={`${path}`}>
+        <Link to={`/productdetail/${_id}`}>
           <Card.Img
             variant="top"
-            src={imageSource}
+            src={image[0]}
             className="img-fluid product__card--image"
             alt="product"
-            
           />
         </Link>
 
         <Card.Body className="product__card--body">
           <Card.Title className="product__card--body--title">
             <span className="product__card--body--title--heading">{name}</span>
-            <FiHeart className="product__card--body--title--icon" />
+            <FiHeart
+              className="product__card--body--title--icon"
+              onClick={() => {
+                wishlistCreate(_id);
+              }}
+            />
           </Card.Title>
           <Card.Text className="product__card--body--price">
-            <span className="price">Rs {price}</span>
-            <span className="product__card--body--price-inout"> {stock}</span>
+            <div>
+              <span className="price">Rs {discountData}</span>
+              <div className="newpricediv">
+                <span className="previous_price">Rs{price}</span>
+                <span className="new_price ms-3">-{discount} %</span>
+              </div>
+            </div>
+            <span
+              className="product__card--body--price-inout"
+              style={{
+                backgroundColor: countInStock !== 0 ? "#004f9a" : "#e84b23",
+              }}
+            >
+              {countInStock !== 0 ? "In Stock" : "Out Of Stock"}
+            </span>
           </Card.Text>
         </Card.Body>
       </Card>

@@ -6,7 +6,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
 import { MdCall } from "react-icons/md";
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Col,
   Container,
@@ -15,101 +15,115 @@ import {
   InputGroup,
   Button,
   Form,
+  FormControl,
 } from "react-bootstrap";
-import InputForm from "../InputForm";
+import { useDispatch, useSelector } from "react-redux";
+import { listCategories } from "../../actions/categoryAction";
 
 import GoogleIcon from "../../assets/images/googleicon.png";
 import Facebookicon from "../../assets/images/facebookicon.png";
 import Logo from "../../assets/images/paichologo.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import SubNav from "../SubNav";
+import { register, login, logout } from "../../actions/subscriberaction";
 
-const navItem = [
-  {
-    title: "Paicho Pickle",
-    items: [
-      { title: "Mango Pickle " },
-      { title: "Gooseberry Pickle" },
-      { title: "Lemon Pickle" },
-      { title: "Chilly Pickle" },
-      { title: "Paicho Bhutuk Achar" },
-      { title: "def" },
-    ],
-  },
-  {
-    title: "Processing  Item",
-    items: [
-      { title: "Paicho Mix Jam" },
-      { title: "Paicho Chuck" },
-      { title: "Khudo" },
-      { title: "Guava Juice" },
-      { title: "Mixed Fruit Jiuce" },
-      { title: "Paicho Sweetcorn" },
-      { title: "Paicho Sweetcorn" },
-    ],
-  },
-  {
-    title: "Grains & Pulses",
-    items: [
-      { title: "Paicho Chamal " },
-      { title: "Paicho Daal " },
-      { title: "Phapar dana" },
-      { title: "deKodoko Pithof" },
-      { title: "Paicho Sweet Backwheat Pitho" },
-      { title: "Paicho Gahat dana" },
-      
-    ],
-  },
-  {
-    title: "Indeginous Product",
-    items: [
-      { title: "Paicho Sinki" },
-      { title: "Paicho Masyaura" },
-      { title: "Kabuno" },
-      { title: "Nettle Powder" }, 
-    ],
-  },
-  {
-    title: "Dry Food",
-    items: [
-      { title: "Paicho Alaichi " },
-      { title: "Paicho Aaapko Chana" },
-      { title: "Paicho Bakulla dana " },
-      { title: "Paicho Barro " },
-      { title: "Paicho Besaar  " },
-      { title: "Paicho Bhango   " },
-      { title: "Paicho Sukeko Dalle  " },
-      { title: "Paicho Dry Apple" },
-      { title: "Paicho Sukeko Karela" },
-    ],
-  },
-  {
-    title: "Ketchup & Sauces",
-    items: [
-      { title: "Paicho Chilly Sauce" },
-      { title: "Paicho Tomato Ketchup" },
-      { title: "PaichoTomato Puree" },
-      { title: "Paicho Vinegar " },
-      { title: "Paicho Hot & Sweet  " },
-      { title: "Paicho Mexican Sauce   " },
-      { title: "Paicho Soya Sauce" },
-    ],
-  },
-  {
-    title: "Organic Vegetable",
-    items: [
-      { title: "Fresh Tomatoes" },
-      { title: "Cauliflower " },
-      { title: "Chillies" },
-      { title: "Dalle Khursani " },
-      { title: "Cabbage" },
-      { title: "Potatoes" },
-      { title: "Fresh Spring Onion" },
-    ],
-  },
-];
+// const navItem = [
+//   {
+//     title: "Paicho Pickle",
+//     items: [
+//       { title: "Mango Pickle " },
+//       { title: "Gooseberry Pickle" },
+//       { title: "Lemon Pickle" },
+//       { title: "Chilly Pickle" },
+//       { title: "Paicho Bhutuk Achar" },
+//       { title: "def" },
+//     ],
+//   },
+//   {
+//     title: "Processing  Item",
+//     items: [
+//       { title: "Paicho Mix Jam" },
+//       { title: "Paicho Chuck" },
+//       { title: "Khudo" },
+//       { title: "Guava Juice" },
+//       { title: "Mixed Fruit Jiuce" },
+//       { title: "Paicho Sweetcorn" },
+//       { title: "Paicho Sweetcorn" },
+//     ],
+//   },
+//   {
+//     title: "Grains & Pulses",
+//     items: [
+//       { title: "Paicho Chamal " },
+//       { title: "Paicho Daal " },
+//       { title: "Phapar dana" },
+//       { title: "deKodoko Pithof" },
+//       { title: "Paicho Sweet Backwheat Pitho" },
+//       { title: "Paicho Gahat dana" },
+//     ],
+//   },
+//   {
+//     title: "Indeginous Product",
+//     items: [
+//       { title: "Paicho Sinki" },
+//       { title: "Paicho Masyaura" },
+//       { title: "Kabuno" },
+//       { title: "Nettle Powder" },
+//     ],
+//   },
+//   {
+//     title: "Dry Food",
+//     items: [
+//       { title: "Paicho Alaichi " },
+//       { title: "Paicho Aaapko Chana" },
+//       { title: "Paicho Bakulla dana " },
+//       { title: "Paicho Barro " },
+//       { title: "Paicho Besaar  " },
+//       { title: "Paicho Bhango   " },
+//       { title: "Paicho Sukeko Dalle  " },
+//       { title: "Paicho Dry Apple" },
+//       { title: "Paicho Sukeko Karela" },
+//     ],
+//   },
+//   {
+//     title: "Ketchup & Sauces",
+//     items: [
+//       { title: "Paicho Chilly Sauce" },
+//       { title: "Paicho Tomato Ketchup" },
+//       { title: "PaichoTomato Puree" },
+//       { title: "Paicho Vinegar " },
+//       { title: "Paicho Hot & Sweet  " },
+//       { title: "Paicho Mexican Sauce   " },
+//       { title: "Paicho Soya Sauce" },
+//     ],
+//   },
+//   {
+//     title: "Organic Vegetable",
+//     items: [
+//       { title: "Fresh Tomatoes" },
+//       { title: "Cauliflower " },
+//       { title: "Chillies" },
+//       { title: "Dalle Khursani " },
+//       { title: "Cabbage" },
+//       { title: "Potatoes" },
+//       { title: "Fresh Spring Onion" },
+//     ],
+//   },
+// ];
 
 const NavBar = () => {
+  const { cartItems } = useSelector((state) => state.cart);
+  const { subscriberInfo } = useSelector((state) => state.subscriberLogin);
+  const { categories } = useSelector((state) => state.categoryList);
+  const dispatch = useDispatch();
+  const ref = useRef();
+  const [mobilenumber, setMobilenumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
+
   const [navbarshow, setNavbarShow] = useState(false);
   const [account, setAccount] = useState(false);
   const [show, setShow] = useState(false);
@@ -121,6 +135,54 @@ const NavBar = () => {
   const [signIn, setSignin] = useState(true);
   const [signUp, setSignup] = useState(true);
   const [hideSmallNavbar, setHideSmallNavbar] = useState(false);
+  const [cartlength, setCartLength] = useState([]);
+  const [search, setSearch] = useState("");
+  useEffect(() => {
+    dispatch(listCategories());
+  }, [dispatch]);
+
+  const refetch = () => {
+    let carts = localStorage.getItem("carts");
+    console.log(carts);
+    if (carts) {
+      setCartLength(JSON.parse(carts));
+    }
+  };
+  useEffect(() => {
+    // let carts = localStorage.getItem("carts");
+    // if (carts) {
+    //   setCartLength(JSON.parse(carts));
+    // } else {
+    //   setCartLength([]);
+    // }
+    let carts = localStorage.getItem("carts");
+    setCartLength(JSON.parse(carts));
+    window.addEventListener("storage", () => {
+      let carts = localStorage.getItem("carts");
+      console.log(carts);
+      if (carts) {
+        setCartLength(JSON.parse(carts));
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the menu
+      if (navbarshow && ref.current && !ref.current.contains(e.target)) {
+        setNavbarShow(false);
+      }
+    };
+
+    document.addEventListener("mousedown", checkIfClickedOutside);
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [navbarshow]);
+
   const signInHandler = () => {
     handleShow(true);
     setSignin(true);
@@ -135,17 +197,50 @@ const NavBar = () => {
   const signUpHandlerAccount = () => {
     setSignup(false);
   };
+  // const { subscriberInfo, loading } = useSelector(
+  //   (state) => state.subscriberLogin
+  // );
 
+  // useEffect(()=>{
+  //   if(subscriberInfo){
+
+  //   }
+  // })
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login(mobilenumber, password));
+    handleClose();
+  };
+  const handleSubmitRegister = (e) => {
+    e.preventDefault();
+    if (password !== confirmpassword) {
+      alert("Password dont match");
+    } else {
+      dispatch(
+        register(
+          firstname,
+          lastname,
+          email,
+          mobilenumber,
+          password,
+          confirmpassword
+        )
+      );
+      handleClose1();
+    }
+  };
+  const logOutHandlerAccount = () => {
+    dispatch(logout());
+  };
   return (
     <>
       <Container>
         <div className="mobile-navbar">
           <div className="mobile-navbar-toggle">
             <Link to="/">
-            <div>
-              <img src={Logo} alt="" />
-            </div>
-
+              <div>
+                <img src={Logo} alt="" />
+              </div>
             </Link>
             <GiHamburgerMenu
               className="hambergur-menu"
@@ -154,19 +249,20 @@ const NavBar = () => {
             {hideSmallNavbar ? (
               <>
                 <div className="navbar-dropdown">
-                  <ul className="navar-dropdown-ul">
-                    {navItem.map((datas, index) => {
-                      return (
-                        <>
-                          <SubNav
-                            key={index}
-                            title={datas.title}
-                            items={datas.items}
-                          
-                          />
-                        </>
-                      );
-                    })}
+                  <ul className="navar-dropdown-ul ">
+                    {categories &&
+                      categories.map((datas, index) => {
+                        return (
+                          <>
+                            <SubNav
+                              key={index}
+                              title={datas.name}
+                              items={datas.items}
+                              categories={categories}
+                            />
+                          </>
+                        );
+                      })}
                   </ul>
                 </div>
               </>
@@ -177,31 +273,47 @@ const NavBar = () => {
         </div>
         <div className="first-navbar">
           <Row className="d-flex align-items-center">
-            <Col md={3}>
+            <Col md={2}>
               <Link to="/">
                 <figure className="logo">
                   <img src={Logo} alt="" />
                 </figure>
               </Link>
             </Col>
-            <Col md={7} sm={12}>
+            <Col md={6} sm={12}>
               <div className="imput-wrapper">
-                <form action="" style={{width:"100%"}}>
+                <form action="" style={{ width: "100%" }}>
                   <input
                     type="text"
                     className="form-control"
                     placeholder="Search Products"
-                    // onChange={SearchHandler}
-                    // value={search}
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
                   />
                 </form>
                 <FiSearch className="search-icon" />
               </div>
             </Col>
-            <Col md={2}>
+            <Col md={4}>
               <div className="dropdown-num d-flex justify-content-end align-items-center">
                 <div className="navbarright-wrapper">
-                  <span>
+                  {subscriberInfo ? (
+                    <>
+                      <p className="subscriber_name">
+                        {`${subscriberInfo.firstname} ${subscriberInfo.lastname}`}
+                      </p>
+                      <Link
+                        to=""
+                        className="account-logout"
+                        onClick={logOutHandlerAccount}
+                      >
+                        Log Out
+                      </Link>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                  <span className="ms-4">
                     <Link to="">
                       <FaUserAlt
                         className="navbar-right-icon"
@@ -245,26 +357,44 @@ const NavBar = () => {
                           <Modal.Body>
                             {signIn ? (
                               <>
-                                <Form>
+                                <Form onSubmit={handleLoginSubmit}>
                                   <div className="mt-4 position-relative">
-                                    <InputForm
-                                      label="Mobile Number"
-                                      type="number"
-                                      placeholder="Enter Your Mobile Number"
-                                      name="mobilenumber"
-                                      asteric="*"
-                                      required
-                                    />
+                                    <Form.Label>
+                                      Mobile Number <sup>*</sup>
+                                    </Form.Label>
+                                    <InputGroup>
+                                      <FormControl
+                                        label="Mobile Number"
+                                        type="number"
+                                        placeholder="Enter Your Mobile Number"
+                                        name="mobilenumber"
+                                        asteric="*"
+                                        value={mobilenumber}
+                                        onChange={(e) =>
+                                          setMobilenumber(e.target.value)
+                                        }
+                                        required
+                                      />
+                                    </InputGroup>
                                   </div>
                                   <div className="mt-4 position-relative">
-                                    <InputForm
-                                      label="Password"
-                                      type="password"
-                                      placeholder="Enter Your Password"
-                                      name="password"
-                                      asteric="*"
-                                      required
-                                    />
+                                    <Form.Label>
+                                      Password <sup>*</sup>
+                                    </Form.Label>
+                                    <InputGroup>
+                                      <FormControl
+                                        label="Password"
+                                        type="password"
+                                        placeholder="Enter Your Password"
+                                        name="password"
+                                        value={password}
+                                        onChange={(e) =>
+                                          setPassword(e.target.value)
+                                        }
+                                        asteric="*"
+                                        required
+                                      />
+                                    </InputGroup>
                                   </div>
 
                                   <Button className="sign-in-btn" type="submit">
@@ -277,92 +407,149 @@ const NavBar = () => {
                               </>
                             ) : (
                               <>
-                                <Form action="">
+                                <Form onSubmit={handleSubmitRegister}>
                                   <Row>
                                     <Col md={6}>
                                       <div className="mt-4">
-                                        <InputForm
-                                          label="First Name"
-                                          type="text"
-                                          placeholder="Enter Your First Name"
-                                          name="firstname"
-                                          asteric="*"
-                                        />
+                                        <Form.Label>
+                                          First Name <sup>*</sup>
+                                        </Form.Label>
+                                        <InputGroup>
+                                          <FormControl
+                                            label="First Name"
+                                            type="text"
+                                            placeholder="Enter Your First Name"
+                                            name="firstname"
+                                            value={firstname}
+                                            onChange={(e) =>
+                                              setFirstName(e.target.value)
+                                            }
+                                            asteric="*"
+                                          />
+                                        </InputGroup>
                                       </div>
                                     </Col>
                                     <Col md={6}>
                                       <div className="mt-4">
-                                        <InputForm
-                                          label="Last Name"
-                                          type="text"
-                                          placeholder="Enter Your Last Name"
-                                          name="lastname"
-                                          asteric="*"
-                                        />
+                                        <Form.Label>
+                                          Last Name <sup>*</sup>
+                                        </Form.Label>
+                                        <InputGroup>
+                                          <FormControl
+                                            label="Last Name"
+                                            type="text"
+                                            placeholder="Enter Your Last Name"
+                                            name="lastname"
+                                            value={lastname}
+                                            onChange={(e) =>
+                                              setLastName(e.target.value)
+                                            }
+                                            asteric="*"
+                                          />
+                                        </InputGroup>
                                       </div>
                                     </Col>
                                   </Row>
                                   <Row>
                                     <Col md={6}>
                                       <div className="mt-4">
-                                        <InputForm
-                                          label="Email Address"
-                                          type="email"
-                                          placeholder="Enter Your Email Address"
-                                          name="mobilenum"
-                                          asteric="*"
-                                        />
+                                        <Form.Label>
+                                          Email <sup>*</sup>
+                                        </Form.Label>
+                                        <InputGroup>
+                                          <FormControl
+                                            label="Email Address"
+                                            type="email"
+                                            placeholder="Enter Your Email Address"
+                                            name="email"
+                                            value={email}
+                                            onChange={(e) =>
+                                              setEmail(e.target.value)
+                                            }
+                                            asteric="*"
+                                          />
+                                        </InputGroup>
                                       </div>
                                     </Col>
                                     <Col md={6}>
                                       <div className="mt-4">
-                                        <InputForm
-                                          label="Mobile Number"
-                                          type="num"
-                                          placeholder="Enter Your Mobile Number"
-                                          name="mobilenumber"
-                                          asteric="*"
-                                        />
+                                        <Form.Label>
+                                          Mobile Number <sup>*</sup>
+                                        </Form.Label>
+                                        <InputGroup>
+                                          <FormControl
+                                            label="Mobile Number"
+                                            type="number"
+                                            placeholder="Enter Your Mobile Number"
+                                            name="mobilenumber"
+                                            value={mobilenumber}
+                                            onChange={(e) =>
+                                              setMobilenumber(e.target.value)
+                                            }
+                                            asteric="*"
+                                          />
+                                        </InputGroup>
                                       </div>
                                     </Col>
                                   </Row>
                                   <Row>
                                     <Col md={6}>
                                       <div className="mt-4">
-                                        <InputForm
-                                          label="Password"
-                                          type="password"
-                                          placeholder="Enter Your Password"
-                                          name="password"
-                                          asteric="*"
-                                        />
+                                        <Form.Label>
+                                          Password <sup>*</sup>
+                                        </Form.Label>
+                                        <InputGroup>
+                                          <FormControl
+                                            label="Password"
+                                            type="password"
+                                            placeholder="Enter Your Password"
+                                            name="password"
+                                            value={password}
+                                            onChange={(e) =>
+                                              setPassword(e.target.value)
+                                            }
+                                            asteric="*"
+                                          />
+                                        </InputGroup>
                                       </div>
                                     </Col>
                                     <Col md={6}>
                                       <div className="mt-4">
-                                        <InputForm
-                                          label=" Confirm Password"
-                                          type="password"
-                                          placeholder="Confirm Your Password"
-                                          name="confirmpassword"
-                                          asteric="*"
-                                        />
+                                        <Form.Label>
+                                          Confirm Password <sup>*</sup>
+                                        </Form.Label>
+                                        <InputGroup>
+                                          <FormControl
+                                            label=" Confirm Password"
+                                            type="password"
+                                            placeholder="Confirm Your Password"
+                                            name="confirmpassword"
+                                            value={confirmpassword}
+                                            onChange={(e) =>
+                                              setConfirmPassword(e.target.value)
+                                            }
+                                            asteric="*"
+                                          />
+                                        </InputGroup>
                                       </div>
                                     </Col>
                                   </Row>
+                                  <div className="createaccount">
+                                    <InputGroup.Checkbox />
+                                    <p>
+                                      Creating an account means you’re okay with
+                                      our
+                                      <Link to="">Terms of Service</Link> and
+                                      <Link to="">Privacy Policy</Link>
+                                    </p>
+                                  </div>
+                                  <button
+                                    className=" sign-in-btn "
+                                    onClick={handleSubmitRegister}
+                                  >
+                                    Create Account
+                                  </button>
                                 </Form>
-                                <div className="createaccount">
-                                  <InputGroup.Checkbox />
-                                  <p>
-                                    Creating an account means you’re okay with
-                                    our
-                                    <Link to="">Terms of Service</Link> and
-                                    <Link to="">Privacy Policy</Link>
-                                  </p>
-                                </div>
-                                <button className=" sign-in-btn ">
-                                  Create Account
-                                </button>
                               </>
                             )}
 
@@ -378,7 +565,6 @@ const NavBar = () => {
                                 <span onClick={signUpHandler}> Sign Up </span>
                               ) : (
                                 <span onClick={() => setSignin(true)}>
-                                
                                   Sign In{" "}
                                 </span>
                               )}
@@ -394,6 +580,15 @@ const NavBar = () => {
                             Create Account
                           </Link>
                         </li>
+                        {/* <li>
+                          <Link
+                            to=""
+                            className="account-create"
+                            onClick={logOutHandlerAccount}
+                          >
+                            Log Out
+                          </Link>
+                        </li> */}
                         <div className="accoount-create-modal">
                           <Modal show={show1} onHide={handleClose1}>
                             <Modal.Header closeButton>
@@ -420,76 +615,132 @@ const NavBar = () => {
                             <Modal.Body>
                               {signUp ? (
                                 <>
-                                  <Form action="">
+                                  <Form onSubmit={handleSubmitRegister}>
                                     <Row>
                                       <Col md={6}>
                                         <div className="mt-4">
-                                          <InputForm
-                                            label="First Name"
-                                            type="text"
-                                            placeholder="Enter Your First Name"
-                                            name="firstname"
-                                            asteric="*"
-                                          />
+                                          <Form.Label>
+                                            First Name <sup>*</sup>
+                                          </Form.Label>
+                                          <InputGroup>
+                                            <FormControl
+                                              label="First Name"
+                                              type="text"
+                                              placeholder="Enter Your First Name"
+                                              name="firstname"
+                                              value={firstname}
+                                              onChange={(e) =>
+                                                setFirstName(e.target.value)
+                                              }
+                                              asteric="*"
+                                            />
+                                          </InputGroup>
                                         </div>
                                       </Col>
                                       <Col md={6}>
                                         <div className="mt-4">
-                                          <InputForm
-                                            label="Last Name"
-                                            type="text"
-                                            placeholder="Enter Your Last Name"
-                                            name="lastname"
-                                            asteric="*"
-                                          />
+                                          <Form.Label>
+                                            Last Name <sup>*</sup>
+                                          </Form.Label>
+                                          <InputGroup>
+                                            <FormControl
+                                              label="Last Name"
+                                              type="text"
+                                              placeholder="Enter Your Last Name"
+                                              name="lastname"
+                                              value={lastname}
+                                              onChange={(e) =>
+                                                setLastName(e.target.value)
+                                              }
+                                              asteric="*"
+                                            />
+                                          </InputGroup>
                                         </div>
                                       </Col>
                                     </Row>
                                     <Row>
                                       <Col md={6}>
                                         <div className="mt-4">
-                                          <InputForm
-                                            label="Email Address"
-                                            type="email"
-                                            placeholder="Enter Your Email Address"
-                                            name="email"
-                                            asteric="*"
-                                          />
+                                          <Form.Label>
+                                            Email <sup>*</sup>
+                                          </Form.Label>
+                                          <InputGroup>
+                                            <FormControl
+                                              label="Email Address"
+                                              type="email"
+                                              placeholder="Enter Your Email Address"
+                                              name="email"
+                                              value={email}
+                                              onChange={(e) =>
+                                                setEmail(e.target.value)
+                                              }
+                                              asteric="*"
+                                            />
+                                          </InputGroup>
                                         </div>
                                       </Col>
                                       <Col md={6}>
                                         <div className="mt-4">
-                                          <InputForm
-                                            label="Mobile Number"
-                                            type="num"
-                                            placeholder="Enter Your Mobile Number"
-                                            name="mobilenumber"
-                                            asteric="*"
-                                          />
+                                          <Form.Label>
+                                            Mobile Number <sup>*</sup>
+                                          </Form.Label>
+                                          <InputGroup>
+                                            <FormControl
+                                              label="Mobile Number"
+                                              type="num"
+                                              placeholder="Enter Your Mobile Number"
+                                              name="mobilenumber"
+                                              value={mobilenumber}
+                                              onChange={(e) =>
+                                                setMobilenumber(e.target.value)
+                                              }
+                                              asteric="*"
+                                            />
+                                          </InputGroup>
                                         </div>
                                       </Col>
                                     </Row>
                                     <Row>
                                       <Col md={6}>
                                         <div className="mt-4">
-                                          <InputForm
-                                            label="Password"
-                                            type="password"
-                                            placeholder="Enter Your Password"
-                                            name="password"
-                                            asteric="*"
-                                          />
+                                          <Form.Label>
+                                            Password <sup>*</sup>
+                                          </Form.Label>
+                                          <InputGroup>
+                                            <FormControl
+                                              label="Password"
+                                              type="password"
+                                              placeholder="Enter Your Password"
+                                              name="password"
+                                              value={password}
+                                              onChange={(e) =>
+                                                setPassword(e.target.value)
+                                              }
+                                              asteric="*"
+                                            />
+                                          </InputGroup>
                                         </div>
                                       </Col>
                                       <Col md={6}>
                                         <div className="mt-4">
-                                          <InputForm
-                                            label=" Confirm Password"
-                                            type="password"
-                                            placeholder="Confirm Your Password"
-                                            name="confirmpassword"
-                                            asteric="*"
-                                          />
+                                          <Form.Label>
+                                            Confirm Password <sup>*</sup>
+                                          </Form.Label>
+                                          <InputGroup>
+                                            <FormControl
+                                              label=" Confirm Password"
+                                              type="password"
+                                              placeholder="Confirm Your Password"
+                                              name="confirmpassword"
+                                              value={confirmpassword}
+                                              onChange={(e) =>
+                                                setConfirmPassword(
+                                                  e.target.value
+                                                )
+                                              }
+                                              asteric="*"
+                                            />
+                                          </InputGroup>
                                         </div>
                                       </Col>
                                     </Row>
@@ -502,38 +753,60 @@ const NavBar = () => {
                                         <Link to="">Privacy Policy</Link>
                                       </p>
                                     </div>
-                                    <button className=" sign-in-btn ">
+                                    <button
+                                      className=" sign-in-btn "
+                                      onClick={handleSubmitRegister}
+                                    >
                                       Create Account
                                     </button>
                                   </Form>
                                 </>
                               ) : (
                                 <>
-                                  <Form>
+                                  <Form onSubmit={handleLoginSubmit}>
                                     <div className="mt-4 position-relative">
-                                      <InputForm
-                                        label="Mobile Number"
-                                        type="number"
-                                        placeholder="Enter Your Mobile Number"
-                                        name="mobilenumber"
-                                        asteric="*"
-                                        required
-                                      />
+                                      <Form.Label>
+                                        Mobile Number <sup>*</sup>
+                                      </Form.Label>
+                                      <InputGroup>
+                                        <FormControl
+                                          label="Mobile Number"
+                                          type="number"
+                                          placeholder="Enter Your Mobile Number"
+                                          name="mobilenumber"
+                                          asteric="*"
+                                          value={mobilenumber}
+                                          onChange={(e) =>
+                                            setMobilenumber(e.target.value)
+                                          }
+                                          required
+                                        />
+                                      </InputGroup>
                                     </div>
                                     <div className="mt-4 position-relative">
-                                      <InputForm
-                                        label="Password"
-                                        type="password"
-                                        placeholder="Enter Your Password"
-                                        name="password"
-                                        asteric="*"
-                                        required
-                                      />
+                                      <Form.Label>
+                                        Password <sup>*</sup>
+                                      </Form.Label>
+                                      <InputGroup>
+                                        <FormControl
+                                          label="Password"
+                                          type="password"
+                                          placeholder="Enter Your Password"
+                                          name="password"
+                                          value={password}
+                                          onChange={(e) =>
+                                            setPassword(e.target.value)
+                                          }
+                                          asteric="*"
+                                          required
+                                        />
+                                      </InputGroup>
                                     </div>
 
                                     <Button
                                       className="sign-in-btn"
                                       type="submit"
+                                      onClick={handleLoginSubmit}
                                     >
                                       Sign In
                                     </Button>
@@ -547,10 +820,8 @@ const NavBar = () => {
                               <p className="already-have-acc">
                                 Already have an account?
                                 <Link to="">
-                                
                                   {signUp ? (
                                     <span onClick={signUpHandlerAccount}>
-                                    
                                       Sign In
                                     </span>
                                   ) : (
@@ -569,7 +840,10 @@ const NavBar = () => {
                           </Link>
                         </li>
                         <li>
-                          <Link to="/wishlist" className="account-wishlistdetails">
+                          <Link
+                            to="/wishlist"
+                            className="account-wishlistdetails"
+                          >
                             Wishlist
                           </Link>
                         </li>
@@ -584,7 +858,9 @@ const NavBar = () => {
                   <span>
                     <Link to="/shoppingcart">
                       <BsFillCartFill className="navbar-right-icon" />
-                      <sup className="navbar-shopping-card-sup">0</sup>
+                      <sup className="navbar-shopping-card-sup">
+                        {cartItems.length}
+                      </sup>
                     </Link>
                   </span>
                 </div>
@@ -596,7 +872,10 @@ const NavBar = () => {
 
       <div className="second-nav-wrapper">
         <Container>
-          <div className="categories  d-block d-lg-flex justify-content-between align-items-center">
+          <div
+            className="categories  d-block d-lg-flex justify-content-between align-items-center"
+            ref={ref}
+          >
             <div
               className="navbar-left"
               onClick={() => setNavbarShow(!navbarshow)}
@@ -608,209 +887,39 @@ const NavBar = () => {
               {navbarshow ? (
                 <div className="navbar-dropdown">
                   <ul className="navar-dropdown-ul">
-                    <li className="navar-dropdown-li">
-                      <div className="navbardropdown-flex">
-                      <Link to="/paichopickle">
-                        Paicho Pickle
-                      </Link>
-                      <MdKeyboardArrowRight className="dropdown-item-icon" />
-                      </div>
-                      <ul className="dropdown-submenu">
-                        <li>
-                          <Link to="/productdetail">Mango Pickle</Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Gooseberry Pickle</Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Lemon Pickle</Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Chilly Pickle</Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho Bhutuk achar</Link>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="navar-dropdown-li">
-                    <div className="navbardropdown-flex">
-                      <Link to="/processingproduct">
-                        Processing Item
-                      </Link>
-                      <MdKeyboardArrowRight className="dropdown-item-icon" />
-                      </div>
-                      <ul className="dropdown-submenu">
-                        <li>
-                          <Link to="/productdetail">Paicho Mix Jam </Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho Chuck</Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Khudo </Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Guava juice</Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Mixed Fruit Juice</Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho sweetcorn</Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho sweetcorn</Link>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="navar-dropdown-li">
-                    <div className="navbardropdown-flex">
-                      <Link to="/grainsandpulses">
-                      Grains & Pulses
-                      </Link>
-                      <MdKeyboardArrowRight className="dropdown-item-icon" />
-                      </div>
-                      <ul className="dropdown-submenu">
-                        <li>
-                          <Link to="/productdetail">Paicho Chamal </Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho Daal </Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Phapar dana</Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Kodoko Pitho</Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho Sweet Backwheat Pitho</Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho Sweet Backwheat Pitho</Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho Gahat dana</Link>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="navar-dropdown-li">
-                    <div className="navbardropdown-flex">
-                      <Link to="/indenginousproducts">
-                       Indengious Products
-                      </Link>
-                      <MdKeyboardArrowRight className="dropdown-item-icon" />
-                      </div>
-                      <ul className="dropdown-submenu">
-                        <li>
-                          <Link to="/productdetail">Paicho Sinki</Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho Masyaura</Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Kabuno </Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Nettle Powder</Link>
-                        </li>
-                       
-                      </ul>
-                    </li>
-                    <li className="navar-dropdown-li">
-                    <div className="navbardropdown-flex">
-                      <Link to="/paichodryfoods">
-                        Dry Foods
-                      </Link>
-                      <MdKeyboardArrowRight className="dropdown-item-icon" />
-                      </div>
-                      <ul className="dropdown-submenu">
-                        <li>
-                          <Link to="/productdetail">Paicho Alaichi  </Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho Aaapko Chana </Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho Bakulla dana </Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho Barro </Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho Besaar</Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho Sukeko Dalle  </Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho Dry Apple</Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho Sukeko Karela</Link>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="navar-dropdown-li">
-                    <div className="navbardropdown-flex">
-                      <Link to="/ketchupandsauces">
-                       Ketchup & sauces
-                      </Link>
-                      <MdKeyboardArrowRight className="dropdown-item-icon" />
-                      </div>
-                      <ul className="dropdown-submenu">
-                        <li>
-                          <Link to="/productdetail">Paicho Chilly Sauce  </Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho Tomato Ketchup </Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho Tomato Puree </Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho Vinegar  </Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho Hot & Sweet  </Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Paicho Soya Sauce  </Link>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="navar-dropdown-li">
-                    <div className="navbardropdown-flex">
-                      <Link to="/organicvegetables">
-                       Organic Vegetables
-                      </Link>
-                      <MdKeyboardArrowRight className="dropdown-item-icon" />
-                      </div>
-                    <ul className="dropdown-submenu">
-                        <li>
-                          <Link to="/productdetail">Fresh Tomatoes</Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Cauliflower </Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Chillies </Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Dalle Khursani </Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Cabbage </Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Potatoes </Link>
-                        </li>
-                        <li>
-                          <Link to="/productdetail">Fresh Spring Onion </Link>
-                        </li>
-                      </ul>
-                    </li>
+                    {categories &&
+                      categories.map((curElm, index) => {
+                        return (
+                          <>
+                            <li className="navar-dropdown-li" key={index}>
+                              <div className="navbardropdown-flex">
+                                <Link
+                                  to={`/${curElm.name}`}
+                                  className="main-category"
+                                >
+                                  {curElm.name}
+                                </Link>
+                                <MdKeyboardArrowRight className="dropdown-item-icon" />
+                              </div>
+                              <ul className="dropdown-submenu">
+                                {categories &&
+                                  curElm.subcategories.map((data, index) => {
+                                    return (
+                                      <li>
+                                        <Link
+                                          to="/productdetail/:id"
+                                          key={index}
+                                        >
+                                          {data.name}
+                                        </Link>
+                                      </li>
+                                    );
+                                  })}
+                              </ul>
+                            </li>
+                          </>
+                        );
+                      })}
                   </ul>
                 </div>
               ) : (

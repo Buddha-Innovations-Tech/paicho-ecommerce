@@ -5,7 +5,27 @@ import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 
 import Productimage from "../../assets/images/ProductImage.png";
-
+import OrderHistoryComp from "../../components/OrderHistoryComp";
+const orderHistoryList = [
+  {
+    item: "Lemon Pickle",
+    quantity: 2,
+    Shipto: "Esta Kunwar",
+    price: "120",
+  },
+  {
+    item: "Mango Pickle",
+    quantity: 2,
+    Shipto: "Esta Kunwar",
+    price: "120",
+  },
+  {
+    item: "Gooseberry Jam",
+    quantity: 2,
+    Shipto: "Esta Kunwar",
+    price: "120",
+  },
+];
 const OrderHistory = () => {
   return (
     <>
@@ -18,8 +38,19 @@ const OrderHistory = () => {
                 <AccountSideNav />
               </div>
             </Col>
-            <Col lg={9} sm={12}>
-              <div className="order__history--title">
+            <Col lg={8} sm={12} style={{ marginTop: "70px" }}>
+              <div className="order__history--background">
+                <div className="mt-2">
+                  <OrderHistoryComp />
+                </div>
+                <div className="mt-4">
+                  <OrderHistoryComp />
+                </div>
+                <div className="mt-4">
+                  <OrderHistoryComp />
+                </div>
+              </div>
+              {/* <div className="order__history--title">
                 <div className="box">
                   <span className="heading">My Order History </span>
                 </div>
@@ -93,8 +124,9 @@ const OrderHistory = () => {
                     </Col>
                   </Row>
                 </div>
-              </div>
+              </div> */}
             </Col>
+            <Col lg={2}></Col>
           </Row>
         </Container>
       </section>

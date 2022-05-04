@@ -7,6 +7,7 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { RiInstagramFill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -48,7 +49,6 @@ const Footer = () => {
 
               <ul className="clearfix footer__blocks--content">
                 <li className="mb-20">
-                  {" "}
                   <FaPhoneAlt className="icon mr-13" />
                   071-540545, 986745345
                 </li>
@@ -68,9 +68,10 @@ const Footer = () => {
                 Social Media Links{" "}
               </h5>
               <p className="footer__blocks--content">
-                <FaFacebook className="icon mr-13" />
-                <RiInstagramFill className="icon mr-13" />
-                <FaTwitter className="icon" />
+                <Link to="/www.facebook.com/paichopasal">  <FaFacebook className="icon mr-13" /></Link>
+                <Link to="">  <RiInstagramFill className="icon mr-13" /></Link>
+                <Link to="">  <FaTwitter className="icon" /></Link>
+                
               </p>
             </Col>
           </Row>

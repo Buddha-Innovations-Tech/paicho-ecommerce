@@ -1,18 +1,87 @@
-import { Col, Container, Row } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  Row,
+  Modal,
+  Form,
+  Button,
+  InputGroup,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
-import React from "react";
-
-import product__image from "../../assets/images/ProductImage.png";
-import hero__img from "../../assets/images/hero__img.png";
-
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { listCarousel } from "../../actions/carouselAction";
 import ProductCard from "../../components/ProductCard";
-// import product__image from "../../assets/images/ProductImage.png";
-// import { Link } from "react-router-dom";
-
+import GoogleIcon from "../../assets/images/googleicon.png";
+import Facebookicon from "../../assets/images/facebookicon.png";
+import { listProducts } from "../../actions/productAction";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
+import Slider from "react-slick";
+import InputForm from "../../components/InputForm";
 
 const Home = () => {
+  const settings = {
+    dots: false,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    // responsive: [
+    //   {
+    //     breakpoint: 1024,
+    //     settings: {
+    //       slidesToShow: 3,
+    //       slidesToScroll: 3,
+    //       infinite: true,
+    //       dots: true,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 600,
+    //     settings: {
+    //       slidesToShow: 2,
+    //       slidesToScroll: 2,
+    //       initialSlide: 2,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 480,
+    //     settings: {
+    //       slidesToShow: 2,
+    //       slidesToScroll: 2,
+    //     },
+    //   },
+    // ],
+  };
+  const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.productList);
+  const { carousel } = useSelector((state) => state.carouselList);
+  const { subscriberInfo } = useSelector((state) => state.subscriberLogin);
+  const [mobile, setMobile] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
+  const [showA, setShowA] = useState(false);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [signIn, setSignin] = useState(true);
+  const signInHandler = () => {
+    handleShow(true);
+    setSignin(true);
+  };
+  const signUpHandler = () => {
+    setSignin(false);
+  };
+
+  useEffect(() => {
+    dispatch(listCarousel());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(listProducts());
+  }, [dispatch]);
   return (
     <>
       <section className="home">
@@ -22,27 +91,223 @@ const Home = () => {
         <section className="hero">
           <Container>
             <Row>
-              <Col md={6}>
-                <div className="hero__content">
-                  <h2 className="hero__content--heading mb-13">
-                    Get 10% off with <br />
-                    Paicho Lemon Pickle{" "}
-                  </h2>
-                  <p className="hero__content--para mb-32">
-                    Organic Food, Good Health , Good Mood{" "}
-                  </p>{" "}
-                  <br />
-                  <Link to="/paichopickle" className="btn__buy">
-                    Buy Now
-                  </Link>
-                </div>
-              </Col>
+              <Slider {...settings}>
+                {carousel.carousels &&
+                  carousel.carousels.length > 0 &&
+                  carousel.carousels.map((curEm) => {
+                    return (
+                      <>
+                        <Row>
+                          <Col md={6}>
+                            <div className="hero__content">
+                              <h2 className="hero__content--heading mb-13">
+                                {curEm.title}
+                              </h2>
+                              <p className="hero__content--para mb-32">
+                                {curEm.description}
+                              </p>{" "}
+                              <br />
+                              <Link
+                                to=""
+                                className="btn__buy"
+                                onClick={signInHandler}
+                              >
+                                Buy Now
+                              </Link>
+                            </div>
+                          </Col>
 
-              <Col md={6}>
-                <div className="hero__banner">
-                  <img src={hero__img} className="hero__banner--img" alt="" />
-                </div>
-              </Col>
+                          <Col md={6}>
+                            <div className="hero__banner">
+                              <img
+                                src={curEm.image}
+                                className="hero__banner--img"
+                                alt=""
+                              />
+                            </div>
+                          </Col>
+                        </Row>
+                      </>
+                    );
+                  })}
+              </Slider>
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>
+                    {signIn ? (
+                      <>
+                        <p>Sign In to your Paicho Account</p>
+                        <span>
+                          Please fill in the form correctly to sign in your
+                          paicho account
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <p>Create Your Paicho Account</p>
+                        <span>
+                          Please fill in the form correctly to sign up your
+                          paicho account
+                        </span>
+                      </>
+                    )}
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  {signIn ? (
+                    <>
+                      <Form>
+                        <div className="mt-4 position-relative">
+                          <InputForm
+                            label="Mobile Number"
+                            type="number"
+                            placeholder="Enter Your Mobile Number"
+                            name="mobilenumber"
+                            value={mobile}
+                            onChange={(e) => setMobile(e.target.value)}
+                            asteric="*"
+                            required
+                          />
+                        </div>
+                        <div className="mt-4 position-relative">
+                          <InputForm
+                            label="Password"
+                            type="password"
+                            placeholder="Enter Your Password"
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            asteric="*"
+                            required
+                          />
+                        </div>
+
+                        <Button className="sign-in-btn" type="submit">
+                          Sign In
+                        </Button>
+                        <Link to="" className="forget-password">
+                          <u>Forget Password?</u>
+                        </Link>
+                      </Form>
+                    </>
+                  ) : (
+                    <>
+                      <Form action="">
+                        <Row>
+                          <Col md={6}>
+                            <div className="mt-4">
+                              <InputForm
+                                label="First Name"
+                                type="text"
+                                placeholder="Enter Your First Name"
+                                name="firstname"
+                                value={firstname}
+                                onChange={(e) => setFirstName(e.target.value)}
+                                asteric="*"
+                              />
+                            </div>
+                          </Col>
+                          <Col md={6}>
+                            <div className="mt-4">
+                              <InputForm
+                                label="Last Name"
+                                type="text"
+                                placeholder="Enter Your Last Name"
+                                name="lastname"
+                                value={lastname}
+                                onChange={(e) => setLastName(e.target.value)}
+                                asteric="*"
+                              />
+                            </div>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md={6}>
+                            <div className="mt-4">
+                              <InputForm
+                                label="Email Address"
+                                type="email"
+                                placeholder="Enter Your Email Address"
+                                name="Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                asteric="*"
+                              />
+                            </div>
+                          </Col>
+                          <Col md={6}>
+                            <div className="mt-4">
+                              <InputForm
+                                label="Mobile Number"
+                                type="num"
+                                placeholder="Enter Your Mobile Number"
+                                name="mobilenumber"
+                                value={mobile}
+                                onChange={(e) => setMobile(e.target.value)}
+                                asteric="*"
+                              />
+                            </div>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md={6}>
+                            <div className="mt-4">
+                              <InputForm
+                                label="Password"
+                                type="password"
+                                placeholder="Enter Your Password"
+                                name="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                asteric="*"
+                              />
+                            </div>
+                          </Col>
+                          <Col md={6}>
+                            <div className="mt-4">
+                              <InputForm
+                                label=" Confirm Password"
+                                type="password"
+                                placeholder="Confirm Your Password"
+                                name="confirmpassword"
+                                value={confirmpassword}
+                                onChange={(e) =>
+                                  setConfirmPassword(e.target.value)
+                                }
+                                asteric="*"
+                              />
+                            </div>
+                          </Col>
+                        </Row>
+                      </Form>
+                      <div className="createaccount">
+                        <InputGroup.Checkbox />
+                        <p>
+                          Creating an account means you’re okay with our
+                          <Link to="">Terms of Service</Link> and
+                          <Link to="">Privacy Policy</Link>
+                        </p>
+                      </div>
+                      <button className=" sign-in-btn ">Create Account</button>
+                    </>
+                  )}
+
+                  <p className="or">or</p>
+
+                  <div className="signin-socialmediaicon">
+                    <img src={Facebookicon} alt="" />
+                    <img src={GoogleIcon} alt="" />
+                  </div>
+                  <p className="dont-haveacc">
+                    Don't have an account?
+                    {signIn ? (
+                      <span onClick={signUpHandler}> Sign Up </span>
+                    ) : (
+                      <span onClick={() => setSignin(true)}> Sign In </span>
+                    )}
+                  </p>
+                </Modal.Body>
+              </Modal>
             </Row>
           </Container>
         </section>
@@ -57,43 +322,19 @@ const Home = () => {
                 <span className="see__more">See More</span>
               </Link>
             </div>
-            <Row className="product__row">
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
-              <Col md={3} className="red">
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="out of stock"
-                  imageSource={product__image}
-                  path="/outofstock"
-                />
-              </Col>
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
+            <Row className="product__row gy-3">
+              {products &&
+                products
+                  ?.filter(
+                    (i) => i.category && i.category.name === "Paicho Pickle"
+                  )
+                  .map((curElm, index) => {
+                    return (
+                      <Col md={3}>
+                        <ProductCard key={index} {...curElm} />
+                      </Col>
+                    );
+                  })}
             </Row>
 
             {/* Paicho Processing Products  */}
@@ -103,43 +344,20 @@ const Home = () => {
                 <span className="see__more">See More</span>
               </Link>
             </div>
-            <Row className="product__row">
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
-              <Col md={3} className="red">
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="out of stock"
-                  imageSource={product__image}
-                  path="/outofstock"
-                />
-              </Col>
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
+            <Row className="product__row gy-3">
+              {products &&
+                products
+                  ?.filter(
+                    (i) =>
+                      i.category && i.category.name === "Processing Products"
+                  )
+                  .map((curElm, index) => {
+                    return (
+                      <Col md={3}>
+                        <ProductCard key={index} {...curElm} />
+                      </Col>
+                    );
+                  })}
             </Row>
 
             {/* Grains & Pulses  */}
@@ -149,43 +367,19 @@ const Home = () => {
                 <span className="see__more">See More</span>
               </Link>
             </div>
-            <Row className="product__row">
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
-              <Col md={3} className="red">
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="out of stock"
-                  imageSource={product__image}
-                  path="/outofstock"
-                />
-              </Col>
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
+            <Row className="product__row gy-3">
+              {products &&
+                products
+                  ?.filter(
+                    (i) => i.category && i.category.name === "Grain And Pulses"
+                  )
+                  .map((curElm, index) => {
+                    return (
+                      <Col md={3}>
+                        <ProductCard key={index} {...curElm} />
+                      </Col>
+                    );
+                  })}
             </Row>
 
             {/* Indeginous Product */}
@@ -195,43 +389,20 @@ const Home = () => {
                 <span className="see__more">See More</span>
               </Link>
             </div>
-            <Row className="product__row">
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
-              <Col md={3} className="red">
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="out of stock"
-                  imageSource={product__image}
-                  path="/outofstock"
-                />
-              </Col>
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
+            <Row className="product__row gy-3">
+              {products &&
+                products
+                  ?.filter(
+                    (i) =>
+                      i.category && i.category.name === "Indeginous Products"
+                  )
+                  .map((curElm, index) => {
+                    return (
+                      <Col md={3}>
+                        <ProductCard key={index} {...curElm} />
+                      </Col>
+                    );
+                  })}
             </Row>
 
             {/* Dry  Foods */}
@@ -241,43 +412,19 @@ const Home = () => {
                 <span className="see__more">See More</span>
               </Link>
             </div>
-            <Row className="product__row">
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
-              <Col md={3} className="red">
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="out of stock"
-                  imageSource={product__image}
-                  path="/outofstock"
-                />
-              </Col>
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
+            <Row className="product__row gy-3">
+              {products &&
+                products
+                  ?.filter(
+                    (i) => i.category && i.category.name === " Paich Dry Foods"
+                  )
+                  .map((curElm, index) => {
+                    return (
+                      <Col md={3}>
+                        <ProductCard key={index} {...curElm} />
+                      </Col>
+                    );
+                  })}
             </Row>
 
             {/* Ketchup & Sauces */}
@@ -287,43 +434,19 @@ const Home = () => {
                 <span className="see__more">See More</span>
               </Link>
             </div>
-            <Row className="product__row">
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
-              <Col md={3} className="red">
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="out of stock"
-                  imageSource={product__image}
-                  path="/outofstock"
-                />
-              </Col>
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
+            <Row className="product__row gy-3">
+              {products &&
+                products
+                  ?.filter(
+                    (i) => i.category && i.category.name === "Katchup Sauce"
+                  )
+                  .map((curElm, index) => {
+                    return (
+                      <Col md={3}>
+                        <ProductCard key={index} {...curElm} />
+                      </Col>
+                    );
+                  })}
             </Row>
 
             {/* Organic Vegetables  */}
@@ -333,43 +456,20 @@ const Home = () => {
                 <span className="see__more">See More</span>
               </Link>
             </div>
-            <Row className="product__row">
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
-              <Col md={3} className="red">
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="out of stock"
-                  imageSource={product__image}
-                  path="/outofstock"
-                />
-              </Col>
-              <Col md={3}>
-                <ProductCard
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                  imageSource={product__image}
-                  path="/productdetail"
-                />
-              </Col>
+            <Row className="product__row gy-3">
+              {products &&
+                products
+                  ?.filter(
+                    (i) =>
+                      i.category && i.category.name === "Organic Vegetables"
+                  )
+                  .map((curElm, index) => {
+                    return (
+                      <Col md={3}>
+                        <ProductCard key={index} {...curElm} />
+                      </Col>
+                    );
+                  })}
             </Row>
           </Container>
         </section>

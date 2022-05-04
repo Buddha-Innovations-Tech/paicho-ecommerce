@@ -3,9 +3,16 @@ import { Col, Container, Row } from "react-bootstrap";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import CategoryFilter from "../../components/CategoryFilter";
-import product__image from "../../assets/images/ProductImage.png";
+import { listProducts } from "../../actions/productAction";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const KetchupSauce = () => {
+  const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.productList);
+  useEffect(() => {
+    dispatch(listProducts());
+  }, [dispatch]);
   return (
     <>
       <NavBar />
@@ -22,82 +29,21 @@ const KetchupSauce = () => {
                   { name: "Paicho Hot & Sweet" },
                   { name: "Paicho Soya Sauce" },
                 ]}
+                filter="Ketchup & Sauces"
               />
             </Col>
             <Col md={9}>
               <Row className="product__row gy-4">
-                <Col md={4}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                    path="/productdetail"
-                  />
-                </Col>
-                <Col md={4}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                    path="/productdetail"
-                  />
-                </Col>
-                <Col md={4} className="red">
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="out of stock"
-                    imageSource={product__image}
-                    path="/outofstock"
-                  />
-                </Col>
-                <Col md={4}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                    path="/productdetail"
-                  />
-                </Col>
-                <Col md={4}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                    path="/productdetail"
-                  />
-                </Col>
-                <Col md={4}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                    path="/productdetail"
-                  />
-                </Col>
-                <Col md={4} className="red">
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="out of stock"
-                    imageSource={product__image}
-                    path="/outofstock"
-                  />
-                </Col>
-                <Col md={4}>
-                  <ProductCard
-                    name="Chilly Pickle"
-                    price="120"
-                    stock="in stock"
-                    imageSource={product__image}
-                    path="/productdetail"
-                  />
-                </Col>
+                {products &&
+                  products
+                    ?.filter((i) => i.category.name === "Katchup Sauce")
+                    .map((curElm, index) => {
+                      return (
+                        <Col md={3}>
+                          <ProductCard key={index} {...curElm} />
+                        </Col>
+                      );
+                    })}
               </Row>
             </Col>
           </Row>

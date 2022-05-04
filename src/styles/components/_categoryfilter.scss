@@ -3,8 +3,7 @@
     padding: 20px 16px 38px 16px;
     border-radius: 3px;
     ul{
-        padding-left: 0;
-        padding-bottom: 17px;
+       padding: 17px 0;
     border-bottom: 1px solid rgba(212, 215, 217, 0.5);
     li{
         font-size: 14px;
@@ -18,12 +17,14 @@
     .form-check-input{
         margin-left: -12px;
         border: 1px solid #8dc73d;
+        cursor: pointer;
     }
     .form-check-input:checked{
         background-color: #8dc73d ;
        
     }
 }
+
 &__filter,&__subcategory,&__price{
     font-size: 18px;
     font-weight: 600;
@@ -31,7 +32,26 @@
     padding-bottom: 17px;
     border-bottom: 1px solid rgba(212, 215, 217, 0.5);
 }
+&__filter{
+    font-size: 23px;
+    font-weight: 600;
+    padding-bottom: 17px;
+    margin-bottom: 0;
+}
+&__subcategory{
+    border-bottom: none;
+    margin-bottom: 0;
+}
+&__clearfilter{
+    font-size: 14px;
+    font-weight: 600;
+    color: #E84B23;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 5px;
+}
 &__minmax{
+    padding-top: 7px;
     p{
         font-size: 13px;
         color: #2F2E41;
@@ -57,7 +77,6 @@
     }
     &--apply{
         border: none;
-        margin-left: 16px;
         color:#fff ;
         padding: 10px 24px;
         font-size: 14px;

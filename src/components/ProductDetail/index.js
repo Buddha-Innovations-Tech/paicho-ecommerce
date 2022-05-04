@@ -1,5 +1,14 @@
-import React, { useState} from "react";
-import { Col, Container, Row, Modal, Toast,Form,Button,InputGroup } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import {
+  Col,
+  Container,
+  Row,
+  Modal,
+  Toast,
+  Form,
+  Button,
+  InputGroup,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ProductPhoto from "../../assets/images/productdetail.png";
 import Slider from "react-slick";
@@ -13,47 +22,17 @@ import { BsCheck } from "react-icons/bs";
 import InputForm from "../../components/InputForm";
 import GoogleIcon from "../../assets/images/googleicon.png";
 import Facebookicon from "../../assets/images/facebookicon.png";
-
-const sliderImg = [
-  {
-    photo: Productphoto,
-  },
-  {
-    photo: Mangopickle,
-  },
-  {
-    photo: ProductPhoto,
-  },
-  {
-    photo: Productphoto2,
-  },
-  {
-    photo: Productphoto3,
-  },
-];
-
-const ProductDetailComp = ({ stock }) => {
-  const [showA, setShowA] = useState(false);
-  // const toggleShowA = () => setShowA(!showA);
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const [image, setImage] = useState(sliderImg[0].photo);
-  const [signIn, setSignin] = useState(true);
-  const signInHandler = () => {
-    handleShow(true);
-    setSignin(true);
-  };
-  const signUpHandler = () => {
-    setSignin(false);
-  };
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../actions/cartAddedAction";
+const ProductDetailComp = ({ product, success }) => {
   const settings = {
     dots: false,
     infinite: true,
-    autoplay: false,
-    speed: 200,
-    slidesToShow: 4,
+    autoplay: true,
+    autoplaySpeed: 3000,
+
     slidesToScroll: 1,
+    arrows: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -81,64 +60,127 @@ const ProductDetailComp = ({ stock }) => {
       },
     ],
   };
+  const dispatch = useDispatch();
+  const [mobile, setMobile] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
+
+  const [showA, setShowA] = useState(false);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [signIn, setSignin] = useState(true);
+  const [image, setImage] = useState("");
+  const [ingredient, setIngredient] = useState([]);
+  const [similar, setSimilar] = useState([]);
+
+  const signInHandler = () => {
+    handleShow(true);
+    setSignin(true);
+  };
+  const signUpHandler = () => {
+    setSignin(false);
+  };
+  useEffect(() => {
+    if (product) {
+      dispatch(addToCart(product));
+    }
+  }, [dispatch, product]);
+  const send = (id, qty) => {
+    dispatch(addToCart(id, qty));
+    setShowA(true);
+  };
+  useEffect(() => {
+    if (success) {
+      setImage(product.image && product.image[0]);
+    }
+  }, [success]);
+
   return (
     <>
       <div className="product">
         <Container>
           <Row className="product__rows gx-5">
             <Col md={5}>
-              {sliderImg.length>1 ?
-              <>
-              <div className="product__image">
-                <img src={image} alt="" className="img-fluid selected" />
-              </div>
-              <div className="product__sliders">
-                <Slider {...settings} >
-                  {sliderImg.map((data, index) => (
-                    <>
-                    <div style={{height:'100px', width:"100px", margin:"1px", boxShadow:data.photo===image && "0px 0px 4px rgb(0 0 0 / 25%)",borderRadius:data.photo===image && "5px"}} key={index}>
-                    <img
-                    className="product__sliders--image"
-                      key={index}
-                      src={data.photo}
-                      alt=""
-                      onClick={() => setImage(data.photo)}
-                    />
-                    </div>
-                    </>
-                  ))}
-                </Slider>
-              </div>
-              </>:
-              <div className="product__image">
-                <img src={image} alt="" className="img-fluid selected" />
-              </div>}
+              {product.image && product.image.length > 1 ? (
+                <>
+                  <div className="product__image">
+                    <img src={image} alt="" className="img-fluid selected" />
+                  </div>
+                  <div className="product__sliders">
+                    <Slider {...settings}>
+                      {product.image &&
+                        product.image?.map((data, index) => (
+                          <>
+                            <div
+                              style={{
+                                height: "100px",
+                                width: "100px",
+                                margin: "1px",
+                                boxShadow:
+                                  data === image &&
+                                  "0px 0px 4px rgb(0 0 0 / 25%)",
+                                borderRadius: data === image && "5px",
+                              }}
+                              key={index}
+                            >
+                              <img
+                                className="product__sliders--image"
+                                key={index}
+                                src={data}
+                                alt=""
+                                onClick={() => setImage(data)}
+                              />
+                            </div>
+                          </>
+                        ))}
+                    </Slider>
+                  </div>
+                </>
+              ) : (
+                <div className="product__image">
+                  <img
+                    src={product.image && product.image[0]}
+                    alt=""
+                    className="img-fluid selected"
+                  />
+                </div>
+              )}
             </Col>
             <Col md={7}>
               <div className="product__heading">
-                <p className="product__heading--main">Mango Pickle </p>
+                <p className="product__heading--main">{product.name}</p>
                 <span className="product__heading--span">
-                  Category : Paicho Pickle | Product ID : 3021
+                  Category : {product.category && product.category.name}
+                  {/* Product ID : {product._id} */}
                 </span>
               </div>
               <div className="product__price">
                 <span className="product__price--totalprice">
-                  Price : Rs 180
+                  Price : Rs.{product.price}
                 </span>
-                <p className="product__price--stock">{stock}</p>
+                <p className="product__price--stock">{product.stock}</p>
               </div>
 
-              <div className="product__inc-dec d-flex">
+              {/* <div className="product__inc-dec d-flex">
                 <p className="product__inc-dec--quantity ">Quantity</p>
                 <IncrementDecrement />
-              </div>
+              </div> */}
               <div className="product__btns">
                 <Link
                   to=""
                   className="product__btns--addtocart"
-                  onClick={() => setShowA(true)}
+                  onClick={() => send(product._id, 1)}
                 >
-                  <Toast onClose={() => setShowA(false)} show={showA} delay={2000} autohide>
+                  <Toast
+                    onClose={() => setShowA(false)}
+                    show={showA}
+                    delay={2000}
+                    autohide
+                  >
                     <Toast.Body>
                       This item is added to your cart successfully !{" "}
                       <BsCheck className="checkicon" />
@@ -153,181 +195,191 @@ const ProductDetailComp = ({ stock }) => {
                 >
                   Buy Now
                 </Link>
-             
               </div>
               <Modal show={show} onHide={handleClose}>
-                          <Modal.Header closeButton>
-                            <Modal.Title>
-                              {signIn ? (
-                                <>
-                                  <p>Sign In to your Paicho Account</p>
-                                  <span>
-                                    Please fill in the form correctly to sign in
-                                    your paicho account
-                                  </span>
-                                </>
-                              ) : (
-                                <>
-                                  <p>Create Your Paicho Account</p>
-                                  <span>
-                                    Please fill in the form correctly to sign up
-                                    your paicho account
-                                  </span>
-                                </>
-                              )}
-                            </Modal.Title>
-                          </Modal.Header>
-                          <Modal.Body>
-                            {signIn ? (
-                              <>
-                                <Form>
-                                  <div className="mt-4 position-relative">
-                                    <InputForm
-                                      label="Mobile Number"
-                                      type="number"
-                                      placeholder="Enter Your Mobile Number"
-                                      name="mobilenumber"
-                                      asteric="*"
-                                      required
-                                    />
-                                  </div>
-                                  <div className="mt-4 position-relative">
-                                    <InputForm
-                                      label="Password"
-                                      type="password"
-                                      placeholder="Enter Your Password"
-                                      name="password"
-                                      asteric="*"
-                                      required
-                                    />
-                                  </div>
+                <Modal.Header closeButton>
+                  <Modal.Title>
+                    {signIn ? (
+                      <>
+                        <p>Sign In to your Paicho Account</p>
+                        <span>
+                          Please fill in the form correctly to sign in your
+                          paicho account
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <p>Create Your Paicho Account</p>
+                        <span>
+                          Please fill in the form correctly to sign up your
+                          paicho account
+                        </span>
+                      </>
+                    )}
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  {signIn ? (
+                    <>
+                      <Form>
+                        <div className="mt-4 position-relative">
+                          <InputForm
+                            label="Mobile Number"
+                            type="number"
+                            placeholder="Enter Your Mobile Number"
+                            name="mobilenumber"
+                            value={mobile}
+                            onChange={(e) => setMobile(e.target.value)}
+                            asteric="*"
+                            required
+                          />
+                        </div>
+                        <div className="mt-4 position-relative">
+                          <InputForm
+                            label="Password"
+                            type="password"
+                            placeholder="Enter Your Password"
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            asteric="*"
+                            required
+                          />
+                        </div>
 
-                                  <Button className="sign-in-btn" type="submit">
-                                    Sign In
-                                  </Button>
-                                  <Link to="" className="forget-password">
-                                    <u>Forget Password?</u>
-                                  </Link>
-                                </Form>
-                              </>
-                            ) : (
-                              <>
-                                <Form action="">
-                                  <Row>
-                                    <Col md={6}>
-                                      <div className="mt-4">
-                                        <InputForm
-                                          label="First Name"
-                                          type="text"
-                                          placeholder="Enter Your First Name"
-                                          name="firstname"
-                                          asteric="*"
-                                        />
-                                      </div>
-                                    </Col>
-                                    <Col md={6}>
-                                      <div className="mt-4">
-                                        <InputForm
-                                          label="Last Name"
-                                          type="text"
-                                          placeholder="Enter Your Last Name"
-                                          name="lastname"
-                                          asteric="*"
-                                        />
-                                      </div>
-                                    </Col>
-                                  </Row>
-                                  <Row>
-                                    <Col md={6}>
-                                      <div className="mt-4">
-                                        <InputForm
-                                          label="Email Address"
-                                          type="email"
-                                          placeholder="Enter Your Email Address"
-                                          name="mobilenum"
-                                          asteric="*"
-                                        />
-                                      </div>
-                                    </Col>
-                                    <Col md={6}>
-                                      <div className="mt-4">
-                                        <InputForm
-                                          label="Mobile Number"
-                                          type="num"
-                                          placeholder="Enter Your Mobile Number"
-                                          name="mobilenumber"
-                                          asteric="*"
-                                        />
-                                      </div>
-                                    </Col>
-                                  </Row>
-                                  <Row>
-                                    <Col md={6}>
-                                      <div className="mt-4">
-                                        <InputForm
-                                          label="Password"
-                                          type="password"
-                                          placeholder="Enter Your Password"
-                                          name="password"
-                                          asteric="*"
-                                        />
-                                      </div>
-                                    </Col>
-                                    <Col md={6}>
-                                      <div className="mt-4">
-                                        <InputForm
-                                          label=" Confirm Password"
-                                          type="password"
-                                          placeholder="Confirm Your Password"
-                                          name="confirmpassword"
-                                          asteric="*"
-                                        />
-                                      </div>
-                                    </Col>
-                                  </Row>
-                                </Form>
-                                <div className="createaccount">
-                                  <InputGroup.Checkbox />
-                                  <p>
-                                    Creating an account means you’re okay with
-                                    our
-                                    <Link to="">Terms of Service</Link> and
-                                    <Link to="">Privacy Policy</Link>
-                                  </p>
-                                </div>
-                                <button className=" sign-in-btn ">
-                                  Create Account
-                                </button>
-                              </>
-                            )}
-
-                            <p className="or">or</p>
-
-                            <div className="signin-socialmediaicon">
-                              <img src={Facebookicon} alt="" />
-                              <img src={GoogleIcon} alt="" />
+                        <Button className="sign-in-btn" type="submit">
+                          Sign In
+                        </Button>
+                        <Link to="" className="forget-password">
+                          <u>Forget Password?</u>
+                        </Link>
+                      </Form>
+                    </>
+                  ) : (
+                    <>
+                      <Form action="">
+                        <Row>
+                          <Col md={6}>
+                            <div className="mt-4">
+                              <InputForm
+                                label="First Name"
+                                type="text"
+                                placeholder="Enter Your First Name"
+                                name="firstname"
+                                value={firstname}
+                                onChange={(e) => setFirstName(e.target.value)}
+                                asteric="*"
+                              />
                             </div>
-                            <p className="dont-haveacc">
-                              Don't have an account?
-                              {signIn ? (
-                                <span onClick={signUpHandler}> Sign Up </span>
-                              ) : (
-                                <span onClick={() => setSignin(true)}>
-                                  {" "}
-                                  Sign In{" "}
-                                </span>
-                              )}
-                            </p>
-                          </Modal.Body>
-                        </Modal>
+                          </Col>
+                          <Col md={6}>
+                            <div className="mt-4">
+                              <InputForm
+                                label="Last Name"
+                                type="text"
+                                placeholder="Enter Your Last Name"
+                                name="lastname"
+                                value={lastname}
+                                onChange={(e) => setLastName(e.target.value)}
+                                asteric="*"
+                              />
+                            </div>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md={6}>
+                            <div className="mt-4">
+                              <InputForm
+                                label="Email Address"
+                                type="email"
+                                placeholder="Enter Your Email Address"
+                                name="Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                asteric="*"
+                              />
+                            </div>
+                          </Col>
+                          <Col md={6}>
+                            <div className="mt-4">
+                              <InputForm
+                                label="Mobile Number"
+                                type="num"
+                                placeholder="Enter Your Mobile Number"
+                                name="mobilenumber"
+                                value={mobile}
+                                onChange={(e) => setMobile(e.target.value)}
+                                asteric="*"
+                              />
+                            </div>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md={6}>
+                            <div className="mt-4">
+                              <InputForm
+                                label="Password"
+                                type="password"
+                                placeholder="Enter Your Password"
+                                name="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                asteric="*"
+                              />
+                            </div>
+                          </Col>
+                          <Col md={6}>
+                            <div className="mt-4">
+                              <InputForm
+                                label=" Confirm Password"
+                                type="password"
+                                placeholder="Confirm Your Password"
+                                name="confirmpassword"
+                                value={confirmpassword}
+                                onChange={(e) =>
+                                  setConfirmPassword(e.target.value)
+                                }
+                                asteric="*"
+                              />
+                            </div>
+                          </Col>
+                        </Row>
+                      </Form>
+                      <div className="createaccount">
+                        <InputGroup.Checkbox />
+                        <p>
+                          Creating an account means you’re okay with our
+                          <Link to="">Terms of Service</Link> and
+                          <Link to="">Privacy Policy</Link>
+                        </p>
+                      </div>
+                      <button className=" sign-in-btn ">Create Account</button>
+                    </>
+                  )}
+
+                  <p className="or">or</p>
+
+                  <div className="signin-socialmediaicon">
+                    <img src={Facebookicon} alt="" />
+                    <img src={GoogleIcon} alt="" />
+                  </div>
+                  <p className="dont-haveacc">
+                    Don't have an account?
+                    {signIn ? (
+                      <span onClick={signUpHandler}> Sign Up </span>
+                    ) : (
+                      <span onClick={() => setSignin(true)}> Sign In </span>
+                    )}
+                  </p>
+                </Modal.Body>
+              </Modal>
               <div className="product__lists">
                 <p>Ingredients</p>
                 <ul>
-                  <li> Fresh organic mangoes </li>
-                  <li> Fresh organic mangoes </li>
-                  <li> Fresh organic mangoes </li>
-                  <li> Fresh organic mangoes </li>
-                  <li> Fresh organic mangoes </li>
+                  {product.ingredient &&
+                    product.ingredient.map((i) => {
+                      return <li> {i} </li>;
+                    })}
                 </ul>
               </div>
             </Col>
@@ -341,13 +393,7 @@ const ProductDetailComp = ({ stock }) => {
                   Description of the Product
                 </p>
                 <p className="product__description--descriptionpara">
-                  Eastern philosophy has described much about the significance
-                  of pickle. Though less, it is inevitable part of our meal.
-                  Spicy, bitter, sour taste pickle speaks of significance of
-                  Nepali meal. It helps to crave for more food even if you have
-                  no appetite for it. It adds taste to food by two folds. The
-                  regular and balanced consumption of pickle also helps in
-                  weight loss because it contains few calories.
+                  {product.description}
                 </p>
               </Col>
             </Row>
@@ -358,48 +404,20 @@ const ProductDetailComp = ({ stock }) => {
             <p className="product__similaritems--heading">
               Similar Items You Might Like
             </p>
-            <Slider {...settings}>
-              <div>
-                <ProductCard
-                  imageSource={Productphoto}
-                  name="Paicho Mixed Jam"
-                  price="120"
-                  stock="in stock"
-                />
-              </div>
-              <div>
-                <ProductCard
-                  imageSource={Productphoto}
-                  name="Paicho Pineapple jam"
-                  price="150"
-                  stock="in stock"
-                />
-              </div>
-              <div>
-                <ProductCard
-                  imageSource={Productphoto}
-                  name="Orange Marmalate"
-                  price="120"
-                  stock="in stock"
-                />
-              </div>
-              <div>
-                <ProductCard
-                  imageSource={Productphoto}
-                  name="Chilly Pickle"
-                  price="180"
-                  stock="in stock"
-                />
-              </div>
-              <div>
-                <ProductCard
-                  imageSource={Productphoto}
-                  name="Chilly Pickle"
-                  price="120"
-                  stock="in stock"
-                />
-              </div>
-            </Slider>
+            <Row>
+              <Slider {...settings}>
+                {product.similar &&
+                  product.similar.map((curElm, index) => {
+                    return (
+                      <>
+                        <Col md={3}>
+                          <ProductCard {...curElm} key={index} />
+                        </Col>
+                      </>
+                    );
+                  })}
+              </Slider>
+            </Row>
           </Container>
         </div>
       </div>

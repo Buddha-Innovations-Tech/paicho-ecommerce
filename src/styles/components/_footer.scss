@@ -16,6 +16,15 @@
       font-weight: normal;
       font-size: 16px;
       line-height: 24px;
+      a{
+        color: #fff;
+        transition: 0.3s ease-in-out;
+        &:hover{
+          color: #fff;
+          transform: scale(1.2);
+          transition: 0.3s ease-in-out;
+        }
+      }
     }
     ul {
       margin: 0;

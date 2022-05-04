@@ -130,6 +130,9 @@
       }
 
       &__table {
+        tbody {
+          border-bottom: 0.3px solid #d4d7d9;
+        }
         .table,
         td {
           border-color: #d4d7d9;
@@ -178,7 +181,10 @@
     }
   }
 }
-
+.total-mrp {
+  border-top: 0.3px solid #d4d7d9 !important;
+  border-bottom: 0.3px solid #d4d7d9 !important;
+}
 @media (max-width: 425px) {
   .checkout__box .billing {
     padding: 0;
