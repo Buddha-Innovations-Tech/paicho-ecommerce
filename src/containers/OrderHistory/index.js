@@ -1,11 +1,12 @@
 import { Container, Row, Col } from "react-bootstrap";
-
+import React, { useEffect } from "react";
 import AccountSideNav from "../../components/AccoountSideNav";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
-
-import Productimage from "../../assets/images/ProductImage.png";
+import { useDispatch, useSelector } from "react-redux";
+import { listOrderHistory } from "../../actions/orderAction";
 import OrderHistoryComp from "../../components/OrderHistoryComp";
+
 const orderHistoryList = [
   {
     item: "Lemon Pickle",
@@ -27,6 +28,12 @@ const orderHistoryList = [
   },
 ];
 const OrderHistory = () => {
+  const { ORDER } = useSelector((state) => state.orderList);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(listOrderHistory());
+  }, [dispatch]);
+
   return (
     <>
       <NavBar />
@@ -40,15 +47,21 @@ const OrderHistory = () => {
             </Col>
             <Col lg={8} sm={12} style={{ marginTop: "70px" }}>
               <div className="order__history--background">
-                <div className="mt-2">
+                {ORDER &&
+                  ORDER.map((curElm) => {
+                    return (
+                      <div className="mt-2">
+                        <OrderHistoryComp {...curElm} />
+                      </div>
+                    );
+                  })}
+
+                {/* <div className="mt-4">
                   <OrderHistoryComp />
                 </div>
                 <div className="mt-4">
                   <OrderHistoryComp />
-                </div>
-                <div className="mt-4">
-                  <OrderHistoryComp />
-                </div>
+                </div> */}
               </div>
               {/* <div className="order__history--title">
                 <div className="box">

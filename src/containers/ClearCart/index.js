@@ -1,15 +1,11 @@
 import { Col, Container, Row } from "react-bootstrap";
 import React from "react";
-
+import { Link } from "react-router-dom";
 import Clear from "../../assets/images/clear__cart.png";
-import NavBar from "../../components/NavBar";
-import Footer from "../../components/Footer";
-
+import { CgChevronDoubleLeft } from "react-icons/cg";
 const ClearCart = () => {
   return (
     <>
-      <NavBar />
-
       <section className="clear__cart">
         <Container>
           <Row>
@@ -21,9 +17,13 @@ const ClearCart = () => {
             </Col>
           </Row>
         </Container>
+        <div className="carttable__pagination">
+          <Link to="/">
+            <CgChevronDoubleLeft className="me-2" />
+            Continue Shopping
+          </Link>
+        </div>
       </section>
-
-      <Footer />
     </>
   );
 };

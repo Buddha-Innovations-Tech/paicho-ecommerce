@@ -28,7 +28,6 @@ export const addToWishlist = (id) => async (dispatch, getState) => {
 
       config
     );
-    console.log(data);
     dispatch({ type: CREATE_WISHLIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -46,19 +45,15 @@ export const deleteSingleWishlist = (id) => async (dispatch, getState) => {
       subscriberLogin: { subscriberInfo },
     } = getState();
 
+    console.log(id);
+
     dispatch({ type: DELETE_WISHLIST_REQUEST });
     const config = {
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${subscriberInfo.token}`,
       },
     };
-
-    await axios.delete(
-      `/api/subscribers/wishlists/${subscriberInfo._id}`,
-      // { product: id },
-      config
-    );
+    await axios.delete(`/api/subscribers/wishlists/product/${id}`, config);
     dispatch({ type: DELETE_WISHLIST_SUCCESS });
   } catch (error) {
     dispatch({

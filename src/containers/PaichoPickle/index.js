@@ -6,7 +6,7 @@ import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../../actions/productAction";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import CategoryFilter from "../../components/CategoryFilter";
 import { listCategories } from "../../actions/categoryAction";
 
@@ -14,14 +14,15 @@ const PaichoPickle = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const name = params.name;
-
+  const location = useLocation();
+  const data = location.state;
   const { products } = useSelector((state) => state.productList);
   const { categories } = useSelector((state) => state.categoryList);
-  const [data, setData] = useState({});
   const [checked, setChecked] = useState(false);
   const [min, setMin] = useState("");
   const [max, setMax] = useState("");
   const [display, setDisplay] = useState([]);
+  const [subCategories, setSubcategories] = useState([]);
   const handlePriceRange = (e) => {
     e.preventDefault();
     setDisplay(products.filter((x) => x.price >= min && x.price <= max));
@@ -32,17 +33,28 @@ const PaichoPickle = () => {
   useEffect(() => {
     dispatch(listProducts());
   }, [dispatch]);
+
   useEffect(() => {
-    if (products) {
+    if (products && !checked) {
       setDisplay(
         products.filter((i) => i.category && i.category.name === params.name)
       );
     }
-  }, [products, params]);
+  }, [products, params, checked]);
+
+  useEffect(() => {
+    if (data !== null) {
+      setDisplay(
+        products.filter((x) => {
+          return x.subcategories === data;
+        })
+      );
+    }
+  }, [data]);
+
   const handleCheck = (e, subcat) => {
-    console.log(subcat);
-    setChecked(subcat);
-    setDisplay(products.filter((x) => x.category.subcategory.name === subcat));
+    setDisplay(products.filter((x) => x.subcategories === subcat));
+    setChecked(e.target.checked);
   };
   useEffect(() => {
     dispatch(listCategories());
@@ -53,13 +65,24 @@ const PaichoPickle = () => {
       categories.forEach((item) => {
         if (item.name && item.name === name) {
           const subcategories = item.subcategories;
-          setData((prevState) => {
-            return { ...prevState, subcategories };
-          });
+          setSubcategories(subcategories);
         }
       });
     }
-  }, [name]);
+  }, [categories, name]);
+  useEffect(() => {
+    if (checked === false) {
+      setSubcategories([]);
+      setTimeout(() => {
+        categories.forEach((item) => {
+          if (item.name && item.name === name) {
+            const subcategories = item.subcategories;
+            setSubcategories(subcategories);
+          }
+        });
+      }, 100);
+    }
+  }, [checked]);
 
   return (
     <>
@@ -69,7 +92,8 @@ const PaichoPickle = () => {
           <Row>
             <Col md={3}>
               <div className="category-wrapper">
-                <p className="category-wrapper__filter">Paicho Pickle</p>
+                <p className="category-wrapper__filter">{params.name}</p>
+
                 <div
                   className="d-flex justify-content-between align-items-center"
                   style={{
@@ -78,18 +102,45 @@ const PaichoPickle = () => {
                   }}
                 >
                   <p className="category-wrapper__subcategory">Sub Category</p>
-                  <p className="category-wrapper__clearfilter">Clear-Filter</p>
+                  <p
+                    className="category-wrapper__clearfilter"
+                    onClick={() => setChecked(false)}
+                  >
+                    Clear-Filter
+                  </p>
                 </div>
                 <ul>
-                  {data.subcategories?.map((item, index) => {
+                  {subCategories?.map((item, index) => {
                     return (
                       <li className="d-flex align-items-center" key={index}>
-                        <InputGroup.Checkbox
+                        {/* <InputGroup.Checkbox
                           value={checked}
                           onChange={(e) => handleCheck(e, item.name)}
-                        />
+                        /> */}
+                        <div className="form-check">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            name="gridRadios"
+                            value={
+                              data === null
+                                ? checked
+                                : item.name === data
+                                ? checked
+                                : false
+                            }
+                            checked={item.name === data ? true : false}
+                            onChange={(e) => handleCheck(e, item.name)}
+                          />
+                          <label
+                            className="form-check-label ml-16 ms-2"
+                            htmlFor="gridRadios2"
+                          >
+                            {item.name}
+                          </label>
+                        </div>
 
-                        <span className="ms-1">{item.name}</span>
+                        {/* <span className="ms-1">{item.name}</span> */}
                       </li>
                     );
                   })}

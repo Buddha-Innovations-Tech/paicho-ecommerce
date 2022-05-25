@@ -10,6 +10,7 @@ import {
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
   const { data } = await axios.get(`/api/products/${id}`);
+  console.log(data);
 
   dispatch({
     type: CART_ADD_ITEM,
@@ -20,6 +21,7 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
       price: data.price,
       qty,
       image: data.image,
+      discount: data.discount,
     },
   });
   localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
@@ -46,6 +48,7 @@ export const subtractFromCart = (id) => async (dispatch, getState) => {
         category: data.category.name,
         price: data.price,
         image: data.image,
+        discount: data.discount,
       },
     });
     localStorage.setItem(
@@ -69,6 +72,7 @@ export const addFromCart = (id) => async (dispatch, getState) => {
         category: data.category.name,
         price: data.price,
         image: data.image,
+        discount: data.discount,
       },
     });
     localStorage.setItem(

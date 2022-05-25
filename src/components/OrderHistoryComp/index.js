@@ -1,36 +1,24 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-const orderHistoryList = [
-  {
-    item: "Lemon Pickle",
-    quantity: 2,
-    Shipto: "Esta Kunwar",
-    price: "120",
-  },
-  {
-    item: "Mango Pickle",
-    quantity: 2,
-    Shipto: "Esta Kunwar",
-    price: "120",
-  },
-  {
-    item: "Gooseberry Jam",
-    quantity: 2,
-    Shipto: "Esta Kunwar",
-    price: "120",
-  },
-];
-const OrderHistoryComp = () => {
+
+const OrderHistoryComp = ({
+  _id,
+  shippingInfo,
+  orderItems,
+  createdAt,
+  orderStatus,
+  totalPrice,
+}) => {
   return (
     <>
       <div className="order__history--background-comp">
         <Row className="orderdaterow">
           <Col md={6}>
-            <p className="orderid">Order ID: #12345</p>
+            <p className="orderid">Order ID: {_id}</p>
           </Col>
           <Col md={6}>
-            <span className="date orderid">Date: 3/6/2022, 5:30:49 PM </span>
-            <span className="status orderid">Status : Not Delivered</span>
+            <span className="date orderid">Date: {createdAt} </span>
+            <span className="status orderid">Status : {orderStatus}</span>
           </Col>
         </Row>
         <Row className="orderhistoryTitle">
@@ -49,17 +37,17 @@ const OrderHistoryComp = () => {
         </Row>
 
         <Row className="orderhistorydata">
-          {orderHistoryList.map((curElm) => {
+          {orderItems.map((curElm) => {
             return (
               <>
                 <Col md={4}>
-                  <p>{curElm.item}</p>
+                  <p>{curElm.name}</p>
                 </Col>
                 <Col md={3}>
-                  <p>{curElm.quantity}</p>
+                  <p>{curElm.qty}</p>
                 </Col>
                 <Col md={3}>
-                  <p>{curElm.Shipto}</p>
+                  <p>{shippingInfo.fullname}</p>
                 </Col>
                 <Col md={2}>
                   <p>{curElm.price}</p>
@@ -75,7 +63,7 @@ const OrderHistoryComp = () => {
           <Col md={3}></Col>
           <Col md={3}></Col>
           <Col md={2}>
-            <p>Rs 320</p>
+            <p>Rs {totalPrice}</p>
           </Col>
         </Row>
       </div>

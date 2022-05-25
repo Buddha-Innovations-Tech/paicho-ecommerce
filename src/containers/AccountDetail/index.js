@@ -27,7 +27,7 @@ const AccountDetail = () => {
   const [email, setEmail] = useState("");
   const [phonenumber, setPhoneNumber] = useState("");
   const [emailaddress, setEmailAddress] = useState("");
-  const [billaddress, setBillAddress] = useState("");
+  const [billingaddress, setBillingAddress] = useState("");
   const [fullname, setFullName] = useState("");
 
   const navigate = useNavigate();
@@ -51,15 +51,17 @@ const AccountDetail = () => {
       })
     );
   };
+
   const updateBillingAddres = (e) => {
     e.preventDefault();
     dispatch(
       updateBillingAddress({
-        _id: subscriber._id,
-        fullname,
-        email: emailaddress,
-        phonenumber,
-        // billingaddress: billaddress,
+        billingaddress: {
+          fullname,
+          emailaddress,
+          phonenumber,
+          billingaddress,
+        },
       })
     );
   };
@@ -91,12 +93,12 @@ const AccountDetail = () => {
       setFullName("");
       setPhoneNumber("");
       setEmailAddress("");
-      setBillAddress("");
+      setBillingAddress("");
     } else {
       setFullName(subscriber.billingadddress?.fullname);
       setPhoneNumber(subscriber.billingadddress?.phonenumber);
-      setEmailAddress(subscriber.billingadddress?.email);
-      setBillAddress(subscriber.billingadddress?.billingaddress);
+      setEmailAddress(subscriber.billingadddress?.emailaddress);
+      setBillingAddress(subscriber.billingadddress?.billingaddress);
     }
   }, [subscriber]);
 
@@ -221,8 +223,8 @@ const AccountDetail = () => {
                       type="text"
                       placeholder="Enter Your Billing Address"
                       name="billing"
-                      value={billaddress}
-                      onChange={(e) => setBillAddress(e.target.value)}
+                      value={billingaddress}
+                      onChange={(e) => setBillingAddress(e.target.value)}
                       required
                     />
                   </InputGroup>

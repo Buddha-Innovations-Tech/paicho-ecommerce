@@ -108,9 +108,9 @@ const Home = () => {
                               </p>{" "}
                               <br />
                               <Link
-                                to=""
+                                to={curEm.link}
                                 className="btn__buy"
-                                onClick={signInHandler}
+                                // onClick={signInHandler}
                               >
                                 Buy Now
                               </Link>
@@ -120,7 +120,7 @@ const Home = () => {
                           <Col md={6}>
                             <div className="hero__banner">
                               <img
-                                src={curEm.image}
+                                src={curEm.image[0]}
                                 className="hero__banner--img"
                                 alt=""
                               />
@@ -131,6 +131,7 @@ const Home = () => {
                     );
                   })}
               </Slider>
+
               <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                   <Modal.Title>
@@ -318,7 +319,7 @@ const Home = () => {
             {/* Paicho Pickle */}
             <div className="d-sm-flex justify-content-between align-items-center">
               <p className="product__category">Paicho Pickle </p>
-              <Link to="/paichopickle">
+              <Link to="/Paicho Pickle">
                 <span className="see__more">See More</span>
               </Link>
             </div>
@@ -328,6 +329,7 @@ const Home = () => {
                   ?.filter(
                     (i) => i.category && i.category.name === "Paicho Pickle"
                   )
+                  ?.filter((i, index) => index < 4)
                   .map((curElm, index) => {
                     return (
                       <Col md={3}>
@@ -340,7 +342,7 @@ const Home = () => {
             {/* Paicho Processing Products  */}
             <div className="d-sm-flex justify-content-between">
               <p className="product__category">Paicho Processing Products </p>
-              <Link to="/processingproduct">
+              <Link to="/Processing Products">
                 <span className="see__more">See More</span>
               </Link>
             </div>
@@ -363,7 +365,7 @@ const Home = () => {
             {/* Grains & Pulses  */}
             <div className="d-sm-flex justify-content-between">
               <p className="product__category">Grains & Pulses </p>
-              <Link to="/grainsandpulses">
+              <Link to="/Grain & Pulses">
                 <span className="see__more">See More</span>
               </Link>
             </div>
@@ -371,7 +373,7 @@ const Home = () => {
               {products &&
                 products
                   ?.filter(
-                    (i) => i.category && i.category.name === "Grain And Pulses"
+                    (i) => i.category && i.category.name === "Grain & Pulses"
                   )
                   .map((curElm, index) => {
                     return (
@@ -385,7 +387,7 @@ const Home = () => {
             {/* Indeginous Product */}
             <div className="d-sm-flex justify-content-between">
               <p className="product__category">Indeginous Product </p>
-              <Link to="/indenginousproducts">
+              <Link to="/Indeginous Products">
                 <span className="see__more">See More</span>
               </Link>
             </div>
@@ -408,7 +410,7 @@ const Home = () => {
             {/* Dry  Foods */}
             <div className="d-sm-flex justify-content-between">
               <p className="product__category">Dry Foods </p>
-              <Link to="/paichodryfoods">
+              <Link to="/Paicho Dry Foods">
                 <span className="see__more">See More</span>
               </Link>
             </div>
@@ -416,7 +418,7 @@ const Home = () => {
               {products &&
                 products
                   ?.filter(
-                    (i) => i.category && i.category.name === " Paich Dry Foods"
+                    (i) => i.category && i.category.name === "Paicho Dry Foods"
                   )
                   .map((curElm, index) => {
                     return (
@@ -430,7 +432,7 @@ const Home = () => {
             {/* Ketchup & Sauces */}
             <div className="d-sm-flex justify-content-between">
               <p className="product__category">Ketchup & Sauces </p>
-              <Link to="/ketchupandsauces">
+              <Link to="/Katchup Sauce">
                 <span className="see__more">See More</span>
               </Link>
             </div>
@@ -452,7 +454,7 @@ const Home = () => {
             {/* Organic Vegetables  */}
             <div className="d-sm-flex justify-content-between">
               <p className="product__category">Organic Vegetables </p>
-              <Link to="/organicvegetables">
+              <Link to="/Organic Vegetables">
                 <span className="see__more">See More</span>
               </Link>
             </div>

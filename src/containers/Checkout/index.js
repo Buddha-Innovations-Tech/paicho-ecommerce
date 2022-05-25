@@ -1,58 +1,98 @@
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row, Toast } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import { useSelector, useDispatch } from "react-redux";
 import { saveShippingAddress } from "../../actions/cartAddedAction";
 import { createOrder } from "../../actions/orderAction";
+import { BsCheck } from "react-icons/bs";
+
+import { getSubscriberDetails } from "../../actions/subscriberaction";
 const Checkout = () => {
   const { shippingAddress } = useSelector((state) => state.cart);
-  const [fullname, setFullName] = useState(shippingAddress.fullname);
-  const [phone, setPhone] = useState(shippingAddress.phone);
-  const [email, setEmail] = useState(shippingAddress.email);
-  const [address, setAddress] = useState(shippingAddress.address);
+  const [fullname, setFullName] = useState(
+    shippingAddress && shippingAddress.fullname
+  );
+  const [phonenumber, setPhoneNumber] = useState(
+    shippingAddress && shippingAddress.phone
+  );
+  const [email, setEmail] = useState(shippingAddress && shippingAddress.email);
+  const [address, setAddress] = useState(
+    shippingAddress && shippingAddress.address
+  );
   const [paymentmethod, setPaymentMethod] = useState("Cash on Delivery");
   const { cartItems } = useSelector((state) => state.cart);
-
+  const [checked, setChecked] = useState(true);
+  const { subscriber } = useSelector((state) => state.subscriberDetails);
   const dispatch = useDispatch();
+  const [showA, setShowA] = useState(false);
+  const [show, setShow] = useState(false);
   var today = new Date();
   var date =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(cartItems);
     dispatch(
-      saveShippingAddress({ fullname, phone, email, address, paymentmethod })
+      createOrder({
+        shippingInfo: {
+          fullname,
+          address,
+          phonenumber,
+          email,
+        },
+        shippingprice: 300,
+
+        orderItems: cartItems.map((i) => {
+          return { ...i, product: i.id };
+        }),
+        paymentInfo: {
+          paymentmethod,
+        },
+      })
     );
-    dispatch(
-      createOrder()
-      // ({
-      //   totalPrice: 2500,
-      //   shippingInfo: {
-      //     fullname: "abcd",
-      //     address: "abcd",
-      //     phonenumber: "5422",
-      //     email: "xyz@gmail.com",
-      //   },
-      //   paymentInfo: "cash on delivery",
-      //   itemsPrice: cartItems.price,
-      //   shippingPrice: 1000,
-      //   totalPrice: 120,
-      //   orderStatus: "Delivered",
-      //   paidAt: Date.now(),
-      // })
-    );
+    setShowA(true);
+
     setAddress("");
     setFullName("");
     setEmail("");
-    setPhone("");
+    setPhoneNumber("");
   };
   var discountInBill = 0;
   var totalMrp = 0;
+  var grandTotal = 0;
+
+  useEffect(() => {
+    dispatch(getSubscriberDetails("profile"));
+  }, [dispatch]);
+  useEffect(() => {
+    if (subscriber.billingadddress) {
+      if (!checked) {
+        setFullName(subscriber.billingadddress?.fullname);
+        setPhoneNumber(subscriber.billingadddress?.phonenumber);
+        setEmail(subscriber.billingadddress?.emailaddress);
+        setAddress(subscriber.billingadddress?.billingaddress);
+      } else {
+        setFullName("");
+        setAddress("");
+        setEmail("");
+        setPhoneNumber("");
+      }
+    }
+  }, [subscriber, checked]);
+  // useEffect(() => {
+  //   if (!checked) {
+  //     setFullName("");
+  //     setAddress("");
+  //     setEmail("");
+  //     setPhoneNumber("");
+  //   }
+  // }, [checked]);
   return (
     <>
       <section className="checkout">
@@ -73,7 +113,12 @@ const Checkout = () => {
                     </span>
                     <span>
                       <div className="d-flex align-items-center">
-                        <InputGroup.Checkbox />
+                        <InputGroup.Checkbox
+                          value={checked}
+                          onChange={(e) => {
+                            setChecked(!checked);
+                          }}
+                        />
                         <span>Use my details</span>
                       </div>
                     </span>
@@ -104,8 +149,8 @@ const Checkout = () => {
                       <Form.Control
                         type="number"
                         placeholder="Phone no"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
+                        value={phonenumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
                         required
                       />
                     </Form.Group>
@@ -192,6 +237,7 @@ const Checkout = () => {
                       </div>
                       <div className="form-check">
                         <input
+                          defaultChecked
                           className="form-check-input"
                           type="radio"
                           name="gridRadios"
@@ -214,6 +260,17 @@ const Checkout = () => {
                       </Link>
 
                       <Button className="btn__confirm" type="submit">
+                        <Toast
+                          onClose={() => setShowA(false)}
+                          show={showA}
+                          delay={2000}
+                          autohide
+                        >
+                          <Toast.Body>
+                            Your order has been success !{" "}
+                            <BsCheck className="checkicon" />
+                          </Toast.Body>
+                        </Toast>
                         Confirm Purchase{" "}
                       </Button>
                     </div>
@@ -238,11 +295,10 @@ const Checkout = () => {
 
                         {cartItems.length > 0 &&
                           cartItems?.map((data, index) => {
-                            // discountInBill +=
-                            //   (data.discount / 100) * data.price + data.qty;
-                            totalMrp += data.price;
+                            discountInBill = totalMrp += data.price * data.qty;
+                            grandTotal = totalMrp - discountInBill + 0;
                             return (
-                              <tr className="center">
+                              <tr className="center" key={index}>
                                 <td>{data.name} </td>
                                 <td>{data.qty}</td>
                                 <td>{data.price * data.qty}</td>
@@ -255,7 +311,7 @@ const Checkout = () => {
                             <span>Total M.R.P.</span>{" "}
                           </td>
                           <td></td>
-                          <td>Rs.{totalMrp}</td>
+                          <td>{totalMrp}</td>
                         </tr>
                         <tr className="center">
                           <td>
@@ -272,7 +328,7 @@ const Checkout = () => {
                           </td>
                           <td></td>
                           <td>
-                            <span>150</span>
+                            <span>0</span>
                           </td>
                         </tr>
                         <tr className="center total-mrp">
@@ -281,7 +337,7 @@ const Checkout = () => {
                           </td>
                           <td></td>
                           <td>
-                            <span>1500</span>
+                            <span>{grandTotal}</span>
                           </td>
                         </tr>
                       </tbody>

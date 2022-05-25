@@ -12,14 +12,15 @@ import WhishList from "../WhishList";
 import Checkout from "../Checkout";
 import Home from "../Home";
 import axios from "axios";
-import IndeginousProduct from "../IndeginousProduct";
+import SubCategory from "../SubCategory";
 import ProcessingProduct from "../ProcessingProduct";
 import OrganicVegetables from "../OrganicVegetables";
 import PaichoDryFoods from "../PaichoDryFoods";
 import KetchupSauce from "../KetchupSauce";
 import PaichoPickle from "../PaichoPickle";
 import GrainsPulses from "../GrainsPulses";
-
+import IndeginousProduct from "../IndeginousProduct";
+import Search from "../Search";
 // import ScrollToTop from "../../components/ScrollToTop";
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
     <div>
       <main>
         <Routes>
+          <Route exact path="/" element={<Home />} />
           <Route exact path="/orderconfirm" element={<OrderConfirmation />} />
           <Route exact path="/productdetail/:id" element={<ProductDetail />} />
           <Route exact path="/shoppingcart" element={<ShoppingCart />} />
@@ -38,28 +40,14 @@ const App = () => {
           <Route exact path="/account" element={<AccountDetail />} />
           <Route exact path="/outofstock" element={<OutOfStock />} />
           <Route exact path="/clearcart" element={<ClearCart />} />
-          <Route exact path="/" element={<Home />} />
-
-          {/* Categories */}
-          {/* <Route exact path="/ketchupandsauces" element={<KetchupSauce />} />
-          <Route exact path="/paichodryfoods" element={<PaichoDryFoods />} />
-          <Route exact path="/grainsandpulses" element={<GrainsPulses />} /> */}
+          <Route exact path="/search/:productname" element={<Search />} />
           <Route exact path="/:name" element={<PaichoPickle />} />
-          {/* <Route
-            exact
-            path="/indenginousproducts"
-            element={<IndeginousProduct />}
-          />
-          <Route
-            exact
-            path="/processingproduct"
-            element={<ProcessingProduct />}
-          />
-          <Route
-            exact
-            path="/organicvegetables"
-            element={<OrganicVegetables />}
-          /> */}
+          <Route exact path="/:name" element={<ProcessingProduct />} />
+          <Route exact path="/:name" element={<GrainsPulses />} />
+          <Route exact path="/:name" element={<IndeginousProduct />} />
+          <Route exact path="/:name" element={<PaichoDryFoods />} />
+          <Route exact path="/:name" element={<KetchupSauce />} />
+          <Route exact path="/:name" element={<OrganicVegetables />} />
         </Routes>
       </main>
     </div>

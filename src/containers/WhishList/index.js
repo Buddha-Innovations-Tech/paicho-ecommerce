@@ -12,6 +12,8 @@ import { CgChevronDoubleLeft } from "react-icons/cg";
 import { BiPlus, BiMinus } from "react-icons/bi";
 import { getSubscriberDetails } from "../../actions/subscriberaction";
 import { deleteSingleWishlist } from "../../actions/wishListAction";
+import { addToCart } from "../../actions/cartAddedAction";
+
 const WhishList = () => {
   const { subscriber } = useSelector((state) => state.subscriberDetails);
   const { product } = useSelector((state) => state.productDetails);
@@ -20,10 +22,18 @@ const WhishList = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const { success: wishlistSuccess } = useSelector(
+    (state) => state.wishlistDelete
+  );
   // const [clearCart, setClearCart] = useState(mainTableData);
   useEffect(() => {
     dispatch(getSubscriberDetails("profile"));
   }, [dispatch]);
+  useEffect(() => {
+    if (wishlistSuccess) {
+      dispatch(getSubscriberDetails("profile"));
+    }
+  }, [wishlistSuccess]);
   const removeWishlist = (id) => {
     dispatch(deleteSingleWishlist(id));
   };
@@ -33,6 +43,10 @@ const WhishList = () => {
       navigate("/home");
     }
   }, [subscriberInfo]);
+  const send = (id, qty) => {
+    dispatch(addToCart(id, qty));
+    // setShowA(true);
+  };
   return (
     <>
       <NavBar />
@@ -50,10 +64,10 @@ const WhishList = () => {
               <div className="carttable">
                 <div className="d-flex justify-content-between align-items-center">
                   <div className="carttable__heading d-flex align-items-center">
-                    <InputGroup.Checkbox />
+                    {/* <InputGroup.Checkbox />
                     <span className="carttable__heading--selectitem">
                       Select All(3 items)
-                    </span>
+                    </span> */}
                   </div>
                   <div className="carttable__heading d-flex align-items-center">
                     <RiDeleteBinLine className="carttable__heading--deleteicon" />
@@ -128,10 +142,10 @@ const WhishList = () => {
                               style={{ width: "225px" }}
                             >
                               {/* <InputGroup.Checkbox className="checkbox" /> */}
-                              <img src={data.img} alt="" />
+                              <img src={data.image} alt="" />
                               <div>
                                 <p>{data.name}</p>
-                                <span>Category:Pickle</span>
+                                <span>Category:{data.category.name}</span>
                               </div>
                             </div>
                           </Col>
@@ -144,9 +158,13 @@ const WhishList = () => {
                             </div>
                           </Col>
                           <Col lg={3}>
-                            <button className="carttable__maintable--crossicon">
+                            <Link
+                              to="/shoppingcart"
+                              className="carttable__maintable--crossicon"
+                              onClick={() => send(data._id, 1)}
+                            >
                               Add to Cart
-                            </button>
+                            </Link>
                           </Col>
 
                           <Col

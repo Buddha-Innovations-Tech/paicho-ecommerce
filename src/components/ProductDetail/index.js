@@ -76,7 +76,7 @@ const ProductDetailComp = ({ product, success }) => {
   const [image, setImage] = useState("");
   const [ingredient, setIngredient] = useState([]);
   const [similar, setSimilar] = useState([]);
-
+  var discountData = product.price - (product.discount / 100) * product.price;
   const signInHandler = () => {
     handleShow(true);
     setSignin(true);
@@ -159,9 +159,15 @@ const ProductDetailComp = ({ product, success }) => {
                 </span>
               </div>
               <div className="product__price">
-                <span className="product__price--totalprice">
-                  Price : Rs.{product.price}
-                </span>
+                <div>
+                  <span className="price">Rs {discountData}</span>
+                  <div className="newpricediv">
+                    <span className="previous_price">Rs{product.price}</span>
+                    <span className="new_price ms-3">
+                      -{product.discount} %
+                    </span>
+                  </div>
+                </div>
                 <p className="product__price--stock">{product.stock}</p>
               </div>
 
@@ -169,33 +175,44 @@ const ProductDetailComp = ({ product, success }) => {
                 <p className="product__inc-dec--quantity ">Quantity</p>
                 <IncrementDecrement />
               </div> */}
-              <div className="product__btns">
-                <Link
-                  to=""
-                  className="product__btns--addtocart"
-                  onClick={() => send(product._id, 1)}
-                >
-                  <Toast
-                    onClose={() => setShowA(false)}
-                    show={showA}
-                    delay={2000}
-                    autohide
-                  >
-                    <Toast.Body>
-                      This item is added to your cart successfully !{" "}
-                      <BsCheck className="checkicon" />
-                    </Toast.Body>
-                  </Toast>
-                  Add To Cart
-                </Link>
-                <Link
-                  to=""
-                  className="product__btns--buynow"
-                  onClick={signInHandler}
-                >
-                  Buy Now
-                </Link>
-              </div>
+              {product.countInStock !== 0 ? (
+                <>
+                  <div className="product__btns">
+                    <Link
+                      to=""
+                      className="product__btns--addtocart"
+                      onClick={() => send(product._id, 1)}
+                    >
+                      <Toast
+                        onClose={() => setShowA(false)}
+                        show={showA}
+                        delay={2000}
+                        autohide
+                      >
+                        <Toast.Body>
+                          This item is added to your cart successfully !{" "}
+                          <BsCheck className="checkicon" />
+                        </Toast.Body>
+                      </Toast>
+                      Add To Cart
+                    </Link>
+                    <Link
+                      to="/shoppingcart"
+                      className="product__btns--buynow"
+                      onClick={() => send(product._id, 1)}
+
+                      // onClick={signInHandler}
+                    >
+                      Buy Now
+                    </Link>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className="product-outofstock">Product is Out Of Stock.</p>
+                </>
+              )}
+
               <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                   <Modal.Title>

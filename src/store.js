@@ -22,7 +22,8 @@ import { carouselListReducer } from "./reducers/carouselReducers";
 
 import { cartReducer } from "./reducers/cartAddedReducers";
 import { wishlistDeleteReducer } from "./reducers/wishListReducers";
-import { orderCreateReducer } from "./reducers/orderReducers";
+import { orderCreateReducer, orderListReducer } from "./reducers/orderReducers";
+
 const reducer = combineReducers({
   subscriberLogin: subscriberLoginReducer,
   subscriberRegister: subscriberRegisterReducer,
@@ -41,13 +42,14 @@ const reducer = combineReducers({
   wishlistCreate: wishlistCreateReducer,
   wishlistDelete: wishlistDeleteReducer,
   orderCreate: orderCreateReducer,
+  orderList: orderListReducer,
 });
 
 const middleware = [thunk];
 const subscriberInfoFromStorage = localStorage.getItem("subscriberInfo")
   ? JSON.parse(localStorage.getItem("subscriberInfo"))
   : null;
-const cartIemsFromStorage = localStorage.getItem("cartItems")
+const cartItemsFromStorage = localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
   : [];
 const shippingAddressFromStorage = localStorage.getItem("shippingAddress")
@@ -56,7 +58,7 @@ const shippingAddressFromStorage = localStorage.getItem("shippingAddress")
 const initialState = {
   subscriberLogin: { subscriberInfo: subscriberInfoFromStorage },
   cart: {
-    cartItems: cartIemsFromStorage,
+    cartItems: cartItemsFromStorage,
     shippingAddress: shippingAddressFromStorage,
   },
 };

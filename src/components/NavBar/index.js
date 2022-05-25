@@ -5,7 +5,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { FaUserAlt } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
 import { MdCall } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import {
   Col,
@@ -26,90 +26,6 @@ import Logo from "../../assets/images/paichologo.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import SubNav from "../SubNav";
 import { register, login, logout } from "../../actions/subscriberaction";
-
-// const navItem = [
-//   {
-//     title: "Paicho Pickle",
-//     items: [
-//       { title: "Mango Pickle " },
-//       { title: "Gooseberry Pickle" },
-//       { title: "Lemon Pickle" },
-//       { title: "Chilly Pickle" },
-//       { title: "Paicho Bhutuk Achar" },
-//       { title: "def" },
-//     ],
-//   },
-//   {
-//     title: "Processing  Item",
-//     items: [
-//       { title: "Paicho Mix Jam" },
-//       { title: "Paicho Chuck" },
-//       { title: "Khudo" },
-//       { title: "Guava Juice" },
-//       { title: "Mixed Fruit Jiuce" },
-//       { title: "Paicho Sweetcorn" },
-//       { title: "Paicho Sweetcorn" },
-//     ],
-//   },
-//   {
-//     title: "Grains & Pulses",
-//     items: [
-//       { title: "Paicho Chamal " },
-//       { title: "Paicho Daal " },
-//       { title: "Phapar dana" },
-//       { title: "deKodoko Pithof" },
-//       { title: "Paicho Sweet Backwheat Pitho" },
-//       { title: "Paicho Gahat dana" },
-//     ],
-//   },
-//   {
-//     title: "Indeginous Product",
-//     items: [
-//       { title: "Paicho Sinki" },
-//       { title: "Paicho Masyaura" },
-//       { title: "Kabuno" },
-//       { title: "Nettle Powder" },
-//     ],
-//   },
-//   {
-//     title: "Dry Food",
-//     items: [
-//       { title: "Paicho Alaichi " },
-//       { title: "Paicho Aaapko Chana" },
-//       { title: "Paicho Bakulla dana " },
-//       { title: "Paicho Barro " },
-//       { title: "Paicho Besaar  " },
-//       { title: "Paicho Bhango   " },
-//       { title: "Paicho Sukeko Dalle  " },
-//       { title: "Paicho Dry Apple" },
-//       { title: "Paicho Sukeko Karela" },
-//     ],
-//   },
-//   {
-//     title: "Ketchup & Sauces",
-//     items: [
-//       { title: "Paicho Chilly Sauce" },
-//       { title: "Paicho Tomato Ketchup" },
-//       { title: "PaichoTomato Puree" },
-//       { title: "Paicho Vinegar " },
-//       { title: "Paicho Hot & Sweet  " },
-//       { title: "Paicho Mexican Sauce   " },
-//       { title: "Paicho Soya Sauce" },
-//     ],
-//   },
-//   {
-//     title: "Organic Vegetable",
-//     items: [
-//       { title: "Fresh Tomatoes" },
-//       { title: "Cauliflower " },
-//       { title: "Chillies" },
-//       { title: "Dalle Khursani " },
-//       { title: "Cabbage" },
-//       { title: "Potatoes" },
-//       { title: "Fresh Spring Onion" },
-//     ],
-//   },
-// ];
 
 const NavBar = () => {
   const { cartItems } = useSelector((state) => state.cart);
@@ -137,10 +53,15 @@ const NavBar = () => {
   const [hideSmallNavbar, setHideSmallNavbar] = useState(false);
   const [cartlength, setCartLength] = useState([]);
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+  const searchHandle = () => {
+    if (search !== "") {
+      navigate(`/search/${search}`);
+    }
+  };
   useEffect(() => {
     dispatch(listCategories());
   }, [dispatch]);
-
   const refetch = () => {
     let carts = localStorage.getItem("carts");
     console.log(carts);
@@ -149,12 +70,6 @@ const NavBar = () => {
     }
   };
   useEffect(() => {
-    // let carts = localStorage.getItem("carts");
-    // if (carts) {
-    //   setCartLength(JSON.parse(carts));
-    // } else {
-    //   setCartLength([]);
-    // }
     let carts = localStorage.getItem("carts");
     setCartLength(JSON.parse(carts));
     window.addEventListener("storage", () => {
@@ -182,6 +97,19 @@ const NavBar = () => {
       document.removeEventListener("mousedown", checkIfClickedOutside);
     };
   }, [navbarshow]);
+  // useEffect(() => {
+  //   const checkIfClickedOutside = (e) => {
+  //     if (account && ref.current && !ref.current.contains(e.target)) {
+  //       setAccount(false);
+  //     }
+  //   };
+
+  //   document.addEventListener("mousedown", checkIfClickedOutside);
+
+  //   return () => {
+  //     document.removeEventListener("mousedown", checkIfClickedOutside);
+  //   };
+  // }, [account]);
 
   const signInHandler = () => {
     handleShow(true);
@@ -291,7 +219,7 @@ const NavBar = () => {
                     onChange={(e) => setSearch(e.target.value)}
                   />
                 </form>
-                <FiSearch className="search-icon" />
+                <FiSearch className="search-icon" onClick={searchHandle} />
               </div>
             </Col>
             <Col md={4}>
@@ -323,15 +251,13 @@ const NavBar = () => {
 
                     {account ? (
                       <ul className="account-btn">
-                        <li>
-                          <Link
-                            to=""
-                            className="account-signin"
-                            onClick={signInHandler}
-                          >
-                            Sign In
-                          </Link>
-                        </li>
+                        <Link
+                          to=""
+                          className="account-signin"
+                          onClick={signInHandler}
+                        >
+                          <li>Sign In</li>
+                        </Link>
                         <Modal show={show} onHide={handleClose}>
                           <Modal.Header closeButton>
                             <Modal.Title>
@@ -425,6 +351,7 @@ const NavBar = () => {
                                               setFirstName(e.target.value)
                                             }
                                             asteric="*"
+                                            required
                                           />
                                         </InputGroup>
                                       </div>
@@ -445,6 +372,7 @@ const NavBar = () => {
                                               setLastName(e.target.value)
                                             }
                                             asteric="*"
+                                            required
                                           />
                                         </InputGroup>
                                       </div>
@@ -467,6 +395,7 @@ const NavBar = () => {
                                               setEmail(e.target.value)
                                             }
                                             asteric="*"
+                                            required
                                           />
                                         </InputGroup>
                                       </div>
@@ -487,6 +416,7 @@ const NavBar = () => {
                                               setMobilenumber(e.target.value)
                                             }
                                             asteric="*"
+                                            required
                                           />
                                         </InputGroup>
                                       </div>
@@ -509,6 +439,7 @@ const NavBar = () => {
                                               setPassword(e.target.value)
                                             }
                                             asteric="*"
+                                            required
                                           />
                                         </InputGroup>
                                       </div>
@@ -529,6 +460,7 @@ const NavBar = () => {
                                               setConfirmPassword(e.target.value)
                                             }
                                             asteric="*"
+                                            required
                                           />
                                         </InputGroup>
                                       </div>
@@ -571,24 +503,14 @@ const NavBar = () => {
                             </p>
                           </Modal.Body>
                         </Modal>
-                        <li>
-                          <Link
-                            to=""
-                            className="account-create"
-                            onClick={signInHandlerAccount}
-                          >
-                            Create Account
-                          </Link>
-                        </li>
-                        {/* <li>
-                          <Link
-                            to=""
-                            className="account-create"
-                            onClick={logOutHandlerAccount}
-                          >
-                            Log Out
-                          </Link>
-                        </li> */}
+                        <Link
+                          to=""
+                          className="account-create"
+                          onClick={signInHandlerAccount}
+                        >
+                          <li>Create Account</li>
+                        </Link>
+
                         <div className="accoount-create-modal">
                           <Modal show={show1} onHide={handleClose1}>
                             <Modal.Header closeButton>
@@ -629,10 +551,11 @@ const NavBar = () => {
                                               placeholder="Enter Your First Name"
                                               name="firstname"
                                               value={firstname}
+                                              asteric="*"
                                               onChange={(e) =>
                                                 setFirstName(e.target.value)
                                               }
-                                              asteric="*"
+                                              required
                                             />
                                           </InputGroup>
                                         </div>
@@ -653,6 +576,7 @@ const NavBar = () => {
                                                 setLastName(e.target.value)
                                               }
                                               asteric="*"
+                                              required
                                             />
                                           </InputGroup>
                                         </div>
@@ -675,6 +599,7 @@ const NavBar = () => {
                                                 setEmail(e.target.value)
                                               }
                                               asteric="*"
+                                              required
                                             />
                                           </InputGroup>
                                         </div>
@@ -695,6 +620,7 @@ const NavBar = () => {
                                                 setMobilenumber(e.target.value)
                                               }
                                               asteric="*"
+                                              required
                                             />
                                           </InputGroup>
                                         </div>
@@ -717,6 +643,7 @@ const NavBar = () => {
                                                 setPassword(e.target.value)
                                               }
                                               asteric="*"
+                                              required
                                             />
                                           </InputGroup>
                                         </div>
@@ -739,6 +666,7 @@ const NavBar = () => {
                                                 )
                                               }
                                               asteric="*"
+                                              required
                                             />
                                           </InputGroup>
                                         </div>
@@ -834,19 +762,15 @@ const NavBar = () => {
                             </Modal.Body>
                           </Modal>
                         </div>
-                        <li>
-                          <Link to="/account" className="account-accdetails">
-                            My Account
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/wishlist"
-                            className="account-wishlistdetails"
-                          >
-                            Wishlist
-                          </Link>
-                        </li>
+                        <Link to="/account" className="account-accdetails">
+                          <li>My Account</li>
+                        </Link>
+                        <Link
+                          to="/wishlist"
+                          className="account-wishlistdetails"
+                        >
+                          <li>Wishlist</li>
+                        </Link>
                       </ul>
                     ) : (
                       ""
@@ -891,32 +815,31 @@ const NavBar = () => {
                       categories.map((curElm, index) => {
                         return (
                           <>
-                            <li className="navar-dropdown-li" key={index}>
-                              <div className="navbardropdown-flex">
-                                <Link
-                                  to={`/${curElm.name}`}
-                                  className="main-category"
-                                >
+                            <Link
+                              to={`/${curElm.name}`}
+                              className="main-category"
+                            >
+                              <li className="navar-dropdown-li" key={index}>
+                                <div className="navbardropdown-flex main-category">
                                   {curElm.name}
-                                </Link>
-                                <MdKeyboardArrowRight className="dropdown-item-icon" />
-                              </div>
-                              <ul className="dropdown-submenu">
-                                {categories &&
-                                  curElm.subcategories.map((data, index) => {
-                                    return (
-                                      <li>
+                                  <MdKeyboardArrowRight className="dropdown-item-icon" />
+                                </div>
+                                <ul className="dropdown-submenu">
+                                  {categories &&
+                                    curElm.subcategories.map((data, index) => {
+                                      return (
                                         <Link
-                                          to="/productdetail/:id"
+                                          to={`/${curElm.name}`}
+                                          state={data.name}
                                           key={index}
                                         >
-                                          {data.name}
+                                          <li>{data.name}</li>
                                         </Link>
-                                      </li>
-                                    );
-                                  })}
-                              </ul>
-                            </li>
+                                      );
+                                    })}
+                                </ul>
+                              </li>
+                            </Link>
                           </>
                         );
                       })}
