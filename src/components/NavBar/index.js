@@ -31,6 +31,8 @@ const NavBar = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const { subscriberInfo } = useSelector((state) => state.subscriberLogin);
   const { categories } = useSelector((state) => state.categoryList);
+  const {error}=useSelector((state)=>state.subscriberRegister);
+  // console.log(error);
   const dispatch = useDispatch();
   const ref = useRef();
   const [mobilenumber, setMobilenumber] = useState("");
@@ -125,15 +127,6 @@ const NavBar = () => {
   const signUpHandlerAccount = () => {
     setSignup(false);
   };
-  // const { subscriberInfo, loading } = useSelector(
-  //   (state) => state.subscriberLogin
-  // );
-
-  // useEffect(()=>{
-  //   if(subscriberInfo){
-
-  //   }
-  // })
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     dispatch(login(mobilenumber, password));
@@ -250,385 +243,63 @@ const NavBar = () => {
                     </Link>
 
                     {account ? (
-                      <ul className="account-btn">
-                        <Link
-                          to=""
-                          className="account-signin"
-                          onClick={signInHandler}
-                        >
-                          <li>Sign In</li>
-                        </Link>
-                        <Modal show={show} onHide={handleClose}>
-                          <Modal.Header closeButton>
-                            <Modal.Title>
-                              {signIn ? (
-                                <>
-                                  <p>Sign In to your Paicho Account</p>
-                                  <span>
-                                    Please fill in the form correctly to sign in
-                                    your paicho account
-                                  </span>
-                                </>
-                              ) : (
-                                <>
-                                  <p>Create Your Paicho Account</p>
-                                  <span>
-                                    Please fill in the form correctly to sign up
-                                    your paicho account
-                                  </span>
-                                </>
-                              )}
-                            </Modal.Title>
-                          </Modal.Header>
-                          <Modal.Body>
-                            {signIn ? (
-                              <>
-                                <Form onSubmit={handleLoginSubmit}>
-                                  <div className="mt-4 position-relative">
-                                    <Form.Label>
-                                      Mobile Number <sup>*</sup>
-                                    </Form.Label>
-                                    <InputGroup>
-                                      <FormControl
-                                        label="Mobile Number"
-                                        type="number"
-                                        placeholder="Enter Your Mobile Number"
-                                        name="mobilenumber"
-                                        asteric="*"
-                                        value={mobilenumber}
-                                        onChange={(e) =>
-                                          setMobilenumber(e.target.value)
-                                        }
-                                        required
-                                      />
-                                    </InputGroup>
-                                  </div>
-                                  <div className="mt-4 position-relative">
-                                    <Form.Label>
-                                      Password <sup>*</sup>
-                                    </Form.Label>
-                                    <InputGroup>
-                                      <FormControl
-                                        label="Password"
-                                        type="password"
-                                        placeholder="Enter Your Password"
-                                        name="password"
-                                        value={password}
-                                        onChange={(e) =>
-                                          setPassword(e.target.value)
-                                        }
-                                        asteric="*"
-                                        required
-                                      />
-                                    </InputGroup>
-                                  </div>
-
-                                  <Button className="sign-in-btn" type="submit">
-                                    Sign In
-                                  </Button>
-                                  <Link to="" className="forget-password">
-                                    <u>Forget Password?</u>
-                                  </Link>
-                                </Form>
-                              </>
-                            ) : (
-                              <>
-                                <Form onSubmit={handleSubmitRegister}>
-                                  <Row>
-                                    <Col md={6}>
-                                      <div className="mt-4">
-                                        <Form.Label>
-                                          First Name <sup>*</sup>
-                                        </Form.Label>
-                                        <InputGroup>
-                                          <FormControl
-                                            label="First Name"
-                                            type="text"
-                                            placeholder="Enter Your First Name"
-                                            name="firstname"
-                                            value={firstname}
-                                            onChange={(e) =>
-                                              setFirstName(e.target.value)
-                                            }
-                                            asteric="*"
-                                            required
-                                          />
-                                        </InputGroup>
-                                      </div>
-                                    </Col>
-                                    <Col md={6}>
-                                      <div className="mt-4">
-                                        <Form.Label>
-                                          Last Name <sup>*</sup>
-                                        </Form.Label>
-                                        <InputGroup>
-                                          <FormControl
-                                            label="Last Name"
-                                            type="text"
-                                            placeholder="Enter Your Last Name"
-                                            name="lastname"
-                                            value={lastname}
-                                            onChange={(e) =>
-                                              setLastName(e.target.value)
-                                            }
-                                            asteric="*"
-                                            required
-                                          />
-                                        </InputGroup>
-                                      </div>
-                                    </Col>
-                                  </Row>
-                                  <Row>
-                                    <Col md={6}>
-                                      <div className="mt-4">
-                                        <Form.Label>
-                                          Email <sup>*</sup>
-                                        </Form.Label>
-                                        <InputGroup>
-                                          <FormControl
-                                            label="Email Address"
-                                            type="email"
-                                            placeholder="Enter Your Email Address"
-                                            name="email"
-                                            value={email}
-                                            onChange={(e) =>
-                                              setEmail(e.target.value)
-                                            }
-                                            asteric="*"
-                                            required
-                                          />
-                                        </InputGroup>
-                                      </div>
-                                    </Col>
-                                    <Col md={6}>
-                                      <div className="mt-4">
-                                        <Form.Label>
-                                          Mobile Number <sup>*</sup>
-                                        </Form.Label>
-                                        <InputGroup>
-                                          <FormControl
-                                            label="Mobile Number"
-                                            type="number"
-                                            placeholder="Enter Your Mobile Number"
-                                            name="mobilenumber"
-                                            value={mobilenumber}
-                                            onChange={(e) =>
-                                              setMobilenumber(e.target.value)
-                                            }
-                                            asteric="*"
-                                            required
-                                          />
-                                        </InputGroup>
-                                      </div>
-                                    </Col>
-                                  </Row>
-                                  <Row>
-                                    <Col md={6}>
-                                      <div className="mt-4">
-                                        <Form.Label>
-                                          Password <sup>*</sup>
-                                        </Form.Label>
-                                        <InputGroup>
-                                          <FormControl
-                                            label="Password"
-                                            type="password"
-                                            placeholder="Enter Your Password"
-                                            name="password"
-                                            value={password}
-                                            onChange={(e) =>
-                                              setPassword(e.target.value)
-                                            }
-                                            asteric="*"
-                                            required
-                                          />
-                                        </InputGroup>
-                                      </div>
-                                    </Col>
-                                    <Col md={6}>
-                                      <div className="mt-4">
-                                        <Form.Label>
-                                          Confirm Password <sup>*</sup>
-                                        </Form.Label>
-                                        <InputGroup>
-                                          <FormControl
-                                            label=" Confirm Password"
-                                            type="password"
-                                            placeholder="Confirm Your Password"
-                                            name="confirmpassword"
-                                            value={confirmpassword}
-                                            onChange={(e) =>
-                                              setConfirmPassword(e.target.value)
-                                            }
-                                            asteric="*"
-                                            required
-                                          />
-                                        </InputGroup>
-                                      </div>
-                                    </Col>
-                                  </Row>
-                                  <div className="createaccount">
-                                    <InputGroup.Checkbox />
-                                    <p>
-                                      Creating an account means you’re okay with
-                                      our
-                                      <Link to="">Terms of Service</Link> and
-                                      <Link to="">Privacy Policy</Link>
-                                    </p>
-                                  </div>
-                                  <button
-                                    className=" sign-in-btn "
-                                    onClick={handleSubmitRegister}
-                                  >
-                                    Create Account
-                                  </button>
-                                </Form>
-                              </>
-                            )}
-
-                            <p className="or">or</p>
-
-                            <div className="signin-socialmediaicon">
-                              <img src={Facebookicon} alt="" />
-                              <img src={GoogleIcon} alt="" />
-                            </div>
-                            <p className="dont-haveacc">
-                              Don't have an account?
-                              {signIn ? (
-                                <span onClick={signUpHandler}> Sign Up </span>
-                              ) : (
-                                <span onClick={() => setSignin(true)}>
-                                  Sign In{" "}
-                                </span>
-                              )}
-                            </p>
-                          </Modal.Body>
-                        </Modal>
-                        <Link
-                          to=""
-                          className="account-create"
-                          onClick={signInHandlerAccount}
-                        >
-                          <li>Create Account</li>
-                        </Link>
-
-                        <div className="accoount-create-modal">
-                          <Modal show={show1} onHide={handleClose1}>
-                            <Modal.Header closeButton>
-                              <Modal.Title>
-                                {signUp ? (
-                                  <>
-                                    <p>Create Your Paicho Account</p>
-                                    <span>
-                                      Please fill in the form correctly to sign
-                                      up your paicho account
-                                    </span>
-                                  </>
-                                ) : (
-                                  <>
-                                    <p>Sign In to your Paicho Account</p>
-                                    <span>
-                                      Please fill in the form correctly to sign
-                                      in your paicho account
-                                    </span>
-                                  </>
-                                )}
-                              </Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                              {signUp ? (
-                                <>
-                                  <Form onSubmit={handleSubmitRegister}>
-                                    <Row>
-                                      <Col md={6}>
-                                        <div className="mt-4">
-                                          <Form.Label>
-                                            First Name <sup>*</sup>
-                                          </Form.Label>
-                                          <InputGroup>
-                                            <FormControl
-                                              label="First Name"
-                                              type="text"
-                                              placeholder="Enter Your First Name"
-                                              name="firstname"
-                                              value={firstname}
-                                              asteric="*"
-                                              onChange={(e) =>
-                                                setFirstName(e.target.value)
-                                              }
-                                              required
-                                            />
-                                          </InputGroup>
-                                        </div>
-                                      </Col>
-                                      <Col md={6}>
-                                        <div className="mt-4">
-                                          <Form.Label>
-                                            Last Name <sup>*</sup>
-                                          </Form.Label>
-                                          <InputGroup>
-                                            <FormControl
-                                              label="Last Name"
-                                              type="text"
-                                              placeholder="Enter Your Last Name"
-                                              name="lastname"
-                                              value={lastname}
-                                              onChange={(e) =>
-                                                setLastName(e.target.value)
-                                              }
-                                              asteric="*"
-                                              required
-                                            />
-                                          </InputGroup>
-                                        </div>
-                                      </Col>
-                                    </Row>
-                                    <Row>
-                                      <Col md={6}>
-                                        <div className="mt-4">
-                                          <Form.Label>
-                                            Email <sup>*</sup>
-                                          </Form.Label>
-                                          <InputGroup>
-                                            <FormControl
-                                              label="Email Address"
-                                              type="email"
-                                              placeholder="Enter Your Email Address"
-                                              name="email"
-                                              value={email}
-                                              onChange={(e) =>
-                                                setEmail(e.target.value)
-                                              }
-                                              asteric="*"
-                                              required
-                                            />
-                                          </InputGroup>
-                                        </div>
-                                      </Col>
-                                      <Col md={6}>
-                                        <div className="mt-4">
+                      <>
+                        <ul className="account-btn">
+                          {!subscriberInfo ? (
+                            <>
+                              <Link
+                                to=""
+                                className="account-signin"
+                                onClick={signInHandler}
+                              >
+                                <li>Sign In</li>
+                              </Link>
+                              <Modal show={show} onHide={handleClose}>
+                                <Modal.Header closeButton>
+                                  <Modal.Title>
+                                    {signIn ? (
+                                      <>
+                                        <p>Sign In to your Paicho Account</p>
+                                        <span>
+                                          Please fill in the form correctly to
+                                          sign in your paicho account
+                                        </span>
+                                      </>
+                                    ) : (
+                                      <>
+                                        <p>Create Your Paicho Account</p>
+                                        <span>
+                                          Please fill in the form correctly to
+                                          sign up your paicho account
+                                        </span>
+                                      </>
+                                    )}
+                                  </Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                  {signIn ? (
+                                    <>
+                                      <Form onSubmit={handleLoginSubmit}>
+                                        <div className="mt-4 position-relative">
                                           <Form.Label>
                                             Mobile Number <sup>*</sup>
                                           </Form.Label>
                                           <InputGroup>
                                             <FormControl
                                               label="Mobile Number"
-                                              type="num"
+                                              type="number"
                                               placeholder="Enter Your Mobile Number"
                                               name="mobilenumber"
+                                              asteric="*"
                                               value={mobilenumber}
                                               onChange={(e) =>
                                                 setMobilenumber(e.target.value)
                                               }
-                                              asteric="*"
                                               required
                                             />
                                           </InputGroup>
                                         </div>
-                                      </Col>
-                                    </Row>
-                                    <Row>
-                                      <Col md={6}>
-                                        <div className="mt-4">
+                                        <div className="mt-4 position-relative">
                                           <Form.Label>
                                             Password <sup>*</sup>
                                           </Form.Label>
@@ -647,131 +318,492 @@ const NavBar = () => {
                                             />
                                           </InputGroup>
                                         </div>
-                                      </Col>
-                                      <Col md={6}>
-                                        <div className="mt-4">
-                                          <Form.Label>
-                                            Confirm Password <sup>*</sup>
-                                          </Form.Label>
-                                          <InputGroup>
-                                            <FormControl
-                                              label=" Confirm Password"
-                                              type="password"
-                                              placeholder="Confirm Your Password"
-                                              name="confirmpassword"
-                                              value={confirmpassword}
-                                              onChange={(e) =>
-                                                setConfirmPassword(
-                                                  e.target.value
-                                                )
-                                              }
-                                              asteric="*"
-                                              required
-                                            />
-                                          </InputGroup>
-                                        </div>
-                                      </Col>
-                                    </Row>
-                                    <div className="createaccount">
-                                      <InputGroup.Checkbox />
-                                      <p>
-                                        Creating an account means you’re okay
-                                        with our
-                                        <Link to="">Terms of Service</Link> and
-                                        <Link to="">Privacy Policy</Link>
-                                      </p>
-                                    </div>
-                                    <button
-                                      className=" sign-in-btn "
-                                      onClick={handleSubmitRegister}
-                                    >
-                                      Create Account
-                                    </button>
-                                  </Form>
-                                </>
-                              ) : (
-                                <>
-                                  <Form onSubmit={handleLoginSubmit}>
-                                    <div className="mt-4 position-relative">
-                                      <Form.Label>
-                                        Mobile Number <sup>*</sup>
-                                      </Form.Label>
-                                      <InputGroup>
-                                        <FormControl
-                                          label="Mobile Number"
-                                          type="number"
-                                          placeholder="Enter Your Mobile Number"
-                                          name="mobilenumber"
-                                          asteric="*"
-                                          value={mobilenumber}
-                                          onChange={(e) =>
-                                            setMobilenumber(e.target.value)
-                                          }
-                                          required
-                                        />
-                                      </InputGroup>
-                                    </div>
-                                    <div className="mt-4 position-relative">
-                                      <Form.Label>
-                                        Password <sup>*</sup>
-                                      </Form.Label>
-                                      <InputGroup>
-                                        <FormControl
-                                          label="Password"
-                                          type="password"
-                                          placeholder="Enter Your Password"
-                                          name="password"
-                                          value={password}
-                                          onChange={(e) =>
-                                            setPassword(e.target.value)
-                                          }
-                                          asteric="*"
-                                          required
-                                        />
-                                      </InputGroup>
-                                    </div>
 
-                                    <Button
-                                      className="sign-in-btn"
-                                      type="submit"
-                                      onClick={handleLoginSubmit}
-                                    >
-                                      Sign In
-                                    </Button>
-                                    <Link to="" className="forget-password">
-                                      <u>Forget Password?</u>
-                                    </Link>
-                                  </Form>
-                                </>
-                              )}
-
-                              <p className="already-have-acc">
-                                Already have an account?
-                                <Link to="">
-                                  {signUp ? (
-                                    <span onClick={signUpHandlerAccount}>
-                                      Sign In
-                                    </span>
+                                        <Button
+                                          className="sign-in-btn"
+                                          type="submit"
+                                        >
+                                          Sign In
+                                        </Button>
+                                        <Link to="" className="forget-password">
+                                          <u>Forget Password?</u>
+                                        </Link>
+                                      </Form>
+                                    </>
                                   ) : (
-                                    <span onClick={() => setSignup(true)}>
-                                      Sign Up
-                                    </span>
+                                    <>
+                                      <Form onSubmit={handleSubmitRegister}>
+                                        <Row>
+                                          <Col md={6}>
+                                            <div className="mt-4">
+                                              <Form.Label>
+                                                First Name <sup>*</sup>
+                                              </Form.Label>
+                                              <InputGroup>
+                                                <FormControl
+                                                  label="First Name"
+                                                  type="text"
+                                                  placeholder="Enter Your First Name"
+                                                  name="firstname"
+                                                  value={firstname}
+                                                  onChange={(e) =>
+                                                    setFirstName(e.target.value)
+                                                  }
+                                                  asteric="*"
+                                                  required
+                                                />
+                                              </InputGroup>
+                                            </div>
+                                          </Col>
+                                          <Col md={6}>
+                                            <div className="mt-4">
+                                              <Form.Label>
+                                                Last Name <sup>*</sup>
+                                              </Form.Label>
+                                              <InputGroup>
+                                                <FormControl
+                                                  label="Last Name"
+                                                  type="text"
+                                                  placeholder="Enter Your Last Name"
+                                                  name="lastname"
+                                                  value={lastname}
+                                                  onChange={(e) =>
+                                                    setLastName(e.target.value)
+                                                  }
+                                                  asteric="*"
+                                                  required
+                                                />
+                                              </InputGroup>
+                                            </div>
+                                          </Col>
+                                        </Row>
+                                        <Row>
+                                          <Col md={6}>
+                                            <div className="mt-4">
+                                              <Form.Label>
+                                                Email <sup>*</sup>
+                                              </Form.Label>
+                                              <InputGroup>
+                                                <FormControl
+                                                  label="Email Address"
+                                                  type="email"
+                                                  placeholder="Enter Your Email Address"
+                                                  name="email"
+                                                  value={email}
+                                                  onChange={(e) =>
+                                                    setEmail(e.target.value)
+                                                  }
+                                                  asteric="*"
+                                                  required
+                                                />
+                                              </InputGroup>
+                                            </div>
+                                          </Col>
+                                          <Col md={6}>
+                                            <div className="mt-4">
+                                              <Form.Label>
+                                                Mobile Number <sup>*</sup>
+                                              </Form.Label>
+                                              <InputGroup>
+                                                <FormControl
+                                                  label="Mobile Number"
+                                                  type="number"
+                                                  placeholder="Enter Your Mobile Number"
+                                                  name="mobilenumber"
+                                                  value={mobilenumber}
+                                                  onChange={(e) =>
+                                                    setMobilenumber(
+                                                      e.target.value
+                                                    )
+                                                  }
+                                                  asteric="*"
+                                                  required
+                                                />
+                                              </InputGroup>
+                                            </div>
+                                          </Col>
+                                        </Row>
+                                        <Row>
+                                          <Col md={6}>
+                                            <div className="mt-4">
+                                              <Form.Label>
+                                                Password <sup>*</sup>
+                                              </Form.Label>
+                                              <InputGroup>
+                                                <FormControl
+                                                  label="Password"
+                                                  type="password"
+                                                  placeholder="Enter Your Password"
+                                                  name="password"
+                                                  value={password}
+                                                  onChange={(e) =>
+                                                    setPassword(e.target.value)
+                                                  }
+                                                  asteric="*"
+                                                  required
+                                                />
+                                              </InputGroup>
+                                            </div>
+                                          </Col>
+                                          <Col md={6}>
+                                            <div className="mt-4">
+                                              <Form.Label>
+                                                Confirm Password <sup>*</sup>
+                                              </Form.Label>
+                                              <InputGroup>
+                                                <FormControl
+                                                  label=" Confirm Password"
+                                                  type="password"
+                                                  placeholder="Confirm Your Password"
+                                                  name="confirmpassword"
+                                                  value={confirmpassword}
+                                                  onChange={(e) =>
+                                                    setConfirmPassword(
+                                                      e.target.value
+                                                    )
+                                                  }
+                                                  asteric="*"
+                                                  required
+                                                />
+                                              </InputGroup>
+                                            </div>
+                                          </Col>
+                                        </Row>
+                                        <div className="createaccount">
+                                          <InputGroup.Checkbox />
+                                          <p>
+                                            Creating an account means you’re
+                                            okay with our
+                                            <Link to="">
+                                              Terms of Service
+                                            </Link>{" "}
+                                            and
+                                            <Link to="">Privacy Policy</Link>
+                                          </p>
+                                        </div>
+                                        <button
+                                          className=" sign-in-btn "
+                                          onClick={handleSubmitRegister}
+                                        >
+                                          Create Account
+                                        </button>
+                                        {error && <h4>{error}</h4>}
+                                      </Form>
+                                    </>
                                   )}
-                                </Link>
-                              </p>
-                            </Modal.Body>
-                          </Modal>
-                        </div>
-                        <Link to="/account" className="account-accdetails">
-                          <li>My Account</li>
-                        </Link>
-                        <Link
-                          to="/wishlist"
-                          className="account-wishlistdetails"
-                        >
-                          <li>Wishlist</li>
-                        </Link>
-                      </ul>
+
+                                  <p className="or">or</p>
+
+                                  <div className="signin-socialmediaicon">
+                                    <img src={Facebookicon} alt="" />
+                                    <img src={GoogleIcon} alt="" />
+                                  </div>
+                                  <p className="dont-haveacc">
+                                    Don't have an account?
+                                    {signIn ? (
+                                      <span onClick={signUpHandler}>
+                                        {" "}
+                                        Sign Up{" "}
+                                      </span>
+                                    ) : (
+                                      <span onClick={() => setSignin(true)}>
+                                        Sign In{" "}
+                                      </span>
+                                    )}
+                                  </p>
+                                </Modal.Body>
+                              </Modal>
+                              <Link
+                                to=""
+                                className="account-create"
+                                onClick={signInHandlerAccount}
+                              >
+                                <li>Create Account</li>
+                              </Link>
+
+                              <div className="accoount-create-modal">
+                                <Modal show={show1} onHide={handleClose1}>
+                                  <Modal.Header closeButton>
+                                    <Modal.Title>
+                                      {signUp ? (
+                                        <>
+                                          <p>Create Your Paicho Account</p>
+                                          <span>
+                                            Please fill in the form correctly to
+                                            sign up your paicho account
+                                          </span>
+                                        </>
+                                      ) : (
+                                        <>
+                                          <p>Sign In to your Paicho Account</p>
+                                          <span>
+                                            Please fill in the form correctly to
+                                            sign in your paicho account
+                                          </span>
+                                        </>
+                                      )}
+                                    </Modal.Title>
+                                  </Modal.Header>
+                                  <Modal.Body>
+                                    {signUp ? (
+                                      <>
+                                        <Form onSubmit={handleSubmitRegister}>
+                                          <Row>
+                                            <Col md={6}>
+                                              <div className="mt-4">
+                                                <Form.Label>
+                                                  First Name <sup>*</sup>
+                                                </Form.Label>
+                                                <InputGroup>
+                                                  <FormControl
+                                                    label="First Name"
+                                                    type="text"
+                                                    placeholder="Enter Your First Name"
+                                                    name="firstname"
+                                                    value={firstname}
+                                                    asteric="*"
+                                                    onChange={(e) =>
+                                                      setFirstName(
+                                                        e.target.value
+                                                      )
+                                                    }
+                                                    required
+                                                  />
+                                                </InputGroup>
+                                              </div>
+                                            </Col>
+                                            <Col md={6}>
+                                              <div className="mt-4">
+                                                <Form.Label>
+                                                  Last Name <sup>*</sup>
+                                                </Form.Label>
+                                                <InputGroup>
+                                                  <FormControl
+                                                    label="Last Name"
+                                                    type="text"
+                                                    placeholder="Enter Your Last Name"
+                                                    name="lastname"
+                                                    value={lastname}
+                                                    onChange={(e) =>
+                                                      setLastName(
+                                                        e.target.value
+                                                      )
+                                                    }
+                                                    asteric="*"
+                                                    required
+                                                  />
+                                                </InputGroup>
+                                              </div>
+                                            </Col>
+                                          </Row>
+                                          <Row>
+                                            <Col md={6}>
+                                              <div className="mt-4">
+                                                <Form.Label>
+                                                  Email <sup>*</sup>
+                                                </Form.Label>
+                                                <InputGroup>
+                                                  <FormControl
+                                                    label="Email Address"
+                                                    type="email"
+                                                    placeholder="Enter Your Email Address"
+                                                    name="email"
+                                                    value={email}
+                                                    onChange={(e) =>
+                                                      setEmail(e.target.value)
+                                                    }
+                                                    asteric="*"
+                                                    required
+                                                  />
+                                                </InputGroup>
+                                              </div>
+                                            </Col>
+                                            <Col md={6}>
+                                              <div className="mt-4">
+                                                <Form.Label>
+                                                  Mobile Number <sup>*</sup>
+                                                </Form.Label>
+                                                <InputGroup>
+                                                  <FormControl
+                                                    label="Mobile Number"
+                                                    type="num"
+                                                    placeholder="Enter Your Mobile Number"
+                                                    name="mobilenumber"
+                                                    value={mobilenumber}
+                                                    onChange={(e) =>
+                                                      setMobilenumber(
+                                                        e.target.value
+                                                      )
+                                                    }
+                                                    asteric="*"
+                                                    required
+                                                  />
+                                                </InputGroup>
+                                              </div>
+                                            </Col>
+                                          </Row>
+                                          <Row>
+                                            <Col md={6}>
+                                              <div className="mt-4">
+                                                <Form.Label>
+                                                  Password <sup>*</sup>
+                                                </Form.Label>
+                                                <InputGroup>
+                                                  <FormControl
+                                                    label="Password"
+                                                    type="password"
+                                                    placeholder="Enter Your Password"
+                                                    name="password"
+                                                    value={password}
+                                                    onChange={(e) =>
+                                                      setPassword(
+                                                        e.target.value
+                                                      )
+                                                    }
+                                                    asteric="*"
+                                                    required
+                                                  />
+                                                </InputGroup>
+                                              </div>
+                                            </Col>
+                                            <Col md={6}>
+                                              <div className="mt-4">
+                                                <Form.Label>
+                                                  Confirm Password <sup>*</sup>
+                                                </Form.Label>
+                                                <InputGroup>
+                                                  <FormControl
+                                                    label=" Confirm Password"
+                                                    type="password"
+                                                    placeholder="Confirm Your Password"
+                                                    name="confirmpassword"
+                                                    value={confirmpassword}
+                                                    onChange={(e) =>
+                                                      setConfirmPassword(
+                                                        e.target.value
+                                                      )
+                                                    }
+                                                    asteric="*"
+                                                    required
+                                                  />
+                                                </InputGroup>
+                                              </div>
+                                            </Col>
+                                          </Row>
+                                          <div className="createaccount">
+                                            <InputGroup.Checkbox />
+                                            <p>
+                                              Creating an account means you’re
+                                              okay with our
+                                              <Link to="">
+                                                Terms of Service
+                                              </Link>{" "}
+                                              and
+                                              <Link to="">Privacy Policy</Link>
+                                            </p>
+                                          </div>
+                                          <button
+                                            className=" sign-in-btn "
+                                            onClick={handleSubmitRegister}
+                                          >
+                                            Create Account
+                                          </button>
+                                        </Form>
+                                      </>
+                                    ) : (
+                                      <>
+                                        <Form onSubmit={handleLoginSubmit}>
+                                          <div className="mt-4 position-relative">
+                                            <Form.Label>
+                                              Mobile Number <sup>*</sup>
+                                            </Form.Label>
+                                            <InputGroup>
+                                              <FormControl
+                                                label="Mobile Number"
+                                                type="number"
+                                                placeholder="Enter Your Mobile Number"
+                                                name="mobilenumber"
+                                                asteric="*"
+                                                value={mobilenumber}
+                                                onChange={(e) =>
+                                                  setMobilenumber(
+                                                    e.target.value
+                                                  )
+                                                }
+                                                required
+                                              />
+                                            </InputGroup>
+                                          </div>
+                                          <div className="mt-4 position-relative">
+                                            <Form.Label>
+                                              Password <sup>*</sup>
+                                            </Form.Label>
+                                            <InputGroup>
+                                              <FormControl
+                                                label="Password"
+                                                type="password"
+                                                placeholder="Enter Your Password"
+                                                name="password"
+                                                value={password}
+                                                onChange={(e) =>
+                                                  setPassword(e.target.value)
+                                                }
+                                                asteric="*"
+                                                required
+                                              />
+                                            </InputGroup>
+                                          </div>
+
+                                          <Button
+                                            className="sign-in-btn"
+                                            type="submit"
+                                            onClick={handleLoginSubmit}
+                                          >
+                                            Sign In
+                                          </Button>
+                                          <Link
+                                            to=""
+                                            className="forget-password"
+                                          >
+                                            <u>Forget Password?</u>
+                                          </Link>
+                                        </Form>
+                                      </>
+                                    )}
+
+                                    <p className="already-have-acc">
+                                      Already have an account?
+                                      <Link to="">
+                                        {signUp ? (
+                                          <span onClick={signUpHandlerAccount}>
+                                            Sign In
+                                          </span>
+                                        ) : (
+                                          <span onClick={() => setSignup(true)}>
+                                            Sign Up
+                                          </span>
+                                        )}
+                                      </Link>
+                                    </p>
+                                  </Modal.Body>
+                                </Modal>
+                              </div>
+                            </>
+                          ) : (
+                            ""
+                          )}
+
+                          <Link to="/account" className="account-accdetails">
+                            <li>My Account</li>
+                          </Link>
+                          <Link
+                            to="/wishlist"
+                            className="account-wishlistdetails"
+                          >
+                            <li>Wishlist</li>
+                          </Link>
+                        </ul>
+                      </>
                     ) : (
                       ""
                     )}

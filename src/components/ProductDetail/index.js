@@ -76,7 +76,7 @@ const ProductDetailComp = ({ product, success }) => {
   const [image, setImage] = useState("");
   const [ingredient, setIngredient] = useState([]);
   const [similar, setSimilar] = useState([]);
-  var discountData = product.price - (product.discount / 100) * product.price;
+  var discountData = product?.price - (product?.discount / 100) * product?.price;
   const signInHandler = () => {
     handleShow(true);
     setSignin(true);
@@ -95,7 +95,7 @@ const ProductDetailComp = ({ product, success }) => {
   };
   useEffect(() => {
     if (success) {
-      setImage(product.image && product.image[0]);
+      setImage(product?.image && product?.image[0]);
     }
   }, [success]);
 
@@ -105,15 +105,15 @@ const ProductDetailComp = ({ product, success }) => {
         <Container>
           <Row className="product__rows gx-5">
             <Col md={5}>
-              {product.image && product.image.length > 1 ? (
+              {product?.image && product?.image?.length > 1 ? (
                 <>
                   <div className="product__image">
                     <img src={image} alt="" className="img-fluid selected" />
                   </div>
                   <div className="product__sliders">
                     <Slider {...settings}>
-                      {product.image &&
-                        product.image?.map((data, index) => (
+                      {product?.image &&
+                        product?.image?.map((data, index) => (
                           <>
                             <div
                               style={{
@@ -143,7 +143,7 @@ const ProductDetailComp = ({ product, success }) => {
               ) : (
                 <div className="product__image">
                   <img
-                    src={product.image && product.image[0]}
+                    src={product?.image && product?.image[0]}
                     alt=""
                     className="img-fluid selected"
                   />
@@ -152,9 +152,9 @@ const ProductDetailComp = ({ product, success }) => {
             </Col>
             <Col md={7}>
               <div className="product__heading">
-                <p className="product__heading--main">{product.name}</p>
+                <p className="product__heading--main">{product?.name}</p>
                 <span className="product__heading--span">
-                  Category : {product.category && product.category.name}
+                  Category : {product?.category && product?.category.name}
                   {/* Product ID : {product._id} */}
                 </span>
               </div>
@@ -162,20 +162,20 @@ const ProductDetailComp = ({ product, success }) => {
                 <div>
                   <span className="price">Rs {discountData}</span>
                   <div className="newpricediv">
-                    <span className="previous_price">Rs{product.price}</span>
+                    <span className="previous_price">Rs{product?.price}</span>
                     <span className="new_price ms-3">
-                      -{product.discount} %
+                      -{product?.discount} %
                     </span>
                   </div>
                 </div>
-                <p className="product__price--stock">{product.stock}</p>
+                <p className="product__price--stock">{product?.stock}</p>
               </div>
 
               {/* <div className="product__inc-dec d-flex">
                 <p className="product__inc-dec--quantity ">Quantity</p>
                 <IncrementDecrement />
               </div> */}
-              {product.countInStock !== 0 ? (
+              {product?.countInStock !== 0 ? (
                 <>
                   <div className="product__btns">
                     <Link
@@ -393,8 +393,8 @@ const ProductDetailComp = ({ product, success }) => {
               <div className="product__lists">
                 <p>Ingredients</p>
                 <ul>
-                  {product.ingredient &&
-                    product.ingredient.map((i) => {
+                  {product?.ingredient &&
+                    product?.ingredient.map((i) => {
                       return <li> {i} </li>;
                     })}
                 </ul>
@@ -410,7 +410,7 @@ const ProductDetailComp = ({ product, success }) => {
                   Description of the Product
                 </p>
                 <p className="product__description--descriptionpara">
-                  {product.description}
+                  {product?.description}
                 </p>
               </Col>
             </Row>
@@ -423,8 +423,8 @@ const ProductDetailComp = ({ product, success }) => {
             </p>
             <Row>
               <Slider {...settings}>
-                {product.similar &&
-                  product.similar.map((curElm, index) => {
+                {product?.similar &&
+                  product?.similar.map((curElm, index) => {
                     return (
                       <>
                         <Col md={3}>

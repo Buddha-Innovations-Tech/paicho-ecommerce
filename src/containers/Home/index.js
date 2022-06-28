@@ -19,6 +19,7 @@ import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import Slider from "react-slick";
 import InputForm from "../../components/InputForm";
+import { listCategories, createCategory } from "../../actions/categoryAction";
 
 const Home = () => {
   const settings = {
@@ -53,6 +54,7 @@ const Home = () => {
     //   },
     // ],
   };
+
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.productList);
   const { carousel } = useSelector((state) => state.carouselList);
@@ -81,6 +83,12 @@ const Home = () => {
   }, [dispatch]);
   useEffect(() => {
     dispatch(listProducts());
+  }, [dispatch]);
+    const { categories, pages, page, loading } = useSelector(
+    (state) => state.categoryList
+  );
+  useEffect(() => {
+    dispatch(listCategories());
   }, [dispatch]);
   return (
     <>
@@ -316,31 +324,33 @@ const Home = () => {
         {/* Categories */}
         <section className="product">
           <Container>
-            {/* Paicho Pickle */}
-            <div className="d-sm-flex justify-content-between align-items-center">
-              <p className="product__category">Paicho Pickle </p>
-              <Link to="/Paicho Pickle">
-                <span className="see__more">See More</span>
-              </Link>
-            </div>
-            <Row className="product__row gy-3">
-              {products &&
-                products
-                  ?.filter(
-                    (i) => i.category && i.category.name === "Paicho Pickle"
-                  )
-                  ?.filter((i, index) => index < 4)
-                  .map((curElm, index) => {
-                    return (
-                      <Col md={3}>
-                        <ProductCard key={index} {...curElm} />
-                      </Col>
-                    );
-                  })}
-            </Row>
+            {categories &&
+              categories.map((curElm, index) => {
+                return (
+                  <>
+                    <div className="d-sm-flex justify-content-between align-items-center">
+                      <p className="product__category">{curElm?.name} </p>
+                      <Link to={curElm?.name}>
+                        <span className="see__more">See More</span>
+                      </Link>
+                    </div>
+                    <Row className="product__row gy-3">
+                      {products&& products?.filter((b)=>b.category.name===curElm.name)
+                        
+                          ?.filter((i, index) => index < 4)
+                          .map((curElm, index) => {
+                            return (
+                              <Col md={3}>
+                                <ProductCard key={index} {...curElm} />
+                              </Col>
+                            );
+                          })}
+                    </Row>
+                  </>
+                );
+              })}
 
-            {/* Paicho Processing Products  */}
-            <div className="d-sm-flex justify-content-between">
+            {/* <div className="d-sm-flex justify-content-between">
               <p className="product__category">Paicho Processing Products </p>
               <Link to="/Processing Products">
                 <span className="see__more">See More</span>
@@ -362,7 +372,7 @@ const Home = () => {
                   })}
             </Row>
 
-            {/* Grains & Pulses  */}
+           
             <div className="d-sm-flex justify-content-between">
               <p className="product__category">Grains & Pulses </p>
               <Link to="/Grain & Pulses">
@@ -384,7 +394,6 @@ const Home = () => {
                   })}
             </Row>
 
-            {/* Indeginous Product */}
             <div className="d-sm-flex justify-content-between">
               <p className="product__category">Indeginous Product </p>
               <Link to="/Indeginous Products">
@@ -407,7 +416,6 @@ const Home = () => {
                   })}
             </Row>
 
-            {/* Dry  Foods */}
             <div className="d-sm-flex justify-content-between">
               <p className="product__category">Dry Foods </p>
               <Link to="/Paicho Dry Foods">
@@ -428,8 +436,6 @@ const Home = () => {
                     );
                   })}
             </Row>
-
-            {/* Ketchup & Sauces */}
             <div className="d-sm-flex justify-content-between">
               <p className="product__category">Ketchup & Sauces </p>
               <Link to="/Katchup Sauce">
@@ -451,7 +457,6 @@ const Home = () => {
                   })}
             </Row>
 
-            {/* Organic Vegetables  */}
             <div className="d-sm-flex justify-content-between">
               <p className="product__category">Organic Vegetables </p>
               <Link to="/Organic Vegetables">
@@ -472,7 +477,7 @@ const Home = () => {
                       </Col>
                     );
                   })}
-            </Row>
+            </Row> */}
           </Container>
         </section>
 

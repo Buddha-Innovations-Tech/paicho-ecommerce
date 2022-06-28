@@ -15,10 +15,11 @@ const PaichoPickle = () => {
   const params = useParams();
   const name = params.name;
   const location = useLocation();
-  const data = location.state;
+  // const data = location.state;
   const { products } = useSelector((state) => state.productList);
   const { categories } = useSelector((state) => state.categoryList);
   const [checked, setChecked] = useState(false);
+  const [data, setData] = useState("");
   const [min, setMin] = useState("");
   const [max, setMax] = useState("");
   const [display, setDisplay] = useState([]);
@@ -29,6 +30,10 @@ const PaichoPickle = () => {
     setMin("");
     setMax("");
   };
+
+  useEffect(()=>{
+    setData(location.state)
+  },[location.state])
 
   useEffect(() => {
     dispatch(listProducts());
@@ -53,8 +58,10 @@ const PaichoPickle = () => {
   }, [data]);
 
   const handleCheck = (e, subcat) => {
+    console.log(subcat);
+   
     setDisplay(products.filter((x) => x.subcategories === subcat));
-    setChecked(e.target.checked);
+    setData(subcat);
   };
   useEffect(() => {
     dispatch(listCategories());
@@ -122,14 +129,14 @@ const PaichoPickle = () => {
                             className="form-check-input"
                             type="radio"
                             name="gridRadios"
-                            value={
-                              data === null
-                                ? checked
-                                : item.name === data
-                                ? checked
-                                : false
-                            }
-                            checked={item.name === data ? true : false}
+                            // value={
+                            //   data === !null
+                            //     ? checked
+                            //     : item.name === data
+                            //     ? checked
+                            //     : false
+                            // }
+                            checked={ item.name === data ? true: false}
                             onChange={(e) => handleCheck(e, item.name)}
                           />
                           <label

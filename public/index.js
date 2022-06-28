@@ -42,12 +42,12 @@ const App = () => {
           <Route exact path="/clearcart" element={<ClearCart />} />
           <Route exact path="/search/:productname" element={<Search />} />
           <Route exact path="/:name" element={<PaichoPickle />} />
-          {/* <Route exact path="/:name" element={<ProcessingProduct />} />
+          <Route exact path="/:name" element={<ProcessingProduct />} />
           <Route exact path="/:name" element={<GrainsPulses />} />
           <Route exact path="/:name" element={<IndeginousProduct />} />
           <Route exact path="/:name" element={<PaichoDryFoods />} />
           <Route exact path="/:name" element={<KetchupSauce />} />
-          <Route exact path="/:name" element={<OrganicVegetables />} /> */}
+          <Route exact path="/:name" element={<OrganicVegetables />} />
         </Routes>
       </main>
     </div>

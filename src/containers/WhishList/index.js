@@ -11,13 +11,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { CgChevronDoubleLeft } from "react-icons/cg";
 import { BiPlus, BiMinus } from "react-icons/bi";
 import { getSubscriberDetails } from "../../actions/subscriberaction";
-import { deleteSingleWishlist } from "../../actions/wishListAction";
+import { deleteSingleWishlist,removeAllwhishlist } from "../../actions/wishListAction";
 import { addToCart } from "../../actions/cartAddedAction";
+import ClearCart from "../ClearCart";
 
 const WhishList = () => {
   const { subscriber } = useSelector((state) => state.subscriberDetails);
   const { product } = useSelector((state) => state.productDetails);
   const { subscriberInfo } = useSelector((state) => state.subscriberLogin);
+  const {success:wishListDltSucc}=useSelector((state)=>state.allWishlistDelete)
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -34,19 +36,29 @@ const WhishList = () => {
       dispatch(getSubscriberDetails("profile"));
     }
   }, [wishlistSuccess]);
+ 
   const removeWishlist = (id) => {
     dispatch(deleteSingleWishlist(id));
   };
   const navigate = useNavigate();
   useEffect(() => {
     if (!subscriberInfo) {
-      navigate("/home");
+      navigate("/");
     }
   }, [subscriberInfo]);
   const send = (id, qty) => {
     dispatch(addToCart(id, qty));
-    // setShowA(true);
   };
+  const removeAll=()=>{
+    dispatch(removeAllwhishlist());
+    handleClose();
+  }
+  useEffect(() => {
+    if (wishListDltSucc) {
+      dispatch(getSubscriberDetails("profile"));
+  
+    }
+  }, [wishListDltSucc]);
   return (
     <>
       <NavBar />
@@ -54,7 +66,12 @@ const WhishList = () => {
       {/* wishlist */}
       <div className="wishlist">
         <Container>
-          <Row>
+          {getSubscriberDetails ?
+          <>
+          <ClearCart/>
+          </>:
+          <>
+           <Row>
             <Col lg={3} sm={12}>
               <div className="wishlist__leftside">
                 <AccountSideNav />
@@ -64,10 +81,7 @@ const WhishList = () => {
               <div className="carttable">
                 <div className="d-flex justify-content-between align-items-center">
                   <div className="carttable__heading d-flex align-items-center">
-                    {/* <InputGroup.Checkbox />
-                    <span className="carttable__heading--selectitem">
-                      Select All(3 items)
-                    </span> */}
+               
                   </div>
                   <div className="carttable__heading d-flex align-items-center">
                     <RiDeleteBinLine className="carttable__heading--deleteicon" />
@@ -83,20 +97,18 @@ const WhishList = () => {
 
                         <div className="cart__modal">
                           <p className="cart__modal--ask">
-                            Are you sure you want to clear your cart?
+                            Are you sure you want to clear your wishlists?
                           </p>
                           <Link
                             to=""
                             // to="/clearcart"
                             className="yes-btn"
-                            onClick={handleClose}
+                            onClick={removeAll}
                           >
                             Yes
                           </Link>
 
-                          <>
-                            <h1>Your Cart has been Cleared.</h1>
-                          </>
+                       
 
                           <br />
                           <button className="no-btn" onClick={handleClose}>
@@ -191,6 +203,8 @@ const WhishList = () => {
               {/* <CartTable action="Action" icon={<RiDeleteBinLine />} /> */}
             </Col>
           </Row>
+          </>}
+         
         </Container>
       </div>
 

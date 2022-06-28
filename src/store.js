@@ -21,7 +21,7 @@ import {
 import { carouselListReducer } from "./reducers/carouselReducers";
 
 import { cartReducer } from "./reducers/cartAddedReducers";
-import { wishlistDeleteReducer } from "./reducers/wishListReducers";
+import { wishlistDeleteReducer,allWishlistDeleteReducer } from "./reducers/wishListReducers";
 import { orderCreateReducer, orderListReducer } from "./reducers/orderReducers";
 
 const reducer = combineReducers({
@@ -40,9 +40,11 @@ const reducer = combineReducers({
 
   cart: cartReducer,
   wishlistCreate: wishlistCreateReducer,
+  
   wishlistDelete: wishlistDeleteReducer,
   orderCreate: orderCreateReducer,
   orderList: orderListReducer,
+  allWishlistDelete:allWishlistDeleteReducer
 });
 
 const middleware = [thunk];

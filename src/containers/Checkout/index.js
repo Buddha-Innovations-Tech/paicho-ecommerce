@@ -2,7 +2,7 @@ import { Button, Col, Container, Row, Toast } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
@@ -14,6 +14,7 @@ import { BsCheck } from "react-icons/bs";
 import { getSubscriberDetails } from "../../actions/subscriberaction";
 const Checkout = () => {
   const { shippingAddress } = useSelector((state) => state.cart);
+  const {subscriberInfo}=useSelector((state)=>state.subscriberLogin);
   const [fullname, setFullName] = useState(
     shippingAddress && shippingAddress.fullname
   );
@@ -24,6 +25,7 @@ const Checkout = () => {
   const [address, setAddress] = useState(
     shippingAddress && shippingAddress.address
   );
+
   const [paymentmethod, setPaymentMethod] = useState("Cash on Delivery");
   const { cartItems } = useSelector((state) => state.cart);
   const [checked, setChecked] = useState(true);
@@ -66,17 +68,19 @@ const Checkout = () => {
   var discountInBill = 0;
   var totalMrp = 0;
   var grandTotal = 0;
+  const navigate=useNavigate();
 
+  
   useEffect(() => {
     dispatch(getSubscriberDetails("profile"));
   }, [dispatch]);
   useEffect(() => {
-    if (subscriber.billingadddress) {
+    if (subscriber?.billingadddress) {
       if (!checked) {
-        setFullName(subscriber.billingadddress?.fullname);
-        setPhoneNumber(subscriber.billingadddress?.phonenumber);
-        setEmail(subscriber.billingadddress?.emailaddress);
-        setAddress(subscriber.billingadddress?.billingaddress);
+        setFullName(subscriber?.billingadddress?.fullname);
+        setPhoneNumber(subscriber?.billingadddress?.phonenumber);
+        setEmail(subscriber?.billingadddress?.emailaddress);
+        setAddress(subscriber?.billingadddress?.billingaddress);
       } else {
         setFullName("");
         setAddress("");
@@ -295,7 +299,9 @@ const Checkout = () => {
 
                         {cartItems.length > 0 &&
                           cartItems?.map((data, index) => {
-                            discountInBill = totalMrp += data.price * data.qty;
+                            discountInBill +=
+                              (data.discount / 100) * data.price * data.qty;
+                            totalMrp += data.price * data.qty;
                             grandTotal = totalMrp - discountInBill + 0;
                             return (
                               <tr className="center" key={index}>
@@ -319,7 +325,7 @@ const Checkout = () => {
                           </td>
                           <td></td>
                           <td>
-                            <span>{discountInBill}</span>
+                            <span>{(discountInBill.toFixed(2))}</span>
                           </td>
                         </tr>
                         <tr className="center">

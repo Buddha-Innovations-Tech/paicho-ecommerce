@@ -16,7 +16,7 @@ export const listProducts = () => async (dispatch, getState) => {
     //   userLogin: { userInfo },
     // } = getState();
 
-    const { data } = await axios.get(`/api/products/`);
+    const { data } = await axios.get(`/api/products/all/`);
 
     dispatch({
       type: PRODUCT_LIST_SUCCESS,

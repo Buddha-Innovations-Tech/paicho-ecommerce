@@ -87,18 +87,18 @@ const AccountDetail = () => {
   }, [billingupdateSuccess]);
   useEffect(() => {
     if (
-      subscriber.billingadddress &&
-      subscriber.billingadddress === undefined
+      subscriber?.billingadddress &&
+      subscriber?.billingadddress === undefined
     ) {
       setFullName("");
       setPhoneNumber("");
       setEmailAddress("");
       setBillingAddress("");
     } else {
-      setFullName(subscriber.billingadddress?.fullname);
-      setPhoneNumber(subscriber.billingadddress?.phonenumber);
-      setEmailAddress(subscriber.billingadddress?.emailaddress);
-      setBillingAddress(subscriber.billingadddress?.billingaddress);
+      setFullName(subscriber?.billingadddress?.fullname);
+      setPhoneNumber(subscriber?.billingadddress?.phonenumber);
+      setEmailAddress(subscriber?.billingadddress?.emailaddress);
+      setBillingAddress(subscriber?.billingadddress?.billingaddress);
     }
   }, [subscriber]);
 

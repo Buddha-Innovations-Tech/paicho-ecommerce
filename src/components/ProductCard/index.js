@@ -61,7 +61,7 @@ const ProductCard = ({
         <Link to={`/productdetail/${_id}`}>
           <Card.Img
             variant="top"
-            src={image[0]}
+            src={image}
             className="img-fluid product__card--image"
             alt="product"
           />
@@ -76,7 +76,7 @@ const ProductCard = ({
                 wishlistCreate(_id);
               }}
             /> */}
-            {subscriber.wishlists?.find((item) => item._id === _id) ? (
+            {subscriber?.wishlists?.find((item) => item._id === _id) ? (
               <>
                 <BsFillHeartFill
                   className="product__card--body--title--icon"

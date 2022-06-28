@@ -1,8 +1,18 @@
-import { Container, Row, Col, Table, InputGroup, Modal } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Table,
+  InputGroup,
+  Modal,
+  Form,
+  FormControl,
+  Button,
+} from "react-bootstrap";
 // import { ImCross } from "react-icons/im";
 import { RiDeleteBinLine } from "react-icons/ri";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import CartTable from "../../components/CartTable.js";
@@ -21,20 +31,93 @@ import IncrementDecrement from "../../components/IncrementDecrement";
 import { useDispatch } from "react-redux";
 import { BiPlus, BiMinus } from "react-icons/bi";
 import ClearCart from "../ClearCart/index.js";
+import { register, login, logout } from "../../actions/subscriberaction";
+import GoogleIcon from "../../assets/images/googleicon.png";
+import Facebookicon from "../../assets/images/facebookicon.png";
 
 const ShoppingCart = () => {
+  const [show5, setShow5] = useState(false);
+  const handleClose5 = () => setShow5(false);
+  const handleShow5 = () => setShow5(true);
+  const [carts, setCarts] = useState([]);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [carts, setCarts] = useState([]);
+  const [show1, setShow1] = useState(false);
+  const handleClose1 = () => setShow1(false);
+  const handleShow1 = () => setShow1(true);
+  const [signIn, setSignin] = useState(true);
+  const [signUp, setSignup] = useState(true);
+  const [mobilenumber, setMobilenumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
+  const { error } = useSelector((state) => state.subscriberRegister);
+
   const { cartItems } = useSelector((state) => state.cart);
+  const { subscriberInfo } = useSelector((state) => state.subscriberLogin);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const dlt = (id) => {
     const dltcart = carts.filter((i) => i.id !== id);
     setCarts(dltcart);
     localStorage.setItem("carts", JSON.stringify(carts));
   };
+  const signInHandler = () => {
+
+   
+    if (subscriberInfo) {
+      navigate("/checkout");
+    
+    } else {
+      handleShow(true);
+      setSignin(true);
+    }
+  };
+  // useEffect(()=>{
+  //   if(subscriberInfo){
+  //     navigate("/checkout")
+  //   }
+  // },[subscriberInfo])
+  const signUpHandler = () => {
+    setSignin(false);
+  };
+  const signInHandlerAccount = () => {
+    handleShow1(true);
+    setSignup(true);
+  };
+  const signUpHandlerAccount = () => {
+    setSignup(false);
+  };
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login(mobilenumber, password));
+    handleClose();
+  };
+  const handleSubmitRegister = (e) => {
+    e.preventDefault();
+    if (password !== confirmpassword) {
+      alert("Password dont match");
+    } else {
+      dispatch(
+        register(
+          firstname,
+          lastname,
+          email,
+          mobilenumber,
+          password,
+          confirmpassword
+        )
+      );
+      handleClose1();
+    }
+  };
   var totalcartprice = 0;
+  var discountInBill = 0;
+  var grandTotal = 0;
+
   const add = (id) => {
     dispatch(addFromCart(id));
   };
@@ -47,6 +130,13 @@ const ShoppingCart = () => {
   const removeAll = () => {
     dispatch(removeAllCart());
   };
+  // useEffect(() => {
+  //   if (!subscriberInfo) {
+  //     alert("You must have to login first");
+  //     navigate("/");
+  //   }
+  // }, [subscriberInfo]);
+
   useEffect(() => {
     setCarts(JSON.parse(localStorage.getItem("carts")));
   }, []);
@@ -73,11 +163,11 @@ const ShoppingCart = () => {
                       <RiDeleteBinLine className="carttable__heading--deleteicon" />
                       <span
                         className="carttable__heading--selectitem"
-                        onClick={handleShow}
+                        onClick={handleShow5}
                       >
                         <u>Clear Cart</u>
                       </span>
-                      <Modal show={show} onHide={handleClose}>
+                      <Modal show={show5} onHide={handleClose5}>
                         <Modal.Body>
                           <div className="arrow-left"></div>
 
@@ -117,7 +207,11 @@ const ShoppingCart = () => {
 
                     {cartItems.length > 0 &&
                       cartItems.map((data, index) => {
+                        discountInBill +=
+                          (data.discount / 100) * data.price * data.qty;
                         totalcartprice += data.price * data.qty;
+                        grandTotal = totalcartprice - discountInBill + 0;
+
                         return (
                           <Row className="mt-3 mb-3 mapping-row" key={index}>
                             <Col
@@ -225,6 +319,10 @@ const ShoppingCart = () => {
                             <p>Rs.{totalcartprice}</p>
                           </div>
                           <div className="d-flex justify-content-between align-items-center shopcartrightbox__content">
+                            <p>Discount</p>
+                            <p>Rs.{discountInBill.toFixed(2)}</p>
+                          </div>
+                          <div className="d-flex justify-content-between align-items-center shopcartrightbox__content">
                             <p>Shipping Charge</p>
                             <p>Rs.0</p>
                           </div>
@@ -234,14 +332,277 @@ const ShoppingCart = () => {
                         <td>
                           <div className="d-flex justify-content-between align-items-center shopcartrightbox__total">
                             <p>Grand Total</p>
-                            <p>Rs.{totalcartprice}</p>
+                            <p>Rs.{grandTotal}</p>
                           </div>
-                          <div className="shopcartrightbox__divbtn">
-                            <Link to="/checkout">
-                              <button className="shopcartrightbox__divbtn--buttonn">
+                          <div className="shopcartrightbox__divbtn" >
+                           
+                              <button className="shopcartrightbox__divbtn--buttonn" onClick={(e)=>{
+                                e.preventDefault()
+                                signInHandler();
+                              }}>
                                 Checkout
                               </button>
-                            </Link>
+                            
+
+                            <Modal show={show} onHide={handleClose}>
+                              <Modal.Header closeButton>
+                                <Modal.Title>
+                                  {signIn ? (
+                                    <>
+                                      <p>Sign In to your Paicho Account</p>
+                                      <span>
+                                        Please fill in the form correctly to
+                                        sign in your paicho account
+                                      </span>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <p>Create Your Paicho Account</p>
+                                      <span>
+                                        Please fill in the form correctly to
+                                        sign up your paicho account
+                                      </span>
+                                    </>
+                                  )}
+                                </Modal.Title>
+                              </Modal.Header>
+                              <Modal.Body>
+                                {signIn ? (
+                                  <>
+                                    <Form onSubmit={handleLoginSubmit}>
+                                      <div className="mt-4 position-relative">
+                                        <Form.Label>
+                                          Mobile Number <sup>*</sup>
+                                        </Form.Label>
+                                        <InputGroup>
+                                          <FormControl
+                                            label="Mobile Number"
+                                            type="number"
+                                            placeholder="Enter Your Mobile Number"
+                                            name="mobilenumber"
+                                            asteric="*"
+                                            value={mobilenumber}
+                                            onChange={(e) =>
+                                              setMobilenumber(e.target.value)
+                                            }
+                                            required
+                                          />
+                                        </InputGroup>
+                                      </div>
+                                      <div className="mt-4 position-relative">
+                                        <Form.Label>
+                                          Password <sup>*</sup>
+                                        </Form.Label>
+                                        <InputGroup>
+                                          <FormControl
+                                            label="Password"
+                                            type="password"
+                                            placeholder="Enter Your Password"
+                                            name="password"
+                                            value={password}
+                                            onChange={(e) =>
+                                              setPassword(e.target.value)
+                                            }
+                                            asteric="*"
+                                            required
+                                          />
+                                        </InputGroup>
+                                      </div>
+
+                                      <Button
+                                        className="sign-in-btn"
+                                        type="submit"
+                                      >
+                                        Sign In
+                                      </Button>
+                                      <Link to="" className="forget-password">
+                                        <u>Forget Password?</u>
+                                      </Link>
+                                    </Form>
+                                  </>
+                                ) : (
+                                  <>
+                                    <Form onSubmit={handleSubmitRegister}>
+                                      <Row>
+                                        <Col md={6}>
+                                          <div className="mt-4">
+                                            <Form.Label>
+                                              First Name <sup>*</sup>
+                                            </Form.Label>
+                                            <InputGroup>
+                                              <FormControl
+                                                label="First Name"
+                                                type="text"
+                                                placeholder="Enter Your First Name"
+                                                name="firstname"
+                                                value={firstname}
+                                                onChange={(e) =>
+                                                  setFirstName(e.target.value)
+                                                }
+                                                asteric="*"
+                                                required
+                                              />
+                                            </InputGroup>
+                                          </div>
+                                        </Col>
+                                        <Col md={6}>
+                                          <div className="mt-4">
+                                            <Form.Label>
+                                              Last Name <sup>*</sup>
+                                            </Form.Label>
+                                            <InputGroup>
+                                              <FormControl
+                                                label="Last Name"
+                                                type="text"
+                                                placeholder="Enter Your Last Name"
+                                                name="lastname"
+                                                value={lastname}
+                                                onChange={(e) =>
+                                                  setLastName(e.target.value)
+                                                }
+                                                asteric="*"
+                                                required
+                                              />
+                                            </InputGroup>
+                                          </div>
+                                        </Col>
+                                      </Row>
+                                      <Row>
+                                        <Col md={6}>
+                                          <div className="mt-4">
+                                            <Form.Label>
+                                              Email <sup>*</sup>
+                                            </Form.Label>
+                                            <InputGroup>
+                                              <FormControl
+                                                label="Email Address"
+                                                type="email"
+                                                placeholder="Enter Your Email Address"
+                                                name="email"
+                                                value={email}
+                                                onChange={(e) =>
+                                                  setEmail(e.target.value)
+                                                }
+                                                asteric="*"
+                                                required
+                                              />
+                                            </InputGroup>
+                                          </div>
+                                        </Col>
+                                        <Col md={6}>
+                                          <div className="mt-4">
+                                            <Form.Label>
+                                              Mobile Number <sup>*</sup>
+                                            </Form.Label>
+                                            <InputGroup>
+                                              <FormControl
+                                                label="Mobile Number"
+                                                type="number"
+                                                placeholder="Enter Your Mobile Number"
+                                                name="mobilenumber"
+                                                value={mobilenumber}
+                                                onChange={(e) =>
+                                                  setMobilenumber(
+                                                    e.target.value
+                                                  )
+                                                }
+                                                asteric="*"
+                                                required
+                                              />
+                                            </InputGroup>
+                                          </div>
+                                        </Col>
+                                      </Row>
+                                      <Row>
+                                        <Col md={6}>
+                                          <div className="mt-4">
+                                            <Form.Label>
+                                              Password <sup>*</sup>
+                                            </Form.Label>
+                                            <InputGroup>
+                                              <FormControl
+                                                label="Password"
+                                                type="password"
+                                                placeholder="Enter Your Password"
+                                                name="password"
+                                                value={password}
+                                                onChange={(e) =>
+                                                  setPassword(e.target.value)
+                                                }
+                                                asteric="*"
+                                                required
+                                              />
+                                            </InputGroup>
+                                          </div>
+                                        </Col>
+                                        <Col md={6}>
+                                          <div className="mt-4">
+                                            <Form.Label>
+                                              Confirm Password <sup>*</sup>
+                                            </Form.Label>
+                                            <InputGroup>
+                                              <FormControl
+                                                label=" Confirm Password"
+                                                type="password"
+                                                placeholder="Confirm Your Password"
+                                                name="confirmpassword"
+                                                value={confirmpassword}
+                                                onChange={(e) =>
+                                                  setConfirmPassword(
+                                                    e.target.value
+                                                  )
+                                                }
+                                                asteric="*"
+                                                required
+                                              />
+                                            </InputGroup>
+                                          </div>
+                                        </Col>
+                                      </Row>
+                                      <div className="createaccount">
+                                        <InputGroup.Checkbox />
+                                        <p>
+                                          Creating an account means you’re okay
+                                          with our
+                                          <Link to="">
+                                            Terms of Service
+                                          </Link>{" "}
+                                          and
+                                          <Link to="">Privacy Policy</Link>
+                                        </p>
+                                      </div>
+                                      <button
+                                        className=" sign-in-btn "
+                                        onClick={handleSubmitRegister}
+                                      >
+                                        Create Account
+                                      </button>
+                                      {error && <h4>{error}</h4>}
+                                    </Form>
+                                  </>
+                                )}
+
+                                <p className="or">or</p>
+
+                                <div className="signin-socialmediaicon">
+                                  <img src={Facebookicon} alt="" />
+                                  <img src={GoogleIcon} alt="" />
+                                </div>
+                                <p className="dont-haveacc">
+                                  Don't have an account?
+                                  {signIn ? (
+                                    <span onClick={signUpHandler}>
+                                      {" "}
+                                      Sign Up{" "}
+                                    </span>
+                                  ) : (
+                                    <span onClick={() => setSignin(true)}>
+                                      Sign In{" "}
+                                    </span>
+                                  )}
+                                </p>
+                              </Modal.Body>
+                            </Modal>
                           </div>
                         </td>
                       </tr>
