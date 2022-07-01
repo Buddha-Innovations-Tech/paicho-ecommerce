@@ -22,7 +22,7 @@ export const subscriberLoginReducer = (state = {}, action) => {
     case SUBSCRIBER_LOGIN_REQUEST:
       return { loading: true };
     case SUBSCRIBER_LOGIN_SUCCESS:
-      return { loading: false, subscriberInfo: action.payload };
+      return { loading: false, subscriberInfo: action.payload, success:true };
     case SUBSCRIBER_LOGIN_FAIL:
       return { loading: false, error: action.payload };
     case SUBSCRIBER_LOGOUT:

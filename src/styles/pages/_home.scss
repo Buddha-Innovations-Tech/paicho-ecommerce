@@ -109,6 +109,11 @@
 @media (max-width: 768px) {
   .hero {
     text-align: center;
+    &__banner{
+      &--img{
+        height: 300px !important;
+      }
+    }
   }
 
   .hero__content {
@@ -133,11 +138,11 @@
     p.product__category {
       margin-bottom: 40px !important;
     }
+
   }
   @media (max-width: 576px) {
     .home .product .see__more {
       display: inline-block;
-      margin-top: 30px;
     }
   }
   @media (min-width: 768px) and (max-width: 992px) {

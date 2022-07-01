@@ -147,6 +147,24 @@
       left: -4px;
     }
   }
+  .product{
+    margin-top: 30px;
+  }
+  .toast {
+    position: fixed;
+    top: 85%;
+    left: 2% !important;
+    width: 300px !important;
+    z-index: 99;
+    border-radius: 10px;
+    border: none;
+    .toast-body {
+      background-color: #004f9a !important;
+      border-radius: 4px;
+      padding: 12px 15px;
+      font-size: 13px;
+    }
+  }
 }
 .toast {
   position: fixed;

@@ -54,10 +54,15 @@ const ShoppingCart = () => {
   const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
+  const [mobileErr, setMobileErr] = useState(false);
+  const [passwordErr, setPasswordErr] = useState(false);
+  const [firstNameErr, setFirstNameErr] = useState(false);
+  const [lastNameErr, setLastNameErr] = useState(false);
+  const [emailErr, setEmailErr] = useState(false);
   const { error } = useSelector((state) => state.subscriberRegister);
 
   const { cartItems } = useSelector((state) => state.cart);
-  const { subscriberInfo } = useSelector((state) => state.subscriberLogin);
+  const { subscriberInfo,error: loginsubscribererror,success: loginsubscribersuccess } = useSelector((state) => state.subscriberLogin);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const dlt = (id) => {
@@ -66,21 +71,14 @@ const ShoppingCart = () => {
     localStorage.setItem("carts", JSON.stringify(carts));
   };
   const signInHandler = () => {
-
-   
     if (subscriberInfo) {
       navigate("/checkout");
-    
     } else {
       handleShow(true);
       setSignin(true);
     }
   };
-  // useEffect(()=>{
-  //   if(subscriberInfo){
-  //     navigate("/checkout")
-  //   }
-  // },[subscriberInfo])
+
   const signUpHandler = () => {
     setSignin(false);
   };
@@ -94,13 +92,40 @@ const ShoppingCart = () => {
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     dispatch(login(mobilenumber, password));
-    handleClose();
+  };
+  const validate = () => {
+    if (firstname === "") {
+      setFirstNameErr(true);
+    }
+    if (lastname === "") {
+      setLastNameErr(true);
+    }
+    if (mobilenumber !== 10) {
+      setMobileErr(true);
+    }
+    if (email === "") {
+      setEmailErr(true);
+    }
+    if (password !== confirmpassword) {
+      setPasswordErr(true);
+    }
+    if (
+      firstname === "" ||
+      lastname === "" ||
+      email === "" ||
+      mobilenumber === "" ||
+      password === "" ||
+      confirmpassword === ""
+    ) {
+      return false;
+    } else {
+      return true;
+    }
   };
   const handleSubmitRegister = (e) => {
     e.preventDefault();
-    if (password !== confirmpassword) {
-      alert("Password dont match");
-    } else {
+    const check = validate();
+    if (check === true) {
       dispatch(
         register(
           firstname,
@@ -130,17 +155,15 @@ const ShoppingCart = () => {
   const removeAll = () => {
     dispatch(removeAllCart());
   };
-  // useEffect(() => {
-  //   if (!subscriberInfo) {
-  //     alert("You must have to login first");
-  //     navigate("/");
-  //   }
-  // }, [subscriberInfo]);
 
   useEffect(() => {
     setCarts(JSON.parse(localStorage.getItem("carts")));
   }, []);
-
+  useEffect(() => {
+    if (loginsubscribersuccess) {
+      handleClose();
+    }
+  }, [loginsubscribersuccess]);
   return (
     <>
       <NavBar />
@@ -198,7 +221,6 @@ const ShoppingCart = () => {
                       >
                         Item List
                       </Col>
-                      {/* <Col lg={1}>Unit</Col> */}
                       <Col lg={2}>Quantity</Col>
                       <Col lg={2}>Unit Cost</Col>
                       <Col lg={2}>Subtotal</Col>
@@ -249,7 +271,7 @@ const ShoppingCart = () => {
                                         </td>
                                         <td className="incredecre__inc-dec--button--num">
                                           {" "}
-                                          <span>{data.qty}</span>
+                                          <span> {data.qty}</span>
                                         </td>
                                         <td
                                           className="incredecre__inc-dec--button--dec plus"
@@ -295,12 +317,6 @@ const ShoppingCart = () => {
                         );
                       })}
                   </div>
-                  <div className="carttable__pagination">
-                    <Link to="/">
-                      <CgChevronDoubleLeft className="me-2" />
-                      Continue Shopping
-                    </Link>
-                  </div>
                 </div>
               </Col>
               <Col md={4} sm={12}>
@@ -334,15 +350,16 @@ const ShoppingCart = () => {
                             <p>Grand Total</p>
                             <p>Rs.{grandTotal}</p>
                           </div>
-                          <div className="shopcartrightbox__divbtn" >
-                           
-                              <button className="shopcartrightbox__divbtn--buttonn" onClick={(e)=>{
-                                e.preventDefault()
+                          <div className="shopcartrightbox__divbtn">
+                            <button
+                              className="shopcartrightbox__divbtn--buttonn"
+                              onClick={(e) => {
+                                e.preventDefault();
                                 signInHandler();
-                              }}>
-                                Checkout
-                              </button>
-                            
+                              }}
+                            >
+                              Checkout
+                            </button>
 
                             <Modal show={show} onHide={handleClose}>
                               <Modal.Header closeButton>
@@ -369,6 +386,12 @@ const ShoppingCart = () => {
                               <Modal.Body>
                                 {signIn ? (
                                   <>
+                                    {loginsubscribererror && (
+                                        <p className="register-error">
+                                          {loginsubscribererror}
+                                        </p>
+                                      )}
+                                      {loginsubscribersuccess && <p style={{color:"green",marginTop:"5px",fontSize:"20px"}}>Login SuccessFul</p>}
                                     <Form onSubmit={handleLoginSubmit}>
                                       <div className="mt-4 position-relative">
                                         <Form.Label>
@@ -443,6 +466,8 @@ const ShoppingCart = () => {
                                                 required
                                               />
                                             </InputGroup>
+                                            {firstNameErr && firstname.length<=0 && <p className="register-error">FirstName is required</p>}
+
                                           </div>
                                         </Col>
                                         <Col md={6}>
@@ -464,6 +489,8 @@ const ShoppingCart = () => {
                                                 required
                                               />
                                             </InputGroup>
+                                            {lastNameErr && lastname.length<=0 && <p className="register-error">LastName is required</p>}
+
                                           </div>
                                         </Col>
                                       </Row>
@@ -487,6 +514,8 @@ const ShoppingCart = () => {
                                                 required
                                               />
                                             </InputGroup>
+                                            {emailErr && email.length<=0 && <p className="register-error">Firstname is required</p>}
+
                                           </div>
                                         </Col>
                                         <Col md={6}>
@@ -510,6 +539,8 @@ const ShoppingCart = () => {
                                                 required
                                               />
                                             </InputGroup>
+                                            {mobileErr && mobilenumber.length !=10 && <p className="register-error">Mobile number must be of 10 digits.</p>}
+
                                           </div>
                                         </Col>
                                       </Row>
@@ -558,6 +589,8 @@ const ShoppingCart = () => {
                                             </InputGroup>
                                           </div>
                                         </Col>
+                                        {passwordErr && password!== confirmpassword &&  <p className="register-error">Password must be matched</p>}
+
                                       </Row>
                                       <div className="createaccount">
                                         <InputGroup.Checkbox />
@@ -611,6 +644,12 @@ const ShoppingCart = () => {
                 </div>
               </Col>
             </Row>
+            <div className="carttable__pagination">
+              <Link to="/">
+                <CgChevronDoubleLeft className="me-2" />
+                Continue Shopping
+              </Link>
+            </div>
           </>
         )}
       </Container>

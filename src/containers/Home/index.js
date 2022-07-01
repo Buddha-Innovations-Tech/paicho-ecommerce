@@ -328,7 +328,7 @@ const Home = () => {
               categories.map((curElm, index) => {
                 return (
                   <>
-                    <div className="d-sm-flex justify-content-between align-items-center">
+                    <div className="d-flex justify-content-between align-items-center">
                       <p className="product__category">{curElm?.name} </p>
                       <Link to={curElm?.name}>
                         <span className="see__more">See More</span>

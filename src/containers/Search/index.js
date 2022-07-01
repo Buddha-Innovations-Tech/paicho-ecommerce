@@ -29,7 +29,7 @@ const Search = () => {
     <>
       <NavBar />
       <Container>
-        <Row className="product__row gy-3">
+        <Row className="product__row gy-3 mt-4">
           {searched.length > 0 ? (
             searched.map((curElm, index) => {
               return (

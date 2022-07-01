@@ -7,29 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { listOrderHistory } from "../../actions/orderAction";
 import OrderHistoryComp from "../../components/OrderHistoryComp";
 
-// const orderHistoryList = [
-//   {
-//     item: "Lemon Pickle",
-//     quantity: 2,
-//     Shipto: "Esta Kunwar",
-//     price: "120",
-//   },
-//   {
-//     item: "Mango Pickle",
-//     quantity: 2,
-//     Shipto: "Esta Kunwar",
-//     price: "120",
-//   },
-//   {
-//     item: "Gooseberry Jam",
-//     quantity: 2,
-//     Shipto: "Esta Kunwar",
-//     price: "120",
-//   },
-// ];
 const OrderHistory = () => {
   const { subscriberInfo } = useSelector((state) => state.subscriberLogin);
-
   const { ORDER } = useSelector((state) => state.orderList);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -50,7 +29,11 @@ const OrderHistory = () => {
             <Col lg={8} sm={12} style={{ marginTop: "70px" }}>
               <div className="order__history--background">
                 {ORDER &&
-                  ORDER.filter((a)=>a.shippingInfo?.fullname===`${subscriberInfo?.firstname} ${subscriberInfo?.lastname}`).map((curElm) => {
+                  ORDER.filter(
+                    (a) =>
+                      a.shippingInfo?.fullname ===
+                      `${subscriberInfo?.firstname} ${subscriberInfo?.lastname}`
+                  ).map((curElm) => {
                     return (
                       <div className="mt-2">
                         <OrderHistoryComp {...curElm} />

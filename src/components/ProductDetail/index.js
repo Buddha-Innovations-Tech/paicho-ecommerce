@@ -22,8 +22,15 @@ import { BsCheck } from "react-icons/bs";
 import InputForm from "../../components/InputForm";
 import GoogleIcon from "../../assets/images/googleicon.png";
 import Facebookicon from "../../assets/images/facebookicon.png";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../actions/cartAddedAction";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCart,
+  subtractFromCart,
+  addFromCart,
+} from "../../actions/cartAddedAction";
+import { BiPlus, BiMinus } from "react-icons/bi";
+import { PRODUCT_DETAILS_FAIL } from "../../constants/productConstants";
+
 const ProductDetailComp = ({ product, success }) => {
   const settings = {
     dots: false,
@@ -76,7 +83,17 @@ const ProductDetailComp = ({ product, success }) => {
   const [image, setImage] = useState("");
   const [ingredient, setIngredient] = useState([]);
   const [similar, setSimilar] = useState([]);
-  var discountData = product?.price - (product?.discount / 100) * product?.price;
+  const { cartItems } = useSelector((state) => state.cart);
+
+  var discountData =
+    product?.price - (product?.discount / 100) * product?.price;
+
+  const add = (id) => {
+    dispatch(addFromCart(id));
+  };
+  const subtract = (id) => {
+    dispatch(subtractFromCart(id));
+  };
   const signInHandler = () => {
     handleShow(true);
     setSignin(true);
@@ -171,10 +188,40 @@ const ProductDetailComp = ({ product, success }) => {
                 <p className="product__price--stock">{product?.stock}</p>
               </div>
 
-              {/* <div className="product__inc-dec d-flex">
-                <p className="product__inc-dec--quantity ">Quantity</p>
-                <IncrementDecrement />
-              </div> */}
+              {cartItems.length > 0 &&
+                cartItems.filter((a)=>a.id===product._id).map((data, index) => {
+                  return (
+                    <>
+                      <div className="inc__dec">
+                        <div className="incredecre__inc-dec--button">
+                          <table>
+                            <tbody>
+                              <tr>
+                                <td
+                                  className="incredecre__inc-dec--button--dec minus"
+                                  onClick={() => subtract(data.id)}
+                                >
+                                  <BiMinus />
+                                </td>
+                                <td className="incredecre__inc-dec--button--num">
+                                  {" "}
+                                  <span> {data.qty}</span>
+                                </td>
+                                <td
+                                  className="incredecre__inc-dec--button--dec plus"
+                                  onClick={() => add(data.id)}
+                                >
+                                  <BiPlus />
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </>
+                  );
+                })}
+
               {product?.countInStock !== 0 ? (
                 <>
                   <div className="product__btns">

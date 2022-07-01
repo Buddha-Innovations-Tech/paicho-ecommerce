@@ -26,11 +26,14 @@ const PaichoPickle = () => {
   const [subCategories, setSubcategories] = useState([]);
   const handlePriceRange = (e) => {
     e.preventDefault();
-    setDisplay(products.filter((x) => x.price >= min && x.price <= max));
+    setDisplay(products.filter((i) => i.category && i.category.name === params.name).filter((x) => x.price >= min && x.price <= max));
     setMin("");
     setMax("");
   };
-
+const clearFilter=()=>{
+  setDisplay(products.filter((i) => i.category && i.category.name === params.name));
+  setChecked(false)
+}
   useEffect(()=>{
     setData(location.state)
   },[location.state])
@@ -58,10 +61,9 @@ const PaichoPickle = () => {
   }, [data]);
 
   const handleCheck = (e, subcat) => {
-    console.log(subcat);
-   
     setDisplay(products.filter((x) => x.subcategories === subcat));
     setData(subcat);
+    setChecked(e.target.checked)
   };
   useEffect(() => {
     dispatch(listCategories());
@@ -111,7 +113,7 @@ const PaichoPickle = () => {
                   <p className="category-wrapper__subcategory">Sub Category</p>
                   <p
                     className="category-wrapper__clearfilter"
-                    onClick={() => setChecked(false)}
+                    onClick={clearFilter}
                   >
                     Clear-Filter
                   </p>
@@ -129,13 +131,6 @@ const PaichoPickle = () => {
                             className="form-check-input"
                             type="radio"
                             name="gridRadios"
-                            // value={
-                            //   data === !null
-                            //     ? checked
-                            //     : item.name === data
-                            //     ? checked
-                            //     : false
-                            // }
                             checked={ item.name === data ? true: false}
                             onChange={(e) => handleCheck(e, item.name)}
                           />
@@ -146,8 +141,6 @@ const PaichoPickle = () => {
                             {item.name}
                           </label>
                         </div>
-
-                        {/* <span className="ms-1">{item.name}</span> */}
                       </li>
                     );
                   })}

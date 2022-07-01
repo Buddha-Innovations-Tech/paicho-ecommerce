@@ -36,6 +36,7 @@ const Checkout = () => {
   var today = new Date();
   var date =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+    const navigate=useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -59,7 +60,6 @@ const Checkout = () => {
       })
     );
     setShowA(true);
-
     setAddress("");
     setFullName("");
     setEmail("");
@@ -68,7 +68,6 @@ const Checkout = () => {
   var discountInBill = 0;
   var totalMrp = 0;
   var grandTotal = 0;
-  const navigate=useNavigate();
 
   
   useEffect(() => {
@@ -89,14 +88,7 @@ const Checkout = () => {
       }
     }
   }, [subscriber, checked]);
-  // useEffect(() => {
-  //   if (!checked) {
-  //     setFullName("");
-  //     setAddress("");
-  //     setEmail("");
-  //     setPhoneNumber("");
-  //   }
-  // }, [checked]);
+
   return (
     <>
       <section className="checkout">
@@ -105,8 +97,6 @@ const Checkout = () => {
         {/* checkout */}
         <div className="checkout__box">
           <Container>
-            <Row>
-              <Col md={6}>
                 <div className="checkout__box--heading">
                   <span className="checkout__box--heading-title">
                     Billing Address
@@ -128,6 +118,8 @@ const Checkout = () => {
                     </span>
                   </div>
                 </div>
+            <Row>
+              <Col md={6}>
 
                 <div className="checkout__box--form">
                   <Form onSubmit={handleSubmit}>
@@ -281,7 +273,7 @@ const Checkout = () => {
                   </Form>
                 </div>
               </Col>
-              <Col md={6}>
+              <Col md={6} className="billingdetailscheckout">
                 <div className="billing">
                   <div className="billing__heading d-flex justify-content-between">
                     <span className="title">Billing Details</span>

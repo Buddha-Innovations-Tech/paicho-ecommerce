@@ -29,19 +29,26 @@ import { register, login, logout } from "../../actions/subscriberaction";
 
 const NavBar = () => {
   const { cartItems } = useSelector((state) => state.cart);
-  const { subscriberInfo } = useSelector((state) => state.subscriberLogin);
+  const {
+    subscriberInfo,
+    error: loginsubscribererror,
+    success: loginsubscribersuccess,
+  } = useSelector((state) => state.subscriberLogin);
   const { categories } = useSelector((state) => state.categoryList);
-  const {error}=useSelector((state)=>state.subscriberRegister);
-  // console.log(error);
+  const { error,success:userRegisterSuccess } = useSelector((state) => state.subscriberRegister);
   const dispatch = useDispatch();
   const ref = useRef();
   const [mobilenumber, setMobilenumber] = useState("");
+  const [mobileErr, setMobileErr] = useState(false);
+  const [passwordErr, setPasswordErr] = useState(false);
+  const [firstNameErr, setFirstNameErr] = useState(false);
+  const [lastNameErr, setLastNameErr] = useState(false);
+  const [emailErr, setEmailErr] = useState(false);
   const [password, setPassword] = useState("");
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
-
   const [navbarshow, setNavbarShow] = useState(false);
   const [account, setAccount] = useState(false);
   const [show, setShow] = useState(false);
@@ -55,6 +62,7 @@ const NavBar = () => {
   const [hideSmallNavbar, setHideSmallNavbar] = useState(false);
   const [cartlength, setCartLength] = useState([]);
   const [search, setSearch] = useState("");
+  const [checked,setChecked]=useState(false);
   const navigate = useNavigate();
   const searchHandle = () => {
     if (search !== "") {
@@ -64,54 +72,13 @@ const NavBar = () => {
   useEffect(() => {
     dispatch(listCategories());
   }, [dispatch]);
-  const refetch = () => {
-    let carts = localStorage.getItem("carts");
-    console.log(carts);
-    if (carts) {
-      setCartLength(JSON.parse(carts));
-    }
-  };
-  useEffect(() => {
-    let carts = localStorage.getItem("carts");
-    setCartLength(JSON.parse(carts));
-    window.addEventListener("storage", () => {
-      let carts = localStorage.getItem("carts");
-      console.log(carts);
-      if (carts) {
-        setCartLength(JSON.parse(carts));
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    const checkIfClickedOutside = (e) => {
-      // If the menu is open and the clicked target is not within the menu,
-      // then close the menu
-      if (navbarshow && ref.current && !ref.current.contains(e.target)) {
-        setNavbarShow(false);
-      }
-    };
-
-    document.addEventListener("mousedown", checkIfClickedOutside);
-
-    return () => {
-      // Cleanup the event listener
-      document.removeEventListener("mousedown", checkIfClickedOutside);
-    };
-  }, [navbarshow]);
-  // useEffect(() => {
-  //   const checkIfClickedOutside = (e) => {
-  //     if (account && ref.current && !ref.current.contains(e.target)) {
-  //       setAccount(false);
-  //     }
-  //   };
-
-  //   document.addEventListener("mousedown", checkIfClickedOutside);
-
-  //   return () => {
-  //     document.removeEventListener("mousedown", checkIfClickedOutside);
-  //   };
-  // }, [account]);
+  // const refetch = () => {
+  //   let carts = localStorage.getItem("carts");
+  //   console.log(carts);
+  //   if (carts) {
+  //     setCartLength(JSON.parse(carts));
+  //   }
+  // };
 
   const signInHandler = () => {
     handleShow(true);
@@ -130,29 +97,95 @@ const NavBar = () => {
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     dispatch(login(mobilenumber, password));
-    handleClose();
+  };
+  const validate = () => {
+    if (firstname === "") {
+      setFirstNameErr(true);
+    }
+    if (lastname === "") {
+      setLastNameErr(true);
+    }
+    if (mobilenumber !== 10) {
+      setMobileErr(true);
+    }
+    if (email === "") {
+      setEmailErr(true);
+    }
+    if (password !== confirmpassword) {
+      setPasswordErr(true);
+    } 
+    // if(checked===false){
+    //   setCheckedError(true);
+    // }
+    if (
+      firstname === "" ||
+      lastname === "" ||
+      email === "" ||
+      mobilenumber === "" ||
+      password === "" ||
+      confirmpassword === ""
+    ) {
+      return false;
+    } else {
+      return true;
+    }
   };
   const handleSubmitRegister = (e) => {
     e.preventDefault();
-    if (password !== confirmpassword) {
-      alert("Password dont match");
-    } else {
-      dispatch(
-        register(
-          firstname,
-          lastname,
-          email,
-          mobilenumber,
-          password,
-          confirmpassword
-        )
-      );
-      handleClose1();
+    const check = validate();
+    if (check === true) {
+      if(checked){
+        dispatch(
+          register(
+            firstname,
+            lastname,
+            email,
+            mobilenumber,
+            password,
+            confirmpassword
+          )
+        );
+      }
     }
   };
   const logOutHandlerAccount = () => {
     dispatch(logout());
   };
+  useEffect(() => {
+    if (loginsubscribersuccess) {
+      handleClose();
+    }
+  }, [loginsubscribersuccess]);
+  useEffect(()=>{
+    if(userRegisterSuccess){
+      handleClose1();
+      handleClose();
+    }
+  })
+  // useEffect(() => {
+  //   let carts = localStorage.getItem("carts");
+  //   setCartLength(JSON.parse(carts));
+  //   window.addEventListener("storage", () => {
+  //     let carts = localStorage.getItem("carts");
+  //     console.log(carts);
+  //     if (carts) {
+  //       setCartLength(JSON.parse(carts));
+  //     }
+  //   });
+  // }, []);
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      if (navbarshow && ref.current && !ref.current.contains(e.target)) {
+        setNavbarShow(false);
+      }
+    };
+    document.addEventListener("mousedown", checkIfClickedOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [navbarshow]);
   return (
     <>
       <Container>
@@ -179,7 +212,7 @@ const NavBar = () => {
                               key={index}
                               title={datas.name}
                               items={datas.items}
-                              categories={categories}
+                              categories={datas}
                             />
                           </>
                         );
@@ -279,6 +312,11 @@ const NavBar = () => {
                                 <Modal.Body>
                                   {signIn ? (
                                     <>
+                                      {loginsubscribererror && (
+                                        <p className="register-error">
+                                          {loginsubscribererror}
+                                        </p>
+                                      )}
                                       <Form onSubmit={handleLoginSubmit}>
                                         <div className="mt-4 position-relative">
                                           <Form.Label>
@@ -353,6 +391,12 @@ const NavBar = () => {
                                                   required
                                                 />
                                               </InputGroup>
+                                              {firstNameErr &&
+                                                firstname.length <= 0 && (
+                                                  <p className="register-error">
+                                                    FirstName is required
+                                                  </p>
+                                                )}
                                             </div>
                                           </Col>
                                           <Col md={6}>
@@ -374,6 +418,12 @@ const NavBar = () => {
                                                   required
                                                 />
                                               </InputGroup>
+                                              {lastNameErr &&
+                                                lastname.length <= 0 && (
+                                                  <p className="register-error">
+                                                    LastName is required
+                                                  </p>
+                                                )}
                                             </div>
                                           </Col>
                                         </Row>
@@ -397,6 +447,12 @@ const NavBar = () => {
                                                   required
                                                 />
                                               </InputGroup>
+                                              {emailErr &&
+                                                email.length <= 0 && (
+                                                  <p className="register-error">
+                                                    Firstname is required
+                                                  </p>
+                                                )}
                                             </div>
                                           </Col>
                                           <Col md={6}>
@@ -420,6 +476,13 @@ const NavBar = () => {
                                                   required
                                                 />
                                               </InputGroup>
+                                              {mobileErr &&
+                                                mobilenumber.length != 10 && (
+                                                  <p className="register-error">
+                                                    Mobile number must be of 10
+                                                    digits.
+                                                  </p>
+                                                )}
                                             </div>
                                           </Col>
                                         </Row>
@@ -468,9 +531,15 @@ const NavBar = () => {
                                               </InputGroup>
                                             </div>
                                           </Col>
+                                          {passwordErr &&
+                                            password !== confirmpassword && (
+                                              <p className="register-error">
+                                                Password must be matched
+                                              </p>
+                                            )}
                                         </Row>
                                         <div className="createaccount">
-                                          <InputGroup.Checkbox />
+                                          <InputGroup.Checkbox value={checked} onChange={()=>setChecked(!checked)}/>
                                           <p>
                                             Creating an account means you’re
                                             okay with our
@@ -570,6 +639,12 @@ const NavBar = () => {
                                                     required
                                                   />
                                                 </InputGroup>
+                                                {firstNameErr &&
+                                                  firstname.length <= 0 && (
+                                                    <p className="register-error">
+                                                      First Name is required.
+                                                    </p>
+                                                  )}
                                               </div>
                                             </Col>
                                             <Col md={6}>
@@ -593,6 +668,12 @@ const NavBar = () => {
                                                     required
                                                   />
                                                 </InputGroup>
+                                                {lastNameErr &&
+                                                  lastname.length < 0 && (
+                                                    <p className="register-error">
+                                                      Last Name is required
+                                                    </p>
+                                                  )}
                                               </div>
                                             </Col>
                                           </Row>
@@ -616,6 +697,12 @@ const NavBar = () => {
                                                     required
                                                   />
                                                 </InputGroup>
+                                                {emailErr &&
+                                                  email.length <= 0 && (
+                                                    <p className="register-error">
+                                                      First Name is required
+                                                    </p>
+                                                  )}
                                               </div>
                                             </Col>
                                             <Col md={6}>
@@ -626,7 +713,7 @@ const NavBar = () => {
                                                 <InputGroup>
                                                   <FormControl
                                                     label="Mobile Number"
-                                                    type="num"
+                                                    type="number"
                                                     placeholder="Enter Your Mobile Number"
                                                     name="mobilenumber"
                                                     value={mobilenumber}
@@ -639,6 +726,13 @@ const NavBar = () => {
                                                     required
                                                   />
                                                 </InputGroup>
+                                                {mobileErr &&
+                                                  mobilenumber.length <= 0 && (
+                                                    <p className="register-error">
+                                                      Mobile number must be of
+                                                      10
+                                                    </p>
+                                                  )}
                                               </div>
                                             </Col>
                                           </Row>
@@ -687,11 +781,18 @@ const NavBar = () => {
                                                     required
                                                   />
                                                 </InputGroup>
+                                                {passwordErr &&
+                                                  password !==
+                                                    confirmpassword && (
+                                                    <p className="register-error">
+                                                      Password must match{" "}
+                                                    </p>
+                                                  )}
                                               </div>
                                             </Col>
                                           </Row>
                                           <div className="createaccount">
-                                            <InputGroup.Checkbox />
+                                            <InputGroup.Checkbox value={checked} onChange={()=>setChecked(!checked)}/>
                                             <p>
                                               Creating an account means you’re
                                               okay with our
@@ -814,9 +915,10 @@ const NavBar = () => {
                   <span>
                     <Link to="/shoppingcart">
                       <BsFillCartFill className="navbar-right-icon" />
-                      <sup className="navbar-shopping-card-sup">
+                      {cartItems.length>0 &&  <sup className="navbar-shopping-card-sup">
                         {cartItems.length}
-                      </sup>
+                      </sup>}
+                      
                     </Link>
                   </span>
                 </div>
