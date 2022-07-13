@@ -26,55 +26,61 @@ const PaichoPickle = () => {
   const [subCategories, setSubcategories] = useState([]);
   const handlePriceRange = (e) => {
     e.preventDefault();
-    setDisplay(products.filter((i) => i.category && i.category.name === params.name).filter((x) => x.price >= min && x.price <= max));
+    setDisplay(products.filter((i) => i.category && i.category.name === params.name.replace("%20", ' ')).filter((x) => x.price >= min && x.price <= max));
     setMin("");
     setMax("");
   };
 const clearFilter=()=>{
-  setDisplay(products.filter((i) => i.category && i.category.name === params.name));
-  setChecked(false)
+  setDisplay(products.filter((i) => i.category && i.category.name === params.name.replace("%20", ' ')));
+  setData(null)
 }
+const handleCheck = (e, subcat) => {
+  setChecked(e.target.checked)
+  setData(subcat);
+  setDisplay(products.filter((x) => x.subcategories === subcat));
+};
   useEffect(()=>{
     setData(location.state)
   },[location.state])
 
   useEffect(() => {
     dispatch(listProducts());
-  }, [dispatch]);
+  }, []);
 
+ 
   useEffect(() => {
     if (products && !checked) {
       setDisplay(
-        products.filter((i) => i.category && i.category.name === params.name)
+        data ? products?.filter((i) => i.category && i.subcategories===data): products.filter((i) => i.category.name === params.name.replace("%20", ' '))?.filter((x)=>x.removeStatus===false)
       );
     }
   }, [products, params, checked]);
-
+  
   useEffect(() => {
     if (data !== null) {
       setDisplay(
-        products.filter((x) => {
-          return x.subcategories === data;
-        })
-      );
+        products.filter((x) =>  x.subcategories === data)
+        )
+     
     }
   }, [data]);
 
-  const handleCheck = (e, subcat) => {
-    setDisplay(products.filter((x) => x.subcategories === subcat));
-    setData(subcat);
-    setChecked(e.target.checked)
-  };
+  
   useEffect(() => {
     dispatch(listCategories());
   }, [dispatch]);
 
   useEffect(() => {
+    
     if (categories) {
       categories.forEach((item) => {
         if (item.name && item.name === name) {
           const subcategories = item.subcategories;
           setSubcategories(subcategories);
+          if(data && checked){
+            setData(null);
+            setChecked(false)
+          }
         }
       });
     }
@@ -91,7 +97,7 @@ const clearFilter=()=>{
         });
       }, 100);
     }
-  }, [checked]);
+  }, [checked,name]);
 
   return (
     <>

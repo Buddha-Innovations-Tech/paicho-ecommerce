@@ -37,8 +37,8 @@ const ProductDetailComp = ({ product, success }) => {
     infinite: true,
     autoplay: true,
     autoplaySpeed: 3000,
-
-    slidesToScroll: 1,
+    slidesToScroll: 2,
+    slidesToShow: 2,
     arrows: true,
     responsive: [
       {
@@ -63,6 +63,41 @@ const ProductDetailComp = ({ product, success }) => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
+        },
+      },
+    ],
+  };
+  const settingss = {
+    dots: false,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    slidesToScroll: 1,
+    slidesToShow: 2,
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
         },
       },
     ],
@@ -204,18 +239,26 @@ const ProductDetailComp = ({ product, success }) => {
                                   <BiMinus />
                                 </td>
                                 <td className="incredecre__inc-dec--button--num">
-                                  {" "}
-                                  <span> {data.qty}</span>
+                                  
+                                  <span>{data.qty}</span>
+
                                 </td>
+                                {product.countInStock>=data.qty?
+                                <>
                                 <td
                                   className="incredecre__inc-dec--button--dec plus"
                                   onClick={() => add(data.id)}
                                 >
                                   <BiPlus />
                                 </td>
+                                
+                                </>:""
+                                }
                               </tr>
                             </tbody>
                           </table>
+                          <p>{product.countInStock<data.qty && "Product is Out Of Stock"}</p>
+
                         </div>
                       </div>
                     </>
@@ -468,20 +511,18 @@ const ProductDetailComp = ({ product, success }) => {
             <p className="product__similaritems--heading">
               Similar Items You Might Like
             </p>
-            <Row>
-              <Slider {...settings}>
+           
+              <Slider {...settingss}>
                 {product?.similar &&
                   product?.similar.map((curElm, index) => {
                     return (
-                      <>
-                        <Col md={3}>
+                      
                           <ProductCard {...curElm} key={index} />
-                        </Col>
-                      </>
+                        
                     );
                   })}
               </Slider>
-            </Row>
+            
           </Container>
         </div>
       </div>

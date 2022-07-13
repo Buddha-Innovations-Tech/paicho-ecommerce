@@ -21,6 +21,7 @@ import PaichoPickle from "../PaichoPickle";
 import GrainsPulses from "../GrainsPulses";
 import IndeginousProduct from "../IndeginousProduct";
 import Search from "../Search";
+import OrderComplete from "../OrderComplete";
 // import ScrollToTop from "../../components/ScrollToTop";
 
 const App = () => {
@@ -42,12 +43,8 @@ const App = () => {
           <Route exact path="/clearcart" element={<ClearCart />} />
           <Route exact path="/search/:productname" element={<Search />} />
           <Route exact path="/:name" element={<PaichoPickle />} />
-          {/* <Route exact path="/:name" element={<ProcessingProduct />} />
-          <Route exact path="/:name" element={<GrainsPulses />} />
-          <Route exact path="/:name" element={<IndeginousProduct />} />
-          <Route exact path="/:name" element={<PaichoDryFoods />} />
-          <Route exact path="/:name" element={<KetchupSauce />} />
-          <Route exact path="/:name" element={<OrganicVegetables />} /> */}
+          <Route exact path="/ordercomplete" element={<OrderComplete />} />
+
         </Routes>
       </main>
     </div>

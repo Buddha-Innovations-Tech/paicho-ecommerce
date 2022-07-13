@@ -31,7 +31,7 @@ const OrderHistory = () => {
                 {ORDER &&
                   ORDER.filter(
                     (a) =>
-                      a.shippingInfo?.fullname ===
+                    `${a.user?.firstname} ${a.user?.lastname}` ===
                       `${subscriberInfo?.firstname} ${subscriberInfo?.lastname}`
                   ).map((curElm) => {
                     return (

@@ -435,6 +435,7 @@ ul {
   text-decoration: underline !important;
   font-size: 14px;
   color: #004f9a;
+  margin-bottom: 10px;
 }
 
 .modal-content {
@@ -741,6 +742,10 @@ ul {
     right: 3%;
     top: 15%;
   }
+
+  .second-nav-wrapper .categories .about-paicho {
+    margin-right: 30px;
+  }
 }
 @media (max-width: 1200px) and (min-width: 1024px) {
   .navbarright-wrapper span span {
@@ -767,8 +772,8 @@ ul {
 }
 @media only screen and (max-width: 768px) {
   .account-btn {
-    right: 3%;
-    top: 32%;
+    right: 6%;
+    top: 40%;
   }
 
   .second-nav-wrapper .categories {
@@ -842,11 +847,18 @@ ul {
   background-color: #8dc73d;
   color: #fff;
   margin-left: 10px;
-  padding: 5px 7px;
+  padding: 5px 20px;
   border-radius: 3px;
+  font-size: 15px;
 }
 .account-logout:hover {
   color: #fff;
+}
+
+.register-error {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 0;
 }
 
 .footer {
@@ -1110,6 +1122,26 @@ ul {
   .product__sliders .slick-prev {
     left: -4px;
   }
+
+  .product {
+    margin-top: 30px;
+  }
+
+  .toast {
+    position: fixed;
+    top: 85%;
+    left: 2% !important;
+    width: 300px !important;
+    z-index: 99;
+    border-radius: 10px;
+    border: none;
+  }
+  .toast .toast-body {
+    background-color: #004f9a !important;
+    border-radius: 4px;
+    padding: 12px 15px;
+    font-size: 13px;
+  }
 }
 .toast {
   position: fixed;
@@ -1167,6 +1199,7 @@ ul {
   font-size: 16px;
   color: #2f2e41;
   font-weight: 600;
+  height: 25px;
 }
 .product__card--body--title--icon {
   color: #8dc73d;
@@ -1211,6 +1244,11 @@ ul {
   color: #ffffff;
 }
 
+@media (max-width: 1024px) {
+  .product__card--body--title--heading {
+    font-size: 14px;
+  }
+}
 .product {
   background-color: #f8f8f8;
   padding: 64px 0;
@@ -1375,6 +1413,26 @@ ul {
   }
   .product__sliders .slick-prev {
     left: -4px;
+  }
+
+  .product {
+    margin-top: 30px;
+  }
+
+  .toast {
+    position: fixed;
+    top: 85%;
+    left: 2% !important;
+    width: 300px !important;
+    z-index: 99;
+    border-radius: 10px;
+    border: none;
+  }
+  .toast .toast-body {
+    background-color: #004f9a !important;
+    border-radius: 4px;
+    padding: 12px 15px;
+    font-size: 13px;
   }
 }
 .toast {
@@ -1588,7 +1646,7 @@ ul {
 }
 .incredecre__inc-dec--button--num span {
   background-color: #fff;
-  padding: 3px 10px 4px 10px;
+  padding: 3px 10px 3px 10px;
   width: 30px;
   height: 30px;
 }
@@ -1931,6 +1989,15 @@ ul {
   color: #fff;
 }
 
+@media (max-width: 768px) {
+  .shopcartrightbox {
+    margin-top: 30px;
+  }
+
+  .carttable__pagination {
+    margin: 30px 0;
+  }
+}
 .order__history {
   padding-bottom: 260px;
 }
@@ -2115,7 +2182,6 @@ ul {
   color: #fff;
 }
 .checkout__box .billing {
-  margin-top: 88px;
   background: #ffffff;
   border-radius: 5px;
   padding: 20px 28px 28px 28px;
@@ -2185,7 +2251,22 @@ ul {
   }
   .checkout__box--button .btn__cancel,
 .checkout__box--button .btn__confirm {
-    margin: 10px 0 !important;
+    margin: 10px 10px 10px 0 !important;
+  }
+}
+@media (max-width: 768px) {
+  .checkout__box {
+    padding: 30px 0 30px 0;
+    margin-top: 30px;
+  }
+
+  .checkout__box .billing {
+    margin: 30px 0 30px 0;
+    padding: 30px;
+  }
+
+  .billingdetailscheckout {
+    order: -1 !important;
   }
 }
 .whishlist-btn .carttable__maintable--crossicon {
@@ -2384,6 +2465,9 @@ ul {
   .hero {
     text-align: center;
   }
+  .hero__banner--img {
+    height: 300px !important;
+  }
 
   .hero__content {
     padding: 40px 0 0 0 !important;
@@ -2410,11 +2494,23 @@ ul {
 @media (max-width: 768px) and (max-width: 576px) {
   .home .product .see__more {
     display: inline-block;
-    margin-top: 30px;
   }
 }
 @media (max-width: 768px) and (min-width: 768px) and (max-width: 992px) {
   p.product__card--body--price.card-text {
     display: grid;
   }
+}
+.ordercomplete {
+  text-align: center;
+}
+.ordercomplete img {
+  width: 20%;
+  margin: 60px auto 20px auto;
+  text-align: center;
+  display: flex;
+}
+.ordercomplete a {
+  margin-bottom: 60px;
+  display: inline-block;
 }/*# sourceMappingURL=App.css.map */

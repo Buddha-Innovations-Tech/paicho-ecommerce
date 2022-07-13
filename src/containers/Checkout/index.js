@@ -2,7 +2,7 @@ import { Button, Col, Container, Row, Toast } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
@@ -10,22 +10,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { saveShippingAddress } from "../../actions/cartAddedAction";
 import { createOrder } from "../../actions/orderAction";
 import { BsCheck } from "react-icons/bs";
-
+import { removeAllCart } from "../../actions/cartAddedAction.js";
 import { getSubscriberDetails } from "../../actions/subscriberaction";
 const Checkout = () => {
   const { shippingAddress } = useSelector((state) => state.cart);
-  const {subscriberInfo}=useSelector((state)=>state.subscriberLogin);
-  const [fullname, setFullName] = useState(
-    shippingAddress && shippingAddress.fullname
-  );
-  const [phonenumber, setPhoneNumber] = useState(
-    shippingAddress && shippingAddress.phone
-  );
-  const [email, setEmail] = useState(shippingAddress && shippingAddress.email);
-  const [address, setAddress] = useState(
-    shippingAddress && shippingAddress.address
-  );
-
+  const { subscriberInfo } = useSelector((state) => state.subscriberLogin);
+  const [fullname, setFullName] = useState("");
+  const [phonenumber, setPhoneNumber] = useState("");
+  // const [phonenumber, setPhoneNumber] = useState(
+  //   shippingAddress && shippingAddress.phone
+  // );
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const { success: orderCreateSuccess, loading: orderCreateLoading } =
+    useSelector((state) => state.orderCreate);
   const [paymentmethod, setPaymentMethod] = useState("Cash on Delivery");
   const { cartItems } = useSelector((state) => state.cart);
   const [checked, setChecked] = useState(true);
@@ -33,43 +31,73 @@ const Checkout = () => {
   const dispatch = useDispatch();
   const [showA, setShowA] = useState(false);
   const [show, setShow] = useState(false);
+  const [mobileErr, setMobileErr] = useState(false);
   var today = new Date();
   var date =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-    const navigate=useNavigate();
-
+  const navigate = useNavigate();
+  // const validate = () => {
+  //   if (phonenumber.length !== 10) {
+  //     setMobileErr(true);
+  //     return false;
+  //   }
+  //   if (
+  //     fullname === "" ||
+  //     phonenumber === "" ||
+  //     email === "" ||
+  //     address === ""
+  //   ) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(cartItems);
-    dispatch(
-      createOrder({
-        shippingInfo: {
-          fullname,
-          address,
-          phonenumber,
-          email,
-        },
-        shippingprice: 300,
+    if (phonenumber.length !== 10) {
+      setMobileErr(true);
+      return false;
+    }
+    if (
+      fullname === "" ||
+      phonenumber === "" ||
+      email === "" ||
+      address === ""
+    ) {
+      return false;
+    } else {
+      dispatch(
+        createOrder({
+          shippingInfo: {
+            fullname,
+            address,
+            phonenumber,
+            email,
+          },
+          shippingprice: 300,
 
-        orderItems: cartItems.map((i) => {
-          return { ...i, product: i.id };
-        }),
-        paymentInfo: {
-          paymentmethod,
-        },
-      })
-    );
-    setShowA(true);
-    setAddress("");
-    setFullName("");
-    setEmail("");
-    setPhoneNumber("");
+          orderItems: cartItems.map((i) => {
+            return { ...i, product: i.id };
+          }),
+          paymentInfo: {
+            paymentmethod,
+          },
+        })
+        )
+    }
+  
+      
+    // setShowA(true);
+    // setAddress("");
+    // setFullName("");
+    // setEmail("");
+    // setPhoneNumber("");
   };
+
   var discountInBill = 0;
   var totalMrp = 0;
   var grandTotal = 0;
 
-  
   useEffect(() => {
     dispatch(getSubscriberDetails("profile"));
   }, [dispatch]);
@@ -88,7 +116,12 @@ const Checkout = () => {
       }
     }
   }, [subscriber, checked]);
-
+  useEffect(()=>{
+    if (orderCreateSuccess) {
+      navigate("/ordercomplete");
+      dispatch(removeAllCart());
+    }
+  },[orderCreateSuccess])
   return (
     <>
       <section className="checkout">
@@ -97,30 +130,29 @@ const Checkout = () => {
         {/* checkout */}
         <div className="checkout__box">
           <Container>
-                <div className="checkout__box--heading">
-                  <span className="checkout__box--heading-title">
-                    Billing Address
-                  </span>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span className="checkout__box--heading-para">
-                      Please fill in the form correctly to purchase your order
-                    </span>
-                    <span>
-                      <div className="d-flex align-items-center">
-                        <InputGroup.Checkbox
-                          value={checked}
-                          onChange={(e) => {
-                            setChecked(!checked);
-                          }}
-                        />
-                        <span>Use my details</span>
-                      </div>
-                    </span>
+            <div className="checkout__box--heading">
+              <span className="checkout__box--heading-title">
+                Shipping Address
+              </span>
+              <div className="d-flex justify-content-between align-items-center">
+                <span className="checkout__box--heading-para">
+                  Please fill in the form correctly to purchase your order
+                </span>
+                <span>
+                  <div className="d-flex align-items-center">
+                    <InputGroup.Checkbox
+                      value={checked}
+                      onChange={(e) => {
+                        setChecked(!checked);
+                      }}
+                    />
+                    <span>Use my details</span>
                   </div>
-                </div>
+                </span>
+              </div>
+            </div>
             <Row>
               <Col md={6}>
-
                 <div className="checkout__box--form">
                   <Form onSubmit={handleSubmit}>
                     <Form.Group controlId="formGroupName">
@@ -150,6 +182,11 @@ const Checkout = () => {
                         required
                       />
                     </Form.Group>
+                    {mobileErr && phonenumber.length !== 10 && (
+                      <p className="register-error">
+                        Mobile number must be of 10 digits.
+                      </p>
+                    )}
                     <Form.Group controlId="formGroupEmail">
                       <Form.Label>
                         Email address
@@ -183,7 +220,7 @@ const Checkout = () => {
                       <label className="form-check-label title">
                         How would you like to order this item ?
                       </label>
-                      <div className="form-check">
+                      {/* <div className="form-check">
                         <input
                           className="form-check-input"
                           type="radio"
@@ -230,7 +267,7 @@ const Checkout = () => {
                         >
                           FonePay
                         </label>
-                      </div>
+                      </div> */}
                       <div className="form-check">
                         <input
                           defaultChecked
@@ -317,7 +354,7 @@ const Checkout = () => {
                           </td>
                           <td></td>
                           <td>
-                            <span>{(discountInBill.toFixed(2))}</span>
+                            <span>{discountInBill.toFixed(2)}</span>
                           </td>
                         </tr>
                         <tr className="center">

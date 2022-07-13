@@ -26,7 +26,9 @@ import Logo from "../../assets/images/paichologo.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import SubNav from "../SubNav";
 import { register, login, logout } from "../../actions/subscriberaction";
-
+import {
+  removeAllCart
+} from "../../actions/cartAddedAction.js";
 const NavBar = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const {
@@ -38,6 +40,8 @@ const NavBar = () => {
   const { error,success:userRegisterSuccess } = useSelector((state) => state.subscriberRegister);
   const dispatch = useDispatch();
   const ref = useRef();
+  const ref1 = useRef();
+  const ref2 = useRef();
   const [mobilenumber, setMobilenumber] = useState("");
   const [mobileErr, setMobileErr] = useState(false);
   const [passwordErr, setPasswordErr] = useState(false);
@@ -53,7 +57,8 @@ const NavBar = () => {
   const [account, setAccount] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setShow(true)};
   const [show1, setShow1] = useState(false);
   const handleClose1 = () => setShow1(false);
   const handleShow1 = () => setShow1(true);
@@ -64,11 +69,18 @@ const NavBar = () => {
   const [search, setSearch] = useState("");
   const [checked,setChecked]=useState(false);
   const navigate = useNavigate();
+  const {success:orderCreateSuccess}=useSelector((state)=>state.orderCreate);
+
   const searchHandle = () => {
     if (search !== "") {
       navigate(`/search/${search}`);
     }
   };
+  const handleKeyDown=(e)=>{
+    if(e.key==="Enter" && search !==""){
+      navigate(`/search/${search}`);
+    }
+  }
   useEffect(() => {
     dispatch(listCategories());
   }, [dispatch]);
@@ -79,6 +91,7 @@ const NavBar = () => {
   //     setCartLength(JSON.parse(carts));
   //   }
   // };
+ 
 
   const signInHandler = () => {
     handleShow(true);
@@ -105,7 +118,7 @@ const NavBar = () => {
     if (lastname === "") {
       setLastNameErr(true);
     }
-    if (mobilenumber !== 10) {
+    if (mobilenumber.length !== 10) {
       setMobileErr(true);
     }
     if (email === "") {
@@ -150,6 +163,8 @@ const NavBar = () => {
   };
   const logOutHandlerAccount = () => {
     dispatch(logout());
+    navigate("/");
+    dispatch(removeAllCart());
   };
   useEffect(() => {
     if (loginsubscribersuccess) {
@@ -176,6 +191,7 @@ const NavBar = () => {
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
+      
       if (navbarshow && ref.current && !ref.current.contains(e.target)) {
         setNavbarShow(false);
       }
@@ -186,6 +202,21 @@ const NavBar = () => {
       document.removeEventListener("mousedown", checkIfClickedOutside);
     };
   }, [navbarshow]);
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      if (account && (ref1.current && !ref1.current.contains(e.target) || ref2.current && !ref2.current.contains(e.target))) {
+        setAccount(false);
+        handleClose(false);
+      }
+    };
+    document.addEventListener("mousedown", checkIfClickedOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [account]);
+
+
   return (
     <>
       <Container>
@@ -196,7 +227,7 @@ const NavBar = () => {
                 <img src={Logo} alt="" />
               </div>
             </Link>
-            <GiHamburgerMenu
+            <GiHamburgerMenu 
               className="hambergur-menu"
               onClick={() => setHideSmallNavbar(!hideSmallNavbar)}
             />
@@ -243,26 +274,21 @@ const NavBar = () => {
                     placeholder="Search Products"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
+                    onKeyDown={handleKeyDown}
                   />
                 </form>
                 <FiSearch className="search-icon" onClick={searchHandle} />
               </div>
             </Col>
             <Col md={4}>
-              <div className="dropdown-num d-flex justify-content-end align-items-center">
-                <div className="navbarright-wrapper">
+              <div className="dropdown-num d-flex justify-content-end align-items-center" >
+                <div className="navbarright-wrapper" >
                   {subscriberInfo ? (
                     <>
                       <p className="subscriber_name">
                         {`${subscriberInfo.firstname} ${subscriberInfo.lastname}`}
                       </p>
-                      <Link
-                        to=""
-                        className="account-logout"
-                        onClick={logOutHandlerAccount}
-                      >
-                        Log Out
-                      </Link>
+                     
                     </>
                   ) : (
                     <></>
@@ -277,9 +303,9 @@ const NavBar = () => {
 
                     {account ? (
                       <>
-                        <ul className="account-btn">
+                        <ul className="account-btn"  >
                           {!subscriberInfo ? (
-                            <>
+                            <div ref={ref1}>
                               <Link
                                 to=""
                                 className="account-signin"
@@ -287,7 +313,8 @@ const NavBar = () => {
                               >
                                 <li>Sign In</li>
                               </Link>
-                              <Modal show={show} onHide={handleClose}>
+                              
+                              <Modal  show={show} onHide={handleClose}>
                                 <Modal.Header closeButton>
                                   <Modal.Title>
                                     {signIn ? (
@@ -309,7 +336,7 @@ const NavBar = () => {
                                     )}
                                   </Modal.Title>
                                 </Modal.Header>
-                                <Modal.Body>
+                                <Modal.Body  >
                                   {signIn ? (
                                     <>
                                       {loginsubscribererror && (
@@ -323,7 +350,7 @@ const NavBar = () => {
                                             Mobile Number <sup>*</sup>
                                           </Form.Label>
                                           <InputGroup>
-                                            <FormControl
+                                            <FormControl 
                                               label="Mobile Number"
                                               type="number"
                                               placeholder="Enter Your Mobile Number"
@@ -477,7 +504,7 @@ const NavBar = () => {
                                                 />
                                               </InputGroup>
                                               {mobileErr &&
-                                                mobilenumber.length != 10 && (
+                                                mobilenumber.length !== 10 && (
                                                   <p className="register-error">
                                                     Mobile number must be of 10
                                                     digits.
@@ -586,12 +613,13 @@ const NavBar = () => {
                                 to=""
                                 className="account-create"
                                 onClick={signInHandlerAccount}
+                                
                               >
                                 <li>Create Account</li>
                               </Link>
 
-                              <div className="accoount-create-modal">
-                                <Modal show={show1} onHide={handleClose1}>
+                              <div ref={ref1} className="accoount-create-modal">
+                                <Modal  show={show1} onHide={handleClose1}>
                                   <Modal.Header closeButton>
                                     <Modal.Title>
                                       {signUp ? (
@@ -889,20 +917,33 @@ const NavBar = () => {
                                   </Modal.Body>
                                 </Modal>
                               </div>
-                            </>
+                            </div>
                           ) : (
-                            ""
-                          )}
-
-                          <Link to="/account" className="account-accdetails">
+                           
+                          <div  ref={ref1} >
+                          <Link to="/account" className="account-accdetails" >
                             <li>My Account</li>
                           </Link>
                           <Link
+                          
                             to="/wishlist"
                             className="account-wishlistdetails"
                           >
                             <li>Wishlist</li>
                           </Link>
+
+                          <Link
+                          ref={ref1}
+                        to=""
+                        className="account-logout"
+                        onClick={logOutHandlerAccount}
+                      >
+                        Log Out
+                      </Link>
+                          </div>
+                           
+                          )}
+                          
                         </ul>
                       </>
                     ) : (
@@ -951,6 +992,7 @@ const NavBar = () => {
                           <>
                             <Link
                               to={`/${curElm.name}`}
+                              state={null}
                               className="main-category"
                             >
                               <li className="navar-dropdown-li" key={index}>

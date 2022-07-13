@@ -202,7 +202,7 @@ const ShoppingCart = () => {
                               Yes
                             </Link>
                             <br />
-                            <button className="no-btn" onClick={handleClose}>
+                            <button className="no-btn" onClick={handleClose5}>
                               No
                             </button>
                           </div>

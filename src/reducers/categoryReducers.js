@@ -18,6 +18,7 @@ export const categoryListReducer = (state = { categories: [] }, action) => {
       };
     case CATEGORY_LIST_FAIL:
       return { loading: false, error: action.payload };
+    
 
     default:
       return state;

@@ -66,7 +66,7 @@ const WhishList = () => {
       {/* wishlist */}
       <div className="wishlist">
         <Container>
-          {getSubscriberDetails ?
+          {subscriber?.wishlists?.length===0 ?
           <>
           <ClearCart/>
           </>:
@@ -89,7 +89,7 @@ const WhishList = () => {
                       className="carttable__heading--selectitem"
                       onClick={handleShow}
                     >
-                      <u>Clear Cart</u>
+                      <u>Clear Wishlist</u>
                     </span>
                     <Modal show={show} onHide={handleClose}>
                       <Modal.Body>
@@ -170,6 +170,10 @@ const WhishList = () => {
                             </div>
                           </Col>
                           <Col lg={3}>
+                            {data.countInStock ===0?
+                            <p>Out of Stock</p>
+                            :
+                            <>
                             <Link
                               to="/shoppingcart"
                               className="carttable__maintable--crossicon"
@@ -177,6 +181,9 @@ const WhishList = () => {
                             >
                               Add to Cart
                             </Link>
+                            
+                            </>
+                          }
                           </Col>
 
                           <Col
@@ -193,6 +200,7 @@ const WhishList = () => {
                       );
                     })}
                 </div>
+                
                 <div className="carttable__pagination">
                   <Link to="/">
                     <CgChevronDoubleLeft className="me-2" />

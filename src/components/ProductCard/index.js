@@ -63,7 +63,7 @@ const ProductCard = ({
         <Link to={`/productdetail/${_id}`}>
           <Card.Img
             variant="top"
-            src={image}
+            src={image[0]}
             className="img-fluid product__card--image"
             alt="product"
           />

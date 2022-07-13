@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import Moment from "react-moment";
 
 const OrderHistoryComp = ({
   _id,
@@ -17,7 +18,9 @@ const OrderHistoryComp = ({
             <p className="orderid">Order ID: {_id}</p>
           </Col>
           <Col md={6}>
-            <span className="date orderid">Date: {createdAt} </span>
+            <span className="date orderid">Date:<Moment format="DD/MM/YYYY">
+                          {createdAt}
+                        </Moment>  </span>
             <span className="status orderid">Status : {orderStatus}</span>
           </Col>
         </Row>

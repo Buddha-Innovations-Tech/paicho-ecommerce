@@ -20,7 +20,9 @@ import Footer from "../../components/Footer";
 import Slider from "react-slick";
 import InputForm from "../../components/InputForm";
 import { listCategories, createCategory } from "../../actions/categoryAction";
-
+import {
+  removeAllCart
+} from "../../actions/cartAddedAction.js";
 const Home = () => {
   const settings = {
     dots: false,
@@ -90,6 +92,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(listCategories());
   }, [dispatch]);
+  
   return (
     <>
       <section className="home">
@@ -100,9 +103,9 @@ const Home = () => {
           <Container>
             <Row>
               <Slider {...settings}>
-                {carousel.carousels &&
-                  carousel.carousels.length > 0 &&
-                  carousel.carousels.map((curEm) => {
+                {carousel?.carousels &&
+                  carousel?.carousels.length > 0 &&
+                  carousel?.carousels.map((curEm) => {
                     return (
                       <>
                         <Row>
@@ -335,8 +338,8 @@ const Home = () => {
                       </Link>
                     </div>
                     <Row className="product__row gy-3">
-                      {products&& products?.filter((b)=>b.category.name===curElm.name)
-                        
+                      {products&& products?.filter((b)=>b.category?.name===curElm.name)
+                        ?.filter((x)=>x.removeStatus===false)
                           ?.filter((i, index) => index < 4)
                           .map((curElm, index) => {
                             return (
