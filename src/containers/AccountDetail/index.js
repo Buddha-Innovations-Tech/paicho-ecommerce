@@ -39,6 +39,7 @@ const AccountDetail = () => {
   );
 
   const { success } = useSelector((state) => state.subscriberUpdate);
+  const {error:billingAddressError}=useSelector((state)=>state.billingAddressUpdate)
   const updateProfile = (e) => {
     e.preventDefault();
     dispatch(
@@ -235,6 +236,7 @@ const AccountDetail = () => {
                   >
                     Save Changes
                   </Button>
+                  {billingAddressError ? <p style={{color:"red",marginTop:"20px"}}>{billingAddressError}</p>:<p style={{color:"green",marginTop:"20px"}}>Changes Successful.</p>}
                 </Form>
               </div>
             </Col>

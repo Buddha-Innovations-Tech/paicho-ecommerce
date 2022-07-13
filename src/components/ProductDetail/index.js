@@ -8,6 +8,7 @@ import {
   Form,
   Button,
   InputGroup,
+  Carousel,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ProductPhoto from "../../assets/images/productdetail.png";
@@ -109,7 +110,6 @@ const ProductDetailComp = ({ product, success }) => {
   const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
-
   const [showA, setShowA] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -224,46 +224,49 @@ const ProductDetailComp = ({ product, success }) => {
               </div>
 
               {cartItems.length > 0 &&
-                cartItems.filter((a)=>a.id===product._id).map((data, index) => {
-                  return (
-                    <>
-                      <div className="inc__dec">
-                        <div className="incredecre__inc-dec--button">
-                          <table>
-                            <tbody>
-                              <tr>
-                                <td
-                                  className="incredecre__inc-dec--button--dec minus"
-                                  onClick={() => subtract(data.id)}
-                                >
-                                  <BiMinus />
-                                </td>
-                                <td className="incredecre__inc-dec--button--num">
-                                  
-                                  <span>{data.qty}</span>
-
-                                </td>
-                                {product.countInStock>=data.qty?
-                                <>
-                                <td
-                                  className="incredecre__inc-dec--button--dec plus"
-                                  onClick={() => add(data.id)}
-                                >
-                                  <BiPlus />
-                                </td>
-                                
-                                </>:""
-                                }
-                              </tr>
-                            </tbody>
-                          </table>
-                          <p>{product.countInStock<data.qty && "Product is Out Of Stock"}</p>
-
+                cartItems
+                  .filter((a) => a.id === product._id)
+                  .map((data, index) => {
+                    return (
+                      <>
+                        <div className="inc__dec">
+                          <div className="incredecre__inc-dec--button">
+                            <table>
+                              <tbody>
+                                <tr>
+                                  <td
+                                    className="incredecre__inc-dec--button--dec minus"
+                                    onClick={() => subtract(data.id)}
+                                  >
+                                    <BiMinus />
+                                  </td>
+                                  <td className="incredecre__inc-dec--button--num">
+                                    <span>{data.qty}</span>
+                                  </td>
+                                  {product.countInStock >= data.qty ? (
+                                    <>
+                                      <td
+                                        className="incredecre__inc-dec--button--dec plus"
+                                        onClick={() => add(data.id)}
+                                      >
+                                        <BiPlus />
+                                      </td>
+                                    </>
+                                  ) : (
+                                    ""
+                                  )}
+                                </tr>
+                              </tbody>
+                            </table>
+                            <p>
+                              {product.countInStock < data.qty &&
+                                "Product is Out Of Stock"}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    </>
-                  );
-                })}
+                      </>
+                    );
+                  })}
 
               {product?.countInStock !== 0 ? (
                 <>
@@ -511,18 +514,30 @@ const ProductDetailComp = ({ product, success }) => {
             <p className="product__similaritems--heading">
               Similar Items You Might Like
             </p>
-           
-              <Slider {...settingss}>
+
+            {/* <Slider {...settingss}>
                 {product?.similar &&
                   product?.similar.map((curElm, index) => {
                     return (
-                      
                           <ProductCard {...curElm} key={index} />
-                        
                     );
                   })}
               </Slider>
-            
+             */}
+            <Row>
+                <Col md={4} lg={4}>
+              <Carousel>
+                {product?.similar &&
+                  product?.similar.map((curElm, index) => {
+                    return (
+                      <Carousel.Item>
+                          <ProductCard {...curElm} key={index} />
+                      </Carousel.Item>
+                    );
+                  })}
+              </Carousel>
+                  </Col>
+            </Row>
           </Container>
         </div>
       </div>

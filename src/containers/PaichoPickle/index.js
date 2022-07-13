@@ -37,7 +37,7 @@ const clearFilter=()=>{
 const handleCheck = (e, subcat) => {
   setChecked(e.target.checked)
   setData(subcat);
-  setDisplay(products.filter((x) => x.subcategories === subcat));
+  setDisplay(products?.filter((x) => x.subcategories === subcat)?.filter((b)=>b.removeStatus===false));
 };
   useEffect(()=>{
     setData(location.state)
@@ -59,7 +59,7 @@ const handleCheck = (e, subcat) => {
   useEffect(() => {
     if (data !== null) {
       setDisplay(
-        products.filter((x) =>  x.subcategories === data)
+        products.filter((x) =>  x.subcategories === data).filter((b)=>b.removeStatus===false)
         )
      
     }

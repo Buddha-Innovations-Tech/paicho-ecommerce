@@ -12,6 +12,7 @@ import { createOrder } from "../../actions/orderAction";
 import { BsCheck } from "react-icons/bs";
 import { removeAllCart } from "../../actions/cartAddedAction.js";
 import { getSubscriberDetails } from "../../actions/subscriberaction";
+import {ORDER_CREATE_RESET} from "../../constants/orderConstants";
 const Checkout = () => {
   const { shippingAddress } = useSelector((state) => state.cart);
   const { subscriberInfo } = useSelector((state) => state.subscriberLogin);
@@ -118,6 +119,7 @@ const Checkout = () => {
   }, [subscriber, checked]);
   useEffect(()=>{
     if (orderCreateSuccess) {
+      dispatch({ type: ORDER_CREATE_RESET })
       navigate("/ordercomplete");
       dispatch(removeAllCart());
     }

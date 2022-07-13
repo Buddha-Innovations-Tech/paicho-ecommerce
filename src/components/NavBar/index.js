@@ -111,60 +111,85 @@ const NavBar = () => {
     e.preventDefault();
     dispatch(login(mobilenumber, password));
   };
-  const validate = () => {
-    if (firstname === "") {
-      setFirstNameErr(true);
-    }
-    if (lastname === "") {
-      setLastNameErr(true);
-    }
-    if (mobilenumber.length !== 10) {
-      setMobileErr(true);
-    }
-    if (email === "") {
-      setEmailErr(true);
-    }
-    if (password !== confirmpassword) {
-      setPasswordErr(true);
-    } 
-    // if(checked===false){
-    //   setCheckedError(true);
-    // }
-    if (
-      firstname === "" ||
-      lastname === "" ||
-      email === "" ||
-      mobilenumber === "" ||
-      password === "" ||
-      confirmpassword === ""
-    ) {
-      return false;
-    } else {
-      return true;
-    }
-  };
+  // const validate = () => {
+  //   if (firstname === "") {
+  //     setFirstNameErr(true);
+  //   }
+  //   if (lastname === "") {
+  //     setLastNameErr(true);
+  //   }
+  //   if (mobilenumber.length !== 10) {
+  //     setMobileErr(true);
+  //   }
+  //   if (email === "") {
+  //     setEmailErr(true);
+  //   }
+  //   if (password !== confirmpassword) {
+  //     setPasswordErr(true);
+  //   } 
+  //   if (
+  //     firstname === "" ||
+  //     lastname === "" ||
+  //     email === "" ||
+  //     mobilenumber === "" ||
+  //     password === "" ||
+  //     confirmpassword === ""
+  //   ) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // };
   const handleSubmitRegister = (e) => {
     e.preventDefault();
-    const check = validate();
-    if (check === true) {
-      if(checked){
-        dispatch(
-          register(
-            firstname,
-            lastname,
-            email,
-            mobilenumber,
-            password,
-            confirmpassword
-          )
-        );
+      if (firstname === "") {
+        setFirstNameErr(true);
+        return false;
       }
-    }
+      if (lastname === "") {
+        setLastNameErr(true);
+        return false;
+      }
+      if (mobilenumber.length !== 10) {
+        setMobileErr(true);
+        return false;
+      }
+      if (email === "") {
+        setEmailErr(true);
+        return false;
+      }
+      if (password !== confirmpassword) {
+        setPasswordErr(true);
+        return false;
+      } 
+      if (
+        firstname === "" ||
+        lastname === "" ||
+        email === "" ||
+        mobilenumber === "" ||
+        password === "" ||
+        confirmpassword === ""
+      ) {
+        return false;
+      } else {
+        if(checked){
+          dispatch(
+            register(
+              firstname,
+              lastname,
+              email,
+              mobilenumber,
+              password,
+              confirmpassword
+            )
+          )
+        }
+      }
   };
   const logOutHandlerAccount = () => {
     dispatch(logout());
-    navigate("/");
     dispatch(removeAllCart());
+    navigate("/");
   };
   useEffect(() => {
     if (loginsubscribersuccess) {
@@ -202,19 +227,19 @@ const NavBar = () => {
       document.removeEventListener("mousedown", checkIfClickedOutside);
     };
   }, [navbarshow]);
-  useEffect(() => {
-    const checkIfClickedOutside = (e) => {
-      if (account && (ref1.current && !ref1.current.contains(e.target) || ref2.current && !ref2.current.contains(e.target))) {
-        setAccount(false);
-        handleClose(false);
-      }
-    };
-    document.addEventListener("mousedown", checkIfClickedOutside);
+  // useEffect(() => {
+  //   const checkIfClickedOutside = (e) => {
+  //     if (account && (ref1.current && !ref1.current.contains(e.target) || ref2.current && !ref2.current.contains(e.target))) {
+  //       setAccount(false);
+  //       handleClose(false);
+  //     }
+  //   };
+  //   document.addEventListener("mousedown", checkIfClickedOutside);
 
-    return () => {
-      document.removeEventListener("mousedown", checkIfClickedOutside);
-    };
-  }, [account]);
+  //   return () => {
+  //     document.removeEventListener("mousedown", checkIfClickedOutside);
+  //   };
+  // }, [account]);
 
 
   return (
@@ -305,7 +330,7 @@ const NavBar = () => {
                       <>
                         <ul className="account-btn"  >
                           {!subscriberInfo ? (
-                            <div ref={ref1}>
+                            <div >
                               <Link
                                 to=""
                                 className="account-signin"
@@ -668,11 +693,11 @@ const NavBar = () => {
                                                   />
                                                 </InputGroup>
                                                 {firstNameErr &&
-                                                  firstname.length <= 0 && (
-                                                    <p className="register-error">
-                                                      First Name is required.
-                                                    </p>
-                                                  )}
+                                                firstname.length <= 0 && (
+                                                  <p className="register-error">
+                                                    First Name is required
+                                                  </p>
+                                                )}
                                               </div>
                                             </Col>
                                             <Col md={6}>
@@ -697,11 +722,11 @@ const NavBar = () => {
                                                   />
                                                 </InputGroup>
                                                 {lastNameErr &&
-                                                  lastname.length < 0 && (
-                                                    <p className="register-error">
-                                                      Last Name is required
-                                                    </p>
-                                                  )}
+                                                lastname.length <= 0 && (
+                                                  <p className="register-error">
+                                                    Last Name is required
+                                                  </p>
+                                                )}
                                               </div>
                                             </Col>
                                           </Row>
@@ -726,11 +751,11 @@ const NavBar = () => {
                                                   />
                                                 </InputGroup>
                                                 {emailErr &&
-                                                  email.length <= 0 && (
-                                                    <p className="register-error">
-                                                      First Name is required
-                                                    </p>
-                                                  )}
+                                                email.length <= 0 && (
+                                                  <p className="register-error">
+                                                    Email is required
+                                                  </p>
+                                                )}
                                               </div>
                                             </Col>
                                             <Col md={6}>
@@ -786,6 +811,12 @@ const NavBar = () => {
                                                     required
                                                   />
                                                 </InputGroup>
+                                                {passwordErr &&
+                                                password !== confirmpassword && (
+                                                  <p className="register-error">
+                                                    Password & Confirm password don't watch.
+                                                  </p>
+                                                )}
                                               </div>
                                             </Col>
                                             <Col md={6}>
@@ -809,13 +840,7 @@ const NavBar = () => {
                                                     required
                                                   />
                                                 </InputGroup>
-                                                {passwordErr &&
-                                                  password !==
-                                                    confirmpassword && (
-                                                    <p className="register-error">
-                                                      Password must match{" "}
-                                                    </p>
-                                                  )}
+                                                
                                               </div>
                                             </Col>
                                           </Row>
@@ -837,6 +862,7 @@ const NavBar = () => {
                                           >
                                             Create Account
                                           </button>
+                                          {error && <p className="register-error">{error}</p>}
                                         </Form>
                                       </>
                                     ) : (
