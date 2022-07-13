@@ -742,7 +742,6 @@ ul {
     right: 3%;
     top: 15%;
   }
-
   .second-nav-wrapper .categories .about-paicho {
     margin-right: 30px;
   }
@@ -751,7 +750,6 @@ ul {
   .navbarright-wrapper span span {
     margin: 0 5px;
   }
-
   .navbarright-wrapper:nth-child(1) {
     padding-right: 0px;
   }
@@ -760,7 +758,6 @@ ul {
   .navbarright-wrapper:nth-child(1) {
     border-right: none;
   }
-
   .second-nav-wrapper .categories .about-paicho {
     margin-right: 0px !important;
   }
@@ -775,40 +772,31 @@ ul {
     right: 6%;
     top: 40%;
   }
-
   .second-nav-wrapper .categories {
     display: none !important;
   }
-
   .imput-wrapper {
     width: 100%;
   }
-
   .dropdown {
     margin-left: -10px;
   }
-
   .dropdown-num {
     margin-top: 30px;
   }
-
   .modal-content {
     width: 100% !important;
   }
-
   .modal-content .modal-body .or::before,
 .modal-content .modal-body .or::after {
     display: none;
   }
-
   .mobile-navbar {
     display: block;
   }
-
   .first-navbar .logo img {
     display: none;
   }
-
   .second-nav-wrapper {
     display: none;
   }
@@ -1122,11 +1110,9 @@ ul {
   .product__sliders .slick-prev {
     left: -4px;
   }
-
   .product {
     margin-top: 30px;
   }
-
   .toast {
     position: fixed;
     top: 85%;
@@ -1414,11 +1400,9 @@ ul {
   .product__sliders .slick-prev {
     left: -4px;
   }
-
   .product {
     margin-top: 30px;
   }
-
   .toast {
     position: fixed;
     top: 85%;
@@ -1587,15 +1571,12 @@ ul {
   .carttable .carttable__maintable {
     margin-left: 0px;
   }
-
   .carttable__maintable--firstrow {
     display: none !important;
   }
-
   .carttable__maintable--firstdata {
     padding-left: 0 !important;
   }
-
   .mapping-row {
     margin: 0 15px !important;
     background: #fff;
@@ -1993,7 +1974,6 @@ ul {
   .shopcartrightbox {
     margin-top: 30px;
   }
-
   .carttable__pagination {
     margin: 30px 0;
   }
@@ -2245,7 +2225,6 @@ ul {
   .checkout__box .billing {
     padding: 0;
   }
-
   .checkout__box--button {
     display: block !important;
   }
@@ -2259,12 +2238,10 @@ ul {
     padding: 30px 0 30px 0;
     margin-top: 30px;
   }
-
   .checkout__box .billing {
     margin: 30px 0 30px 0;
     padding: 30px;
   }
-
   .billingdetailscheckout {
     order: -1 !important;
   }
@@ -2468,22 +2445,18 @@ ul {
   .hero__banner--img {
     height: 300px !important;
   }
-
   .hero__content {
     padding: 40px 0 0 0 !important;
   }
-
   h2.hero__content--heading.mb-13 {
     font-size: 30px;
     line-height: 1.4;
   }
-
   .home .product__row.row .col-md-3 {
     margin: 10px 0;
     padding-left: 0;
     padding-right: 0;
   }
-
   .home .hero__content {
     padding: 40px 0 0 0;
   }

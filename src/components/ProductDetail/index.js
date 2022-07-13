@@ -525,18 +525,18 @@ const ProductDetailComp = ({ product, success }) => {
               </Slider>
              */}
             <Row>
-                <Col md={4} lg={4}>
               <Carousel>
                 {product?.similar &&
                   product?.similar.map((curElm, index) => {
                     return (
-                      <Carousel.Item>
+                      <Carousel.Item key={index}>
+                        <Col lg={4}>
                           <ProductCard {...curElm} key={index} />
+                        </Col>
                       </Carousel.Item>
                     );
                   })}
               </Carousel>
-                  </Col>
             </Row>
           </Container>
         </div>
