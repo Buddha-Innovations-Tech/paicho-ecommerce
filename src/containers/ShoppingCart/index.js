@@ -62,7 +62,11 @@ const ShoppingCart = () => {
   const { error } = useSelector((state) => state.subscriberRegister);
 
   const { cartItems } = useSelector((state) => state.cart);
-  const { subscriberInfo,error: loginsubscribererror,success: loginsubscribersuccess } = useSelector((state) => state.subscriberLogin);
+  const {
+    subscriberInfo,
+    error: loginsubscribererror,
+    success: loginsubscribersuccess,
+  } = useSelector((state) => state.subscriberLogin);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const dlt = (id) => {
@@ -387,11 +391,21 @@ const ShoppingCart = () => {
                                 {signIn ? (
                                   <>
                                     {loginsubscribererror && (
-                                        <p className="register-error">
-                                          {loginsubscribererror}
-                                        </p>
-                                      )}
-                                      {loginsubscribersuccess && <p style={{color:"green",marginTop:"5px",fontSize:"20px"}}>Login SuccessFul</p>}
+                                      <p className="register-error">
+                                        {loginsubscribererror}
+                                      </p>
+                                    )}
+                                    {loginsubscribersuccess && (
+                                      <p
+                                        style={{
+                                          color: "green",
+                                          marginTop: "5px",
+                                          fontSize: "20px",
+                                        }}
+                                      >
+                                        Login SuccessFul
+                                      </p>
+                                    )}
                                     <Form onSubmit={handleLoginSubmit}>
                                       <div className="mt-4 position-relative">
                                         <Form.Label>
@@ -466,8 +480,12 @@ const ShoppingCart = () => {
                                                 required
                                               />
                                             </InputGroup>
-                                            {firstNameErr && firstname.length<=0 && <p className="register-error">FirstName is required</p>}
-
+                                            {firstNameErr &&
+                                              firstname.length <= 0 && (
+                                                <p className="register-error">
+                                                  FirstName is required
+                                                </p>
+                                              )}
                                           </div>
                                         </Col>
                                         <Col md={6}>
@@ -489,8 +507,12 @@ const ShoppingCart = () => {
                                                 required
                                               />
                                             </InputGroup>
-                                            {lastNameErr && lastname.length<=0 && <p className="register-error">LastName is required</p>}
-
+                                            {lastNameErr &&
+                                              lastname.length <= 0 && (
+                                                <p className="register-error">
+                                                  LastName is required
+                                                </p>
+                                              )}
                                           </div>
                                         </Col>
                                       </Row>
@@ -514,8 +536,11 @@ const ShoppingCart = () => {
                                                 required
                                               />
                                             </InputGroup>
-                                            {emailErr && email.length<=0 && <p className="register-error">Firstname is required</p>}
-
+                                            {emailErr && email.length <= 0 && (
+                                              <p className="register-error">
+                                                Firstname is required
+                                              </p>
+                                            )}
                                           </div>
                                         </Col>
                                         <Col md={6}>
@@ -539,8 +564,13 @@ const ShoppingCart = () => {
                                                 required
                                               />
                                             </InputGroup>
-                                            {mobileErr && mobilenumber.length !=10 && <p className="register-error">Mobile number must be of 10 digits.</p>}
-
+                                            {mobileErr &&
+                                              mobilenumber.length != 10 && (
+                                                <p className="register-error">
+                                                  Mobile number must be of 10
+                                                  digits.
+                                                </p>
+                                              )}
                                           </div>
                                         </Col>
                                       </Row>
@@ -589,8 +619,12 @@ const ShoppingCart = () => {
                                             </InputGroup>
                                           </div>
                                         </Col>
-                                        {passwordErr && password!== confirmpassword &&  <p className="register-error">Password must be matched</p>}
-
+                                        {passwordErr &&
+                                          password !== confirmpassword && (
+                                            <p className="register-error">
+                                              Password must be matched
+                                            </p>
+                                          )}
                                       </Row>
                                       <div className="createaccount">
                                         <InputGroup.Checkbox />

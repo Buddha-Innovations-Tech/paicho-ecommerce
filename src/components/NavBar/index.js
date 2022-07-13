@@ -26,9 +26,7 @@ import Logo from "../../assets/images/paichologo.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import SubNav from "../SubNav";
 import { register, login, logout } from "../../actions/subscriberaction";
-import {
-  removeAllCart
-} from "../../actions/cartAddedAction.js";
+import { removeAllCart } from "../../actions/cartAddedAction.js";
 const NavBar = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const {
@@ -37,7 +35,9 @@ const NavBar = () => {
     success: loginsubscribersuccess,
   } = useSelector((state) => state.subscriberLogin);
   const { categories } = useSelector((state) => state.categoryList);
-  const { error,success:userRegisterSuccess } = useSelector((state) => state.subscriberRegister);
+  const { error, success: userRegisterSuccess } = useSelector(
+    (state) => state.subscriberRegister
+  );
   const dispatch = useDispatch();
   const ref = useRef();
   const ref1 = useRef();
@@ -56,9 +56,13 @@ const NavBar = () => {
   const [navbarshow, setNavbarShow] = useState(false);
   const [account, setAccount] = useState(false);
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setAccount(false);
+  };
   const handleShow = () => {
-    setShow(true)};
+    setShow(true);
+  };
   const [show1, setShow1] = useState(false);
   const handleClose1 = () => setShow1(false);
   const handleShow1 = () => setShow1(true);
@@ -67,20 +71,22 @@ const NavBar = () => {
   const [hideSmallNavbar, setHideSmallNavbar] = useState(false);
   const [cartlength, setCartLength] = useState([]);
   const [search, setSearch] = useState("");
-  const [checked,setChecked]=useState(false);
+  const [checked, setChecked] = useState(false);
   const navigate = useNavigate();
-  const {success:orderCreateSuccess}=useSelector((state)=>state.orderCreate);
+  const { success: orderCreateSuccess } = useSelector(
+    (state) => state.orderCreate
+  );
 
   const searchHandle = () => {
     if (search !== "") {
       navigate(`/search/${search}`);
     }
   };
-  const handleKeyDown=(e)=>{
-    if(e.key==="Enter" && search !==""){
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && search !== "") {
       navigate(`/search/${search}`);
     }
-  }
+  };
   useEffect(() => {
     dispatch(listCategories());
   }, [dispatch]);
@@ -91,7 +97,6 @@ const NavBar = () => {
   //     setCartLength(JSON.parse(carts));
   //   }
   // };
- 
 
   const signInHandler = () => {
     handleShow(true);
@@ -126,7 +131,7 @@ const NavBar = () => {
     }
     if (password !== confirmpassword) {
       setPasswordErr(true);
-    } 
+    }
     // if(checked===false){
     //   setCheckedError(true);
     // }
@@ -147,7 +152,7 @@ const NavBar = () => {
     e.preventDefault();
     const check = validate();
     if (check === true) {
-      if(checked){
+      if (checked) {
         dispatch(
           register(
             firstname,
@@ -171,12 +176,12 @@ const NavBar = () => {
       handleClose();
     }
   }, [loginsubscribersuccess]);
-  useEffect(()=>{
-    if(userRegisterSuccess){
+  useEffect(() => {
+    if (userRegisterSuccess) {
       handleClose1();
       handleClose();
     }
-  })
+  });
   // useEffect(() => {
   //   let carts = localStorage.getItem("carts");
   //   setCartLength(JSON.parse(carts));
@@ -191,7 +196,6 @@ const NavBar = () => {
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
-      
       if (navbarshow && ref.current && !ref.current.contains(e.target)) {
         setNavbarShow(false);
       }
@@ -204,7 +208,7 @@ const NavBar = () => {
   }, [navbarshow]);
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
-      if (account && (ref1.current && !ref1.current.contains(e.target) || ref2.current && !ref2.current.contains(e.target))) {
+      if (account && ref1.current && !ref1.current.contains(e.target) && show) {
         setAccount(false);
         handleClose(false);
       }
@@ -216,7 +220,6 @@ const NavBar = () => {
     };
   }, [account]);
 
-
   return (
     <>
       <Container>
@@ -227,7 +230,7 @@ const NavBar = () => {
                 <img src={Logo} alt="" />
               </div>
             </Link>
-            <GiHamburgerMenu 
+            <GiHamburgerMenu
               className="hambergur-menu"
               onClick={() => setHideSmallNavbar(!hideSmallNavbar)}
             />
@@ -281,14 +284,13 @@ const NavBar = () => {
               </div>
             </Col>
             <Col md={4}>
-              <div className="dropdown-num d-flex justify-content-end align-items-center" >
-                <div className="navbarright-wrapper" >
+              <div className="dropdown-num d-flex justify-content-end align-items-center">
+                <div className="navbarright-wrapper">
                   {subscriberInfo ? (
                     <>
                       <p className="subscriber_name">
                         {`${subscriberInfo.firstname} ${subscriberInfo.lastname}`}
                       </p>
-                     
                     </>
                   ) : (
                     <></>
@@ -303,7 +305,7 @@ const NavBar = () => {
 
                     {account ? (
                       <>
-                        <ul className="account-btn"  >
+                        <ul className="account-btn">
                           {!subscriberInfo ? (
                             <div ref={ref1}>
                               <Link
@@ -313,8 +315,8 @@ const NavBar = () => {
                               >
                                 <li>Sign In</li>
                               </Link>
-                              
-                              <Modal  show={show} onHide={handleClose}>
+
+                              <Modal show={show} onHide={handleClose}>
                                 <Modal.Header closeButton>
                                   <Modal.Title>
                                     {signIn ? (
@@ -336,7 +338,7 @@ const NavBar = () => {
                                     )}
                                   </Modal.Title>
                                 </Modal.Header>
-                                <Modal.Body  >
+                                <Modal.Body>
                                   {signIn ? (
                                     <>
                                       {loginsubscribererror && (
@@ -350,7 +352,7 @@ const NavBar = () => {
                                             Mobile Number <sup>*</sup>
                                           </Form.Label>
                                           <InputGroup>
-                                            <FormControl 
+                                            <FormControl
                                               label="Mobile Number"
                                               type="number"
                                               placeholder="Enter Your Mobile Number"
@@ -566,7 +568,12 @@ const NavBar = () => {
                                             )}
                                         </Row>
                                         <div className="createaccount">
-                                          <InputGroup.Checkbox value={checked} onChange={()=>setChecked(!checked)}/>
+                                          <InputGroup.Checkbox
+                                            value={checked}
+                                            onChange={() =>
+                                              setChecked(!checked)
+                                            }
+                                          />
                                           <p>
                                             Creating an account means you’re
                                             okay with our
@@ -613,13 +620,12 @@ const NavBar = () => {
                                 to=""
                                 className="account-create"
                                 onClick={signInHandlerAccount}
-                                
                               >
                                 <li>Create Account</li>
                               </Link>
 
                               <div ref={ref1} className="accoount-create-modal">
-                                <Modal  show={show1} onHide={handleClose1}>
+                                <Modal show={show1} onHide={handleClose1}>
                                   <Modal.Header closeButton>
                                     <Modal.Title>
                                       {signUp ? (
@@ -820,7 +826,12 @@ const NavBar = () => {
                                             </Col>
                                           </Row>
                                           <div className="createaccount">
-                                            <InputGroup.Checkbox value={checked} onChange={()=>setChecked(!checked)}/>
+                                            <InputGroup.Checkbox
+                                              value={checked}
+                                              onChange={() =>
+                                                setChecked(!checked)
+                                              }
+                                            />
                                             <p>
                                               Creating an account means you’re
                                               okay with our
@@ -919,31 +930,30 @@ const NavBar = () => {
                               </div>
                             </div>
                           ) : (
-                           
-                          <div  ref={ref1} >
-                          <Link to="/account" className="account-accdetails" >
-                            <li>My Account</li>
-                          </Link>
-                          <Link
-                          
-                            to="/wishlist"
-                            className="account-wishlistdetails"
-                          >
-                            <li>Wishlist</li>
-                          </Link>
+                            <div ref={ref1}>
+                              <Link
+                                to="/account"
+                                className="account-accdetails"
+                              >
+                                <li>My Account</li>
+                              </Link>
+                              <Link
+                                to="/wishlist"
+                                className="account-wishlistdetails"
+                              >
+                                <li>Wishlist</li>
+                              </Link>
 
-                          <Link
-                          ref={ref1}
-                        to=""
-                        className="account-logout"
-                        onClick={logOutHandlerAccount}
-                      >
-                        Log Out
-                      </Link>
-                          </div>
-                           
+                              <Link
+                                ref={ref1}
+                                to=""
+                                className="account-logout"
+                                onClick={logOutHandlerAccount}
+                              >
+                                Log Out
+                              </Link>
+                            </div>
                           )}
-                          
                         </ul>
                       </>
                     ) : (
@@ -956,10 +966,11 @@ const NavBar = () => {
                   <span>
                     <Link to="/shoppingcart">
                       <BsFillCartFill className="navbar-right-icon" />
-                      {cartItems.length>0 &&  <sup className="navbar-shopping-card-sup">
-                        {cartItems.length}
-                      </sup>}
-                      
+                      {cartItems.length > 0 && (
+                        <sup className="navbar-shopping-card-sup">
+                          {cartItems.length}
+                        </sup>
+                      )}
                     </Link>
                   </span>
                 </div>
