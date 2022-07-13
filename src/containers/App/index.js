@@ -21,7 +21,7 @@ import PaichoPickle from "../PaichoPickle";
 import GrainsPulses from "../GrainsPulses";
 import IndeginousProduct from "../IndeginousProduct";
 import Search from "../Search";
-import OrderComplete from "../OrderComplete";
+import OrderComplete from "../../containers/OrderComplete"; 
 // import ScrollToTop from "../../components/ScrollToTop";
 
 const App = () => {
