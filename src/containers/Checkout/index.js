@@ -55,7 +55,7 @@ const Checkout = () => {
   // };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (phonenumber.length !== 10) {
+    if (phonenumber.toString().length !== 10) {
       setMobileErr(true);
       return false;
     }

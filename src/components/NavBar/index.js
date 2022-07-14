@@ -27,6 +27,8 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import SubNav from "../SubNav";
 import { register, login, logout } from "../../actions/subscriberaction";
 import { removeAllCart } from "../../actions/cartAddedAction.js";
+import {ImCross} from "react-icons/im";
+
 const NavBar = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const {
@@ -90,14 +92,7 @@ const NavBar = () => {
   useEffect(() => {
     dispatch(listCategories());
   }, [dispatch]);
-  // const refetch = () => {
-  //   let carts = localStorage.getItem("carts");
-  //   console.log(carts);
-  //   if (carts) {
-  //     setCartLength(JSON.parse(carts));
-  //   }
-  // };
-
+ 
   const signInHandler = () => {
     handleShow(true);
     setSignin(true);
@@ -116,7 +111,6 @@ const NavBar = () => {
     e.preventDefault();
     dispatch(login(mobilenumber, password));
   };
-<<<<<<< HEAD
   // const validate = () => {
   //   if (firstname === "") {
   //     setFirstNameErr(true);
@@ -188,53 +182,6 @@ const NavBar = () => {
               password,
               confirmpassword
             )
-=======
-  const validate = () => {
-    if (firstname === "") {
-      setFirstNameErr(true);
-    }
-    if (lastname === "") {
-      setLastNameErr(true);
-    }
-    if (mobilenumber.length !== 10) {
-      setMobileErr(true);
-    }
-    if (email === "") {
-      setEmailErr(true);
-    }
-    if (password !== confirmpassword) {
-      setPasswordErr(true);
-    }
-    // if(checked===false){
-    //   setCheckedError(true);
-    // }
-    if (
-      firstname === "" ||
-      lastname === "" ||
-      email === "" ||
-      mobilenumber === "" ||
-      password === "" ||
-      confirmpassword === ""
-    ) {
-      return false;
-    } else {
-      return true;
-    }
-  };
-  const handleSubmitRegister = (e) => {
-    e.preventDefault();
-    const check = validate();
-    if (check === true) {
-      if (checked) {
-        dispatch(
-          register(
-            firstname,
-            lastname,
-            email,
-            mobilenumber,
-            password,
-            confirmpassword
->>>>>>> f8ca6bd7350e595b721bf0446ca1b635410f4708
           )
         }
       }
@@ -255,17 +202,6 @@ const NavBar = () => {
       handleClose();
     }
   });
-  // useEffect(() => {
-  //   let carts = localStorage.getItem("carts");
-  //   setCartLength(JSON.parse(carts));
-  //   window.addEventListener("storage", () => {
-  //     let carts = localStorage.getItem("carts");
-  //     console.log(carts);
-  //     if (carts) {
-  //       setCartLength(JSON.parse(carts));
-  //     }
-  //   });
-  // }, []);
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
@@ -279,7 +215,6 @@ const NavBar = () => {
       document.removeEventListener("mousedown", checkIfClickedOutside);
     };
   }, [navbarshow]);
-<<<<<<< HEAD
   // useEffect(() => {
   //   const checkIfClickedOutside = (e) => {
   //     if (account && (ref1.current && !ref1.current.contains(e.target) || ref2.current && !ref2.current.contains(e.target))) {
@@ -288,7 +223,6 @@ const NavBar = () => {
   //     }
   //   };
   //   document.addEventListener("mousedown", checkIfClickedOutside);
-=======
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
       if (account && ref1.current && !ref1.current.contains(e.target) && show) {
@@ -297,12 +231,10 @@ const NavBar = () => {
       }
     };
     document.addEventListener("mousedown", checkIfClickedOutside);
->>>>>>> f8ca6bd7350e595b721bf0446ca1b635410f4708
-
-  //   return () => {
-  //     document.removeEventListener("mousedown", checkIfClickedOutside);
-  //   };
-  // }, [account]);
+    return () => {
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [account]);
 
   return (
     <>
@@ -389,7 +321,8 @@ const NavBar = () => {
 
                     {account ? (
                       <>
-                        <ul className="account-btn">
+                        <ul className="account-btn" >
+                        <ImCross className="account-btn-close" onClick={()=>setAccount(false)}/>
                           {!subscriberInfo ? (
                             <div >
                               <Link
@@ -1134,7 +1067,6 @@ const NavBar = () => {
         </Container>
       </div>
     </>
-  );
-};
-
+  )
+}
 export default NavBar;
