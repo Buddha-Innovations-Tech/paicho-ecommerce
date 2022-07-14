@@ -671,9 +671,14 @@
   margin-bottom:0;
 }
 .account-btn-close{
-  color: red;
-    font-size: 15px;
-    position: absolute;
-    right: 5%;
-    top: 5%;
+  color: #fff;
+  /* font-size: 5px; */
+  position: absolute;
+  right: 6%;
+  top: 6%;
+  background: #8dc73d;
+  padding: 5px;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
 }

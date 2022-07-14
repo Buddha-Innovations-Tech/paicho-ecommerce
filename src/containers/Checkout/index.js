@@ -13,6 +13,8 @@ import { BsCheck } from "react-icons/bs";
 import { removeAllCart } from "../../actions/cartAddedAction.js";
 import { getSubscriberDetails } from "../../actions/subscriberaction";
 import {ORDER_CREATE_RESET} from "../../constants/orderConstants";
+import { Helmet } from "react-helmet";
+import ScrollToTop from "../../components/ScrollToTop"
 const Checkout = () => {
   const { shippingAddress } = useSelector((state) => state.cart);
   const { subscriberInfo } = useSelector((state) => state.subscriberLogin);
@@ -120,12 +122,16 @@ const Checkout = () => {
   useEffect(()=>{
     if (orderCreateSuccess) {
       dispatch({ type: ORDER_CREATE_RESET })
-      navigate("/ordercomplete");
+      navigate("/orderconfirm");
       dispatch(removeAllCart());
     }
   },[orderCreateSuccess])
   return (
     <>
+    <ScrollToTop/>
+    <Helmet>
+      <title>Paicho-CheckOut</title>
+    </Helmet>
       <section className="checkout">
         <NavBar />
 

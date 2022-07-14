@@ -9,13 +9,14 @@ import { listProducts } from "../../actions/productAction";
 import { useLocation, useParams } from "react-router-dom";
 import CategoryFilter from "../../components/CategoryFilter";
 import { listCategories } from "../../actions/categoryAction";
+import { Helmet } from "react-helmet";
+import ScrollToTop from "../../components/ScrollToTop";
 
 const PaichoPickle = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const name = params.name;
   const location = useLocation();
-  // const data = location.state;
   const { products } = useSelector((state) => state.productList);
   const { categories } = useSelector((state) => state.categoryList);
   const [checked, setChecked] = useState(false);
@@ -101,6 +102,10 @@ const handleCheck = (e, subcat) => {
 
   return (
     <>
+      <ScrollToTop/>
+        <Helmet>
+            <title>Paicho-{params.name}</title>
+          </Helmet>
       <NavBar />
       <section className="product">
         <Container>

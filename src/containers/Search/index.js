@@ -6,6 +6,8 @@ import { listProducts } from "../../actions/productAction";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Container } from "react-bootstrap";
 import ProductCard from "../../components/ProductCard";
+import ScrollToTop from "../../components/ScrollToTop";
+import { Helmet } from "react-helmet";
 const Search = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.productList);
@@ -27,6 +29,10 @@ const Search = () => {
 
   return (
     <>
+    <ScrollToTop/>
+    <Helmet>
+      <title>Paicho-Search Products</title>
+    </Helmet>
       <NavBar />
       <Container>
         <Row className="product__row gy-3 mt-4">

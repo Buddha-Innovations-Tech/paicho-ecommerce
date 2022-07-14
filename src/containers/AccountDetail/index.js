@@ -19,6 +19,7 @@ import {
   updateSubscriber,
   updateBillingAddress,
 } from "../../actions/subscriberaction";
+import { Helmet } from "react-helmet";
 
 const AccountDetail = () => {
   const [firstname, setFirstName] = useState("");
@@ -105,6 +106,9 @@ const AccountDetail = () => {
 
   return (
     <>
+    <Helmet>
+      <title>Paicho- Account Details</title>
+    </Helmet>
       <NavBar />
 
       {/* account details */}

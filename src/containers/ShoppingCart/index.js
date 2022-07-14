@@ -34,6 +34,8 @@ import ClearCart from "../ClearCart/index.js";
 import { register, login, logout } from "../../actions/subscriberaction";
 import GoogleIcon from "../../assets/images/googleicon.png";
 import Facebookicon from "../../assets/images/facebookicon.png";
+import { Helmet } from "react-helmet";
+import ScrollToTop from "../../components/ScrollToTop/index.js";
 
 const ShoppingCart = () => {
   const [show5, setShow5] = useState(false);
@@ -170,6 +172,10 @@ const ShoppingCart = () => {
   }, [loginsubscribersuccess]);
   return (
     <>
+    <ScrollToTop/>
+    <Helmet>
+      <title>Paicho-Shopping Cart</title>
+    </Helmet>
       <NavBar />
       <Container>
         {cartItems.length === 0 ? (
