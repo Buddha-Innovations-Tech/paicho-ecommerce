@@ -155,7 +155,7 @@ const ProductDetailComp = ({ product, success }) => {
   return (
     <> 
     <Helmet>
-    <title>Paicho-{product?.name}</title>
+    <title>{`Paicho-${product?.name}`}</title>
   </Helmet>
       <div className="product">
         <Container>

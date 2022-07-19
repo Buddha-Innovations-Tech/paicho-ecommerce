@@ -177,7 +177,7 @@ const WhishList = () => {
                           </Col>
                           <Col lg={3}>
                             {data.countInStock ===0?
-                            <p>Out of Stock</p>
+                            <p className="register-error">Out of Stock</p>
                             :
                             <>
                             <Link

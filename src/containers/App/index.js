@@ -26,6 +26,7 @@ const App = () => {
         <Helmet>
           <title>Paicho E-commerce</title>
           <meta name="description" content="Buy your favourite foods & ingredients from Paicho"/>
+          <meta name="keywords" content="paicho product,organic food in nepal,vegetable supplier in nepal,organic vegetables near me,organic vegetables delivery,fresh vegetables near me,organic food near me,millet in nepal,organic vegetables and fruits near me,organic vegetables shop,organic vegetables suppliers,why organic vegetables are better,organic vegetables benefits,organic vegetables store,fresh vegetable delivery service,pahadi tarkari,organic product in nepal,best organic product,organic pickle,nepali farmer,nepal farm,vegetable supplier,fresh vegetable in nepal,fresh vegetable delivery service,best pickle in nepal,best achar in nepal"/>
         </Helmet>
         <Routes>
           <Route exact path="/" element={<Home />} />

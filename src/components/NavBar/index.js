@@ -19,16 +19,16 @@ import {
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { listCategories } from "../../actions/categoryAction";
-
+import {GoogleLogin} from "react-google-login"
 import GoogleIcon from "../../assets/images/googleicon.png";
 import Facebookicon from "../../assets/images/facebookicon.png";
 import Logo from "../../assets/images/paichologo.png";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { GiCapitol, GiHamburgerMenu, GiPaintedPottery } from "react-icons/gi";
 import SubNav from "../SubNav";
 import { register, login, logout } from "../../actions/subscriberaction";
 import { removeAllCart } from "../../actions/cartAddedAction.js";
-import {ImCross} from "react-icons/im";
-
+import { ImCross } from "react-icons/im";
+import {gapi} from "gapi-script";
 const NavBar = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const {
@@ -37,9 +37,8 @@ const NavBar = () => {
     success: loginsubscribersuccess,
   } = useSelector((state) => state.subscriberLogin);
   const { categories } = useSelector((state) => state.categoryList);
-  const { error, success: userRegisterSuccess } = useSelector(
-    (state) => state.subscriberRegister
-  );
+  const { error: registersubscribererror, success: userRegisterSuccess } =
+    useSelector((state) => state.subscriberRegister);
   const dispatch = useDispatch();
   const ref = useRef();
   const ref1 = useRef();
@@ -89,10 +88,14 @@ const NavBar = () => {
       navigate(`/search/${search}`);
     }
   };
-  useEffect(() => {
-    dispatch(listCategories());
-  }, [dispatch]);
- 
+  const onSuccess = (res) => {
+    console.log("Login Success ! Current user:",res.profileObj);
+  };
+
+  const onFailure = (res) => {
+    console.log("Login Failed ! res:",res);
+  };
+  
   const signInHandler = () => {
     handleShow(true);
     setSignin(true);
@@ -111,9 +114,20 @@ const NavBar = () => {
     e.preventDefault();
     dispatch(login(mobilenumber, password));
   };
+  useEffect(() => {
+    dispatch(listCategories());
+  }, [dispatch]);
+  useEffect(()=>{
+    function start(){
+      GiPaintedPottery.client?.init({
+        clientId:"64732990160-e4q0qn2nqc2djek49n0t8jj05k6cl0me.apps.googleusercontent.com"
+      })
+    };
+    gapi.load("client:auth2",start);
+  })
   // const validate = () => {
   //   if (firstname === "") {
-  //     setFirstNameErr(true);
+    //     setFirstNameErr(true);
   //   }
   //   if (lastname === "") {
   //     setLastNameErr(true);
@@ -126,7 +140,7 @@ const NavBar = () => {
   //   }
   //   if (password !== confirmpassword) {
   //     setPasswordErr(true);
-  //   } 
+  //   }
   //   if (
   //     firstname === "" ||
   //     lastname === "" ||
@@ -142,49 +156,49 @@ const NavBar = () => {
   // };
   const handleSubmitRegister = (e) => {
     e.preventDefault();
-      if (firstname === "") {
-        setFirstNameErr(true);
-        return false;
-      }
-      if (lastname === "") {
-        setLastNameErr(true);
-        return false;
-      }
-      if (mobilenumber.length !== 10) {
-        setMobileErr(true);
-        return false;
-      }
-      if (email === "") {
-        setEmailErr(true);
-        return false;
-      }
-      if (password !== confirmpassword) {
-        setPasswordErr(true);
-        return false;
-      } 
-      if (
-        firstname === "" ||
-        lastname === "" ||
-        email === "" ||
-        mobilenumber === "" ||
-        password === "" ||
-        confirmpassword === ""
-      ) {
-        return false;
-      } else {
-        if(checked){
-          dispatch(
-            register(
-              firstname,
-              lastname,
-              email,
-              mobilenumber,
-              password,
-              confirmpassword
-            )
+    if (firstname === "") {
+      setFirstNameErr(true);
+      return false;
+    }
+    if (lastname === "") {
+      setLastNameErr(true);
+      return false;
+    }
+    if (mobilenumber.length !== 10) {
+      setMobileErr(true);
+      return false;
+    }
+    if (email === "") {
+      setEmailErr(true);
+      return false;
+    }
+    if (password !== confirmpassword) {
+      setPasswordErr(true);
+      return false;
+    }
+    if (
+      firstname === "" ||
+      lastname === "" ||
+      email === "" ||
+      mobilenumber === "" ||
+      password === "" ||
+      confirmpassword === ""
+    ) {
+      return false;
+    } else {
+      if (checked) {
+        dispatch(
+          register(
+            firstname,
+            lastname,
+            email,
+            mobilenumber,
+            password,
+            confirmpassword
           )
-        }
+        );
       }
+    }
   };
   const logOutHandlerAccount = () => {
     dispatch(logout());
@@ -307,9 +321,11 @@ const NavBar = () => {
                       <p className="subscriber_name">
                         {`${subscriberInfo.firstname} ${subscriberInfo.lastname}`}
                       </p>
+                      
                     </>
                   ) : (
-                    <></>
+                    <>
+                    </>
                   )}
                   <span className="ms-4">
                     <Link to="">
@@ -321,10 +337,13 @@ const NavBar = () => {
 
                     {account ? (
                       <>
-                        <ul className="account-btn" >
-                        <ImCross className="account-btn-close" onClick={()=>setAccount(false)}/>
+                        <ul className="account-btn">
+                          <ImCross
+                            className="account-btn-close"
+                            onClick={() => setAccount(false)}
+                          />
                           {!subscriberInfo ? (
-                            <div >
+                            <div>
                               <Link
                                 to=""
                                 className="account-signin"
@@ -607,7 +626,11 @@ const NavBar = () => {
                                         >
                                           Create Account
                                         </button>
-                                        {error && <h4>{error}</h4>}
+                                        {registersubscribererror && (
+                                          <p className="register-error">
+                                            {registersubscribererror}
+                                          </p>
+                                        )}
                                       </Form>
                                     </>
                                   )}
@@ -616,7 +639,16 @@ const NavBar = () => {
 
                                   <div className="signin-socialmediaicon">
                                     <img src={Facebookicon} alt="" />
-                                    <img src={GoogleIcon} alt="" />
+
+                                    <GoogleLogin
+                                      // src={GoogleIcon}
+                                      // alt=""
+                                      clientId="64732990160-e4q0qn2nqc2djek49n0t8jj05k6cl0me.apps.googleusercontent.com"
+                                      onSuccess={onSuccess}
+                                      onFailure={onFailure}
+                                      cookiePolicy={'single_host_origin'}
+                                      isSignedIn={true}
+                                    />
                                   </div>
                                   <p className="dont-haveacc">
                                     Don't have an account?
@@ -691,11 +723,11 @@ const NavBar = () => {
                                                   />
                                                 </InputGroup>
                                                 {firstNameErr &&
-                                                firstname.length <= 0 && (
-                                                  <p className="register-error">
-                                                    First Name is required
-                                                  </p>
-                                                )}
+                                                  firstname.length <= 0 && (
+                                                    <p className="register-error">
+                                                      First Name is required
+                                                    </p>
+                                                  )}
                                               </div>
                                             </Col>
                                             <Col md={6}>
@@ -720,11 +752,11 @@ const NavBar = () => {
                                                   />
                                                 </InputGroup>
                                                 {lastNameErr &&
-                                                lastname.length <= 0 && (
-                                                  <p className="register-error">
-                                                    Last Name is required
-                                                  </p>
-                                                )}
+                                                  lastname.length <= 0 && (
+                                                    <p className="register-error">
+                                                      Last Name is required
+                                                    </p>
+                                                  )}
                                               </div>
                                             </Col>
                                           </Row>
@@ -749,11 +781,11 @@ const NavBar = () => {
                                                   />
                                                 </InputGroup>
                                                 {emailErr &&
-                                                email.length <= 0 && (
-                                                  <p className="register-error">
-                                                    Email is required
-                                                  </p>
-                                                )}
+                                                  email.length <= 0 && (
+                                                    <p className="register-error">
+                                                      Email is required
+                                                    </p>
+                                                  )}
                                               </div>
                                             </Col>
                                             <Col md={6}>
@@ -810,11 +842,13 @@ const NavBar = () => {
                                                   />
                                                 </InputGroup>
                                                 {passwordErr &&
-                                                password !== confirmpassword && (
-                                                  <p className="register-error">
-                                                    Password & Confirm password don't watch.
-                                                  </p>
-                                                )}
+                                                  password !==
+                                                    confirmpassword && (
+                                                    <p className="register-error">
+                                                      Password & Confirm
+                                                      password don't watch.
+                                                    </p>
+                                                  )}
                                               </div>
                                             </Col>
                                             <Col md={6}>
@@ -838,7 +872,6 @@ const NavBar = () => {
                                                     required
                                                   />
                                                 </InputGroup>
-                                                
                                               </div>
                                             </Col>
                                           </Row>
@@ -865,7 +898,11 @@ const NavBar = () => {
                                           >
                                             Create Account
                                           </button>
-                                          {error && <p className="register-error">{error}</p>}
+                                          {registersubscribererror && (
+                                            <p className="register-error">
+                                              {registersubscribererror}
+                                            </p>
+                                          )}
                                         </Form>
                                       </>
                                     ) : (
@@ -1067,6 +1104,6 @@ const NavBar = () => {
         </Container>
       </div>
     </>
-  )
-}
+  );
+};
 export default NavBar;

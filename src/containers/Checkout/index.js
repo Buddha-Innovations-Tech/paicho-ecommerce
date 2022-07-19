@@ -173,6 +173,7 @@ const Checkout = () => {
                         placeholder="Full Name"
                         value={fullname}
                         onChange={(e) => setFullName(e.target.value)}
+                        readOnly={!checked?true:false}
                         required
                       />
                     </Form.Group>
@@ -187,6 +188,7 @@ const Checkout = () => {
                         placeholder="Phone no"
                         value={phonenumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
+                        readOnly={!checked?true:false}
                         required
                       />
                     </Form.Group>
@@ -205,6 +207,7 @@ const Checkout = () => {
                         placeholder="xyz@gmail.com"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        readOnly={!checked?true:false}
                         required
                       />
                     </Form.Group>
@@ -218,6 +221,7 @@ const Checkout = () => {
                         placeholder="Address"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
+                        readOnly={!checked?true:false}
                         required
                       />
                     </Form.Group>
