@@ -1057,7 +1057,7 @@ const NavBar = () => {
                         return (
                           <>
                             <Link
-                              to={`/${curElm.name}`}
+                              to={`/category/${curElm.name}`}
                               state={null}
                               className="main-category"
                             >

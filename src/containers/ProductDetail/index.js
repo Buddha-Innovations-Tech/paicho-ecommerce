@@ -13,7 +13,7 @@ const ProductDetail = () => {
   const { product, success } = useSelector((state) => state.productDetails);
   useEffect(() => {
     dispatch(listProductDetails(id));
-  }, [dispatch]);
+  }, [dispatch,id]);
   return (
     <>
       <ScrollToTop />

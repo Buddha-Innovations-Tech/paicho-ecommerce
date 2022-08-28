@@ -40,8 +40,8 @@ const App = () => {
           <Route exact path="/outofstock" element={<OutOfStock />} />
           <Route exact path="/clearcart" element={<ClearCart />} />
           <Route exact path="/search/:productname" element={<Search />} />
-          <Route exact path="/:name" element={<PaichoPickle />} />
-
+          <Route exact path="/category/:name" element={<PaichoPickle />} />
+          <Route path="*" element={<>Page Not Found</>}/>
         </Routes>
       </main>
     </div>
