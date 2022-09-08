@@ -31,6 +31,7 @@ import {
 } from "../../actions/cartAddedAction";
 import { BiPlus, BiMinus } from "react-icons/bi";
 import { PRODUCT_DETAILS_FAIL } from "../../constants/productConstants";
+import { Helmet } from "react-helmet";
 
 const ProductDetailComp = ({ product, success }) => {
   const settings = {
@@ -74,7 +75,7 @@ const ProductDetailComp = ({ product, success }) => {
     autoplay: true,
     autoplaySpeed: 3000,
     slidesToScroll: 1,
-    slidesToShow: 2,
+    slidesToShow: 3,
     arrows: true,
     responsive: [
       {
@@ -152,7 +153,10 @@ const ProductDetailComp = ({ product, success }) => {
   }, [success]);
 
   return (
-    <>
+    <> 
+    <Helmet>
+    <title>{`Paicho-${product?.name}`}</title>
+  </Helmet>
       <div className="product">
         <Container>
           <Row className="product__rows gx-5">
@@ -203,6 +207,7 @@ const ProductDetailComp = ({ product, success }) => {
               )}
             </Col>
             <Col md={7}>
+             
               <div className="product__heading">
                 <p className="product__heading--main">{product?.name}</p>
                 <span className="product__heading--span">
@@ -514,17 +519,34 @@ const ProductDetailComp = ({ product, success }) => {
             <p className="product__similaritems--heading">
               Similar Items You Might Like
             </p>
-
-            {/* <Slider {...settingss}>
+              {product.similar?.length>3?
+            <Slider {...settingss}>
                 {product?.similar &&
                   product?.similar.map((curElm, index) => {
                     return (
                           <ProductCard {...curElm} key={index} />
                     );
-                  })}
+                  })
+                  }
               </Slider>
-             */}
-            <Row>
+              :
+              <>
+              <Row>
+              {product?.similar &&
+                  product?.similar.map((curElm, index) => {
+                    return (
+                      <Col md={3}>
+                        <ProductCard {...curElm} key={index} />
+
+                      </Col>
+                    );
+                  })
+                  }
+              </Row>
+              </>
+}
+            
+            {/* <Row>
               <Carousel>
                 {product?.similar &&
                   product?.similar.map((curElm, index) => {
@@ -537,7 +559,7 @@ const ProductDetailComp = ({ product, success }) => {
                     );
                   })}
               </Carousel>
-            </Row>
+            </Row> */}
           </Container>
         </div>
       </div>

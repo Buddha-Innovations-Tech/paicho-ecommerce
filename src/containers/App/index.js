@@ -12,16 +12,9 @@ import WhishList from "../WhishList";
 import Checkout from "../Checkout";
 import Home from "../Home";
 import axios from "axios";
-import SubCategory from "../SubCategory";
-import ProcessingProduct from "../ProcessingProduct";
-import OrganicVegetables from "../OrganicVegetables";
-import PaichoDryFoods from "../PaichoDryFoods";
-import KetchupSauce from "../KetchupSauce";
 import PaichoPickle from "../PaichoPickle";
-import GrainsPulses from "../GrainsPulses";
-import IndeginousProduct from "../IndeginousProduct";
 import Search from "../Search";
-import OrderComplete from "../../containers/OrderComplete"; 
+import { Helmet } from "react-helmet";
 // import ScrollToTop from "../../components/ScrollToTop";
 
 const App = () => {
@@ -30,6 +23,11 @@ const App = () => {
   return (
     <div>
       <main>
+        <Helmet>
+          <title>Paicho E-commerce</title>
+          <meta name="description" content="Buy your favourite foods & ingredients from Paicho"/>
+          <meta name="keywords" content="paicho product,organic food in nepal,vegetable supplier in nepal,organic vegetables near me,organic vegetables delivery,fresh vegetables near me,organic food near me,millet in nepal,organic vegetables and fruits near me,organic vegetables shop,organic vegetables suppliers,why organic vegetables are better,organic vegetables benefits,organic vegetables store,fresh vegetable delivery service,pahadi tarkari,organic product in nepal,best organic product,organic pickle,nepali farmer,nepal farm,vegetable supplier,fresh vegetable in nepal,fresh vegetable delivery service,best pickle in nepal,best achar in nepal"/>
+        </Helmet>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/orderconfirm" element={<OrderConfirmation />} />
@@ -42,9 +40,8 @@ const App = () => {
           <Route exact path="/outofstock" element={<OutOfStock />} />
           <Route exact path="/clearcart" element={<ClearCart />} />
           <Route exact path="/search/:productname" element={<Search />} />
-          <Route exact path="/:name" element={<PaichoPickle />} />
-          <Route exact path="/ordercomplete" element={<OrderComplete />} />
-
+          <Route exact path="/category/:name" element={<PaichoPickle />} />
+          <Route path="*" element={<>Page Not Found</>}/>
         </Routes>
       </main>
     </div>

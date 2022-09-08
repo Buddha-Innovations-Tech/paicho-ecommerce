@@ -14,6 +14,8 @@ import { getSubscriberDetails } from "../../actions/subscriberaction";
 import { deleteSingleWishlist,removeAllwhishlist } from "../../actions/wishListAction";
 import { addToCart } from "../../actions/cartAddedAction";
 import ClearCart from "../ClearCart";
+import { Helmet } from "react-helmet";
+import ScrollToTop from "../../components/ScrollToTop";
 
 const WhishList = () => {
   const { subscriber } = useSelector((state) => state.subscriberDetails);
@@ -61,6 +63,10 @@ const WhishList = () => {
   }, [wishListDltSucc]);
   return (
     <>
+    <ScrollToTop/>
+    <Helmet>
+      <title>Paicho-Wishlist</title>
+    </Helmet>
       <NavBar />
 
       {/* wishlist */}
@@ -171,7 +177,7 @@ const WhishList = () => {
                           </Col>
                           <Col lg={3}>
                             {data.countInStock ===0?
-                            <p>Out of Stock</p>
+                            <p className="register-error">Out of Stock</p>
                             :
                             <>
                             <Link

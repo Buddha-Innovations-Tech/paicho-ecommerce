@@ -13,6 +13,8 @@ import { BsCheck } from "react-icons/bs";
 import { removeAllCart } from "../../actions/cartAddedAction.js";
 import { getSubscriberDetails } from "../../actions/subscriberaction";
 import {ORDER_CREATE_RESET} from "../../constants/orderConstants";
+import { Helmet } from "react-helmet";
+import ScrollToTop from "../../components/ScrollToTop"
 const Checkout = () => {
   const { shippingAddress } = useSelector((state) => state.cart);
   const { subscriberInfo } = useSelector((state) => state.subscriberLogin);
@@ -120,12 +122,16 @@ const Checkout = () => {
   useEffect(()=>{
     if (orderCreateSuccess) {
       dispatch({ type: ORDER_CREATE_RESET })
-      navigate("/ordercomplete");
+      navigate("/orderconfirm");
       dispatch(removeAllCart());
     }
   },[orderCreateSuccess])
   return (
     <>
+    <ScrollToTop/>
+    <Helmet>
+      <title>Paicho-CheckOut</title>
+    </Helmet>
       <section className="checkout">
         <NavBar />
 
@@ -167,6 +173,7 @@ const Checkout = () => {
                         placeholder="Full Name"
                         value={fullname}
                         onChange={(e) => setFullName(e.target.value)}
+                        readOnly={!checked?true:false}
                         required
                       />
                     </Form.Group>
@@ -181,6 +188,7 @@ const Checkout = () => {
                         placeholder="Phone no"
                         value={phonenumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
+                        readOnly={!checked?true:false}
                         required
                       />
                     </Form.Group>
@@ -199,6 +207,7 @@ const Checkout = () => {
                         placeholder="xyz@gmail.com"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        readOnly={!checked?true:false}
                         required
                       />
                     </Form.Group>
@@ -212,6 +221,7 @@ const Checkout = () => {
                         placeholder="Address"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
+                        readOnly={!checked?true:false}
                         required
                       />
                     </Form.Group>

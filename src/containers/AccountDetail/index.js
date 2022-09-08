@@ -19,6 +19,7 @@ import {
   updateSubscriber,
   updateBillingAddress,
 } from "../../actions/subscriberaction";
+import { Helmet } from "react-helmet";
 
 const AccountDetail = () => {
   const [firstname, setFirstName] = useState("");
@@ -29,17 +30,16 @@ const AccountDetail = () => {
   const [emailaddress, setEmailAddress] = useState("");
   const [billingaddress, setBillingAddress] = useState("");
   const [fullname, setFullName] = useState("");
-
+  const [successState,setSuccessState]=useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { subscriber } = useSelector((state) => state.subscriberDetails);
   const { subscriberInfo } = useSelector((state) => state.subscriberLogin);
-  const { success: billingupdateSuccess } = useSelector(
+  const { success: billingupdateSuccess ,error:billingAddressError} = useSelector(
     (state) => state.billingAddressUpdate
   );
 
   const { success } = useSelector((state) => state.subscriberUpdate);
-  const {error:billingAddressError}=useSelector((state)=>state.billingAddressUpdate)
   const updateProfile = (e) => {
     e.preventDefault();
     dispatch(
@@ -81,11 +81,18 @@ const AccountDetail = () => {
       }
     }
   }, [dispatch, navigate, subscriber]);
+  useEffect(()=>{
+    if(billingupdateSuccess)setSuccessState(billingupdateSuccess);
+    setTimeout(()=>{
+      setSuccessState(null);
+    },3000)
+  },[billingupdateSuccess])
   useEffect(() => {
     if (billingupdateSuccess) {
       dispatch(getSubscriberDetails("profile"));
     }
   }, [billingupdateSuccess]);
+ 
   useEffect(() => {
     if (
       subscriber?.billingadddress &&
@@ -105,6 +112,9 @@ const AccountDetail = () => {
 
   return (
     <>
+    <Helmet>
+      <title>Paicho- Account Details</title>
+    </Helmet>
       <NavBar />
 
       {/* account details */}
@@ -236,7 +246,10 @@ const AccountDetail = () => {
                   >
                     Save Changes
                   </Button>
-                  {billingAddressError ? <p style={{color:"red",marginTop:"20px"}}>{billingAddressError}</p>:<p style={{color:"green",marginTop:"20px"}}>Changes Successful.</p>}
+                  {successState ?
+                   <p style={{color:"green",marginTop:"20px"}}>Changes Successful.</p>
+                  
+                   :<p style={{color:"red",marginTop:"20px"}}>{billingAddressError}</p>}
                 </Form>
               </div>
             </Col>

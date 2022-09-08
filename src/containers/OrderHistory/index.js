@@ -6,6 +6,7 @@ import NavBar from "../../components/NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { listOrderHistory } from "../../actions/orderAction";
 import OrderHistoryComp from "../../components/OrderHistoryComp";
+import { Helmet } from "react-helmet";
 
 const OrderHistory = () => {
   const { subscriberInfo } = useSelector((state) => state.subscriberLogin);
@@ -17,6 +18,9 @@ const OrderHistory = () => {
 
   return (
     <>
+    <Helmet>
+      <title>Paicho-Order History</title>
+    </Helmet>
       <NavBar />
       <section className="order__history">
         <Container>
