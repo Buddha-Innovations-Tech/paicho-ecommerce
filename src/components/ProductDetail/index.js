@@ -11,12 +11,12 @@ import {
   Carousel,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-// import ProductPhoto from "../../assets/images/productdetail.png";
+// import ProductPhoto from "../../assets/Images/productdetail.png";
 import Slider from 'react-slick';
-// import Mangopickle from "../../assets/images/mango-pickle.png";
-// import Productphoto from "../../assets/images/ProductImage.png";
-// import Productphoto2 from "../../assets/images/pineapple-juice.png";
-// import Productphoto3 from "../../assets/images/mixed-fruit-juice.png";
+// import Mangopickle from "../../assets/Images/mango-pickle.png";
+// import Productphoto from "../../assets/Images/ProductImage.png";
+// import Productphoto2 from "../../assets/Images/pineapple-juice.png";
+// import Productphoto3 from "../../assets/Images/mixed-fruit-juice.png";
 import ProductCard from '../ProductCard';
 // import IncrementDecrement from "../IncrementDecrement";
 import { BsCheck } from 'react-icons/bs';

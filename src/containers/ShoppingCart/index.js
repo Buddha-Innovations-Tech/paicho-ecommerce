@@ -25,7 +25,7 @@ import {
   removeAllCart,
 } from '../../actions/cartAddedAction.js';
 import { CgChevronDoubleLeft } from 'react-icons/cg';
-// import Productimage from "../../assets/images/ProductImage.png";
+// import Productimage from "../../assets/Images/ProductImage.png";
 // import IncrementDecrement from "../../components/IncrementDecrement";
 import { useDispatch } from 'react-redux';
 import { BiPlus, BiMinus } from 'react-icons/bi';

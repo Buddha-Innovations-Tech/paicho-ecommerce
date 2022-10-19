@@ -6,7 +6,7 @@ import AccountSideNav from '../../components/AccoountSideNav';
 // import CartTable from "../../components/CartTable.js";
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
-// import Productimage from "../../assets/images/ProductImage.png";
+// import Productimage from "../../assets/Images/ProductImage.png";
 import { useSelector, useDispatch } from 'react-redux';
 import { CgChevronDoubleLeft } from 'react-icons/cg';
 // import { BiPlus, BiMinus } from "react-icons/bi";

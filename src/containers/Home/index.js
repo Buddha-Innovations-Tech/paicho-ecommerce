@@ -6,23 +6,21 @@ import {
   Form,
   Button,
   InputGroup,
-} from "react-bootstrap";
-import { Link } from "react-router-dom";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { listCarousel } from "../../actions/carouselAction";
-import ProductCard from "../../components/ProductCard";
-import GoogleIcon from "../../assets/images/googleicon.png";
-import Facebookicon from "../../assets/images/facebookicon.png";
-import { listProducts } from "../../actions/productAction";
-import NavBar from "../../components/NavBar";
-import Footer from "../../components/Footer";
-import Slider from "react-slick";
-import InputForm from "../../components/InputForm";
-import { listCategories, createCategory } from "../../actions/categoryAction";
-import {
-  removeAllCart
-} from "../../actions/cartAddedAction.js";
+} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { listCarousel } from '../../actions/carouselAction';
+import ProductCard from '../../components/ProductCard';
+import GoogleIcon from '../../assets/Images/googleicon.png';
+import Facebookicon from '../../assets/Images/facebookicon.png';
+import { listProducts } from '../../actions/productAction';
+import NavBar from '../../components/NavBar';
+import Footer from '../../components/Footer';
+import Slider from 'react-slick';
+import InputForm from '../../components/InputForm';
+import { listCategories, createCategory } from '../../actions/categoryAction';
+import { removeAllCart } from '../../actions/cartAddedAction.js';
 const Home = () => {
   const settings = {
     dots: false,
@@ -61,12 +59,12 @@ const Home = () => {
   const { products } = useSelector((state) => state.productList);
   const { carousel } = useSelector((state) => state.carouselList);
   const { subscriberInfo } = useSelector((state) => state.subscriberLogin);
-  const [mobile, setMobile] = useState("");
-  const [password, setPassword] = useState("");
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [confirmpassword, setConfirmPassword] = useState("");
+  const [mobile, setMobile] = useState('');
+  const [password, setPassword] = useState('');
+  const [firstname, setFirstName] = useState('');
+  const [lastname, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [confirmpassword, setConfirmPassword] = useState('');
   const [showA, setShowA] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -86,20 +84,20 @@ const Home = () => {
   useEffect(() => {
     dispatch(listProducts());
   }, [dispatch]);
-    const { categories, pages, page, loading } = useSelector(
+  const { categories, pages, page, loading } = useSelector(
     (state) => state.categoryList
   );
   useEffect(() => {
     dispatch(listCategories());
   }, [dispatch]);
-  
+
   return (
     <>
-      <section className="home">
+      <section className='home'>
         <NavBar />
 
         {/* hero-section */}
-        <section className="hero">
+        <section className='hero'>
           <Container>
             <Row>
               <Slider {...settings}>
@@ -110,17 +108,17 @@ const Home = () => {
                       <>
                         <Row>
                           <Col md={6}>
-                            <div className="hero__content">
-                              <h2 className="hero__content--heading mb-13">
+                            <div className='hero__content'>
+                              <h2 className='hero__content--heading mb-13'>
                                 {curEm.title}
                               </h2>
-                              <p className="hero__content--para mb-32">
+                              <p className='hero__content--para mb-32'>
                                 {curEm.description}
-                              </p>{" "}
+                              </p>{' '}
                               <br />
                               <Link
                                 to={curEm.link}
-                                className="btn__buy"
+                                className='btn__buy'
                                 // onClick={signInHandler}
                               >
                                 Buy Now
@@ -129,11 +127,11 @@ const Home = () => {
                           </Col>
 
                           <Col md={6}>
-                            <div className="hero__banner">
+                            <div className='hero__banner'>
                               <img
                                 src={curEm.image[0]}
-                                className="hero__banner--img"
-                                alt=""
+                                className='hero__banner--img'
+                                alt=''
                               />
                             </div>
                           </Col>
@@ -169,148 +167,148 @@ const Home = () => {
                   {signIn ? (
                     <>
                       <Form>
-                        <div className="mt-4 position-relative">
+                        <div className='mt-4 position-relative'>
                           <InputForm
-                            label="Mobile Number"
-                            type="number"
-                            placeholder="Enter Your Mobile Number"
-                            name="mobilenumber"
+                            label='Mobile Number'
+                            type='number'
+                            placeholder='Enter Your Mobile Number'
+                            name='mobilenumber'
                             value={mobile}
                             onChange={(e) => setMobile(e.target.value)}
-                            asteric="*"
+                            asteric='*'
                             required
                           />
                         </div>
-                        <div className="mt-4 position-relative">
+                        <div className='mt-4 position-relative'>
                           <InputForm
-                            label="Password"
-                            type="password"
-                            placeholder="Enter Your Password"
-                            name="password"
+                            label='Password'
+                            type='password'
+                            placeholder='Enter Your Password'
+                            name='password'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            asteric="*"
+                            asteric='*'
                             required
                           />
                         </div>
 
-                        <Button className="sign-in-btn" type="submit">
+                        <Button className='sign-in-btn' type='submit'>
                           Sign In
                         </Button>
-                        <Link to="" className="forget-password">
+                        <Link to='' className='forget-password'>
                           <u>Forget Password?</u>
                         </Link>
                       </Form>
                     </>
                   ) : (
                     <>
-                      <Form action="">
+                      <Form action=''>
                         <Row>
                           <Col md={6}>
-                            <div className="mt-4">
+                            <div className='mt-4'>
                               <InputForm
-                                label="First Name"
-                                type="text"
-                                placeholder="Enter Your First Name"
-                                name="firstname"
+                                label='First Name'
+                                type='text'
+                                placeholder='Enter Your First Name'
+                                name='firstname'
                                 value={firstname}
                                 onChange={(e) => setFirstName(e.target.value)}
-                                asteric="*"
+                                asteric='*'
                               />
                             </div>
                           </Col>
                           <Col md={6}>
-                            <div className="mt-4">
+                            <div className='mt-4'>
                               <InputForm
-                                label="Last Name"
-                                type="text"
-                                placeholder="Enter Your Last Name"
-                                name="lastname"
+                                label='Last Name'
+                                type='text'
+                                placeholder='Enter Your Last Name'
+                                name='lastname'
                                 value={lastname}
                                 onChange={(e) => setLastName(e.target.value)}
-                                asteric="*"
+                                asteric='*'
                               />
                             </div>
                           </Col>
                         </Row>
                         <Row>
                           <Col md={6}>
-                            <div className="mt-4">
+                            <div className='mt-4'>
                               <InputForm
-                                label="Email Address"
-                                type="email"
-                                placeholder="Enter Your Email Address"
-                                name="Email"
+                                label='Email Address'
+                                type='email'
+                                placeholder='Enter Your Email Address'
+                                name='Email'
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                asteric="*"
+                                asteric='*'
                               />
                             </div>
                           </Col>
                           <Col md={6}>
-                            <div className="mt-4">
+                            <div className='mt-4'>
                               <InputForm
-                                label="Mobile Number"
-                                type="num"
-                                placeholder="Enter Your Mobile Number"
-                                name="mobilenumber"
+                                label='Mobile Number'
+                                type='num'
+                                placeholder='Enter Your Mobile Number'
+                                name='mobilenumber'
                                 value={mobile}
                                 onChange={(e) => setMobile(e.target.value)}
-                                asteric="*"
+                                asteric='*'
                               />
                             </div>
                           </Col>
                         </Row>
                         <Row>
                           <Col md={6}>
-                            <div className="mt-4">
+                            <div className='mt-4'>
                               <InputForm
-                                label="Password"
-                                type="password"
-                                placeholder="Enter Your Password"
-                                name="password"
+                                label='Password'
+                                type='password'
+                                placeholder='Enter Your Password'
+                                name='password'
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                asteric="*"
+                                asteric='*'
                               />
                             </div>
                           </Col>
                           <Col md={6}>
-                            <div className="mt-4">
+                            <div className='mt-4'>
                               <InputForm
-                                label=" Confirm Password"
-                                type="password"
-                                placeholder="Confirm Your Password"
-                                name="confirmpassword"
+                                label=' Confirm Password'
+                                type='password'
+                                placeholder='Confirm Your Password'
+                                name='confirmpassword'
                                 value={confirmpassword}
                                 onChange={(e) =>
                                   setConfirmPassword(e.target.value)
                                 }
-                                asteric="*"
+                                asteric='*'
                               />
                             </div>
                           </Col>
                         </Row>
                       </Form>
-                      <div className="createaccount">
+                      <div className='createaccount'>
                         <InputGroup.Checkbox />
                         <p>
                           Creating an account means you’re okay with our
-                          <Link to="">Terms of Service</Link> and
-                          <Link to="">Privacy Policy</Link>
+                          <Link to=''>Terms of Service</Link> and
+                          <Link to=''>Privacy Policy</Link>
                         </p>
                       </div>
-                      <button className=" sign-in-btn ">Create Account</button>
+                      <button className=' sign-in-btn '>Create Account</button>
                     </>
                   )}
 
-                  <p className="or">or</p>
+                  <p className='or'>or</p>
 
-                  <div className="signin-socialmediaicon">
-                    <img src={Facebookicon} alt="" />
-                    <img src={GoogleIcon} alt="" />
+                  <div className='signin-socialmediaicon'>
+                    <img src={Facebookicon} alt='' />
+                    <img src={GoogleIcon} alt='' />
                   </div>
-                  <p className="dont-haveacc">
+                  <p className='dont-haveacc'>
                     Don't have an account?
                     {signIn ? (
                       <span onClick={signUpHandler}> Sign Up </span>
@@ -325,21 +323,23 @@ const Home = () => {
         </section>
 
         {/* Categories */}
-        <section className="product">
+        <section className='product'>
           <Container>
             {categories &&
               categories.map((curElm, index) => {
                 return (
                   <>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <p className="product__category">{curElm?.name} </p>
+                    <div className='d-flex justify-content-between align-items-center'>
+                      <p className='product__category'>{curElm?.name} </p>
                       <Link to={`/category/${curElm?.name}`}>
-                        <span className="see__more">See More</span>
+                        <span className='see__more'>See More</span>
                       </Link>
                     </div>
-                    <Row className="product__row gy-3">
-                      {products&& products?.filter((b)=>b.category?.name===curElm.name)
-                        ?.filter((x)=>x.removeStatus===false)
+                    <Row className='product__row gy-3'>
+                      {products &&
+                        products
+                          ?.filter((b) => b.category?.name === curElm.name)
+                          ?.filter((x) => x.removeStatus === false)
                           ?.filter((i, index) => index < 4)
                           .map((curElm, index) => {
                             return (

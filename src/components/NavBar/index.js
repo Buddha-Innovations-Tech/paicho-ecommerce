@@ -1,12 +1,12 @@
-import { BsFillCartFill } from "react-icons/bs";
-import { MdKeyboardArrowRight } from "react-icons/md";
-import { MdOutlineDashboard } from "react-icons/md";
-import { BiChevronDown } from "react-icons/bi";
-import { FaUserAlt } from "react-icons/fa";
-import { FiSearch } from "react-icons/fi";
-import { MdCall } from "react-icons/md";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import React, { useState, useRef, useEffect } from "react";
+import { BsFillCartFill } from 'react-icons/bs';
+import { MdKeyboardArrowRight } from 'react-icons/md';
+import { MdOutlineDashboard } from 'react-icons/md';
+import { BiChevronDown } from 'react-icons/bi';
+import { FaUserAlt } from 'react-icons/fa';
+import { FiSearch } from 'react-icons/fi';
+import { MdCall } from 'react-icons/md';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Col,
   Container,
@@ -16,19 +16,19 @@ import {
   Button,
   Form,
   FormControl,
-} from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { listCategories } from "../../actions/categoryAction";
-import {GoogleLogin} from "react-google-login"
-import GoogleIcon from "../../assets/images/googleicon.png";
-import Facebookicon from "../../assets/images/facebookicon.png";
-import Logo from "../../assets/images/paichologo.png";
-import { GiCapitol, GiHamburgerMenu, GiPaintedPottery } from "react-icons/gi";
-import SubNav from "../SubNav";
-import { register, login, logout } from "../../actions/subscriberaction";
-import { removeAllCart } from "../../actions/cartAddedAction.js";
-import { ImCross } from "react-icons/im";
-import {gapi} from "gapi-script";
+} from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { listCategories } from '../../actions/categoryAction';
+import { GoogleLogin } from 'react-google-login';
+import GoogleIcon from '../../assets/Images/googleicon.png';
+import Facebookicon from '../../assets/Images/facebookicon.png';
+import Logo from '../../assets/Images/paichologo.png';
+import { GiCapitol, GiHamburgerMenu, GiPaintedPottery } from 'react-icons/gi';
+import SubNav from '../SubNav';
+import { register, login, logout } from '../../actions/subscriberaction';
+import { removeAllCart } from '../../actions/cartAddedAction.js';
+import { ImCross } from 'react-icons/im';
+import { gapi } from 'gapi-script';
 const NavBar = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const {
@@ -43,17 +43,17 @@ const NavBar = () => {
   const ref = useRef();
   const ref1 = useRef();
   const ref2 = useRef();
-  const [mobilenumber, setMobilenumber] = useState("");
+  const [mobilenumber, setMobilenumber] = useState('');
   const [mobileErr, setMobileErr] = useState(false);
   const [passwordErr, setPasswordErr] = useState(false);
   const [firstNameErr, setFirstNameErr] = useState(false);
   const [lastNameErr, setLastNameErr] = useState(false);
   const [emailErr, setEmailErr] = useState(false);
-  const [password, setPassword] = useState("");
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [confirmpassword, setConfirmPassword] = useState("");
+  const [password, setPassword] = useState('');
+  const [firstname, setFirstName] = useState('');
+  const [lastname, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [confirmpassword, setConfirmPassword] = useState('');
   const [navbarshow, setNavbarShow] = useState(false);
   const [account, setAccount] = useState(false);
   const [show, setShow] = useState(false);
@@ -71,7 +71,7 @@ const NavBar = () => {
   const [signUp, setSignup] = useState(true);
   const [hideSmallNavbar, setHideSmallNavbar] = useState(false);
   const [cartlength, setCartLength] = useState([]);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [checked, setChecked] = useState(false);
   const navigate = useNavigate();
   const { success: orderCreateSuccess } = useSelector(
@@ -79,23 +79,23 @@ const NavBar = () => {
   );
 
   const searchHandle = () => {
-    if (search !== "") {
+    if (search !== '') {
       navigate(`/search/${search}`);
     }
   };
   const handleKeyDown = (e) => {
-    if (e.key === "Enter" && search !== "") {
+    if (e.key === 'Enter' && search !== '') {
       navigate(`/search/${search}`);
     }
   };
   const onSuccess = (res) => {
-    console.log("Login Success ! Current user:",res.profileObj);
+    console.log('Login Success ! Current user:', res.profileObj);
   };
 
   const onFailure = (res) => {
-    console.log("Login Failed ! res:",res);
+    console.log('Login Failed ! res:', res);
   };
-  
+
   const signInHandler = () => {
     handleShow(true);
     setSignin(true);
@@ -117,17 +117,18 @@ const NavBar = () => {
   useEffect(() => {
     dispatch(listCategories());
   }, [dispatch]);
-  useEffect(()=>{
-    function start(){
+  useEffect(() => {
+    function start() {
       GiPaintedPottery.client?.init({
-        clientId:"64732990160-e4q0qn2nqc2djek49n0t8jj05k6cl0me.apps.googleusercontent.com"
-      })
-    };
-    gapi.load("client:auth2",start);
-  })
+        clientId:
+          '64732990160-e4q0qn2nqc2djek49n0t8jj05k6cl0me.apps.googleusercontent.com',
+      });
+    }
+    gapi.load('client:auth2', start);
+  });
   // const validate = () => {
   //   if (firstname === "") {
-    //     setFirstNameErr(true);
+  //     setFirstNameErr(true);
   //   }
   //   if (lastname === "") {
   //     setLastNameErr(true);
@@ -156,11 +157,11 @@ const NavBar = () => {
   // };
   const handleSubmitRegister = (e) => {
     e.preventDefault();
-    if (firstname === "") {
+    if (firstname === '') {
       setFirstNameErr(true);
       return false;
     }
-    if (lastname === "") {
+    if (lastname === '') {
       setLastNameErr(true);
       return false;
     }
@@ -168,7 +169,7 @@ const NavBar = () => {
       setMobileErr(true);
       return false;
     }
-    if (email === "") {
+    if (email === '') {
       setEmailErr(true);
       return false;
     }
@@ -177,12 +178,12 @@ const NavBar = () => {
       return false;
     }
     if (
-      firstname === "" ||
-      lastname === "" ||
-      email === "" ||
-      mobilenumber === "" ||
-      password === "" ||
-      confirmpassword === ""
+      firstname === '' ||
+      lastname === '' ||
+      email === '' ||
+      mobilenumber === '' ||
+      password === '' ||
+      confirmpassword === ''
     ) {
       return false;
     } else {
@@ -203,7 +204,7 @@ const NavBar = () => {
   const logOutHandlerAccount = () => {
     dispatch(logout());
     dispatch(removeAllCart());
-    navigate("/");
+    navigate('/');
   };
   useEffect(() => {
     if (loginsubscribersuccess) {
@@ -223,10 +224,10 @@ const NavBar = () => {
         setNavbarShow(false);
       }
     };
-    document.addEventListener("mousedown", checkIfClickedOutside);
+    document.addEventListener('mousedown', checkIfClickedOutside);
 
     return () => {
-      document.removeEventListener("mousedown", checkIfClickedOutside);
+      document.removeEventListener('mousedown', checkIfClickedOutside);
     };
   }, [navbarshow]);
   // useEffect(() => {
@@ -244,30 +245,30 @@ const NavBar = () => {
         handleClose(false);
       }
     };
-    document.addEventListener("mousedown", checkIfClickedOutside);
+    document.addEventListener('mousedown', checkIfClickedOutside);
     return () => {
-      document.removeEventListener("mousedown", checkIfClickedOutside);
+      document.removeEventListener('mousedown', checkIfClickedOutside);
     };
   }, [account]);
 
   return (
     <>
       <Container>
-        <div className="mobile-navbar">
-          <div className="mobile-navbar-toggle">
-            <Link to="/">
+        <div className='mobile-navbar'>
+          <div className='mobile-navbar-toggle'>
+            <Link to='/'>
               <div>
-                <img src={Logo} alt="" />
+                <img src={Logo} alt='' />
               </div>
             </Link>
             <GiHamburgerMenu
-              className="hambergur-menu"
+              className='hambergur-menu'
               onClick={() => setHideSmallNavbar(!hideSmallNavbar)}
             />
             {hideSmallNavbar ? (
               <>
-                <div className="navbar-dropdown">
-                  <ul className="navar-dropdown-ul ">
+                <div className='navbar-dropdown'>
+                  <ul className='navar-dropdown-ul '>
                     {categories &&
                       categories.map((datas, index) => {
                         return (
@@ -285,68 +286,66 @@ const NavBar = () => {
                 </div>
               </>
             ) : (
-              ""
+              ''
             )}
           </div>
         </div>
-        <div className="first-navbar">
-          <Row className="d-flex align-items-center">
+        <div className='first-navbar'>
+          <Row className='d-flex align-items-center'>
             <Col md={2}>
-              <Link to="/">
-                <figure className="logo">
-                  <img src={Logo} alt="" />
+              <Link to='/'>
+                <figure className='logo'>
+                  <img src={Logo} alt='' />
                 </figure>
               </Link>
             </Col>
             <Col md={6} sm={12}>
-              <div className="imput-wrapper">
-                <form action="" style={{ width: "100%" }}>
+              <div className='imput-wrapper'>
+                <form action='' style={{ width: '100%' }}>
                   <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search Products"
+                    type='text'
+                    className='form-control'
+                    placeholder='Search Products'
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     onKeyDown={handleKeyDown}
                   />
                 </form>
-                <FiSearch className="search-icon" onClick={searchHandle} />
+                <FiSearch className='search-icon' onClick={searchHandle} />
               </div>
             </Col>
             <Col md={4}>
-              <div className="dropdown-num d-flex justify-content-end align-items-center">
-                <div className="navbarright-wrapper">
+              <div className='dropdown-num d-flex justify-content-end align-items-center'>
+                <div className='navbarright-wrapper'>
                   {subscriberInfo ? (
                     <>
-                      <p className="subscriber_name">
+                      <p className='subscriber_name'>
                         {`${subscriberInfo.firstname} ${subscriberInfo.lastname}`}
                       </p>
-                      
                     </>
                   ) : (
-                    <>
-                    </>
+                    <></>
                   )}
-                  <span className="ms-4">
-                    <Link to="">
+                  <span className='ms-4'>
+                    <Link to=''>
                       <FaUserAlt
-                        className="navbar-right-icon"
+                        className='navbar-right-icon'
                         onClick={() => setAccount(!account)}
                       />
                     </Link>
 
                     {account ? (
                       <>
-                        <ul className="account-btn">
+                        <ul className='account-btn'>
                           <ImCross
-                            className="account-btn-close"
+                            className='account-btn-close'
                             onClick={() => setAccount(false)}
                           />
                           {!subscriberInfo ? (
                             <div>
                               <Link
-                                to=""
-                                className="account-signin"
+                                to=''
+                                className='account-signin'
                                 onClick={signInHandler}
                               >
                                 <li>Sign In</li>
@@ -378,22 +377,22 @@ const NavBar = () => {
                                   {signIn ? (
                                     <>
                                       {loginsubscribererror && (
-                                        <p className="register-error">
+                                        <p className='register-error'>
                                           {loginsubscribererror}
                                         </p>
                                       )}
                                       <Form onSubmit={handleLoginSubmit}>
-                                        <div className="mt-4 position-relative">
+                                        <div className='mt-4 position-relative'>
                                           <Form.Label>
                                             Mobile Number <sup>*</sup>
                                           </Form.Label>
                                           <InputGroup>
                                             <FormControl
-                                              label="Mobile Number"
-                                              type="number"
-                                              placeholder="Enter Your Mobile Number"
-                                              name="mobilenumber"
-                                              asteric="*"
+                                              label='Mobile Number'
+                                              type='number'
+                                              placeholder='Enter Your Mobile Number'
+                                              name='mobilenumber'
+                                              asteric='*'
                                               value={mobilenumber}
                                               onChange={(e) =>
                                                 setMobilenumber(e.target.value)
@@ -402,33 +401,33 @@ const NavBar = () => {
                                             />
                                           </InputGroup>
                                         </div>
-                                        <div className="mt-4 position-relative">
+                                        <div className='mt-4 position-relative'>
                                           <Form.Label>
                                             Password <sup>*</sup>
                                           </Form.Label>
                                           <InputGroup>
                                             <FormControl
-                                              label="Password"
-                                              type="password"
-                                              placeholder="Enter Your Password"
-                                              name="password"
+                                              label='Password'
+                                              type='password'
+                                              placeholder='Enter Your Password'
+                                              name='password'
                                               value={password}
                                               onChange={(e) =>
                                                 setPassword(e.target.value)
                                               }
-                                              asteric="*"
+                                              asteric='*'
                                               required
                                             />
                                           </InputGroup>
                                         </div>
 
                                         <Button
-                                          className="sign-in-btn"
-                                          type="submit"
+                                          className='sign-in-btn'
+                                          type='submit'
                                         >
                                           Sign In
                                         </Button>
-                                        <Link to="" className="forget-password">
+                                        <Link to='' className='forget-password'>
                                           <u>Forget Password?</u>
                                         </Link>
                                       </Form>
@@ -438,54 +437,54 @@ const NavBar = () => {
                                       <Form onSubmit={handleSubmitRegister}>
                                         <Row>
                                           <Col md={6}>
-                                            <div className="mt-4">
+                                            <div className='mt-4'>
                                               <Form.Label>
                                                 First Name <sup>*</sup>
                                               </Form.Label>
                                               <InputGroup>
                                                 <FormControl
-                                                  label="First Name"
-                                                  type="text"
-                                                  placeholder="Enter Your First Name"
-                                                  name="firstname"
+                                                  label='First Name'
+                                                  type='text'
+                                                  placeholder='Enter Your First Name'
+                                                  name='firstname'
                                                   value={firstname}
                                                   onChange={(e) =>
                                                     setFirstName(e.target.value)
                                                   }
-                                                  asteric="*"
+                                                  asteric='*'
                                                   required
                                                 />
                                               </InputGroup>
                                               {firstNameErr &&
                                                 firstname.length <= 0 && (
-                                                  <p className="register-error">
+                                                  <p className='register-error'>
                                                     FirstName is required
                                                   </p>
                                                 )}
                                             </div>
                                           </Col>
                                           <Col md={6}>
-                                            <div className="mt-4">
+                                            <div className='mt-4'>
                                               <Form.Label>
                                                 Last Name <sup>*</sup>
                                               </Form.Label>
                                               <InputGroup>
                                                 <FormControl
-                                                  label="Last Name"
-                                                  type="text"
-                                                  placeholder="Enter Your Last Name"
-                                                  name="lastname"
+                                                  label='Last Name'
+                                                  type='text'
+                                                  placeholder='Enter Your Last Name'
+                                                  name='lastname'
                                                   value={lastname}
                                                   onChange={(e) =>
                                                     setLastName(e.target.value)
                                                   }
-                                                  asteric="*"
+                                                  asteric='*'
                                                   required
                                                 />
                                               </InputGroup>
                                               {lastNameErr &&
                                                 lastname.length <= 0 && (
-                                                  <p className="register-error">
+                                                  <p className='register-error'>
                                                     LastName is required
                                                   </p>
                                                 )}
@@ -494,56 +493,56 @@ const NavBar = () => {
                                         </Row>
                                         <Row>
                                           <Col md={6}>
-                                            <div className="mt-4">
+                                            <div className='mt-4'>
                                               <Form.Label>
                                                 Email <sup>*</sup>
                                               </Form.Label>
                                               <InputGroup>
                                                 <FormControl
-                                                  label="Email Address"
-                                                  type="email"
-                                                  placeholder="Enter Your Email Address"
-                                                  name="email"
+                                                  label='Email Address'
+                                                  type='email'
+                                                  placeholder='Enter Your Email Address'
+                                                  name='email'
                                                   value={email}
                                                   onChange={(e) =>
                                                     setEmail(e.target.value)
                                                   }
-                                                  asteric="*"
+                                                  asteric='*'
                                                   required
                                                 />
                                               </InputGroup>
                                               {emailErr &&
                                                 email.length <= 0 && (
-                                                  <p className="register-error">
+                                                  <p className='register-error'>
                                                     Firstname is required
                                                   </p>
                                                 )}
                                             </div>
                                           </Col>
                                           <Col md={6}>
-                                            <div className="mt-4">
+                                            <div className='mt-4'>
                                               <Form.Label>
                                                 Mobile Number <sup>*</sup>
                                               </Form.Label>
                                               <InputGroup>
                                                 <FormControl
-                                                  label="Mobile Number"
-                                                  type="number"
-                                                  placeholder="Enter Your Mobile Number"
-                                                  name="mobilenumber"
+                                                  label='Mobile Number'
+                                                  type='number'
+                                                  placeholder='Enter Your Mobile Number'
+                                                  name='mobilenumber'
                                                   value={mobilenumber}
                                                   onChange={(e) =>
                                                     setMobilenumber(
                                                       e.target.value
                                                     )
                                                   }
-                                                  asteric="*"
+                                                  asteric='*'
                                                   required
                                                 />
                                               </InputGroup>
                                               {mobileErr &&
                                                 mobilenumber.length !== 10 && (
-                                                  <p className="register-error">
+                                                  <p className='register-error'>
                                                     Mobile number must be of 10
                                                     digits.
                                                   </p>
@@ -553,44 +552,44 @@ const NavBar = () => {
                                         </Row>
                                         <Row>
                                           <Col md={6}>
-                                            <div className="mt-4">
+                                            <div className='mt-4'>
                                               <Form.Label>
                                                 Password <sup>*</sup>
                                               </Form.Label>
                                               <InputGroup>
                                                 <FormControl
-                                                  label="Password"
-                                                  type="password"
-                                                  placeholder="Enter Your Password"
-                                                  name="password"
+                                                  label='Password'
+                                                  type='password'
+                                                  placeholder='Enter Your Password'
+                                                  name='password'
                                                   value={password}
                                                   onChange={(e) =>
                                                     setPassword(e.target.value)
                                                   }
-                                                  asteric="*"
+                                                  asteric='*'
                                                   required
                                                 />
                                               </InputGroup>
                                             </div>
                                           </Col>
                                           <Col md={6}>
-                                            <div className="mt-4">
+                                            <div className='mt-4'>
                                               <Form.Label>
                                                 Confirm Password <sup>*</sup>
                                               </Form.Label>
                                               <InputGroup>
                                                 <FormControl
-                                                  label=" Confirm Password"
-                                                  type="password"
-                                                  placeholder="Confirm Your Password"
-                                                  name="confirmpassword"
+                                                  label=' Confirm Password'
+                                                  type='password'
+                                                  placeholder='Confirm Your Password'
+                                                  name='confirmpassword'
                                                   value={confirmpassword}
                                                   onChange={(e) =>
                                                     setConfirmPassword(
                                                       e.target.value
                                                     )
                                                   }
-                                                  asteric="*"
+                                                  asteric='*'
                                                   required
                                                 />
                                               </InputGroup>
@@ -598,12 +597,12 @@ const NavBar = () => {
                                           </Col>
                                           {passwordErr &&
                                             password !== confirmpassword && (
-                                              <p className="register-error">
+                                              <p className='register-error'>
                                                 Password must be matched
                                               </p>
                                             )}
                                         </Row>
-                                        <div className="createaccount">
+                                        <div className='createaccount'>
                                           <InputGroup.Checkbox
                                             value={checked}
                                             onChange={() =>
@@ -613,21 +612,21 @@ const NavBar = () => {
                                           <p>
                                             Creating an account means you’re
                                             okay with our
-                                            <Link to="">
+                                            <Link to=''>
                                               Terms of Service
-                                            </Link>{" "}
+                                            </Link>{' '}
                                             and
-                                            <Link to="">Privacy Policy</Link>
+                                            <Link to=''>Privacy Policy</Link>
                                           </p>
                                         </div>
                                         <button
-                                          className=" sign-in-btn "
+                                          className=' sign-in-btn '
                                           onClick={handleSubmitRegister}
                                         >
                                           Create Account
                                         </button>
                                         {registersubscribererror && (
-                                          <p className="register-error">
+                                          <p className='register-error'>
                                             {registersubscribererror}
                                           </p>
                                         )}
@@ -635,45 +634,45 @@ const NavBar = () => {
                                     </>
                                   )}
 
-                                  <p className="or">or</p>
+                                  <p className='or'>or</p>
 
-                                  <div className="signin-socialmediaicon">
-                                    <img src={Facebookicon} alt="" />
+                                  <div className='signin-socialmediaicon'>
+                                    <img src={Facebookicon} alt='' />
 
                                     <GoogleLogin
                                       // src={GoogleIcon}
                                       // alt=""
-                                      clientId="64732990160-e4q0qn2nqc2djek49n0t8jj05k6cl0me.apps.googleusercontent.com"
+                                      clientId='64732990160-e4q0qn2nqc2djek49n0t8jj05k6cl0me.apps.googleusercontent.com'
                                       onSuccess={onSuccess}
                                       onFailure={onFailure}
                                       cookiePolicy={'single_host_origin'}
                                       isSignedIn={true}
                                     />
                                   </div>
-                                  <p className="dont-haveacc">
+                                  <p className='dont-haveacc'>
                                     Don't have an account?
                                     {signIn ? (
                                       <span onClick={signUpHandler}>
-                                        {" "}
-                                        Sign Up{" "}
+                                        {' '}
+                                        Sign Up{' '}
                                       </span>
                                     ) : (
                                       <span onClick={() => setSignin(true)}>
-                                        Sign In{" "}
+                                        Sign In{' '}
                                       </span>
                                     )}
                                   </p>
                                 </Modal.Body>
                               </Modal>
                               <Link
-                                to=""
-                                className="account-create"
+                                to=''
+                                className='account-create'
                                 onClick={signInHandlerAccount}
                               >
                                 <li>Create Account</li>
                               </Link>
 
-                              <div ref={ref1} className="accoount-create-modal">
+                              <div ref={ref1} className='accoount-create-modal'>
                                 <Modal show={show1} onHide={handleClose1}>
                                   <Modal.Header closeButton>
                                     <Modal.Title>
@@ -702,18 +701,18 @@ const NavBar = () => {
                                         <Form onSubmit={handleSubmitRegister}>
                                           <Row>
                                             <Col md={6}>
-                                              <div className="mt-4">
+                                              <div className='mt-4'>
                                                 <Form.Label>
                                                   First Name <sup>*</sup>
                                                 </Form.Label>
                                                 <InputGroup>
                                                   <FormControl
-                                                    label="First Name"
-                                                    type="text"
-                                                    placeholder="Enter Your First Name"
-                                                    name="firstname"
+                                                    label='First Name'
+                                                    type='text'
+                                                    placeholder='Enter Your First Name'
+                                                    name='firstname'
                                                     value={firstname}
-                                                    asteric="*"
+                                                    asteric='*'
                                                     onChange={(e) =>
                                                       setFirstName(
                                                         e.target.value
@@ -724,36 +723,36 @@ const NavBar = () => {
                                                 </InputGroup>
                                                 {firstNameErr &&
                                                   firstname.length <= 0 && (
-                                                    <p className="register-error">
+                                                    <p className='register-error'>
                                                       First Name is required
                                                     </p>
                                                   )}
                                               </div>
                                             </Col>
                                             <Col md={6}>
-                                              <div className="mt-4">
+                                              <div className='mt-4'>
                                                 <Form.Label>
                                                   Last Name <sup>*</sup>
                                                 </Form.Label>
                                                 <InputGroup>
                                                   <FormControl
-                                                    label="Last Name"
-                                                    type="text"
-                                                    placeholder="Enter Your Last Name"
-                                                    name="lastname"
+                                                    label='Last Name'
+                                                    type='text'
+                                                    placeholder='Enter Your Last Name'
+                                                    name='lastname'
                                                     value={lastname}
                                                     onChange={(e) =>
                                                       setLastName(
                                                         e.target.value
                                                       )
                                                     }
-                                                    asteric="*"
+                                                    asteric='*'
                                                     required
                                                   />
                                                 </InputGroup>
                                                 {lastNameErr &&
                                                   lastname.length <= 0 && (
-                                                    <p className="register-error">
+                                                    <p className='register-error'>
                                                       Last Name is required
                                                     </p>
                                                   )}
@@ -762,56 +761,56 @@ const NavBar = () => {
                                           </Row>
                                           <Row>
                                             <Col md={6}>
-                                              <div className="mt-4">
+                                              <div className='mt-4'>
                                                 <Form.Label>
                                                   Email <sup>*</sup>
                                                 </Form.Label>
                                                 <InputGroup>
                                                   <FormControl
-                                                    label="Email Address"
-                                                    type="email"
-                                                    placeholder="Enter Your Email Address"
-                                                    name="email"
+                                                    label='Email Address'
+                                                    type='email'
+                                                    placeholder='Enter Your Email Address'
+                                                    name='email'
                                                     value={email}
                                                     onChange={(e) =>
                                                       setEmail(e.target.value)
                                                     }
-                                                    asteric="*"
+                                                    asteric='*'
                                                     required
                                                   />
                                                 </InputGroup>
                                                 {emailErr &&
                                                   email.length <= 0 && (
-                                                    <p className="register-error">
+                                                    <p className='register-error'>
                                                       Email is required
                                                     </p>
                                                   )}
                                               </div>
                                             </Col>
                                             <Col md={6}>
-                                              <div className="mt-4">
+                                              <div className='mt-4'>
                                                 <Form.Label>
                                                   Mobile Number <sup>*</sup>
                                                 </Form.Label>
                                                 <InputGroup>
                                                   <FormControl
-                                                    label="Mobile Number"
-                                                    type="number"
-                                                    placeholder="Enter Your Mobile Number"
-                                                    name="mobilenumber"
+                                                    label='Mobile Number'
+                                                    type='number'
+                                                    placeholder='Enter Your Mobile Number'
+                                                    name='mobilenumber'
                                                     value={mobilenumber}
                                                     onChange={(e) =>
                                                       setMobilenumber(
                                                         e.target.value
                                                       )
                                                     }
-                                                    asteric="*"
+                                                    asteric='*'
                                                     required
                                                   />
                                                 </InputGroup>
                                                 {mobileErr &&
                                                   mobilenumber.length <= 0 && (
-                                                    <p className="register-error">
+                                                    <p className='register-error'>
                                                       Mobile number must be of
                                                       10
                                                     </p>
@@ -821,30 +820,30 @@ const NavBar = () => {
                                           </Row>
                                           <Row>
                                             <Col md={6}>
-                                              <div className="mt-4">
+                                              <div className='mt-4'>
                                                 <Form.Label>
                                                   Password <sup>*</sup>
                                                 </Form.Label>
                                                 <InputGroup>
                                                   <FormControl
-                                                    label="Password"
-                                                    type="password"
-                                                    placeholder="Enter Your Password"
-                                                    name="password"
+                                                    label='Password'
+                                                    type='password'
+                                                    placeholder='Enter Your Password'
+                                                    name='password'
                                                     value={password}
                                                     onChange={(e) =>
                                                       setPassword(
                                                         e.target.value
                                                       )
                                                     }
-                                                    asteric="*"
+                                                    asteric='*'
                                                     required
                                                   />
                                                 </InputGroup>
                                                 {passwordErr &&
                                                   password !==
                                                     confirmpassword && (
-                                                    <p className="register-error">
+                                                    <p className='register-error'>
                                                       Password & Confirm
                                                       password don't watch.
                                                     </p>
@@ -852,30 +851,30 @@ const NavBar = () => {
                                               </div>
                                             </Col>
                                             <Col md={6}>
-                                              <div className="mt-4">
+                                              <div className='mt-4'>
                                                 <Form.Label>
                                                   Confirm Password <sup>*</sup>
                                                 </Form.Label>
                                                 <InputGroup>
                                                   <FormControl
-                                                    label=" Confirm Password"
-                                                    type="password"
-                                                    placeholder="Confirm Your Password"
-                                                    name="confirmpassword"
+                                                    label=' Confirm Password'
+                                                    type='password'
+                                                    placeholder='Confirm Your Password'
+                                                    name='confirmpassword'
                                                     value={confirmpassword}
                                                     onChange={(e) =>
                                                       setConfirmPassword(
                                                         e.target.value
                                                       )
                                                     }
-                                                    asteric="*"
+                                                    asteric='*'
                                                     required
                                                   />
                                                 </InputGroup>
                                               </div>
                                             </Col>
                                           </Row>
-                                          <div className="createaccount">
+                                          <div className='createaccount'>
                                             <InputGroup.Checkbox
                                               value={checked}
                                               onChange={() =>
@@ -885,21 +884,21 @@ const NavBar = () => {
                                             <p>
                                               Creating an account means you’re
                                               okay with our
-                                              <Link to="">
+                                              <Link to=''>
                                                 Terms of Service
-                                              </Link>{" "}
+                                              </Link>{' '}
                                               and
-                                              <Link to="">Privacy Policy</Link>
+                                              <Link to=''>Privacy Policy</Link>
                                             </p>
                                           </div>
                                           <button
-                                            className=" sign-in-btn "
+                                            className=' sign-in-btn '
                                             onClick={handleSubmitRegister}
                                           >
                                             Create Account
                                           </button>
                                           {registersubscribererror && (
-                                            <p className="register-error">
+                                            <p className='register-error'>
                                               {registersubscribererror}
                                             </p>
                                           )}
@@ -908,17 +907,17 @@ const NavBar = () => {
                                     ) : (
                                       <>
                                         <Form onSubmit={handleLoginSubmit}>
-                                          <div className="mt-4 position-relative">
+                                          <div className='mt-4 position-relative'>
                                             <Form.Label>
                                               Mobile Number <sup>*</sup>
                                             </Form.Label>
                                             <InputGroup>
                                               <FormControl
-                                                label="Mobile Number"
-                                                type="number"
-                                                placeholder="Enter Your Mobile Number"
-                                                name="mobilenumber"
-                                                asteric="*"
+                                                label='Mobile Number'
+                                                type='number'
+                                                placeholder='Enter Your Mobile Number'
+                                                name='mobilenumber'
+                                                asteric='*'
                                                 value={mobilenumber}
                                                 onChange={(e) =>
                                                   setMobilenumber(
@@ -929,36 +928,36 @@ const NavBar = () => {
                                               />
                                             </InputGroup>
                                           </div>
-                                          <div className="mt-4 position-relative">
+                                          <div className='mt-4 position-relative'>
                                             <Form.Label>
                                               Password <sup>*</sup>
                                             </Form.Label>
                                             <InputGroup>
                                               <FormControl
-                                                label="Password"
-                                                type="password"
-                                                placeholder="Enter Your Password"
-                                                name="password"
+                                                label='Password'
+                                                type='password'
+                                                placeholder='Enter Your Password'
+                                                name='password'
                                                 value={password}
                                                 onChange={(e) =>
                                                   setPassword(e.target.value)
                                                 }
-                                                asteric="*"
+                                                asteric='*'
                                                 required
                                               />
                                             </InputGroup>
                                           </div>
 
                                           <Button
-                                            className="sign-in-btn"
-                                            type="submit"
+                                            className='sign-in-btn'
+                                            type='submit'
                                             onClick={handleLoginSubmit}
                                           >
                                             Sign In
                                           </Button>
                                           <Link
-                                            to=""
-                                            className="forget-password"
+                                            to=''
+                                            className='forget-password'
                                           >
                                             <u>Forget Password?</u>
                                           </Link>
@@ -966,9 +965,9 @@ const NavBar = () => {
                                       </>
                                     )}
 
-                                    <p className="already-have-acc">
+                                    <p className='already-have-acc'>
                                       Already have an account?
-                                      <Link to="">
+                                      <Link to=''>
                                         {signUp ? (
                                           <span onClick={signUpHandlerAccount}>
                                             Sign In
@@ -987,22 +986,22 @@ const NavBar = () => {
                           ) : (
                             <div ref={ref1}>
                               <Link
-                                to="/account"
-                                className="account-accdetails"
+                                to='/account'
+                                className='account-accdetails'
                               >
                                 <li>My Account</li>
                               </Link>
                               <Link
-                                to="/wishlist"
-                                className="account-wishlistdetails"
+                                to='/wishlist'
+                                className='account-wishlistdetails'
                               >
                                 <li>Wishlist</li>
                               </Link>
 
                               <Link
                                 ref={ref1}
-                                to=""
-                                className="account-logout"
+                                to=''
+                                className='account-logout'
                                 onClick={logOutHandlerAccount}
                               >
                                 Log Out
@@ -1012,17 +1011,17 @@ const NavBar = () => {
                         </ul>
                       </>
                     ) : (
-                      ""
+                      ''
                     )}
                   </span>
                 </div>
 
-                <div className="navbarright-wrapper">
+                <div className='navbarright-wrapper'>
                   <span>
-                    <Link to="/shoppingcart">
-                      <BsFillCartFill className="navbar-right-icon" />
+                    <Link to='/shoppingcart'>
+                      <BsFillCartFill className='navbar-right-icon' />
                       {cartItems.length > 0 && (
-                        <sup className="navbar-shopping-card-sup">
+                        <sup className='navbar-shopping-card-sup'>
                           {cartItems.length}
                         </sup>
                       )}
@@ -1035,23 +1034,23 @@ const NavBar = () => {
         </div>
       </Container>
 
-      <div className="second-nav-wrapper">
+      <div className='second-nav-wrapper'>
         <Container>
           <div
-            className="categories  d-block d-lg-flex justify-content-between align-items-center"
+            className='categories  d-block d-lg-flex justify-content-between align-items-center'
             ref={ref}
           >
             <div
-              className="navbar-left"
+              className='navbar-left'
               onClick={() => setNavbarShow(!navbarshow)}
             >
-              <MdOutlineDashboard className="dashboard-icon" />
+              <MdOutlineDashboard className='dashboard-icon' />
               <span>All Categories</span>
-              <BiChevronDown className="downarrow-icon" />
+              <BiChevronDown className='downarrow-icon' />
 
               {navbarshow ? (
-                <div className="navbar-dropdown">
-                  <ul className="navar-dropdown-ul">
+                <div className='navbar-dropdown'>
+                  <ul className='navar-dropdown-ul'>
                     {categories &&
                       categories.map((curElm, index) => {
                         return (
@@ -1059,14 +1058,14 @@ const NavBar = () => {
                             <Link
                               to={`/category/${curElm.name}`}
                               state={null}
-                              className="main-category"
+                              className='main-category'
                             >
-                              <li className="navar-dropdown-li" key={index}>
-                                <div className="navbardropdown-flex main-category">
+                              <li className='navar-dropdown-li' key={index}>
+                                <div className='navbardropdown-flex main-category'>
                                   {curElm.name}
-                                  <MdKeyboardArrowRight className="dropdown-item-icon" />
+                                  <MdKeyboardArrowRight className='dropdown-item-icon' />
                                 </div>
-                                <ul className="dropdown-submenu">
+                                <ul className='dropdown-submenu'>
                                   {categories &&
                                     curElm.subcategories.map((data, index) => {
                                       return (
@@ -1088,15 +1087,15 @@ const NavBar = () => {
                   </ul>
                 </div>
               ) : (
-                ""
+                ''
               )}
             </div>
 
-            <Link to="" className="about-paicho">
+            <Link to='' className='about-paicho'>
               About Paicho
             </Link>
-            <div className="delivery-num">
-              <MdCall className="call-icon" />
+            <div className='delivery-num'>
+              <MdCall className='call-icon' />
 
               <p>For Delivery : 071-540545, 986745345</p>
             </div>
