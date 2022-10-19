@@ -18,7 +18,7 @@ import { Helmet } from 'react-helmet';
 // import ScrollToTop from "../../components/ScrollToTop";
 
 const App = () => {
-  axios.defaults.baseURL = 'https://shop.paicho.com/';
+  axios.defaults.baseURL = 'https://backend.paicho.com/';
   // axios.defaults.baseURL = "http://localhost:5000/";
   return (
     <div>
