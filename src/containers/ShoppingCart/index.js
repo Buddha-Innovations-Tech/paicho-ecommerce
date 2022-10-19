@@ -8,34 +8,33 @@ import {
   Form,
   FormControl,
   Button,
-} from "react-bootstrap";
+} from 'react-bootstrap';
 // import { ImCross } from "react-icons/im";
-import { RiDeleteBinLine } from "react-icons/ri";
+import { RiDeleteBinLine } from 'react-icons/ri';
 
-import { Link, useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import CartTable from "../../components/CartTable.js";
-import NavBar from "../../components/NavBar";
-import Footer from "../../components/Footer";
+import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import CartTable from '../../components/CartTable.js';
+import NavBar from '../../components/NavBar';
+import Footer from '../../components/Footer';
 import {
   subtractFromCart,
-  increaseCart,
   addFromCart,
   removeFromCart,
   removeAllCart,
-} from "../../actions/cartAddedAction.js";
-import { CgChevronDoubleLeft } from "react-icons/cg";
-import Productimage from "../../assets/images/ProductImage.png";
-import IncrementDecrement from "../../components/IncrementDecrement";
-import { useDispatch } from "react-redux";
-import { BiPlus, BiMinus } from "react-icons/bi";
-import ClearCart from "../ClearCart/index.js";
-import { register, login, logout } from "../../actions/subscriberaction";
-import GoogleIcon from "../../assets/images/googleicon.png";
-import Facebookicon from "../../assets/images/facebookicon.png";
-import { Helmet } from "react-helmet";
-import ScrollToTop from "../../components/ScrollToTop/index.js";
+} from '../../actions/cartAddedAction.js';
+import { CgChevronDoubleLeft } from 'react-icons/cg';
+// import Productimage from "../../assets/images/ProductImage.png";
+// import IncrementDecrement from "../../components/IncrementDecrement";
+import { useDispatch } from 'react-redux';
+import { BiPlus, BiMinus } from 'react-icons/bi';
+import ClearCart from '../ClearCart/index.js';
+import { register, login } from '../../actions/subscriberaction';
+import GoogleIcon from '../../assets/images/googleicon.png';
+import Facebookicon from '../../assets/images/facebookicon.png';
+import { Helmet } from 'react-helmet';
+import ScrollToTop from '../../components/ScrollToTop/index.js';
 
 const ShoppingCart = () => {
   const [show5, setShow5] = useState(false);
@@ -50,12 +49,12 @@ const ShoppingCart = () => {
   const handleShow1 = () => setShow1(true);
   const [signIn, setSignin] = useState(true);
   const [signUp, setSignup] = useState(true);
-  const [mobilenumber, setMobilenumber] = useState("");
-  const [password, setPassword] = useState("");
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [confirmpassword, setConfirmPassword] = useState("");
+  const [mobilenumber, setMobilenumber] = useState('');
+  const [password, setPassword] = useState('');
+  const [firstname, setFirstName] = useState('');
+  const [lastname, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [confirmpassword, setConfirmPassword] = useState('');
   const [mobileErr, setMobileErr] = useState(false);
   const [passwordErr, setPasswordErr] = useState(false);
   const [firstNameErr, setFirstNameErr] = useState(false);
@@ -74,11 +73,11 @@ const ShoppingCart = () => {
   const dlt = (id) => {
     const dltcart = carts.filter((i) => i.id !== id);
     setCarts(dltcart);
-    localStorage.setItem("carts", JSON.stringify(carts));
+    localStorage.setItem('carts', JSON.stringify(carts));
   };
   const signInHandler = () => {
     if (subscriberInfo) {
-      navigate("/checkout");
+      navigate('/checkout');
     } else {
       handleShow(true);
       setSignin(true);
@@ -100,28 +99,28 @@ const ShoppingCart = () => {
     dispatch(login(mobilenumber, password));
   };
   const validate = () => {
-    if (firstname === "") {
+    if (firstname === '') {
       setFirstNameErr(true);
     }
-    if (lastname === "") {
+    if (lastname === '') {
       setLastNameErr(true);
     }
     if (mobilenumber !== 10) {
       setMobileErr(true);
     }
-    if (email === "") {
+    if (email === '') {
       setEmailErr(true);
     }
     if (password !== confirmpassword) {
       setPasswordErr(true);
     }
     if (
-      firstname === "" ||
-      lastname === "" ||
-      email === "" ||
-      mobilenumber === "" ||
-      password === "" ||
-      confirmpassword === ""
+      firstname === '' ||
+      lastname === '' ||
+      email === '' ||
+      mobilenumber === '' ||
+      password === '' ||
+      confirmpassword === ''
     ) {
       return false;
     } else {
@@ -163,7 +162,7 @@ const ShoppingCart = () => {
   };
 
   useEffect(() => {
-    setCarts(JSON.parse(localStorage.getItem("carts")));
+    setCarts(JSON.parse(localStorage.getItem('carts')));
   }, []);
   useEffect(() => {
     if (loginsubscribersuccess) {
@@ -172,10 +171,10 @@ const ShoppingCart = () => {
   }, [loginsubscribersuccess]);
   return (
     <>
-    <ScrollToTop/>
-    <Helmet>
-      <title>Paicho-Shopping Cart</title>
-    </Helmet>
+      <ScrollToTop />
+      <Helmet>
+        <title>Paicho-Shopping Cart</title>
+      </Helmet>
       <NavBar />
       <Container>
         {cartItems.length === 0 ? (
@@ -183,51 +182,51 @@ const ShoppingCart = () => {
         ) : (
           <>
             <Row>
-              <Col md={8} sm={12} className="shoppingcart-btn">
-                <div className="carttable">
-                  <div className="d-flex justify-content-end align-items-center">
+              <Col md={8} sm={12} className='shoppingcart-btn'>
+                <div className='carttable'>
+                  <div className='d-flex justify-content-end align-items-center'>
                     {/* <div className="carttable__heading d-flex align-items-center">
                       <InputGroup.Checkbox />
                       <span className="carttable__heading--selectitem">
                         Select All(3 items)
                       </span>
                     </div> */}
-                    <div className="carttable__heading d-flex align-items-center">
-                      <RiDeleteBinLine className="carttable__heading--deleteicon" />
+                    <div className='carttable__heading d-flex align-items-center'>
+                      <RiDeleteBinLine className='carttable__heading--deleteicon' />
                       <span
-                        className="carttable__heading--selectitem"
+                        className='carttable__heading--selectitem'
                         onClick={handleShow5}
                       >
                         <u>Clear Cart</u>
                       </span>
                       <Modal show={show5} onHide={handleClose5}>
                         <Modal.Body>
-                          <div className="arrow-left"></div>
+                          <div className='arrow-left'></div>
 
-                          <div className="cart__modal">
-                            <p className="cart__modal--ask">
+                          <div className='cart__modal'>
+                            <p className='cart__modal--ask'>
                               Are you sure you want to clear your cart?
                             </p>
-                            <Link to="" className="yes-btn" onClick={removeAll}>
+                            <Link to='' className='yes-btn' onClick={removeAll}>
                               Yes
                             </Link>
                             <br />
-                            <button className="no-btn" onClick={handleClose5}>
+                            <button className='no-btn' onClick={handleClose5}>
                               No
                             </button>
                           </div>
 
-                          <div className="arrow-right"></div>
+                          <div className='arrow-right'></div>
                         </Modal.Body>
                       </Modal>
                     </div>
                   </div>
-                  <div className="carttable__maintable">
-                    <Row className="carttable__maintable--firstrow">
+                  <div className='carttable__maintable'>
+                    <Row className='carttable__maintable--firstrow'>
                       <Col
                         lg={4}
-                        style={{ paddingLeft: "60px" }}
-                        className="title"
+                        style={{ paddingLeft: '60px' }}
+                        className='title'
                       >
                         Item List
                       </Col>
@@ -245,20 +244,20 @@ const ShoppingCart = () => {
                         grandTotal = totalcartprice - discountInBill + 0;
 
                         return (
-                          <Row className="mt-3 mb-3 mapping-row" key={index}>
+                          <Row className='mt-3 mb-3 mapping-row' key={index}>
                             <Col
                               lg={4}
-                              className="carttable__maintable--firstdata"
+                              className='carttable__maintable--firstdata'
                             >
                               <div
-                                className="d-flex align-items-center"
-                                style={{ width: "225px" }}
+                                className='d-flex align-items-center'
+                                style={{ width: '225px' }}
                               >
                                 {/* <InputGroup.Checkbox className="checkbox" /> */}
                                 <img
                                   src={data.image[0]}
-                                  alt=""
-                                  className="ms-4"
+                                  alt=''
+                                  className='ms-4'
                                 />
                                 <div>
                                   <p>{data.name}</p>
@@ -268,23 +267,23 @@ const ShoppingCart = () => {
                             </Col>
 
                             <Col lg={2}>
-                              <div className="inc__dec">
-                                <div className="incredecre__inc-dec--button">
+                              <div className='inc__dec'>
+                                <div className='incredecre__inc-dec--button'>
                                   <table>
                                     <tbody>
                                       <tr>
                                         <td
-                                          className="incredecre__inc-dec--button--dec minus"
+                                          className='incredecre__inc-dec--button--dec minus'
                                           onClick={() => subtract(data.id)}
                                         >
                                           <BiMinus />
                                         </td>
-                                        <td className="incredecre__inc-dec--button--num">
-                                          {" "}
+                                        <td className='incredecre__inc-dec--button--num'>
+                                          {' '}
                                           <span> {data.qty}</span>
                                         </td>
                                         <td
-                                          className="incredecre__inc-dec--button--dec plus"
+                                          className='incredecre__inc-dec--button--dec plus'
                                           onClick={() => add(data.id)}
                                         >
                                           <BiPlus />
@@ -296,25 +295,25 @@ const ShoppingCart = () => {
                               </div>
                             </Col>
                             <Col lg={2}>
-                              <div className="unit">{data.price}</div>
+                              <div className='unit'>{data.price}</div>
                             </Col>
-                            {window.location.href.includes("shoppingcart") && (
+                            {window.location.href.includes('shoppingcart') && (
                               <Col lg={2}>
-                                <div className="unit">
+                                <div className='unit'>
                                   {data.price * data.qty}
                                 </div>
                               </Col>
                             )}
-                            {window.location.href.includes("wishlist") && (
+                            {window.location.href.includes('wishlist') && (
                               <Col lg={2}>
-                                <button className="carttable__maintable--crossicon">
+                                <button className='carttable__maintable--crossicon'>
                                   Add to Cart
                                 </button>
                               </Col>
                             )}
                             <Col
                               lg={2}
-                              className="carttable__maintable--deleteicon icon"
+                              className='carttable__maintable--deleteicon icon'
                             >
                               <RiDeleteBinLine
                                 onClick={() => {
@@ -330,25 +329,25 @@ const ShoppingCart = () => {
                 </div>
               </Col>
               <Col md={4} sm={12}>
-                <div className="shopcartrightbox">
+                <div className='shopcartrightbox'>
                   <Table>
                     <tbody>
                       <tr>
-                        <td className="shopcartrightbox__heading">
+                        <td className='shopcartrightbox__heading'>
                           Order Summary
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <div className="d-flex justify-content-between align-items-center shopcartrightbox__content">
+                          <div className='d-flex justify-content-between align-items-center shopcartrightbox__content'>
                             <p>Total M.R.P</p>
                             <p>Rs.{totalcartprice}</p>
                           </div>
-                          <div className="d-flex justify-content-between align-items-center shopcartrightbox__content">
+                          <div className='d-flex justify-content-between align-items-center shopcartrightbox__content'>
                             <p>Discount</p>
                             <p>Rs.{discountInBill.toFixed(2)}</p>
                           </div>
-                          <div className="d-flex justify-content-between align-items-center shopcartrightbox__content">
+                          <div className='d-flex justify-content-between align-items-center shopcartrightbox__content'>
                             <p>Shipping Charge</p>
                             <p>Rs.0</p>
                           </div>
@@ -356,13 +355,13 @@ const ShoppingCart = () => {
                       </tr>
                       <tr>
                         <td>
-                          <div className="d-flex justify-content-between align-items-center shopcartrightbox__total">
+                          <div className='d-flex justify-content-between align-items-center shopcartrightbox__total'>
                             <p>Grand Total</p>
                             <p>Rs.{grandTotal}</p>
                           </div>
-                          <div className="shopcartrightbox__divbtn">
+                          <div className='shopcartrightbox__divbtn'>
                             <button
-                              className="shopcartrightbox__divbtn--buttonn"
+                              className='shopcartrightbox__divbtn--buttonn'
                               onClick={(e) => {
                                 e.preventDefault();
                                 signInHandler();
@@ -397,33 +396,33 @@ const ShoppingCart = () => {
                                 {signIn ? (
                                   <>
                                     {loginsubscribererror && (
-                                      <p className="register-error">
+                                      <p className='register-error'>
                                         {loginsubscribererror}
                                       </p>
                                     )}
                                     {loginsubscribersuccess && (
                                       <p
                                         style={{
-                                          color: "green",
-                                          marginTop: "5px",
-                                          fontSize: "20px",
+                                          color: 'green',
+                                          marginTop: '5px',
+                                          fontSize: '20px',
                                         }}
                                       >
                                         Login SuccessFul
                                       </p>
                                     )}
                                     <Form onSubmit={handleLoginSubmit}>
-                                      <div className="mt-4 position-relative">
+                                      <div className='mt-4 position-relative'>
                                         <Form.Label>
                                           Mobile Number <sup>*</sup>
                                         </Form.Label>
                                         <InputGroup>
                                           <FormControl
-                                            label="Mobile Number"
-                                            type="number"
-                                            placeholder="Enter Your Mobile Number"
-                                            name="mobilenumber"
-                                            asteric="*"
+                                            label='Mobile Number'
+                                            type='number'
+                                            placeholder='Enter Your Mobile Number'
+                                            name='mobilenumber'
+                                            asteric='*'
                                             value={mobilenumber}
                                             onChange={(e) =>
                                               setMobilenumber(e.target.value)
@@ -432,33 +431,33 @@ const ShoppingCart = () => {
                                           />
                                         </InputGroup>
                                       </div>
-                                      <div className="mt-4 position-relative">
+                                      <div className='mt-4 position-relative'>
                                         <Form.Label>
                                           Password <sup>*</sup>
                                         </Form.Label>
                                         <InputGroup>
                                           <FormControl
-                                            label="Password"
-                                            type="password"
-                                            placeholder="Enter Your Password"
-                                            name="password"
+                                            label='Password'
+                                            type='password'
+                                            placeholder='Enter Your Password'
+                                            name='password'
                                             value={password}
                                             onChange={(e) =>
                                               setPassword(e.target.value)
                                             }
-                                            asteric="*"
+                                            asteric='*'
                                             required
                                           />
                                         </InputGroup>
                                       </div>
 
                                       <Button
-                                        className="sign-in-btn"
-                                        type="submit"
+                                        className='sign-in-btn'
+                                        type='submit'
                                       >
                                         Sign In
                                       </Button>
-                                      <Link to="" className="forget-password">
+                                      <Link to='' className='forget-password'>
                                         <u>Forget Password?</u>
                                       </Link>
                                     </Form>
@@ -468,54 +467,54 @@ const ShoppingCart = () => {
                                     <Form onSubmit={handleSubmitRegister}>
                                       <Row>
                                         <Col md={6}>
-                                          <div className="mt-4">
+                                          <div className='mt-4'>
                                             <Form.Label>
                                               First Name <sup>*</sup>
                                             </Form.Label>
                                             <InputGroup>
                                               <FormControl
-                                                label="First Name"
-                                                type="text"
-                                                placeholder="Enter Your First Name"
-                                                name="firstname"
+                                                label='First Name'
+                                                type='text'
+                                                placeholder='Enter Your First Name'
+                                                name='firstname'
                                                 value={firstname}
                                                 onChange={(e) =>
                                                   setFirstName(e.target.value)
                                                 }
-                                                asteric="*"
+                                                asteric='*'
                                                 required
                                               />
                                             </InputGroup>
                                             {firstNameErr &&
                                               firstname.length <= 0 && (
-                                                <p className="register-error">
+                                                <p className='register-error'>
                                                   FirstName is required
                                                 </p>
                                               )}
                                           </div>
                                         </Col>
                                         <Col md={6}>
-                                          <div className="mt-4">
+                                          <div className='mt-4'>
                                             <Form.Label>
                                               Last Name <sup>*</sup>
                                             </Form.Label>
                                             <InputGroup>
                                               <FormControl
-                                                label="Last Name"
-                                                type="text"
-                                                placeholder="Enter Your Last Name"
-                                                name="lastname"
+                                                label='Last Name'
+                                                type='text'
+                                                placeholder='Enter Your Last Name'
+                                                name='lastname'
                                                 value={lastname}
                                                 onChange={(e) =>
                                                   setLastName(e.target.value)
                                                 }
-                                                asteric="*"
+                                                asteric='*'
                                                 required
                                               />
                                             </InputGroup>
                                             {lastNameErr &&
                                               lastname.length <= 0 && (
-                                                <p className="register-error">
+                                                <p className='register-error'>
                                                   LastName is required
                                                 </p>
                                               )}
@@ -524,55 +523,55 @@ const ShoppingCart = () => {
                                       </Row>
                                       <Row>
                                         <Col md={6}>
-                                          <div className="mt-4">
+                                          <div className='mt-4'>
                                             <Form.Label>
                                               Email <sup>*</sup>
                                             </Form.Label>
                                             <InputGroup>
                                               <FormControl
-                                                label="Email Address"
-                                                type="email"
-                                                placeholder="Enter Your Email Address"
-                                                name="email"
+                                                label='Email Address'
+                                                type='email'
+                                                placeholder='Enter Your Email Address'
+                                                name='email'
                                                 value={email}
                                                 onChange={(e) =>
                                                   setEmail(e.target.value)
                                                 }
-                                                asteric="*"
+                                                asteric='*'
                                                 required
                                               />
                                             </InputGroup>
                                             {emailErr && email.length <= 0 && (
-                                              <p className="register-error">
+                                              <p className='register-error'>
                                                 Firstname is required
                                               </p>
                                             )}
                                           </div>
                                         </Col>
                                         <Col md={6}>
-                                          <div className="mt-4">
+                                          <div className='mt-4'>
                                             <Form.Label>
                                               Mobile Number <sup>*</sup>
                                             </Form.Label>
                                             <InputGroup>
                                               <FormControl
-                                                label="Mobile Number"
-                                                type="number"
-                                                placeholder="Enter Your Mobile Number"
-                                                name="mobilenumber"
+                                                label='Mobile Number'
+                                                type='number'
+                                                placeholder='Enter Your Mobile Number'
+                                                name='mobilenumber'
                                                 value={mobilenumber}
                                                 onChange={(e) =>
                                                   setMobilenumber(
                                                     e.target.value
                                                   )
                                                 }
-                                                asteric="*"
+                                                asteric='*'
                                                 required
                                               />
                                             </InputGroup>
                                             {mobileErr &&
                                               mobilenumber.length != 10 && (
-                                                <p className="register-error">
+                                                <p className='register-error'>
                                                   Mobile number must be of 10
                                                   digits.
                                                 </p>
@@ -582,44 +581,44 @@ const ShoppingCart = () => {
                                       </Row>
                                       <Row>
                                         <Col md={6}>
-                                          <div className="mt-4">
+                                          <div className='mt-4'>
                                             <Form.Label>
                                               Password <sup>*</sup>
                                             </Form.Label>
                                             <InputGroup>
                                               <FormControl
-                                                label="Password"
-                                                type="password"
-                                                placeholder="Enter Your Password"
-                                                name="password"
+                                                label='Password'
+                                                type='password'
+                                                placeholder='Enter Your Password'
+                                                name='password'
                                                 value={password}
                                                 onChange={(e) =>
                                                   setPassword(e.target.value)
                                                 }
-                                                asteric="*"
+                                                asteric='*'
                                                 required
                                               />
                                             </InputGroup>
                                           </div>
                                         </Col>
                                         <Col md={6}>
-                                          <div className="mt-4">
+                                          <div className='mt-4'>
                                             <Form.Label>
                                               Confirm Password <sup>*</sup>
                                             </Form.Label>
                                             <InputGroup>
                                               <FormControl
-                                                label=" Confirm Password"
-                                                type="password"
-                                                placeholder="Confirm Your Password"
-                                                name="confirmpassword"
+                                                label=' Confirm Password'
+                                                type='password'
+                                                placeholder='Confirm Your Password'
+                                                name='confirmpassword'
                                                 value={confirmpassword}
                                                 onChange={(e) =>
                                                   setConfirmPassword(
                                                     e.target.value
                                                   )
                                                 }
-                                                asteric="*"
+                                                asteric='*'
                                                 required
                                               />
                                             </InputGroup>
@@ -627,25 +626,25 @@ const ShoppingCart = () => {
                                         </Col>
                                         {passwordErr &&
                                           password !== confirmpassword && (
-                                            <p className="register-error">
+                                            <p className='register-error'>
                                               Password must be matched
                                             </p>
                                           )}
                                       </Row>
-                                      <div className="createaccount">
+                                      <div className='createaccount'>
                                         <InputGroup.Checkbox />
                                         <p>
                                           Creating an account means you’re okay
                                           with our
-                                          <Link to="">
+                                          <Link to=''>
                                             Terms of Service
-                                          </Link>{" "}
+                                          </Link>{' '}
                                           and
-                                          <Link to="">Privacy Policy</Link>
+                                          <Link to=''>Privacy Policy</Link>
                                         </p>
                                       </div>
                                       <button
-                                        className=" sign-in-btn "
+                                        className=' sign-in-btn '
                                         onClick={handleSubmitRegister}
                                       >
                                         Create Account
@@ -655,22 +654,22 @@ const ShoppingCart = () => {
                                   </>
                                 )}
 
-                                <p className="or">or</p>
+                                <p className='or'>or</p>
 
-                                <div className="signin-socialmediaicon">
-                                  <img src={Facebookicon} alt="" />
-                                  <img src={GoogleIcon} alt="" />
+                                <div className='signin-socialmediaicon'>
+                                  <img src={Facebookicon} alt='' />
+                                  <img src={GoogleIcon} alt='' />
                                 </div>
-                                <p className="dont-haveacc">
+                                <p className='dont-haveacc'>
                                   Don't have an account?
                                   {signIn ? (
                                     <span onClick={signUpHandler}>
-                                      {" "}
-                                      Sign Up{" "}
+                                      {' '}
+                                      Sign Up{' '}
                                     </span>
                                   ) : (
                                     <span onClick={() => setSignin(true)}>
-                                      Sign In{" "}
+                                      Sign In{' '}
                                     </span>
                                   )}
                                 </p>
@@ -684,9 +683,9 @@ const ShoppingCart = () => {
                 </div>
               </Col>
             </Row>
-            <div className="carttable__pagination">
-              <Link to="/">
-                <CgChevronDoubleLeft className="me-2" />
+            <div className='carttable__pagination'>
+              <Link to='/'>
+                <CgChevronDoubleLeft className='me-2' />
                 Continue Shopping
               </Link>
             </div>

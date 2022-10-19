@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   Col,
   Container,
@@ -9,29 +9,29 @@ import {
   Button,
   InputGroup,
   Carousel,
-} from "react-bootstrap";
-import { Link } from "react-router-dom";
-import ProductPhoto from "../../assets/images/productdetail.png";
-import Slider from "react-slick";
-import Mangopickle from "../../assets/images/mango-pickle.png";
-import Productphoto from "../../assets/images/ProductImage.png";
-import Productphoto2 from "../../assets/images/pineapple-juice.png";
-import Productphoto3 from "../../assets/images/mixed-fruit-juice.png";
-import ProductCard from "../ProductCard";
-import IncrementDecrement from "../IncrementDecrement";
-import { BsCheck } from "react-icons/bs";
-import InputForm from "../../components/InputForm";
-import GoogleIcon from "../../assets/images/googleicon.png";
-import Facebookicon from "../../assets/images/facebookicon.png";
-import { useDispatch, useSelector } from "react-redux";
+} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+// import ProductPhoto from "../../assets/images/productdetail.png";
+import Slider from 'react-slick';
+// import Mangopickle from "../../assets/images/mango-pickle.png";
+// import Productphoto from "../../assets/images/ProductImage.png";
+// import Productphoto2 from "../../assets/images/pineapple-juice.png";
+// import Productphoto3 from "../../assets/images/mixed-fruit-juice.png";
+import ProductCard from '../ProductCard';
+// import IncrementDecrement from "../IncrementDecrement";
+import { BsCheck } from 'react-icons/bs';
+import InputForm from '../../components/InputForm';
+import GoogleIcon from '../../assets/images/googleicon.png';
+import Facebookicon from '../../assets/images/facebookicon.png';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   addToCart,
   subtractFromCart,
   addFromCart,
-} from "../../actions/cartAddedAction";
-import { BiPlus, BiMinus } from "react-icons/bi";
-import { PRODUCT_DETAILS_FAIL } from "../../constants/productConstants";
-import { Helmet } from "react-helmet";
+} from '../../actions/cartAddedAction';
+import { BiPlus, BiMinus } from 'react-icons/bi';
+// import { PRODUCT_DETAILS_FAIL } from "../../constants/productConstants";
+import { Helmet } from 'react-helmet';
 
 const ProductDetailComp = ({ product, success }) => {
   const settings = {
@@ -105,18 +105,18 @@ const ProductDetailComp = ({ product, success }) => {
     ],
   };
   const dispatch = useDispatch();
-  const [mobile, setMobile] = useState("");
-  const [password, setPassword] = useState("");
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [confirmpassword, setConfirmPassword] = useState("");
+  const [mobile, setMobile] = useState('');
+  const [password, setPassword] = useState('');
+  const [firstname, setFirstName] = useState('');
+  const [lastname, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [confirmpassword, setConfirmPassword] = useState('');
   const [showA, setShowA] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [signIn, setSignin] = useState(true);
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState('');
   const [ingredient, setIngredient] = useState([]);
   const [similar, setSimilar] = useState([]);
   const { cartItems } = useSelector((state) => state.cart);
@@ -153,41 +153,41 @@ const ProductDetailComp = ({ product, success }) => {
   }, [success]);
 
   return (
-    <> 
-    <Helmet>
-    <title>{`Paicho-${product?.name}`}</title>
-  </Helmet>
-      <div className="product">
+    <>
+      <Helmet>
+        <title>{`Paicho-${product?.name}`}</title>
+      </Helmet>
+      <div className='product'>
         <Container>
-          <Row className="product__rows gx-5">
+          <Row className='product__rows gx-5'>
             <Col md={5}>
               {product?.image && product?.image?.length > 1 ? (
                 <>
-                  <div className="product__image">
-                    <img src={image} alt="" className="img-fluid selected" />
+                  <div className='product__image'>
+                    <img src={image} alt='' className='img-fluid selected' />
                   </div>
-                  <div className="product__sliders">
+                  <div className='product__sliders'>
                     <Slider {...settings}>
                       {product?.image &&
                         product?.image?.map((data, index) => (
                           <>
                             <div
                               style={{
-                                height: "100px",
-                                width: "100px",
-                                margin: "1px",
+                                height: '100px',
+                                width: '100px',
+                                margin: '1px',
                                 boxShadow:
                                   data === image &&
-                                  "0px 0px 4px rgb(0 0 0 / 25%)",
-                                borderRadius: data === image && "5px",
+                                  '0px 0px 4px rgb(0 0 0 / 25%)',
+                                borderRadius: data === image && '5px',
                               }}
                               key={index}
                             >
                               <img
-                                className="product__sliders--image"
+                                className='product__sliders--image'
                                 key={index}
                                 src={data}
-                                alt=""
+                                alt=''
                                 onClick={() => setImage(data)}
                               />
                             </div>
@@ -197,35 +197,34 @@ const ProductDetailComp = ({ product, success }) => {
                   </div>
                 </>
               ) : (
-                <div className="product__image">
+                <div className='product__image'>
                   <img
                     src={product?.image && product?.image[0]}
-                    alt=""
-                    className="img-fluid selected"
+                    alt=''
+                    className='img-fluid selected'
                   />
                 </div>
               )}
             </Col>
             <Col md={7}>
-             
-              <div className="product__heading">
-                <p className="product__heading--main">{product?.name}</p>
-                <span className="product__heading--span">
+              <div className='product__heading'>
+                <p className='product__heading--main'>{product?.name}</p>
+                <span className='product__heading--span'>
                   Category : {product?.category && product?.category.name}
                   {/* Product ID : {product._id} */}
                 </span>
               </div>
-              <div className="product__price">
+              <div className='product__price'>
                 <div>
-                  <span className="price">Rs {discountData}</span>
-                  <div className="newpricediv">
-                    <span className="previous_price">Rs{product?.price}</span>
-                    <span className="new_price ms-3">
+                  <span className='price'>Rs {discountData}</span>
+                  <div className='newpricediv'>
+                    <span className='previous_price'>Rs{product?.price}</span>
+                    <span className='new_price ms-3'>
                       -{product?.discount} %
                     </span>
                   </div>
                 </div>
-                <p className="product__price--stock">{product?.stock}</p>
+                <p className='product__price--stock'>{product?.stock}</p>
               </div>
 
               {cartItems.length > 0 &&
@@ -234,38 +233,38 @@ const ProductDetailComp = ({ product, success }) => {
                   .map((data, index) => {
                     return (
                       <>
-                        <div className="inc__dec">
-                          <div className="incredecre__inc-dec--button">
+                        <div className='inc__dec'>
+                          <div className='incredecre__inc-dec--button'>
                             <table>
                               <tbody>
                                 <tr>
                                   <td
-                                    className="incredecre__inc-dec--button--dec minus"
+                                    className='incredecre__inc-dec--button--dec minus'
                                     onClick={() => subtract(data.id)}
                                   >
                                     <BiMinus />
                                   </td>
-                                  <td className="incredecre__inc-dec--button--num">
+                                  <td className='incredecre__inc-dec--button--num'>
                                     <span>{data.qty}</span>
                                   </td>
                                   {product.countInStock >= data.qty ? (
                                     <>
                                       <td
-                                        className="incredecre__inc-dec--button--dec plus"
+                                        className='incredecre__inc-dec--button--dec plus'
                                         onClick={() => add(data.id)}
                                       >
                                         <BiPlus />
                                       </td>
                                     </>
                                   ) : (
-                                    ""
+                                    ''
                                   )}
                                 </tr>
                               </tbody>
                             </table>
                             <p>
                               {product.countInStock < data.qty &&
-                                "Product is Out Of Stock"}
+                                'Product is Out Of Stock'}
                             </p>
                           </div>
                         </div>
@@ -275,10 +274,10 @@ const ProductDetailComp = ({ product, success }) => {
 
               {product?.countInStock !== 0 ? (
                 <>
-                  <div className="product__btns">
+                  <div className='product__btns'>
                     <Link
-                      to=""
-                      className="product__btns--addtocart"
+                      to=''
+                      className='product__btns--addtocart'
                       onClick={() => send(product._id, 1)}
                     >
                       <Toast
@@ -288,15 +287,15 @@ const ProductDetailComp = ({ product, success }) => {
                         autohide
                       >
                         <Toast.Body>
-                          This item is added to your cart successfully !{" "}
-                          <BsCheck className="checkicon" />
+                          This item is added to your cart successfully !{' '}
+                          <BsCheck className='checkicon' />
                         </Toast.Body>
                       </Toast>
                       Add To Cart
                     </Link>
                     <Link
-                      to="/shoppingcart"
-                      className="product__btns--buynow"
+                      to='/shoppingcart'
+                      className='product__btns--buynow'
                       onClick={() => send(product._id, 1)}
 
                       // onClick={signInHandler}
@@ -307,7 +306,7 @@ const ProductDetailComp = ({ product, success }) => {
                 </>
               ) : (
                 <>
-                  <p className="product-outofstock">Product is Out Of Stock.</p>
+                  <p className='product-outofstock'>Product is Out Of Stock.</p>
                 </>
               )}
 
@@ -337,148 +336,148 @@ const ProductDetailComp = ({ product, success }) => {
                   {signIn ? (
                     <>
                       <Form>
-                        <div className="mt-4 position-relative">
+                        <div className='mt-4 position-relative'>
                           <InputForm
-                            label="Mobile Number"
-                            type="number"
-                            placeholder="Enter Your Mobile Number"
-                            name="mobilenumber"
+                            label='Mobile Number'
+                            type='number'
+                            placeholder='Enter Your Mobile Number'
+                            name='mobilenumber'
                             value={mobile}
                             onChange={(e) => setMobile(e.target.value)}
-                            asteric="*"
+                            asteric='*'
                             required
                           />
                         </div>
-                        <div className="mt-4 position-relative">
+                        <div className='mt-4 position-relative'>
                           <InputForm
-                            label="Password"
-                            type="password"
-                            placeholder="Enter Your Password"
-                            name="password"
+                            label='Password'
+                            type='password'
+                            placeholder='Enter Your Password'
+                            name='password'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            asteric="*"
+                            asteric='*'
                             required
                           />
                         </div>
 
-                        <Button className="sign-in-btn" type="submit">
+                        <Button className='sign-in-btn' type='submit'>
                           Sign In
                         </Button>
-                        <Link to="" className="forget-password">
+                        <Link to='' className='forget-password'>
                           <u>Forget Password?</u>
                         </Link>
                       </Form>
                     </>
                   ) : (
                     <>
-                      <Form action="">
+                      <Form action=''>
                         <Row>
                           <Col md={6}>
-                            <div className="mt-4">
+                            <div className='mt-4'>
                               <InputForm
-                                label="First Name"
-                                type="text"
-                                placeholder="Enter Your First Name"
-                                name="firstname"
+                                label='First Name'
+                                type='text'
+                                placeholder='Enter Your First Name'
+                                name='firstname'
                                 value={firstname}
                                 onChange={(e) => setFirstName(e.target.value)}
-                                asteric="*"
+                                asteric='*'
                               />
                             </div>
                           </Col>
                           <Col md={6}>
-                            <div className="mt-4">
+                            <div className='mt-4'>
                               <InputForm
-                                label="Last Name"
-                                type="text"
-                                placeholder="Enter Your Last Name"
-                                name="lastname"
+                                label='Last Name'
+                                type='text'
+                                placeholder='Enter Your Last Name'
+                                name='lastname'
                                 value={lastname}
                                 onChange={(e) => setLastName(e.target.value)}
-                                asteric="*"
+                                asteric='*'
                               />
                             </div>
                           </Col>
                         </Row>
                         <Row>
                           <Col md={6}>
-                            <div className="mt-4">
+                            <div className='mt-4'>
                               <InputForm
-                                label="Email Address"
-                                type="email"
-                                placeholder="Enter Your Email Address"
-                                name="Email"
+                                label='Email Address'
+                                type='email'
+                                placeholder='Enter Your Email Address'
+                                name='Email'
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                asteric="*"
+                                asteric='*'
                               />
                             </div>
                           </Col>
                           <Col md={6}>
-                            <div className="mt-4">
+                            <div className='mt-4'>
                               <InputForm
-                                label="Mobile Number"
-                                type="num"
-                                placeholder="Enter Your Mobile Number"
-                                name="mobilenumber"
+                                label='Mobile Number'
+                                type='num'
+                                placeholder='Enter Your Mobile Number'
+                                name='mobilenumber'
                                 value={mobile}
                                 onChange={(e) => setMobile(e.target.value)}
-                                asteric="*"
+                                asteric='*'
                               />
                             </div>
                           </Col>
                         </Row>
                         <Row>
                           <Col md={6}>
-                            <div className="mt-4">
+                            <div className='mt-4'>
                               <InputForm
-                                label="Password"
-                                type="password"
-                                placeholder="Enter Your Password"
-                                name="password"
+                                label='Password'
+                                type='password'
+                                placeholder='Enter Your Password'
+                                name='password'
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                asteric="*"
+                                asteric='*'
                               />
                             </div>
                           </Col>
                           <Col md={6}>
-                            <div className="mt-4">
+                            <div className='mt-4'>
                               <InputForm
-                                label=" Confirm Password"
-                                type="password"
-                                placeholder="Confirm Your Password"
-                                name="confirmpassword"
+                                label=' Confirm Password'
+                                type='password'
+                                placeholder='Confirm Your Password'
+                                name='confirmpassword'
                                 value={confirmpassword}
                                 onChange={(e) =>
                                   setConfirmPassword(e.target.value)
                                 }
-                                asteric="*"
+                                asteric='*'
                               />
                             </div>
                           </Col>
                         </Row>
                       </Form>
-                      <div className="createaccount">
+                      <div className='createaccount'>
                         <InputGroup.Checkbox />
                         <p>
                           Creating an account means you’re okay with our
-                          <Link to="">Terms of Service</Link> and
-                          <Link to="">Privacy Policy</Link>
+                          <Link to=''>Terms of Service</Link> and
+                          <Link to=''>Privacy Policy</Link>
                         </p>
                       </div>
-                      <button className=" sign-in-btn ">Create Account</button>
+                      <button className=' sign-in-btn '>Create Account</button>
                     </>
                   )}
 
-                  <p className="or">or</p>
+                  <p className='or'>or</p>
 
-                  <div className="signin-socialmediaicon">
-                    <img src={Facebookicon} alt="" />
-                    <img src={GoogleIcon} alt="" />
+                  <div className='signin-socialmediaicon'>
+                    <img src={Facebookicon} alt='' />
+                    <img src={GoogleIcon} alt='' />
                   </div>
-                  <p className="dont-haveacc">
+                  <p className='dont-haveacc'>
                     Don't have an account?
                     {signIn ? (
                       <span onClick={signUpHandler}> Sign Up </span>
@@ -488,7 +487,7 @@ const ProductDetailComp = ({ product, success }) => {
                   </p>
                 </Modal.Body>
               </Modal>
-              <div className="product__lists">
+              <div className='product__lists'>
                 <p>Ingredients</p>
                 <ul>
                   {product?.ingredient &&
@@ -500,52 +499,47 @@ const ProductDetailComp = ({ product, success }) => {
             </Col>
           </Row>
         </Container>
-        <div className="product__description">
+        <div className='product__description'>
           <Container>
             <Row>
               <Col md={10}>
-                <p className="product__description--heading">
+                <p className='product__description--heading'>
                   Description of the Product
                 </p>
-                <p className="product__description--descriptionpara">
+                <p className='product__description--descriptionpara'>
                   {product?.description}
                 </p>
               </Col>
             </Row>
           </Container>
         </div>
-        <div className="product__similaritems">
+        <div className='product__similaritems'>
           <Container>
-            <p className="product__similaritems--heading">
+            <p className='product__similaritems--heading'>
               Similar Items You Might Like
             </p>
-              {product.similar?.length>3?
-            <Slider {...settingss}>
+            {product.similar?.length > 3 ? (
+              <Slider {...settingss}>
                 {product?.similar &&
                   product?.similar.map((curElm, index) => {
-                    return (
-                          <ProductCard {...curElm} key={index} />
-                    );
-                  })
-                  }
+                    return <ProductCard {...curElm} key={index} />;
+                  })}
               </Slider>
-              :
+            ) : (
               <>
-              <Row>
-              {product?.similar &&
-                  product?.similar.map((curElm, index) => {
-                    return (
-                      <Col md={3}>
-                        <ProductCard {...curElm} key={index} />
-
-                      </Col>
-                    );
-                  })
-                  }
-              </Row>
+                <Row>
+                  {product?.similar &&
+                    product?.similar.map((curElm, index) => {
+                      return (
+                        <Col md={3}>
+                          <ProductCard {...curElm} key={index} />
+                        </Col>
+                      );
+                    })}
+                </Row>
               </>
-}
-            
+            )}
+
             {/* <Row>
               <Carousel>
                 {product?.similar &&
