@@ -1,7 +1,4 @@
-// @import 'fonts';
-@import "abstracts";
-@import "base";
-// @import 'layout';
-@import "components";
-@import "pages";
-// @import 'fonts';
+@import "./abstracts/index";
+@import "./base/index";
+@import "./components/index";
+@import "./pages/index";
