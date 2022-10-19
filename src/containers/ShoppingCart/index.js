@@ -31,8 +31,8 @@ import { useDispatch } from 'react-redux';
 import { BiPlus, BiMinus } from 'react-icons/bi';
 import ClearCart from '../ClearCart/index.js';
 import { register, login } from '../../actions/subscriberaction';
-import GoogleIcon from '../../assets/images/googleicon.png';
-import Facebookicon from '../../assets/images/facebookicon.png';
+import GoogleIcon from '../../assets/Images/googleicon.png';
+import Facebookicon from '../../assets/Images/facebookicon.png';
 import { Helmet } from 'react-helmet';
 import ScrollToTop from '../../components/ScrollToTop/index.js';
 

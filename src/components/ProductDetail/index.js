@@ -21,8 +21,8 @@ import ProductCard from '../ProductCard';
 // import IncrementDecrement from "../IncrementDecrement";
 import { BsCheck } from 'react-icons/bs';
 import InputForm from '../../components/InputForm';
-import GoogleIcon from '../../assets/images/googleicon.png';
-import Facebookicon from '../../assets/images/facebookicon.png';
+import GoogleIcon from '../../assets/Images/googleicon.png';
+import Facebookicon from '../../assets/Images/facebookicon.png';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addToCart,
