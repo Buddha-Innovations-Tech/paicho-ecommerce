@@ -1070,7 +1070,7 @@ const NavBar = () => {
                                     curElm.subcategories.map((data, index) => {
                                       return (
                                         <Link
-                                          to={`/${curElm.name}`}
+                                          to={`/category/${data.name}`}
                                           state={data.name}
                                           key={index}
                                         >
