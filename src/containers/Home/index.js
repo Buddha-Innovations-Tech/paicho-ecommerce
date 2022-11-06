@@ -116,13 +116,15 @@ const Home = () => {
                                 {curEm.description}
                               </p>{' '}
                               <br />
-                              <Link
-                                to={curEm.link}
+                              <a
+                                href={curEm.link}
                                 className='btn__buy'
+                                target='_blank'
+                                rel='noreferrer'
                                 // onClick={signInHandler}
                               >
                                 Buy Now
-                              </Link>
+                              </a>
                             </div>
                           </Col>
 
